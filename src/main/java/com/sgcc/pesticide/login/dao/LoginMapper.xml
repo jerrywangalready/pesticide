@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sgcc.pesticide.login.dao.UserDao">
+
+
+    <insert id="insertUser" parameterType="User" keyProperty="id">
+        insert into tuser(
+        ID,
+        NAME,
+        PWD)
+        values
+        (
+        #{id},
+        #{name},
+        #{pwd}
+        )
+    </insert>
+
+    <select id="getUser" parameterType="String" resultType="User">
+        select * from test1 WHERE uuid = #{id};
+    </select>
+
+</mapper>
