@@ -26,7 +26,6 @@ public class LoginController {
 
     @RequestMapping("index")
     public String index(HttpServletRequest request){
-        System.out.println(111);
         User r = userService.getUser("2");
         request.setAttribute("user", r.getUsername());
         return "hello";
