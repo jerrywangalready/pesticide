@@ -1,6 +1,7 @@
 package com.sgcc.pesticide.login.controller;
 
 import com.sgcc.pesticide.login.model.User;
+import com.sgcc.pesticide.login.model.UserToken;
 import com.sgcc.pesticide.login.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,5 +36,12 @@ public class LoginController {
     @RequestMapping(value = "/a.do",method= RequestMethod.POST)
     public List<Map<String,Object>> listAsParam(@RequestBody List<Map<String,Object>> list){
         return list;
+    }
+
+    @RequestMapping("/doLogin")
+    public String doLogin(HttpServletRequest request){
+        UserToken userToken = new UserToken();
+        request.getSession().setAttribute("userToken",userToken);
+        return "/login/login";
     }
 }

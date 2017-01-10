@@ -7,8 +7,8 @@ import org.apache.ibatis.type.Alias;
  * @author fenghaifeng
  * 2014年2月11日
  */
-@Alias("User")
-public class User {
+@Alias("UserToken")
+public class UserToken {
 
 	private String uuid;
 	private String username;
