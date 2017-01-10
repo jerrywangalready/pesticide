@@ -18,17 +18,17 @@ import java.util.Map;
  * @create 2017/1/7.
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/login")
 public class LoginController {
 
     @Autowired
     UserService userService;
 
-    @RequestMapping("index")
+    @RequestMapping("/login")
     public String index(HttpServletRequest request){
         User r = userService.getUser("2");
         request.setAttribute("user", r.getUsername());
-        return "hello";
+        return "/login/login";
     }
 
     @ResponseBody

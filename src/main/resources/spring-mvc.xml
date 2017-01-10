@@ -1,30 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:p="http://www.springframework.org/schema/p"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:context="http://www.springframework.org/schema/context"
-  xmlns:mvc="http://www.springframework.org/schema/mvc"
-  xsi:schemaLocation="
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-3.2.xsd
     http://www.springframework.org/schema/mvc
-    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
-    
+    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd" default-lazy-init="false">
+
     <!-- 扫描controller（controller层注入） -->
-   <context:component-scan base-package="com.sgcc.pesticide.login.controller"/>
-   
-   <!-- 避免IE在ajax请求时，返回json出现下载 -->
-   <!--<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">		-->
-		<!--<property name="supportedMediaTypes">-->
-			<!--<list>-->
-				<!--<value>text/html;charset=UTF-8</value>-->
-			<!--</list>-->
-		<!--</property>-->
-	<!--</bean>-->
-	
-   <!-- 对模型视图添加前后缀 -->
-     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
-      p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
+    <context:component-scan base-package="com.sgcc.pesticide.*.controller,com.sgcc.comm.*.*"/>
+
+    <!-- 避免IE在ajax请求时，返回json出现下载 -->
+    <!--<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">		-->
+    <!--<property name="supportedMediaTypes">-->
+    <!--<list>-->
+    <!--<value>text/html;charset=UTF-8</value>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <!-- 对模型视图添加前后缀 -->
+    <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"-->
+          <!--p:prefix="/WEB-INF/jsp/*/" p:suffix=".jsp"/>-->
+    <!-- jsp视图解析器   -->
+    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" lazy-init="false">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/pesticide/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="contentType"><value>text/html;charset=UTF-8</value></property>
+    </bean>
+
+    <mvc:interceptors>
+        <!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
+        <bean id="allInterceptor" class="com.sgcc.comm.interceptor.AllInterceptor"/>
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/*"/>-->
+            <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
+            <!--<bean id="loginController" class="com.sgcc.pesticide.login.controller.LoginController"/>-->
+        <!--</mvc:interceptor>-->
+    </mvc:interceptors>
 </beans>
