@@ -24,20 +24,19 @@ public class AllInterceptor implements HandlerInterceptor {
         HttpSession session = httpServletRequest.getSession();
 
         //无需登录，允许访问的地址
-        String[] allowUrls =new String[]{"/toLogin","/login"};
+        String[] allowUrls =new String[]{"/login/doLogin","/login"};
 
         //获取请求地址
         String url =httpServletRequest.getRequestURL().toString();
 
+        //获得session中的用户
         for (String strUrl : allowUrls) {
             if(url.contains(strUrl))
             {
                 return true;
             }
         }
-
-        //获得session中的用户
-        UserToken user =(UserToken) session.getAttribute("userToken");
+        UserToken user = (UserToken) session.getAttribute("userToken");
 
 
         if(user ==null)

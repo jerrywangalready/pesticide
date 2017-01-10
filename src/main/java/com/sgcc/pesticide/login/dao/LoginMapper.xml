@@ -19,7 +19,11 @@
     </insert>
 
     <select id="getUser" parameterType="String" resultType="User">
-        select * from test1 WHERE uuid = #{id};
+        select * from demo WHERE uuid = #{id};
+    </select>
+
+    <select id="checkUser" parameterType="java.util.Map" resultType="UserToken">
+        SELECT * FROM demo WHERE username = #{username} AND password = #{password}
     </select>
 
 </mapper>
