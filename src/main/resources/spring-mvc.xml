@@ -40,7 +40,7 @@
         <bean id="allInterceptor" class="com.sgcc.comm.interceptor.AllInterceptor"/>
         <!--<mvc:interceptor>-->
             <!--<mvc:mapping path="/*"/>-->
-            <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
+             <!--定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
             <!--<bean id="loginController" class="com.sgcc.pesticide.login.controller.LoginController"/>-->
         <!--</mvc:interceptor>-->
     </mvc:interceptors>

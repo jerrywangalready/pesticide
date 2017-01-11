@@ -1,0 +1,28 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    background: rgba(0, 0, 0, 0) radial-gradient(circle, #0d9ddc, #0d5292) repeat scroll 0 0;
+    text-align:center;
+    min-width:680px;
+}
+body input{
+    border-color: #0d9ddc !important;
+}
+#logo{
+    width: 323px;
+    height:130px;
+    margin-top:130px;
+}
+.login_div{
+    /*background:#fff;*/
+    height:300px;
+    width:350px;
+    margin:60px auto 0;
+    border-radius: 8px;
+
+}
+.shadow{
+    -moz-box-shadow: inset 1px 1px 3px #888 !important;
+    -webkit-box-shadow: inset 1px 1px 3px #888 !important;
+    box-shadow: inset 1px 1px 3px #888 !important;
+}

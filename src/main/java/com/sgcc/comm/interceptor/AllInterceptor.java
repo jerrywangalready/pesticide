@@ -1,9 +1,6 @@
 package com.sgcc.comm.interceptor;
 
 import com.sgcc.pesticide.login.model.UserToken;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.context.request.WebRequestInterceptor;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,7 +20,7 @@ public class AllInterceptor implements HandlerInterceptor {
         HttpSession session = httpServletRequest.getSession();
 
         //无需登录，允许访问的地址
-        String[] allowUrls =new String[]{"/login/doLogin","/login"};
+        String[] allowUrls =new String[]{"/login/doLogin","/login/login"};
 
         //获取请求地址
         String url =httpServletRequest.getRequestURL().toString();
@@ -40,17 +37,10 @@ public class AllInterceptor implements HandlerInterceptor {
 
         if(user ==null)
         {
-//            throw new UnLoginException("您尚未登录！");
-//            System.out.println(111);
             //重定向
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+"/login/login.do");
 
         }
-        //        String loginState = httpServletRequest.getSession()==null?"":httpServletRequest.getSession().getAttribute("username").toString();
-//        if("".equals(loginState)) {
-//        }else {
-//            System.out.println(222);
-//        }
         return true;
     }
 

@@ -34,7 +34,6 @@ public class LoginController {
     public void index(Model model, HttpServletRequest request){
         User r = userService.getUser("2");
         request.setAttribute("user", r.getUsername());
-//        return "/login/login";
     }
 
     @ResponseBody
