@@ -20,7 +20,6 @@ index.js.load = function (on) {
     $("#menu_bar").children().removeClass("current-menu-item");
     $("#menu_bar").children().each(function () {
         var oc = $(this).find("a").attr("onclick");
-        console.info(oc);
         if(oc.indexOf(on)>0){
             $(this).addClass("current-menu-item");
             return false;

@@ -78,8 +78,7 @@
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test3')">任务池</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test4')">记录</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test5')">图表</a></li>
-                <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test6')">设置</a></li>
-                <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test7')">成员</a></li>
+                <li><a href="javascript:void(0);" onclick="index.js.menuClick('settings/queryUsers')">设置</a></li>
             </ul>
         </nav>
         <!-- END Main Navigation -->

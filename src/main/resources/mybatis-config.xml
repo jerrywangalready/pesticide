@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <!-- 命名空间 -->
     <typeAliases>
         <package name="com.sgcc.pesticide.login.model"></package>
+        <package name="com.sgcc.pesticide.settings.model"></package>
     </typeAliases>
 
     <!-- 映射map -->
