@@ -39,6 +39,11 @@
             <span class="glyphicon form-control-feedback"></span>
         </div>
         <button class="form-control btn-warning" id="loginButton">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+        <%--<div class="checkbox">--%>
+            <%--<label style="color:#fff;">--%>
+                <%--<input type="checkbox"> 记住我--%>
+            <%--</label>--%>
+        <%--</div>--%>
     </div>
 </body>
 <script type="text/javascript">

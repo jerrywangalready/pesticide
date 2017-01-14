@@ -30,7 +30,7 @@ $(function () {
         }
         $.post(path+"/login/doLogin.do",{username:username,password:password},function (data) {
             if(data == "false"){
-                $("#error_alert").show();
+                $("#error_alert").slideDown("fast");
             }else{
                 location.href = path+"/index/index.do";
             }
@@ -41,6 +41,6 @@ $(function () {
             $("#loginButton").click();
         }
     }).focus(function () {
-        $("#error_alert").hide();
+        $("#error_alert").slideUp("fast");
     });
 });
