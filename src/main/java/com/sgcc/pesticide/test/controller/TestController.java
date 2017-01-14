@@ -31,39 +31,9 @@ public class TestController {
 //    @RequestMapping("/login")
     @RequestMapping(value = "/test1.do")
     public void test1(Model model, HttpServletRequest request){
-        String s1 = "Y";
-        String s2 = "S1";
-        User r = userService.getUser("2");
-        request.setAttribute("user", r.getUsername());
     }
     @RequestMapping(value = "/test2.do")
     public void test2(Model model, HttpServletRequest request){
-        User r = userService.getUser("2");
-        request.setAttribute("user", r.getUsername());
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/a.do",method= RequestMethod.POST)
-    public List<Map<String,Object>> listAsParam(@RequestBody List<Map<String,Object>> list){
-        return list;
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/doLogin.do",method= RequestMethod.POST)
-    public String doLogin(HttpServletRequest request, HttpServletResponse httpServletResponse){
-        String username = request.getParameter("username") == null?"":request.getParameter("username").toString();
-        String password = request.getParameter("password") == null?"":request.getParameter("password").toString();
-        // 校验账号密码是否正确
-        UserToken user = userService.checkUser(username,password);
-        if (user == null){
-            return "false";
-        }else {
-            UserToken userToken = new UserToken();
-            HttpSession session = request.getSession();
-            session.setAttribute("userToken",userToken);
-            session.setMaxInactiveInterval(1800);
-            return "true";
-        }
-
-    }
 }
