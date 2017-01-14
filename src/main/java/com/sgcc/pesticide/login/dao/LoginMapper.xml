@@ -23,7 +23,7 @@
     </select>
 
     <select id="checkUser" parameterType="java.util.Map" resultType="UserToken">
-        SELECT username FROM demo WHERE username = #{username} AND password = #{password}
+        SELECT username FROM s_users WHERE username = #{username} AND password = #{password}
     </select>
 
 </mapper>

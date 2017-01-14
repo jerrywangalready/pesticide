@@ -32,8 +32,8 @@ public class LoginController {
 //    @RequestMapping("/login")
     @RequestMapping(value = "/login.do")
     public void index(Model model, HttpServletRequest request){
-        User r = userService.getUser("2");
-        request.setAttribute("user", r.getUsername());
+        //User r = userService.getUser("2");
+        //request.setAttribute("user", r.getUsername());
     }
 
     @ResponseBody
