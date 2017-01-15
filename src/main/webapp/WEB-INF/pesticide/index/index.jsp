@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Pesticide</title>
-
+    <script type="text/javascript" src="<%=path%>/pesticide/index/js/index.js"></script>
 <body>
 <!-- START Top-Toolbar -->
 <aside class="top-aside clearfix">

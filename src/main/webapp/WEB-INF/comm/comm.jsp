@@ -9,6 +9,7 @@
 <%
     String path = request.getContextPath();
 %>
+<link href="<%=path%>/comm/image/logo_mini_32.ico" rel="shortcut icon" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/pesticide/index/css/index.css" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/pesticide/index/css/_style.css" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/pesticide/index/css/_mobile.css" />
@@ -24,5 +25,5 @@
 <script type="text/javascript" src="<%=path%>/comm/plugins/hashchange/jquery.ba-hashchange.min.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/artTemplate/template.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/js/comm.js"></script>
-<script type="text/javascript" src="<%=path%>/pesticide/index/js/index.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
