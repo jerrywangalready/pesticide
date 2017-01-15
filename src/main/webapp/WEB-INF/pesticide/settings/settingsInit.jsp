@@ -6,14 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-人员人员
+<%@ include file="../../comm/comm.jsp"%>
+<script type="text/javascript" src="<%=path%>/pesticide/settings/js/settings.js"></script>
+人员人员11111
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-人员人员
 <br>
 <br>
 <br>
