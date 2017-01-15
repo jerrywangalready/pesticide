@@ -1,30 +1,13 @@
 <!DOCTYPE HTML>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="../../comm/comm.jsp"%>
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <%
-        String path = request.getContextPath();
-    %>
+
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Pesticide</title>
-    <link rel="stylesheet" type="text/css" href="<%=path%>/pesticide/index/css/index.css" />
-    <link rel="stylesheet" type="text/css" href="<%=path%>/pesticide/index/css/_style.css" />
-    <link rel="stylesheet" type="text/css" href="<%=path%>/pesticide/index/css/_mobile.css" />
-    <link rel="stylesheet" type="text/css" href="<%=path%>/pesticide/index/css/primary-blue.css" />
-    <script type="text/javascript" src="<%=path%>/comm/plugins/jQuery/jquery-3.1.1.min.js"></script>
-    <!--[if lt IE 9]>
-    <link rel="stylesheet" href="<%=path%>/pesticide/index/css/IE.css"/>
-    <script src="http//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lte IE 8]>
-    <script type="text/javascript" src="<%=path%>/pesticide/index/js/IE.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="<%=path%>/comm/plugins/hashchange/jquery.ba-hashchange.min.js"></script>
-    <script type="text/javascript" src="<%=path%>/comm/plugins/artTemplate/template.js"></script>
-    <script type="text/javascript" src="<%=path%>/comm/js/comm.js"></script>
-    <script type="text/javascript" src="<%=path%>/pesticide/index/js/index.js"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+
 <body>
 <!-- START Top-Toolbar -->
 <aside class="top-aside clearfix">
