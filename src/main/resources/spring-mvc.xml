@@ -35,6 +35,8 @@
         <property name="contentType"><value>text/html;charset=UTF-8</value></property>
     </bean>
 
+    <mvc:annotation-driven />
+
     <mvc:interceptors>
         <!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
         <bean id="allInterceptor" class="com.sgcc.comm.interceptor.AllInterceptor"/>
