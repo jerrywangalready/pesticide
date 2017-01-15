@@ -21,6 +21,7 @@
     <script type="text/javascript" src="<%=path%>/pesticide/index/js/IE.js"></script>
     <![endif]-->
     <script type="text/javascript" src="<%=path%>/comm/plugins/hashchange/jquery.ba-hashchange.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/comm/plugins/artTemplate/template.js"></script>
     <script type="text/javascript" src="<%=path%>/comm/js/comm.js"></script>
     <script type="text/javascript" src="<%=path%>/pesticide/index/js/index.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
@@ -31,12 +32,12 @@
         <div class="one_half">
             <div class="sidebar-widget">
                 <ul class="custom-menu">
-                    <li class="current-menu-item"><a href="page-template-homepage-jquery.html">工作台</a></li>
-                    <li><a href="../../../../../../../../../Documents/hh/H159/page-template-team-members.html">什么鬼</a></li>
-                    <li><a href="../../../../../../../../../Documents/hh/H159/page-template-sitemap.html">Sitemap</a></li>
-                    <li><a href="../../../../../../../../../Documents/hh/H159/content-color-autumn.html">Colors</a></li>
-                    <li><a href="../../../../../../../../../Documents/hh/H159/page-template-shortcodelist.html">Shortcodes</a></li>
-                    <li><a href="../../../../../../../../../Documents/hh/H159/page-template-homepage-lightbox-hero.html">Pages</a></li>
+                    <li class="current-menu-item"><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">工作台</a></li>
+                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('creation/creation')">创建</a></li>
+                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">Sitemap</a></li>
+                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">Colors</a></li>
+                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">Shortcodes</a></li>
+                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">Pages</a></li>
                 </ul>
             </div>
         </div>
@@ -94,17 +95,11 @@
 </section>
 <!-- END Banner Area -->
 
-
-
-
 <!-- START Content Container -->
 <section id="content-container" class="clearfix">
 
 </section>
 <!-- END Content Container -->
-
-
-
 
 <!-- START Footer Callout -->
 <%--<div class="footer-callout clearfix">--%>
@@ -122,9 +117,6 @@
     <%--<!-- END center-wrap -->--%>
 <%--</div>--%>
 <!-- END Footer Callout -->
-
-
-
 
 <!-- START Footer -->
 <footer>
