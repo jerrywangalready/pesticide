@@ -67,14 +67,11 @@
         </div>
         <!-- END companyIdentity -->
 
-
-
-
         <!-- START Main Navigation -->
         <nav>
             <ul id="menu_bar">
-                <li class="current-menu-item"><a href="javascript:void(0);" onclick="index.js.menuClick('test/test1')">工作台</a></li>
-                <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test2')">创建</a></li>
+                <li class="current-menu-item"><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">工作台</a></li>
+                <li><a href="javascript:void(0);" onclick="index.js.menuClick('creation/creation')">创建</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test3')">任务池</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test4')">记录</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test5')">图表</a></li>
@@ -135,7 +132,7 @@
     <div class="footer-copyright clearfix">
         <div class="center-wrap clearfix">
             <div class="foot-copy">
-                <p>Copyright &copy; 2012 Your Company Name. All rights reserved.</p>
+                <p>Copyright &copy; 2017 State Grid Corporation of China. All rights reserved.</p>
             </div>
             <!-- END foot-copy -->
             <a href="#" id="scroll_to_top" class="link-top">Scroll to Top</a>

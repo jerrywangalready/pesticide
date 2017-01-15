@@ -4,8 +4,7 @@ import org.apache.ibatis.type.Alias;
 
 /**
  * 用户表
- * @author fenghaifeng
- * 2014年2月11日
+ * @author JerryWang
  */
 @Alias("UserToken")
 public class UserToken {
@@ -13,14 +12,23 @@ public class UserToken {
 	private String uuid;
 	private String username;
 	private String password;
-	private String is_enable;
+	private String nickname;
+	private String isenable;
 
-	public void setIs_enable(String is_enable) {
-		this.is_enable = is_enable;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public String getIs_enable() {
-		return is_enable;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getIsenable() {
+		return isenable;
+	}
+
+	public void setIsenable(String isenable) {
+		this.isenable = isenable;
 	}
 
 	public void setPassword(String password) {

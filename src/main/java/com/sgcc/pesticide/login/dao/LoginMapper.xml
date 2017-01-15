@@ -2,28 +2,10 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sgcc.pesticide.login.dao.UserDao">
-
-
-    <insert id="insertUser" parameterType="User" keyProperty="id">
-        insert into tuser(
-        ID,
-        NAME,
-        PWD)
-        values
-        (
-        #{id},
-        #{name},
-        #{pwd}
-        )
-    </insert>
-
-    <select id="getUser" parameterType="String" resultType="User">
-        select * from demo WHERE uuid = #{id};
-    </select>
+<mapper namespace="com.sgcc.pesticide.login.dao.LoginDao">
 
     <select id="checkUser" parameterType="java.util.Map" resultType="UserToken">
-        SELECT username FROM s_users WHERE username = #{username} AND password = #{password}
+        SELECT username,nickname FROM s_users WHERE username = #{username} AND password = #{password} AND ISENABLE = '1'
     </select>
 
 </mapper>
