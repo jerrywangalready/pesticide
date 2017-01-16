@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/workbench")
 public class WorkbenchController {
 
-    @RequestMapping("/workbench")
+    @RequestMapping("/init")
     public String initWorkbench(){
-        return "/workbench/workbench";
+        return "/workbench/workbenchInit";
     }
 }

@@ -3,6 +3,8 @@
  */
 jQuery.namespace("index");
 $(function () {
+
+    // 初始化body区
     var on = getParameter(location.hash,"on","");
     index.js.load(on);
     $(window).hashchange(function(){
@@ -37,8 +39,23 @@ index.js.load = function (on) {
         });
     }
     $("#content-container").load(path+"/"+on+".do");
+    // index页面头脚信息初始化
+    index.js.init();
 };
-
+// 菜单按钮点击事件
 index.js.menuClick = function (menupath) {
     setHash('on='+menupath);
+};
+// 初始化头脚信息
+index.js.init = function(){
+    // 获取用户基本信息
+    $("#a_name").text(nickname);
+};
+// 退出
+index.js.logout = function(){
+    $.post(path+"/index/logout.do",{},function (data) {
+        if(data  = "true"){
+            location.href = path+"/index/index.do";
+        }
+    });
 };

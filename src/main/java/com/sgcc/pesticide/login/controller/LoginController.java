@@ -37,11 +37,10 @@ public class LoginController {
         String username = request.getParameter("username") == null?"":request.getParameter("username").toString();
         String password = request.getParameter("password") == null?"":request.getParameter("password").toString();
         // 校验账号密码是否正确
-        UserToken user = loginService.checkUser(username,password);
-        if (user == null){
+        UserToken userToken = loginService.checkUser(username,password);
+        if (userToken == null){
             return "false";
         }else {
-            UserToken userToken = new UserToken();
             HttpSession session = request.getSession();
             session.setAttribute("userToken",userToken);
             session.setMaxInactiveInterval(1800);

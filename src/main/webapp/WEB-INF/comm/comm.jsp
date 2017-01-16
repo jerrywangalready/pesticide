@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.sgcc.pesticide.login.model.UserToken" %><%--
   Created by IntelliJ IDEA.
   User: jerrywang
   Date: 2017/1/15
@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
+    UserToken userToken = (UserToken) request.getSession().getAttribute("userToken");
 %>
 <link href="<%=path%>/comm/image/logo_mini_32.ico" rel="shortcut icon" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/pesticide/index/css/index.css" />
@@ -27,3 +28,10 @@
 <script type="text/javascript" src="<%=path%>/comm/js/comm.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<script type="text/javascript">
+    var path = '<%=path%>';
+    <%if(userToken!=null){%>
+        var username = '<%=userToken.getUsername()%>';
+        var nickname = '<%=userToken.getNickname()%>';
+    <%}%>
+</script>

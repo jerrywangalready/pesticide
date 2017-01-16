@@ -28,8 +28,8 @@
         <div class="one_half">
             <div class="sidebar-widget">
                 <ul class="social_icons">
-                    <li><a href="http//themes.truethemes.net/Sterling/feed" class="rss">杜成皓</a></li>
-                    <li><a href="http//www.twitter.com/truethemes" class="twitter">退出</a></li>
+                    <li><a id="a_name" href="javascript:void(0);" class="rss"></a></li>
+                    <li><a href="javascript:void(0);" class="twitter" onclick="index.js.logout()">退出</a></li>
                 </ul>
             </div>
         </div>
@@ -56,8 +56,8 @@
         <!-- START Main Navigation -->
         <nav>
             <ul id="menu_bar">
-                <li class="current-menu-item"><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">工作台</a></li>
-                <li><a href="javascript:void(0);" onclick="index.js.menuClick('creation/creation')">创建</a></li>
+                <li class="current-menu-item"><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/init')">工作台</a></li>
+                <li><a href="javascript:void(0);" onclick="index.js.menuClick('creation/init')">创建</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test3')">任务池</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test4')">记录</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test5')">图表</a></li>
@@ -81,7 +81,7 @@
 <!-- END Banner Area -->
 
 <!-- START Content Container -->
-<section id="content-container" class="clearfix">
+<section id="content-container" class="clearfix" style="min-height: 556px;">
 
 </section>
 <!-- END Content Container -->
