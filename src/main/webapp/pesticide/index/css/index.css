@@ -2,3 +2,11 @@
     height: 67px;
     width:auto;
 }
+
+#content-container{
+    min-height: 556px;
+    text-align: center;
+}
+#content-container div{
+    margin:0 auto;
+}

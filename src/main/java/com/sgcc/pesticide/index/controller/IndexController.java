@@ -1,8 +1,6 @@
 package com.sgcc.pesticide.index.controller;
 
-import com.sgcc.pesticide.login.model.UserToken;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 

@@ -8,5 +8,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../../comm/comm.jsp"%>
 <script type="text/javascript" src="<%=path%>/pesticide/workbench/js/workbench.js"></script>
-aaaa
-
+<div >aaaaaa</div>

@@ -81,7 +81,7 @@
 <!-- END Banner Area -->
 
 <!-- START Content Container -->
-<section id="content-container" class="clearfix" style="min-height: 556px;">
+<section id="content-container" class="clearfix">
 
 </section>
 <!-- END Content Container -->
