@@ -9,6 +9,7 @@
 }
 #content-container div{
     margin:0 auto;
+    width:960px;
 }
 .head_float{
     position:fixed !important;
