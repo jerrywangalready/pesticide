@@ -10,17 +10,17 @@
     <script type="text/javascript" src="<%=path%>/pesticide/index/js/index.js"></script>
 <body>
 <!-- START Top-Toolbar -->
-<aside class="top-aside clearfix">
+<aside id="top_toolbar" class="top-aside clearfix head_float" style="display: none;">
     <div class="center-wrap">
         <div class="one_half">
             <div class="sidebar-widget">
                 <ul class="custom-menu">
                     <li class="current-menu-item"><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">工作台</a></li>
                     <li><a href="javascript:void(0);" onclick="index.js.menuClick('creation/creation')">创建</a></li>
-                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">Sitemap</a></li>
-                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">Colors</a></li>
-                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">Shortcodes</a></li>
-                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">Pages</a></li>
+                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">任务池</a></li>
+                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">记录</a></li>
+                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">图表</a></li>
+                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">设置</a></li>
                 </ul>
             </div>
         </div>
@@ -28,8 +28,28 @@
         <div class="one_half">
             <div class="sidebar-widget">
                 <ul class="social_icons">
-                    <li><a id="a_name" href="javascript:void(0);" class="rss"></a></li>
-                    <li><a href="javascript:void(0);" class="twitter" onclick="index.js.logout()">退出</a></li>
+                    <li><span class="glyphicon glyphicon-user"></span> <a name="a_name" href="javascript:void(0);" class=""></a></li>
+                    <li><span class="glyphicon glyphicon-log-out"></span> <a href="javascript:void(0);" class="" onclick="index.js.logout()">退出</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- END top-toolbar-right -->
+    </div>
+    <!-- END center-wrap -->
+    <div class="top-aside-shadow"></div>
+</aside>
+<aside class="top-aside clearfix">
+    <div class="center-wrap">
+        <div class="one_half">
+            <div class="sidebar-widget">
+            </div>
+        </div>
+        <!-- END top-toolbar-left -->
+        <div class="one_half">
+            <div class="sidebar-widget">
+                <ul class="social_icons">
+                    <li><span class="glyphicon glyphicon-user"></span> <a name="a_name" href="javascript:void(0);" class=""></a></li>
+                    <li><span class="glyphicon glyphicon-log-out"></span> <a href="javascript:void(0);" class="" onclick="index.js.logout()">退出</a></li>
                 </ul>
             </div>
         </div>

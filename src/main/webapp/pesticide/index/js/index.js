@@ -9,11 +9,19 @@ $(function () {
     index.js.load(on);
     $(window).hashchange(function(){
         on = getParameter(location.hash,"on","");
-        // if(on != ""){
-            index.js.load(on);
-
-        // }
+        index.js.load(on);
     });
+    $(window).scroll(function(){
+        //scrollTop是浏览器滚动条的top位置，
+        var scrollTop=$(document).scrollTop();
+        if(scrollTop > 100){
+            // $("#top_toolbar").slideDown();
+            $("#top_toolbar").fadeIn();
+        }else if(scrollTop < 100){
+            // $("#top_toolbar").slideUp();
+            $("#top_toolbar").fadeOut();
+        }
+    })
 });
 
 index.js = {};
@@ -49,7 +57,7 @@ index.js.menuClick = function (menupath) {
 // 初始化头脚信息
 index.js.init = function(){
     // 获取用户基本信息
-    $("#a_name").text(nickname);
+    $("a[name=a_name]").text(nickname);
 };
 // 退出
 index.js.logout = function(){

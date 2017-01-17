@@ -10,3 +10,8 @@
 #content-container div{
     margin:0 auto;
 }
+.head_float{
+    position:fixed !important;
+    z-index:99999 !important;
+    width:100%;
+}

@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/pesticide/index/css/_style.css" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/pesticide/index/css/_mobile.css" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/pesticide/index/css/primary-blue.css" />
+<link rel="stylesheet" type="text/css" href="<%=path%>/comm/plugins/bootstrap/css/bootstrap.css" />
 <script type="text/javascript" src="<%=path%>/comm/plugins/jQuery/jquery-3.1.1.min.js"></script>
 <!--[if lt IE 9]>
 <link rel="stylesheet" href="<%=path%>/pesticide/index/css/IE.css"/>

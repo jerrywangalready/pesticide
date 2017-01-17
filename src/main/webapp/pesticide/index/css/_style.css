@@ -437,7 +437,7 @@ margin-left:10px;
 .top-aside ul li a {
 color:#FFF;
 padding-right:10px;
-background:url(../images/global/bg-seperator.png) 100% 50% no-repeat;
+/*background:url(../images/global/bg-seperator.png) 100% 50% no-repeat;*/
 /* opacity:0.6; */
 font-weight:500;
 }
@@ -4184,7 +4184,7 @@ padding-left:24px;
 .social_icons a {
 padding-top:0px;
 padding-bottom:10px;
-background:url(../images/global/image-sprite.png) 0 0 no-repeat;
+/*background:url(../images/global/image-sprite.png) 0 0 no-repeat;*/
 }
 
 .social_links a:link,.social_links a:active,.social_links a:visited {
@@ -4249,11 +4249,11 @@ margin-bottom:0;
 }
 
 .top-aside .social_icons a {
-padding-left:22px;
+padding-left:7px;
 padding-top:5px;
 padding-bottom:5px;
 font-weight:bold;
-background:url(../images/global/bg-toolbar-social-icons.png) left top no-repeat !important;
+/*background:url(../images/global/bg-toolbar-social-icons.png) left top no-repeat !important;*/
 padding-bottom:0;
 }
 
