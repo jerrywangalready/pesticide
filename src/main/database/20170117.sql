@@ -29,182 +29,182 @@ drop table if exists t_testing;
 /*==============================================================*/
 create table p_menu;
 
-alter table p_menu comment '²Ëµ¥±í';
+alter table p_menu comment 'èœå•è¡¨';
 
 /*==============================================================*/
 /* Table: p_resource                                            */
 /*==============================================================*/
 create table p_resource;
 
-alter table p_resource comment '×ÊÔ´±í';
+alter table p_resource comment 'èµ„æºè¡¨';
 
 /*==============================================================*/
 /* Table: p_resource_role                                       */
 /*==============================================================*/
 create table p_resource_role;
 
-alter table p_resource_role comment '×ÊÔ´½ÇÉ«±í';
+alter table p_resource_role comment 'èµ„æºè§’è‰²è¡¨';
 
 /*==============================================================*/
 /* Table: p_role                                                */
 /*==============================================================*/
 create table p_role;
 
-alter table p_role comment '½ÇÉ«±í';
+alter table p_role comment 'è§’è‰²è¡¨';
 
 /*==============================================================*/
 /* Table: s_code_list                                           */
 /*==============================================================*/
 create table s_code_list
 (
-   uuid                 varchar(32) not null comment 'Ö÷¼ü',
-   code_type            varchar(32) comment '±àÂëÀàĞÍ',
-   code_name            varchar(32) comment '±àÂëÃû³Æ',
-   code_key             varchar(32) comment '±àÂë',
-   code_value           varchar(100) comment 'Öµ',
-   isenable             varchar(2) comment 'ÊÇ·ñÆôÓÃ',
+   uuid                 varchar(32) not null comment 'ä¸»é”®',
+   code_type            varchar(32) comment 'ç¼–ç ç±»å‹',
+   code_name            varchar(32) comment 'ç¼–ç åç§°',
+   code_key             varchar(32) comment 'ç¼–ç ',
+   code_value           varchar(100) comment 'å€¼',
+   isenable             varchar(2) comment 'æ˜¯å¦å¯ç”¨',
    primary key (uuid)
 );
 
-alter table s_code_list comment 'Âë±í';
+alter table s_code_list comment 'ç è¡¨';
 
 /*==============================================================*/
 /* Table: s_model                                               */
 /*==============================================================*/
 create table s_model
 (
-   uuid                 varchar(32) not null comment 'Ö÷¼ü',
-   model_code           varchar(32) comment 'Ä£¿é±àÂë',
-   model_name           varchar(100) comment 'Ä£¿éÃû³Æ',
-   object_code          varchar(32) comment 'ÏîÄ¿±àÂë',
-   isenable             varchar(2) comment 'ÊÇ·ñÆôÓÃ',
+   uuid                 varchar(32) not null comment 'ä¸»é”®',
+   model_code           varchar(32) comment 'æ¨¡å—ç¼–ç ',
+   model_name           varchar(100) comment 'æ¨¡å—åç§°',
+   object_code          varchar(32) comment 'é¡¹ç›®ç¼–ç ',
+   isenable             varchar(2) comment 'æ˜¯å¦å¯ç”¨',
    primary key (uuid)
 );
 
-alter table s_model comment 'Ä£¿é';
+alter table s_model comment 'æ¨¡å—';
 
 /*==============================================================*/
 /* Table: s_object                                              */
 /*==============================================================*/
 create table s_object
 (
-   uuid                 varchar(32) not null comment 'Ö÷¼ü',
-   object_code          varchar(32) comment 'ÏîÄ¿±àºÅ',
-   object_name          varchar(100) comment 'ÏîÄ¿Ãû³Æ',
-   isenable             varchar(2) comment 'ÊÇ·ñÆôÓÃ',
-   create_time          date comment '´´½¨Ê±¼ä',
+   uuid                 varchar(32) not null comment 'ä¸»é”®',
+   object_code          varchar(32) comment 'é¡¹ç›®ç¼–å·',
+   object_name          varchar(100) comment 'é¡¹ç›®åç§°',
+   isenable             varchar(2) comment 'æ˜¯å¦å¯ç”¨',
+   create_time          date comment 'åˆ›å»ºæ—¶é—´',
    primary key (uuid)
 );
 
-alter table s_object comment 'ÏîÄ¿';
+alter table s_object comment 'é¡¹ç›®';
 
 /*==============================================================*/
 /* Table: s_object_users                                        */
 /*==============================================================*/
 create table s_object_users
 (
-   uuid                 varchar(32) not null comment 'Ö÷¼ü',
-   object_code          varchar(32) comment 'ÏîÄ¿±àºÅ',
-   username             varchar(50) comment 'µÇÂ¼ÕËºÅ',
-   role_code            varchar(2) comment '½ÇÉ«±àºÅ',
-   create_time          date comment '´´½¨Ê±¼ä',
+   uuid                 varchar(32) not null comment 'ä¸»é”®',
+   object_code          varchar(32) comment 'é¡¹ç›®ç¼–å·',
+   username             varchar(50) comment 'ç™»å½•è´¦å·',
+   role_code            varchar(2) comment 'è§’è‰²ç¼–å·',
+   create_time          date comment 'åˆ›å»ºæ—¶é—´',
    primary key (uuid)
 );
 
-alter table s_object_users comment 'ÏîÄ¿ÈËÔ±¹ØÏµ±í';
+alter table s_object_users comment 'é¡¹ç›®äººå‘˜å…³ç³»è¡¨';
 
 /*==============================================================*/
 /* Table: s_users                                               */
 /*==============================================================*/
 create table s_users
 (
-   uuid                 varchar(32) not null comment 'Ö÷¼ü',
-   username             varchar(50) comment 'µÇÂ¼ÕËºÅ',
-   password             varchar(50) comment 'ÃÜÂë',
-   nickname             varchar(50) comment 'êÇ³Æ',
-   isenable             varchar(2) comment 'ÆôÓÃ×´Ì¬',
-   create_time          date comment '´´½¨Ê±¼ä',
+   uuid                 varchar(32) not null comment 'ä¸»é”®',
+   username             varchar(50) comment 'ç™»å½•è´¦å·',
+   password             varchar(50) comment 'å¯†ç ',
+   nickname             varchar(50) comment 'æ˜µç§°',
+   isenable             varchar(2) comment 'å¯ç”¨çŠ¶æ€',
+   create_time          date comment 'åˆ›å»ºæ—¶é—´',
    primary key (uuid)
 );
 
-alter table s_users comment 'ÓÃ»§';
+alter table s_users comment 'ç”¨æˆ·';
 
 /*==============================================================*/
 /* Table: s_verison                                             */
 /*==============================================================*/
 create table s_verison
 (
-   uuid                 varchar(32) not null comment 'Ö÷¼ü',
-   version_code         varchar(32) comment '°æ±¾ºÅ',
-   publish_date         date comment 'ÉÏÏßÊ±¼ä',
+   uuid                 varchar(32) not null comment 'ä¸»é”®',
+   version_code         varchar(32) comment 'ç‰ˆæœ¬å·',
+   publish_date         date comment 'ä¸Šçº¿æ—¶é—´',
    primary key (uuid)
 );
 
-alter table s_verison comment '°æ±¾';
+alter table s_verison comment 'ç‰ˆæœ¬';
 
 /*==============================================================*/
 /* Table: t_development                                         */
 /*==============================================================*/
 create table t_development
 (
-   uuid                 varchar(32) not null comment 'Ö÷¼ü',
-   development_code     varchar(32) comment '¿ª·¢ÈÎÎñ±àºÅ',
-   title                varchar(300) comment 'Ö÷Ìâ',
-   description          varchar(4000) comment '¿ª·¢ÈÎÎñÃèÊö',
-   develop_user         varchar(100) comment '¿ª·¢ÈËÔ±',
-   test_user            varchar(100) comment '²âÊÔÈËÔ±',
-   create_user          varchar(100) comment '´´½¨ÈËÔ±',
-   create_date          date comment '´´½¨Ê±¼ä',
-   finish_time          date comment 'Ô¤¼Æ¿ª·¢Íê³ÉÊ±¼ä',
-   version_code         varchar(32) comment '°æ±¾ºÅ',
-   state                varchar(2) comment '×´Ì¬',
-   model_code           varchar(32) comment 'Ä£¿é±àÂë',
-   "read"               varchar(2) comment 'ÊÇ·ñÒÑ²é¿´',
+   uuid                 varchar(32) not null comment 'ä¸»é”®',
+   development_code     varchar(32) comment 'å¼€å‘ä»»åŠ¡ç¼–å·',
+   title                varchar(300) comment 'ä¸»é¢˜',
+   description          varchar(4000) comment 'å¼€å‘ä»»åŠ¡æè¿°',
+   develop_user         varchar(100) comment 'å¼€å‘äººå‘˜',
+   test_user            varchar(100) comment 'æµ‹è¯•äººå‘˜',
+   create_user          varchar(100) comment 'åˆ›å»ºäººå‘˜',
+   create_date          date comment 'åˆ›å»ºæ—¶é—´',
+   finish_time          date comment 'é¢„è®¡å¼€å‘å®Œæˆæ—¶é—´',
+   version_code         varchar(32) comment 'ç‰ˆæœ¬å·',
+   state                varchar(2) comment 'çŠ¶æ€',
+   model_code           varchar(32) comment 'æ¨¡å—ç¼–ç ',
+   isread               varchar(2) comment 'æ˜¯å¦å·²æŸ¥çœ‹',
    primary key (uuid)
 );
 
-alter table t_development comment '¿ª·¢ÈÎÎñ';
+alter table t_development comment 'å¼€å‘ä»»åŠ¡';
 
 /*==============================================================*/
 /* Table: t_modification                                        */
 /*==============================================================*/
 create table t_modification
 (
-   uuid                 varchar(32) not null comment 'Ö÷¼ü',
-   modification_code    varchar(32) comment 'ĞŞ¸Ä±àÂë',
-   title                varchar(300) comment 'Ö÷Ìâ',
-   description          varchar(4000) comment 'ÃèÊö',
-   modification_user    varchar(100) comment 'ĞŞ¸ÄÈËÔ±',
-   create_user          varchar(100) comment '´´½¨ÈËÔ±',
-   create_time          date comment '´´½¨Ê±¼ä',
-   testing_code         varchar(32) comment '²âÊÔÈÎÎñ±àÂë',
-   finish_time          date comment 'Ô¤¼ÆÍê³ÉÊ±¼ä',
-   version_code         varchar(32) comment '°æ±¾ºÅ',
-   state                varchar(2) comment '×´Ì¬',
-   model_code           varchar(32) comment 'Ä£¿é±àÂë',
-   "read"               varchar(2) comment 'ÊÇ·ñÒÑ²é¿´',
+   uuid                 varchar(32) not null comment 'ä¸»é”®',
+   modification_code    varchar(32) comment 'ä¿®æ”¹ç¼–ç ',
+   title                varchar(300) comment 'ä¸»é¢˜',
+   description          varchar(4000) comment 'æè¿°',
+   modification_user    varchar(100) comment 'ä¿®æ”¹äººå‘˜',
+   create_user          varchar(100) comment 'åˆ›å»ºäººå‘˜',
+   create_time          date comment 'åˆ›å»ºæ—¶é—´',
+   testing_code         varchar(32) comment 'æµ‹è¯•ä»»åŠ¡ç¼–ç ',
+   finish_time          date comment 'é¢„è®¡å®Œæˆæ—¶é—´',
+   version_code         varchar(32) comment 'ç‰ˆæœ¬å·',
+   state                varchar(2) comment 'çŠ¶æ€',
+   model_code           varchar(32) comment 'æ¨¡å—ç¼–ç ',
+   isread               varchar(2) comment 'æ˜¯å¦å·²æŸ¥çœ‹',
    primary key (uuid)
 );
 
-alter table t_modification comment 'ĞŞ¸ÄÈÎÎñ';
+alter table t_modification comment 'ä¿®æ”¹ä»»åŠ¡';
 
 /*==============================================================*/
 /* Table: t_testing                                             */
 /*==============================================================*/
 create table t_testing
 (
-   uuid                 varchar(32) not null comment 'Ö÷¼ü',
-   test_code            varchar(32) comment '²âÊÔ±àÂë',
-   title                varchar(300) comment 'Ö÷Ìâ',
-   description          varchar(4000) comment 'ÃèÊö',
-   test_user            varchar(100) comment '²âÊÔÈËÔ±',
-   create_user          varchar(100) comment '´´½¨ÈËÔ±',
-   create_time          date comment '´´½¨Ê±¼ä',
-   development_code     varchar(32) comment '¿ª·¢ÈÎÎñ±àÂë',
-   state                varchar(2) comment '×´Ì¬',
-   model_code           varchar(32) comment 'Ä£¿é±àÂë',
-   "read"               varchar(2) comment 'ÊÇ·ñÒÑ²é¿´',
+   uuid                 varchar(32) not null comment 'ä¸»é”®',
+   test_code            varchar(32) comment 'æµ‹è¯•ç¼–ç ',
+   title                varchar(300) comment 'ä¸»é¢˜',
+   description          varchar(4000) comment 'æè¿°',
+   test_user            varchar(100) comment 'æµ‹è¯•äººå‘˜',
+   create_user          varchar(100) comment 'åˆ›å»ºäººå‘˜',
+   create_time          date comment 'åˆ›å»ºæ—¶é—´',
+   development_code     varchar(32) comment 'å¼€å‘ä»»åŠ¡ç¼–ç ',
+   state                varchar(2) comment 'çŠ¶æ€',
+   model_code           varchar(32) comment 'æ¨¡å—ç¼–ç ',
+   isread               varchar(2) comment 'æ˜¯å¦å·²æŸ¥çœ‹',
    primary key (uuid)
 );
 
-alter table t_testing comment '²âÊÔÈÎÎñ';
+alter table t_testing comment 'æµ‹è¯•ä»»åŠ¡';
