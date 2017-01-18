@@ -1,0 +1,7 @@
+.table_oper_button{
+    cursor: pointer;
+    margin-left:8px;
+}
+.border_solid{
+    border:1px solid #ccc !important;
+}

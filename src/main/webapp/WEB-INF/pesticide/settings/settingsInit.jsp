@@ -18,16 +18,16 @@
     <div style="margin-top:7px;">
         <div class="row">
             <div class="col-md-4">
-                <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+                <label class="sr-only" for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="账号">
             </div>
             <div class="col-md-4">
                 <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="姓名">
             </div>
             <div class="col-md-4">
-                <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+                <label class="sr-only" for="exampleInputEmail3">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail3" placeholder="密码">
             </div>
         </div>
     </div>
@@ -36,11 +36,24 @@
     </div>
     <div id="testDiv">
     </div>
+    <nav>
+        <ul class="pagination pagination-sm">
+            <li class="disabled"><a href="#">&laquo;</a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li ><a href="#">1</a></li>
+            <li ><a href="#">2</a></li>
+            <li ><a href="#">3</a></li>
+            <li ><a href="#">4</a></li>
+            <li ><a href="#">&raquo;</a></li>
+        </ul>
+    </nav>
+
+
 
 </div>
 
 <script id="test" type="text/html">
-    <table class="table table-bordered">
+    <table class="table table-striped border_solid">
         <thead>
         <tr>
             <th>序号</th>
@@ -48,6 +61,7 @@
             <th>账号</th>
             <th>密码</th>
             <th>是否在用</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -58,7 +72,10 @@
             <td>{{value.username}}</td>
             <td>{{value.password}}</td>
             <td>{{value.password}}</td>
-            <td>{{i+1}}</td>
+            <td>
+                <span class="glyphicon glyphicon-pencil table_oper_button"></span>
+                <span class="glyphicon glyphicon-trash table_oper_button"></span>
+            </td>
         </tr>
         {{/each}}
         </tbody>
