@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../../comm/comm.jsp"%>
+<link href="<%=path%>/pesticide/settings/css/settings.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="<%=path%>/pesticide/settings/js/settings.js"></script>
 
 <div style="text-align: left;">

@@ -989,24 +989,24 @@ border: 1px solid #EFEFEF;
 margin-bottom:10px;
 }
 
-#content-container input,
-#content-container textarea {
-border: 1px solid #CFCFCF;
-border-radius: 2px 2px 2px 2px;
-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset, -5px -5px 0 0 #F8F8F8, 5px 5px 0 0 #F8F8F8, 5px 0 0 0 #F8F8F8, 0 5px 0 0 #F8F8F8, 5px -5px 0 0 #F8F8F8, -5px 5px 0 0 #F8F8F8;
-color: #444444;
-}
+/*#content-container input,*/
+/*#content-container textarea {*/
+/*border: 1px solid #CFCFCF;*/
+/*border-radius: 2px 2px 2px 2px;*/
+/*box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset, -5px -5px 0 0 #F8F8F8, 5px 5px 0 0 #F8F8F8, 5px 0 0 0 #F8F8F8, 0 5px 0 0 #F8F8F8, 5px -5px 0 0 #F8F8F8, -5px 5px 0 0 #F8F8F8;*/
+/*color: #444444;*/
+/*}*/
 
 #content-container input[type="text"] {
 margin:0 10px 10px 0;
 width: 300px;
 }
 
-#content-container input:focus,
-#content-container textarea:focus {
-border: 1px solid #C3C3C3;
-box-shadow: -5px -5px 0 0 #F1F1F1, 5px 5px 0 0 #F1F1F1, 5px 0 0 0 #F1F1F1, 0 5px 0 0 #F1F1F1, 5px -5px 0 0 #F1F1F1, -5px 5px 0 0 #F1F1F1;
-}
+/*#content-container input:focus,*/
+/*#content-container textarea:focus {*/
+/*border: 1px solid #C3C3C3;*/
+/*box-shadow: -5px -5px 0 0 #F1F1F1, 5px 5px 0 0 #F1F1F1, 5px 0 0 0 #F1F1F1, 0 5px 0 0 #F1F1F1, 5px -5px 0 0 #F1F1F1, -5px 5px 0 0 #F1F1F1;*/
+/*}*/
 
 label {
 display:block;
