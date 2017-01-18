@@ -15,8 +15,8 @@
         <div class="one_half">
             <div class="sidebar-widget">
                 <ul class="custom-menu">
-                    <li class="current-menu-item"><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">工作台</a></li>
-                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('creation/creation')">创建</a></li>
+                    <li class="current-menu-item"><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/init')">工作台</a></li>
+                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('creation/init')">创建</a></li>
                     <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">任务池</a></li>
                     <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">记录</a></li>
                     <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">图表</a></li>
@@ -28,6 +28,7 @@
         <div class="one_half">
             <div class="sidebar-widget">
                 <ul class="social_icons">
+                    <li style="width:45px;"><span style="float:left;margin:2px 2px;" class="glyphicon glyphicon-bell"></span> <a name="bell" href="javascript:void(0);"></a></li>
                     <li><span class="glyphicon glyphicon-user"></span> <a name="a_name" href="javascript:void(0);" class=""></a></li>
                     <li><span class="glyphicon glyphicon-log-out"></span> <a href="javascript:void(0);" class="" onclick="index.js.logout()">退出</a></li>
                 </ul>
@@ -48,6 +49,7 @@
         <div class="one_half">
             <div class="sidebar-widget">
                 <ul class="social_icons">
+                    <li style="width:45px;"><span style="float:left;margin:2px 2px;" class="glyphicon glyphicon-bell"></span> <a name="bell" href="javascript:void(0);"></a></li>
                     <li><span class="glyphicon glyphicon-user"></span> <a name="a_name" href="javascript:void(0);" class=""></a></li>
                     <li><span class="glyphicon glyphicon-log-out"></span> <a href="javascript:void(0);" class="" onclick="index.js.logout()">退出</a></li>
                 </ul>

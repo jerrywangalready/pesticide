@@ -15,4 +15,5 @@
     position:fixed !important;
     z-index:99999 !important;
     width:100%;
+    box-shadow: 2px 2px 5px #888;
 }
