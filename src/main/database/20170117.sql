@@ -27,28 +27,44 @@ drop table if exists t_testing;
 /*==============================================================*/
 /* Table: p_menu                                                */
 /*==============================================================*/
-create table p_menu;
+create table p_menu
+(
+   uuid                 varchar(32) not null comment '主键',
+   primary key (uuid)
+);
 
 alter table p_menu comment '菜单表';
 
 /*==============================================================*/
 /* Table: p_resource                                            */
 /*==============================================================*/
-create table p_resource;
+create table p_resource
+(
+   uuid                 varchar(32) not null comment '主键',
+   primary key (uuid)
+);
 
 alter table p_resource comment '资源表';
 
 /*==============================================================*/
 /* Table: p_resource_role                                       */
 /*==============================================================*/
-create table p_resource_role;
+create table p_resource_role
+(
+   uuid                 varchar(32) not null comment '主键',
+   primary key (uuid)
+);
 
 alter table p_resource_role comment '资源角色表';
 
 /*==============================================================*/
 /* Table: p_role                                                */
 /*==============================================================*/
-create table p_role;
+create table p_role
+(
+   uuid                 varchar(32) not null comment '主键',
+   primary key (uuid)
+);
 
 alter table p_role comment '角色表';
 
