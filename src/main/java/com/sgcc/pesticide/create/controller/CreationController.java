@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/creation")
 public class CreationController {
 
-    @RequestMapping("/creation")
+    @RequestMapping("/init")
     public String creationInit(){
-        return "/creation/creation";
+        return "/creation/creationInit";
     }
 
 }
