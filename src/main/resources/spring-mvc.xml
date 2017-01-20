@@ -13,7 +13,7 @@
     http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd" default-lazy-init="false">
 
     <!-- 扫描controller（controller层注入） -->
-    <context:component-scan base-package="com.sgcc.pesticide.*.controller,com.sgcc.comm.*.*"/>
+    <context:component-scan base-package="com.sgcc.*.*.controller"/>
 
     <!-- 避免IE在ajax请求时，返回json出现下载 -->
     <!--<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">		-->
@@ -24,6 +24,7 @@
     <!--</property>-->
     <!--</bean>-->
 
+    <mvc:annotation-driven />
     <!-- 对模型视图添加前后缀 -->
     <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"-->
           <!--p:prefix="/WEB-INF/jsp/*/" p:suffix=".jsp"/>-->
@@ -35,7 +36,6 @@
         <property name="contentType"><value>text/html;charset=UTF-8</value></property>
     </bean>
 
-    <mvc:annotation-driven />
 
     <mvc:interceptors>
         <!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->

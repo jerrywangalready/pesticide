@@ -70,11 +70,11 @@
           class="org.mybatis.spring.SqlSessionFactoryBean"
           p:dataSource-ref="dataSource"
           p:configLocation="classpath:mybatis-config.xml"
-          p:mapperLocations="classpath:com/sgcc/pesticide/*/dao/*.xml"/><!-- configLocation为mybatis属性 mapperLocations为所有mapper-->
+          p:mapperLocations="classpath:com/sgcc/*/*/dao/*.xml"/><!-- configLocation为mybatis属性 mapperLocations为所有mapper-->
 
     <!-- spring与mybatis整合配置，扫描所有dao -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
-          p:basePackage="com.sgcc.pesticide.*.dao"
+          p:basePackage="com.sgcc.*.*.dao"
           p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
 
     <!-- 对数据源进行事务管理 -->

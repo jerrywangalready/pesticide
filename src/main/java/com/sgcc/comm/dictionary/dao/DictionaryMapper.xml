@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sgcc.comm.dictionary.dao.DictionaryDao">
+
+    <!-- 获取字典数据 -->
+    <select id="getDict" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT CODE_KEY,CODE_VALUE
+          FROM ${table}
+         WHERE ISENABLE = '1'
+           AND CODE_TYPE = #{type}
+           <if test="where != null and where != ''">
+           AND ${where}
+           </if>
+    </select>
+
+</mapper>

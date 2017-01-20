@@ -7,28 +7,36 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../../comm/comm.jsp"%>
+<link href="<%=path%>/comm/plugins/UEdite/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<link href="<%=path%>/pesticide/creation/css/creation.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="<%=path%>/comm/plugins/UEdite/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=path%>/comm/plugins/UEdite/umeditor.min.js"></script>
+<script type="text/javascript" src="<%=path%>/comm/plugins/UEdite/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="<%=path%>/pesticide/creation/js/creation.js"></script>
 <div>
+    <br>
     <form role="form">
         <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+            <input type="text" class="form-control" id="title" placeholder="标题">
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <div id="edit_box">
+            <script type="text/plain" id="myEditor" style="width:960px;height:240px;">
+                <p>这里我可以写一些输入提示</p>
+            </script>
         </div>
-        <div class="form-group">
-            <label for="exampleInputFile">File input</label>
-            <input type="file" id="exampleInputFile">
-            <p class="help-block">Example block-level help text here.</p>
+
+        <div class="row">
+            <div class="col-md-4">
+                <select class="form-control" id="model_select">
+                    <option value="">选择模块</option>
+                </select>
+            </div>
+            <div class="col-md-4"><input id="test"></div>
+            <div class="col-md-4">.col-md-4</div>
         </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox"> Check me out
-            </label>
-        </div>
+
         <button type="submit" class="btn btn-default">Submit</button>
+
     </form>
 
 </div>
