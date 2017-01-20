@@ -32,4 +32,7 @@ jQuery.namespace = function(){
             o=o[d[j]];
         }
     }
-}
+};
+jQuery.namespace("comm");
+comm.js = {};
+comm.js.dictionary = {};

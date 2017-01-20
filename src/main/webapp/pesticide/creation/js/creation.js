@@ -22,7 +22,7 @@ creation.js.init = function () {
         alert(9999);
     }).focus(function(){console.info(19343)});
 
-    $("#model_select").dict({table:"s_code_list",type:"YN",where:""});
+    $("#model_select").dict({table:"s_code_list",type:"YN",where:"",order:"desc"});
 
 };
 

@@ -24,6 +24,8 @@ settings.js.init = function () {
   $.post(path+"/settings/queryUsers.do",
       {},
       function (data) {
+      console.info(data)
+          $.dict({table:"s_code_list",type:"YN"},1);
           var html = template('test',{'list':data});
       $("#testDiv").html(html);
   });

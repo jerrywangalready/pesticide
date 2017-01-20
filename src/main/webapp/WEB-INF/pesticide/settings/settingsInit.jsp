@@ -41,7 +41,8 @@
             <td>{{value.nickname}}</td>
             <td>{{value.username}}</td>
             <td>{{value.password}}</td>
-            <td>{{value.password}}</td>
+            <%--<td>{{$.dict({table:"s_code_list",type:"YN"},value.isEnable)}}</td>--%>
+            <td>{{value.isEnable}}</td>
             <td>
                 <span class="glyphicon glyphicon-pencil table_oper_button"></span>
                 <span class="glyphicon glyphicon-trash table_oper_button"></span>

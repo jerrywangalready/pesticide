@@ -13,7 +13,10 @@
            <if test="where != null and where != ''">
            AND ${where}
            </if>
-      ORDER BY
+      ORDER BY ORDER_CODE
+           <if test="order != null and order !=''">
+               ${order}
+           </if>
     </select>
 
 </mapper>
