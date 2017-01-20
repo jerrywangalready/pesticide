@@ -30,4 +30,9 @@ public class DictionaryController {
     public List<Map<String, String>> getDict(@RequestBody Map<String, String> param){
         return dictionaryService.getDict(param);
     }
+    @ResponseBody
+    @RequestMapping(value = "/getDictByArray", method = RequestMethod.POST)
+    public Map<String, Map> getDict(@RequestBody Map<String, String>[] paramArray){
+        return dictionaryService.getDict(paramArray);
+    }
 }
