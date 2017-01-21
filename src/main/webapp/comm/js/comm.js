@@ -21,6 +21,11 @@ function setHash(hash) {
     window.location.hash = hash;
     // window.location.hash = comm.BASE64.encode(encodeURIComponent(hash));
 }
+
+template.helper('dict',function (value,properties) {
+    return $.dict(value,properties);
+});
+
 jQuery.namespace = function(){
     var a=arguments, o=null, i, j, d, rt;
     for (i=0; i<a.length; ++i) {

@@ -1,6 +1,8 @@
 package com.sgcc.comm.dictionary.controller;
 
 import com.sgcc.comm.dictionary.service.DictionaryService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +24,8 @@ import java.util.Map;
 @RequestMapping("/dict")
 public class DictionaryController {
 
+    static Logger logger = LogManager.getLogger(DictionaryController.class.getName());
+
     @Autowired
     DictionaryService dictionaryService;
 
@@ -29,5 +33,10 @@ public class DictionaryController {
     @RequestMapping(value = "/getDict", method = RequestMethod.POST)
     public List<Map<String, String>> getDict(@RequestBody Map<String, String> param){
         return dictionaryService.getDict(param);
+    }
+    @ResponseBody
+    @RequestMapping(value = "/getDictByArray", method = RequestMethod.POST)
+    public Map<String, Map> getDict(@RequestBody Map<String, String>[] paramArray){
+        return dictionaryService.getDict(paramArray);
     }
 }

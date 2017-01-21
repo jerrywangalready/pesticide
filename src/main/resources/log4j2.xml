@@ -1,62 +1,160 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--设置log4j2的自身log级别为warn-->
-<configuration status="warn">
+<Configuration status="WARN" >
+    <properties>
+        <property name="LOG_HOME">/Users/jerrywang/code/apphome/pesticide/logs</property>
+    </properties>
 
-    <appenders>
-        <console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
-        </console>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n" />
+        </Console>
 
-        <RollingFile name="RollingFileInfo" fileName="${sys:user.home}/logs/hpaasvc/info.log"
-                     filePattern="${sys:user.home}/logs/hpaasvc/$${date:yyyy-MM}/info-%d{yyyy-MM-dd}-%i.log">
+        <RollingRandomAccessFile name="infoLog" fileName="${LOG_HOME}/app.log"
+                                 filePattern="${LOG_HOME}/app.%d{yyyy-MM-dd}-%i.log.gz" append="true">
+            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
             <Filters>
-                <ThresholdFilter level="INFO"/>
-                <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
             </Filters>
-            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
             <Policies>
-                <TimeBasedTriggeringPolicy/>
-                <SizeBasedTriggeringPolicy size="100 MB"/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>  <!-- 对应 filePattern维度，此处为天数-->
             </Policies>
-        </RollingFile>
-
-        <RollingFile name="RollingFileWarn" fileName="${sys:user.home}/logs/hpaasvc/warn.log"
-                     filePattern="${sys:user.home}/logs/hpaasvc/$${date:yyyy-MM}/warn-%d{yyyy-MM-dd}-%i.log">
+            <DefaultRolloverStrategy max="30"/> <!-- 日志自动删除，最大个数 -->
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="warnLog" fileName="${LOG_HOME}/warn.log"
+                                 filePattern="${LOG_HOME}/warn.%d{yyyy-MM-dd}-%i.log.gz" append="true">
             <Filters>
-                <ThresholdFilter level="WARN"/>
-                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
-            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
+            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
             <Policies>
-                <TimeBasedTriggeringPolicy/>
-                <SizeBasedTriggeringPolicy size="100 MB"/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
             </Policies>
-        </RollingFile>
-
-        <RollingFile name="RollingFileError" fileName="${sys:user.home}/logs/hpaasvc/error.log"
-                     filePattern="${sys:user.home}/logs/hpaasvc/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log">
-            <ThresholdFilter level="ERROR"/>
-            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="errorLog" fileName="${LOG_HOME}/error.log"
+                                 filePattern="${LOG_HOME}/error.%d{yyyy-MM-dd}-%i.log.gz" append="true">
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
             <Policies>
-                <TimeBasedTriggeringPolicy/>
-                <SizeBasedTriggeringPolicy size="100 MB"/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
             </Policies>
-        </RollingFile>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
 
-    </appenders>
+        <RollingRandomAccessFile name="jobLog" fileName="${LOG_HOME}/job.log"
+                                 filePattern="${LOG_HOME}/job.%d{yyyy-MM-dd}-%i.log.gz" append="true">
+            <PatternLayout pattern="[emidas-lottery-job][%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
+            <Filters>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
 
-    <loggers>
-        <!--过滤掉spring和hibernate的一些无用的debug信息-->
-        <logger name="org.springframework" level="INFO">
-        </logger>
-        <logger name="org.hibernate" level="INFO">
-        </logger>
-        <root level="all">
-            <appender-ref ref="Console"/>
-            <appender-ref ref="RollingFileInfo"/>
-            <appender-ref ref="RollingFileWarn"/>
-            <appender-ref ref="RollingFileError"/>
-        </root>
-    </loggers>
+        <RollingRandomAccessFile name="lotteryLog" fileName="${LOG_HOME}/lottery.log"
+                                 filePattern="${LOG_HOME}/lottery.%d{yyyy-MM-dd}-%i.log.gz" append="true">
+            <PatternLayout pattern="[main][%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
+            <Filters>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
 
-</configuration>
+        <RollingRandomAccessFile name="bonusLog" fileName="${LOG_HOME}/bonus.log"
+                                 filePattern="${LOG_HOME}/bonus.%d{yyyy-MM-dd}-%i.log.gz" append="true">
+            <PatternLayout pattern="[main][%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
+            <Filters>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="accessLog" fileName="${LOG_HOME}/access.log"
+                                 filePattern="${LOG_HOME}/access.%d{yyyy-MM-dd}-%i.log.gz" append="true">
+            <PatternLayout pattern="[main][%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
+            <Filters>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="alertLog" fileName="${LOG_HOME}/alert.log"
+                                 filePattern="${LOG_HOME}/alert.%d{yyyy-MM-dd}-%i.log.gz" append="true">
+            <PatternLayout pattern="[main][%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
+            <Filters>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
+
+        <Cat name="catAppender">
+            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
+        </Cat>
+    </Appenders>
+
+    <Loggers>
+        <!-- 第三方的软件日志级别 -->
+        <AsyncLogger name="org.springframework" level="info" additivity="true">
+            <AppenderRef ref="warnLog"/>
+            <AppenderRef ref="errorLog"/>
+        </AsyncLogger>
+
+        <!-- 应用的日志级别 -->
+        <AsyncLogger name="com.sgcc" level="debug" additivity="true">
+            <AppenderRef ref="infoLog"/>
+            <AppenderRef ref="warnLog"/>
+            <AppenderRef ref="errorLog"/>
+        </AsyncLogger>
+
+        <!--<logger name="java.sql.PreparedStatement" level="debug" additivity="true">-->
+        <!--<AppenderRef ref="Console"/>-->
+        <!--</logger>-->
+        <!--<logger name="xxxx.dao.mapper" level="debug" additivity="false">-->
+        <!--<AppenderRef ref="Console"/>-->
+        <!--</logger>-->
+
+        <AsyncLogger name="job" level="info" additivity="false">
+            <AppenderRef ref="jobLog"/>
+        </AsyncLogger>
+
+        <AsyncLogger name="lottery" level="info" additivity="false">
+            <AppenderRef ref="lotteryLog"/>
+        </AsyncLogger>
+
+        <AsyncLogger name="bonus" level="info" additivity="false">
+            <AppenderRef ref="bonusLog"/>
+        </AsyncLogger>
+
+        <AsyncLogger name="access" level="info" additivity="false">
+            <AppenderRef ref="accessLog"/>
+        </AsyncLogger>
+
+        <AsyncLogger name="alert" level="info" additivity="false">
+            <AppenderRef ref="alertLog"/>
+        </AsyncLogger>
+
+        <!-- 剩余其他的日志级别 -->
+        <asyncRoot  level="info" includeLocation="true">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="infoLog" />
+            <AppenderRef ref="catAppender"/>
+        </asyncRoot>
+    </Loggers>
+</Configuration>
