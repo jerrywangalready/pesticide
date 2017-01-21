@@ -7,7 +7,6 @@ $(function () {
 });
 settings.js = {};
 settings.js.init = function () {
-
     // 获取type值
     var type = getParameter(location.hash,"type","users");
     // 绑定tab点击事件
@@ -20,15 +19,12 @@ settings.js.init = function () {
             settings.js.clickTab(type_attr);
         })
     });
-
-  $.post(path+"/settings/queryUsers.do",
-      {},
-      function (data) {
-      console.info(data)
-          $.dict({table:"s_code_list",type:"YN"},1);
-          var html = template('test',{'list':data});
-      $("#testDiv").html(html);
-  });
+    if (type == "objects"){
+        settings.js.fillObject();
+    }else{
+        settings.js.fillUsers();
+    }
+    $("#isEnable").dict({table:"t_code_list",type:"YN",where:"",order:""});
 };
 
 // 点击tab
@@ -37,14 +33,30 @@ settings.js.clickTab = function (type) {
     setHash("on=" + on + "&type=" + type);
 };
 
-//查询用户列表
-settings.js.queryUsers=function () {
+// 填充users
+settings.js.fillUsers = function () {
     $.post(path+"/settings/queryUsers.do",
         {},
         function (data) {
             console.info(data);
-            var html = template('test',{'list':data});
-        $("#testDiv").html(html);
+            var html = template('users',{'list':data});
+            $("#testDiv").html(html);
         });
-};
+}
+
+// 填充object
+settings.js.fillObject = function () {
+    $.post(path+"/settings/queryObject.do",
+        {},
+        function (data) {
+            console.info(data);
+            var html = template('objects',{'list':data});
+            $("#testDiv").html(html);
+        });
+}
+
+//查询项
+settings.js.query=function () {
+
+}
 

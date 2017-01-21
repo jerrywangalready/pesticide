@@ -36,7 +36,7 @@ $(function () {
             }
         });
     });
-    $("#username,#password").keydown(function(e){
+    $("#username,#password").keyup(function(e){
         if(e.keyCode==13){
             $("#loginButton").click();
         }
