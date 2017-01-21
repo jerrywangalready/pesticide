@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -14,10 +15,9 @@ public class DemoServiceImpl implements DemoService {
 
 	@Autowired
 	DemoDao demoDao;
-	public List<Demo> queryDemoList(){
-		List<Demo> list = demoDao.queryDemoList();
+	public List<Demo> queryDemoList(Map<String, String> param){
+		List<Demo> list = demoDao.queryDemoList(param);
 		return list;
-
 	}
 
 }

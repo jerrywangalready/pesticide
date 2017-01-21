@@ -7,11 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../../comm/comm.jsp"%>
-<link href="<%=path%>/comm/plugins/UEdite/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<%--<link href="<%=path%>/comm/plugins/UEdite/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">--%>
 <link href="<%=path%>/pesticide/creation/css/creation.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" charset="utf-8" src="<%=path%>/comm/plugins/UEdite/umeditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=path%>/comm/plugins/UEdite/umeditor.min.js"></script>
-<script type="text/javascript" src="<%=path%>/comm/plugins/UEdite/lang/zh-cn/zh-cn.js"></script>
+<%--<script type="text/javascript" charset="utf-8" src="<%=path%>/comm/plugins/UEdite/umeditor.config.js"></script>--%>
+<%--<script type="text/javascript" charset="utf-8" src="<%=path%>/comm/plugins/UEdite/umeditor.min.js"></script>--%>
+<%--<script type="text/javascript" src="<%=path%>/comm/plugins/UEdite/lang/zh-cn/zh-cn.js"></script>--%>
 <script type="text/javascript" src="<%=path%>/pesticide/creation/js/creation.js"></script>
 <div>
     <br>
@@ -19,11 +19,8 @@
         <div class="form-group">
             <input type="text" class="form-control" id="title" placeholder="标题">
         </div>
-        <div id="edit_box">
-            <script type="text/plain" id="myEditor" style="width:960px;height:240px;">
-                <p>这里我可以写一些输入提示</p>
-            </script>
-        </div>
+
+        <textarea name="edit1" id="edit1" rows="10" cols="80"></textarea>
 
         <div class="row">
             <div class="col-md-4">

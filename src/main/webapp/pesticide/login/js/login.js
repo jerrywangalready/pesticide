@@ -3,6 +3,7 @@
  */
 // var path = '<%=path%>';
 $(function () {
+    $("#username").focus();
     $("#loginButton").click(function () {
         var username = $("#username").val();
         var password = $("#password").val();

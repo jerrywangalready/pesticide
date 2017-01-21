@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     <typeAliases>
         <package name="com.sgcc.pesticide.login.model"></package>
         <package name="com.sgcc.pesticide.settings.model"></package>
+        <package name="com.sgcc.pesticide.demo.model"></package>
     </typeAliases>
 
     <!-- 映射map -->

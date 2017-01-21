@@ -4,8 +4,18 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sgcc.pesticide.demo.dao.DemoDao">
 
-    <select id="queryDemoList" resultType="Demo">
-        select * FROM DEMO;
+    <select id="queryDemoList" resultType="Demo" parameterType="java.util.Map">
+        select * FROM DEMO T
+        WHERE 1=1
+        <if test="queryCode != null and queryCode != ''">
+          AND T.CODE like CONCAT('%',#{queryCode},'%')
+        </if>
+        <if test="queryName != null and queryName != ''">
+          AND T.NAME like CONCAT('%',#{queryName},'%')
+        </if>
+        <if test="queryType != null and queryType != ''">
+          AND T.TYPE = #{queryType}
+        </if>
     </select>
 
 </mapper>

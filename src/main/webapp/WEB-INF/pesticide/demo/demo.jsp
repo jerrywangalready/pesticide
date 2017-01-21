@@ -6,14 +6,28 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Demo</title>
-</head>
-<body>
+<%@ include file="../../comm/comm.jsp"%>
+<script type="text/javascript" src="<%=path%>/pesticide/demo/js/demo.js"></script>
+<div style="margin-top:7px;">
+    <form class="form-inline row" role="form">
+        <div class="form-group col-md-4">
+            <input type="text" class="form-control" id="queryCode" placeholder="编号" >
+        </div>
+        <div class="form-group col-md-4">
+            <input type="text" class="form-control" id="queryName" placeholder="名称">
+        </div>
+        <div class="form-group col-md-4">
+            类型：
+            <select class="form-control" id="queryType">
+                <option value=""></option>
+            </select>
+        </div>
 
-</body>
-</html>
+    </form>
+</div>
+<div id="table_div">
+
+</div>
 
 <script id="users" type="text/html">
     <table class="table table-striped border_solid table-hover">

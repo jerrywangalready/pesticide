@@ -24,9 +24,13 @@
 <!--[if lte IE 8]>
 <script type="text/javascript" src="<%=path%>/pesticide/index/js/IE.js"></script>
 <![endif]-->
+<!-- 外部插件 -->
 <script type="text/javascript" src="<%=path%>/comm/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/hashchange/jquery.ba-hashchange.min.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/artTemplate/template.js"></script>
+<script type="text/javascript" src="<%=path%>/comm/plugins/ckeditor/ckeditor.js"></script>
+
+<!-- 自封装插件 -->
 <script type="text/javascript" src="<%=path%>/comm/plugins/enterListener/enterListener.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/dictionary/dictionary.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/js/comm.js"></script>

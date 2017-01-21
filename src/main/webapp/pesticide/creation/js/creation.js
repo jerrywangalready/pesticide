@@ -8,21 +8,30 @@ $(function () {
 
 creation.js = {};
 creation.js.init = function () {
-    //实例化编辑器
-    var um = UM.getEditor('myEditor');
 
-    um.addListener('blur',function(){
-        $('#edit_box').children().removeClass("edit_focus");
+    CKEDITOR.replace('edit1');
+    var editor = CKEDITOR.instances.edit1;
+    editor.focus(function () {
+        alert();
+        // $('#cke_edit1').children().addClass("edit_focus");
     });
-    um.addListener('focus',function(){
-        $('#edit_box').children().addClass("edit_focus");
-    });
+
+    // um.addListener('blur',function(){
+    //     $('#edit_box').children().removeClass("edit_focus");
+    // });
+    // um.addListener('focus',function(){
+    //     $('#edit_box').children().addClass("edit_focus");
+    // });
 
     $("#test").enter(function () {
         alert(9999);
     }).focus(function(){console.info(19343)});
 
     $("#model_select").dict({table:"s_code_list",type:"YN",where:"",order:"desc"});
+
+    // var editor = CKEDITOR.instances.editor1;
+    //
+    // editor.focus();
 
 };
 
