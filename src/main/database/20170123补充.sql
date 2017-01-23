@@ -1,0 +1,1 @@
+ALTER TABLE pesticide.s_verison MODIFY object_code VARCHAR(32) COMMENT '项目编号';
