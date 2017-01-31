@@ -1,5 +1,8 @@
 package com.sgcc.pesticide.demo.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.sgcc.comm.model.Query;
 import com.sgcc.pesticide.demo.dao.DemoDao;
 import com.sgcc.pesticide.demo.model.Demo;
 import com.sgcc.pesticide.demo.service.DemoService;
@@ -15,9 +18,17 @@ public class DemoServiceImpl implements DemoService {
 
 	@Autowired
 	DemoDao demoDao;
-	public List<Demo> queryDemoList(Map<String, String> param){
+	public Query queryDemoList(Map<String, String> param){
+
+		PageHelper.startPage(Integer.parseInt(param.get("pageNum")),10);
 		List<Demo> list = demoDao.queryDemoList(param);
-		return list;
+		Query query = new Query();
+		query.setList(list);
+		query.setPageNum(Integer.parseInt(param.get("pageNum")));
+		query.setPageSize(10);
+		query.setTotal(((Page)list).getTotal());
+
+		return query;
 	}
 
 }

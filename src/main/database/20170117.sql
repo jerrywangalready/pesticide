@@ -156,7 +156,7 @@ create table s_verison
    primary key (uuid)
 );
 
-alter table s_verison comment '版本';
+alter table s_version comment '版本';
 
 /*==============================================================*/
 /* Table: t_development                                         */

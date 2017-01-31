@@ -38,6 +38,49 @@ jQuery.namespace = function(){
         }
     }
 };
+
 jQuery.namespace("comm");
 comm.js = {};
 comm.js.dictionary = {};
+comm.js.username = "";
+comm.js.nickname = "";
+
+comm.js.hashAppand = function () {
+    var hash = location.hash;
+    var p = hash.substring(1,hash.length).split("&");
+    var newHash = "#";
+
+    var len = arguments.length;
+    if(len == 2){
+        var key = arguments[0];
+        var value = arguments[1];
+
+        for(var i=0;i<p.length;i++){
+            var pi = p[i].split("=");
+            if(pi[0] == key){
+                continue;
+            }
+            newHash += p[i] + "&";
+        }
+        newHash += key + "=" + value;
+    }else {
+        var kvs = arguments[0];
+        for(var j=0;j<p.length;j++){
+            var pj = p[j].split("=");
+
+            if (kvs.hasOwnProperty(pj[0])) {
+                continue;
+            }
+            newHash += p[j] + "&";
+        }
+        for(var item in kvs){
+            if(kvs[item] == "")
+                continue;
+            newHash += item + "=" + kvs[item] + "&";
+        }
+        newHash = newHash.substring(0,newHash.length-1);
+    }
+    setHash(newHash);
+
+
+};

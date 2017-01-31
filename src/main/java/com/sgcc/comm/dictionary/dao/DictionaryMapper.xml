@@ -6,16 +6,33 @@
 
     <!-- 获取字典数据 -->
     <select id="getDict" parameterType="java.util.Map" resultType="java.util.Map">
-        SELECT CODE_KEY,CODE_VALUE
+        SELECT
+        <choose>
+           <when test="key != null and key != ''">
+               ${key} CODE_KEY,
+           </when>
+           <otherwise>
+               CODE_KEY,
+           </otherwise>
+        </choose>
+        <choose>
+           <when test="value != null and value != ''">
+               ${value} CODE_VALUE
+           </when>
+           <otherwise>
+               CODE_VALUE
+           </otherwise>
+        </choose>
           FROM ${table}
-         WHERE ISENABLE = '1'
+         WHERE 1=1
+           <if test="type != null and type != ''">
            AND CODE_TYPE = #{type}
+           </if>
            <if test="where != null and where != ''">
            AND ${where}
            </if>
-      ORDER BY ORDER_CODE
            <if test="order != null and order !=''">
-               ${order}
+               ORDER BY ${order}
            </if>
     </select>
 

@@ -1,5 +1,6 @@
 package com.sgcc.pesticide.login.controller;
 
+import com.sgcc.comm.util.CommUtil;
 import com.sgcc.pesticide.login.model.UserToken;
 import com.sgcc.pesticide.login.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,10 @@ public class LoginController {
         }else {
             HttpSession session = request.getSession();
             session.setAttribute("userToken",userToken);
-            session.setMaxInactiveInterval(1800);
+            session.setMaxInactiveInterval(Integer.parseInt(CommUtil.getResourceProperty("session-time").toString()));
+
+            CommUtil.getLoginInfo().setLogin_user(userToken.getUsername());
+
             return "true";
         }
 

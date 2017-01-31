@@ -9,16 +9,16 @@
 <%@ include file="../../comm/comm.jsp"%>
 <script type="text/javascript" src="<%=path%>/pesticide/demo/js/demo.js"></script>
 <div style="margin-top:7px;">
-    <form class="form-inline row" role="form">
+    <form id="query_box" class="form-inline row" role="form">
         <div class="form-group col-md-4">
-            <input type="text" class="form-control" id="queryCode" placeholder="编号" >
+            <input type="text" class="form-control" id="queryCode" name="queryCode" placeholder="编号" >
         </div>
         <div class="form-group col-md-4">
-            <input type="text" class="form-control" id="queryName" placeholder="名称">
+            <input type="text" class="form-control" id="queryName" name="queryName" placeholder="名称">
         </div>
         <div class="form-group col-md-4">
-            类型：
-            <select class="form-control" id="queryType">
+            <label>类型:</label>
+            <select class="form-control" id="queryType" name="queryType">
                 <option value=""></option>
             </select>
         </div>
@@ -28,9 +28,11 @@
 <div id="table_div">
 
 </div>
+<nav id="page-bar">
+</nav>
 
 <script id="users" type="text/html">
-    <table class="table table-striped border_solid table-hover">
+    <table class="table border_solid table-hover">
         <thead>
         <tr>
             <th>序号</th>
@@ -42,12 +44,17 @@
         </tr>
         </thead>
         <tbody>
+        {{if list.length == 0}}
+        <tr>
+            <td>未查询到任何数据!</td>
+        </tr>
+        {{/if}}
         {{each list as value i}}
         <tr>
             <td>{{i+1}}</td>
             <td>{{value.code}}</td>
             <td>{{value.name}}</td>
-            <td>{{value.type}}</td>
+            <td>{{value.type | dict:'yn'}}</td>
             <td>{{value.isEnable}}</td>
             <td>
                 <span class="glyphicon glyphicon-pencil table_oper_button"></span>

@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
     <settings>
         <setting name="logImpl" value="LOG4J2" />
+        <setting name="callSettersOnNulls" value="true"/>
     </settings>
         <!-- 命名空间 -->
     <typeAliases>
@@ -13,8 +14,25 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <package name="com.sgcc.pesticide.demo.model"></package>
     </typeAliases>
 
+    <!--
+    plugins在配置文件中的位置必须符合要求，否则会报错，顺序如下:
+    properties?, settings?,
+    typeAliases?, typeHandlers?,
+    objectFactory?,objectWrapperFactory?,
+    plugins?,
+    environments?, databaseIdProvider?, mappers?
+    -->
+    <plugins>
+        <!-- com.github.pagehelper为PageHelper类所在包名 -->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 使用下面的方式配置参数，后面会有所有的参数介绍 -->
+            <property name="param1" value="value1"/>
+        </plugin>
+    </plugins>
+
     <!-- 映射map -->
     <mappers>
     </mappers>
+
 
 </configuration>

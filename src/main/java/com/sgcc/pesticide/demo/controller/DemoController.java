@@ -1,5 +1,6 @@
 package com.sgcc.pesticide.demo.controller;
 
+import com.sgcc.comm.model.Query;
 import com.sgcc.pesticide.demo.model.Demo;
 import com.sgcc.pesticide.demo.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +30,12 @@ public class DemoController {
      * @Description
      * @author 杜成皓
      * @date 2017/1/21 22:26
-     * @param request
-     * @param response
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/queryDemo",method = RequestMethod.POST)
-    public List<Demo> queryUsers(@RequestBody Map<String, String> param){
-        List<Demo> list = demoService.queryDemoList(param);
-        return list;
+    public Query queryUsers(@RequestBody Map<String, String> param){
+        return demoService.queryDemoList(param);
     }
 
 }

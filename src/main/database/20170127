@@ -1,0 +1,80 @@
+drop table if exists t_development;
+
+/*==============================================================*/
+/* Table: t_development                                         */
+/*==============================================================*/
+create table t_development
+(
+  uuid                 varchar(32) not null comment '主键',
+  development_code     varchar(32) comment '开发任务编号',
+  title                varchar(300) comment '主题',
+  description          varchar(4000) comment '开发任务描述',
+  develop_user         varchar(100) comment '开发人员',
+  test_user            varchar(100) comment '测试人员',
+  create_user          varchar(100) comment '创建人员',
+  create_date          date comment '创建时间',
+  finish_time          date comment '预计开发完成时间',
+  version_code         varchar(32) comment '版本号',
+  state                varchar(2) comment '状态',
+  object_code          varchar(32) comment '项目编号',
+  model_code           varchar(32) comment '模块编码',
+  isread               varchar(2) comment '是否已查看',
+  primary key (uuid)
+);
+
+alter table t_development comment '开发任务';
+
+drop table if exists t_testing;
+
+/*==============================================================*/
+/* Table: t_testing                                             */
+/*==============================================================*/
+create table t_testing
+(
+  uuid                 varchar(32) not null comment '主键',
+  test_code            varchar(32) comment '测试编码',
+  title                varchar(300) comment '主题',
+  description          varchar(4000) comment '描述',
+  test_user            varchar(100) comment '测试人员',
+  create_user          varchar(100) comment '创建人员',
+  create_time          date comment '创建时间',
+  development_code     varchar(32) comment '开发任务编码',
+  state                varchar(2) comment '状态',
+  object_code          varchar(32) comment '项目编号',
+  model_code           varchar(32) comment '模块编码',
+  isread               varchar(2) comment '是否已查看',
+  primary key (uuid)
+);
+
+alter table t_testing comment '测试任务';
+
+drop table if exists t_modification;
+
+/*==============================================================*/
+/* Table: t_modification                                        */
+/*==============================================================*/
+create table t_modification
+(
+  uuid                 varchar(32) not null comment '主键',
+  modification_code    varchar(32) comment '修改编码',
+  title                varchar(300) comment '主题',
+  description          varchar(4000) comment '描述',
+  modification_user    varchar(100) comment '修改人员',
+  create_user          varchar(100) comment '创建人员',
+  create_time          date comment '创建时间',
+  testing_code         varchar(32) comment '测试任务编码',
+  finish_time          date comment '预计完成时间',
+  version_code         varchar(32) comment '版本号',
+  state                varchar(2) comment '状态',
+  object_code          varchar(32) comment '项目编号',
+  model_code           varchar(32) comment '模块编码',
+  isread               varchar(2) comment '是否已查看',
+  primary key (uuid)
+);
+
+alter table t_modification comment '修改任务';
+
+ALTER TABLE pesticide.t_development CHANGE create_date create_time DATE COMMENT '创建时间';
+
+ALTER TABLE pesticide.t_development ADD actual_finish_time DATE NULL;
+ALTER TABLE pesticide.t_development MODIFY actual_finish_time DATE COMMENT '实际完成时间';

@@ -44,7 +44,7 @@ public class DictionaryServiceImpl implements DictionaryService {
             for (Map<String, String> stringMap : l) {
                 m.put(stringMap.get("CODE_KEY"),stringMap.get("CODE_VALUE"));
             }
-            resultMap.put(map.get("table")+"_"+map.get("type"),m);
+            resultMap.put(map.get("name"),m);
         }
         return resultMap;
     }
