@@ -52,7 +52,6 @@ $.extend({
             data:JSON.stringify(propertiesArray),
             success:function (data) {
                 comm.js.dictionary = data;
-                console.info(comm.js.dictionary)
             }
         });
     },

@@ -41,13 +41,3 @@ demo.js.query = function () {
     });
 
 };
-
-demo.js.collector = function () {
-    var hash = location.hash;
-    var pn = getParameter(hash,"pn","1");
-    var queryCode = $("#queryCode").val();
-    var queryName = $("#queryName").val();
-    var queryType = $("#queryType").val();
-
-    return {queryCode:queryCode,queryName:queryName,queryType:queryType,pageNum:pn};
-};

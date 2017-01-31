@@ -18,8 +18,6 @@ $.fn.extend({
                     obj[n] = v;
                     // 为搜索组件赋值
                     $(this).val(v);
-                    console.info($(this))
-                    console.info(v)
                 }
 
             });
