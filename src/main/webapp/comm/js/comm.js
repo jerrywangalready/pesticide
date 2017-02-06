@@ -1,6 +1,7 @@
 /**
  * Created by jerrywang on 2017/1/12.
  */
+
 //截取参数方法，hash：截取的字符串，name：截取的参数名，nvl：该参数不存在时的返回值
 function getParameter(hash,name,nvl) {
     hash = hash;

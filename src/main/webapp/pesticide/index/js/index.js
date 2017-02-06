@@ -24,6 +24,7 @@ $(function () {
             $("#top_toolbar").fadeOut();
         }
     })
+
 });
 
 index.js = {};
@@ -85,3 +86,4 @@ index.js.logout = function(){
         }
     });
 };
+

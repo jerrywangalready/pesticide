@@ -1,0 +1,1 @@
+ALTER TABLE pesticide.t_testing CHANGE test_code testing_code VARCHAR(32) COMMENT '测试编码';

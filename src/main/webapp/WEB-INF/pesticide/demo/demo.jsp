@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../../comm/comm.jsp"%>
 <script type="text/javascript" src="<%=path%>/pesticide/demo/js/demo.js"></script>
-<div style="margin-top:7px;">
+<div class="mb_15" style="margin-top:7px;">
     <form id="query_box" class="form-inline row" role="form">
         <div class="form-group col-md-4">
             <input type="text" class="form-control" id="queryCode" name="queryCode" placeholder="编号" >
@@ -17,9 +17,8 @@
             <input type="text" class="form-control" id="queryName" name="queryName" placeholder="名称">
         </div>
         <div class="form-group col-md-4">
-            <label>类型:</label>
             <select class="form-control" id="queryType" name="queryType">
-                <option value=""></option>
+                <option value="">-- 选择类型 --</option>
             </select>
         </div>
 
