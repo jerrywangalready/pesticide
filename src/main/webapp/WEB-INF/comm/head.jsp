@@ -17,6 +17,7 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/pesticide/index/css/primary-blue.css" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/comm/plugins/bootstrap/css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/comm/plugins/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" />
+<link rel="stylesheet" type="text/css" href="<%=path%>/comm/plugins/jquery-css3-shake/css/shake.css" />
 <script type="text/javascript" src="<%=path%>/comm/plugins/jQuery/jquery-3.1.1.min.js"></script>
 <!--[if lt IE 9]>
 <link rel="stylesheet" href="<%=path%>/pesticide/index/css/IE.css"/>
@@ -32,6 +33,7 @@
 <script type="text/javascript" src="<%=path%>/comm/plugins/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="<%=path%>/comm/plugins/layer/layer.js"></script>
 
 <!-- 自封装插件 -->
 <script type="text/javascript" src="<%=path%>/comm/plugins/enterListener/enterListener.js"></script>
