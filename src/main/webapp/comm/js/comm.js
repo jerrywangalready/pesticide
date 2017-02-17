@@ -4,12 +4,13 @@
 
 //截取参数方法，hash：截取的字符串，name：截取的参数名，nvl：该参数不存在时的返回值
 function getParameter(hash,name,nvl) {
-    hash = hash;
+    hash = decodeURIComponent(hash);
     // hash = decodeURIComponent(comm.BASE64.decode(hash));
     if(!nvl){
         nvl = "";
     }
     var svalue = hash.match(new RegExp("[\?\&]?" + name + "=([^\&\#]*)(\&?)", "i"));
+        console.info(svalue)
     if(svalue == null){
         return nvl;
     }else{
