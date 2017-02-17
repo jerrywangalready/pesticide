@@ -16,7 +16,7 @@ drop table if exists s_object_users;
 
 drop table if exists s_users;
 
-drop table if exists s_verison;
+drop table if exists s_version;
 
 drop table if exists t_development;
 

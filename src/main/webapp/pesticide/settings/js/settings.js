@@ -35,13 +35,21 @@ settings.js.clickTab = function (type) {
 
 // 填充users
 settings.js.fillUsers = function () {
-    $.post(path+"/settings/queryUsers.do",
-        {},
-        function (data) {
-            console.info(data);
-            var html = template('users',{'list':data});
+    var collector = $("#query_box").collector();
+    $.ajax({
+        type:'POST',
+        url:path+"/settings/queryUsers.do",
+        contentType:'application/json',
+        data:JSON.stringify(collector),
+        success:function (data) {
+            var html = template('users',{'list':data.list});
             $("#testDiv").html(html);
-        });
+            // 初始化页码按钮
+            $("#page-bar").page(data);
+        }
+    });
+
+
 }
 
 // 填充object

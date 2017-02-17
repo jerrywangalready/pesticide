@@ -43,7 +43,7 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" data-backdrop="static" >
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -66,7 +66,8 @@
 
 
 </div>
-
+<nav id="page-bar">
+</nav>
 
 <script id="users" type="text/html">
     <table class="table table-striped border_solid table-hover">

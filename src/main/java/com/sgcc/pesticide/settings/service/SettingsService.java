@@ -1,12 +1,13 @@
 package com.sgcc.pesticide.settings.service;
 
 
+import com.sgcc.comm.model.Query;
 import com.sgcc.pesticide.settings.model.Objects;
-import com.sgcc.pesticide.settings.model.Users;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SettingsService {
-	public List<Users> queryUsersList();
+	public Query queryUsersList(Map<String, String> param);
 	public List<Objects> queryObjectList();
 }
