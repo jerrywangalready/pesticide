@@ -10,7 +10,6 @@ function getParameter(hash,name,nvl) {
         nvl = "";
     }
     var svalue = hash.match(new RegExp("[\?\&]?" + name + "=([^\&\#]*)(\&?)", "i"));
-        console.info(svalue)
     if(svalue == null){
         return nvl;
     }else{
