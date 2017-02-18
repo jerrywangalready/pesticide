@@ -9,7 +9,8 @@ $.fn.extend({
             _this.addClass("page-bar").attr("aria-label","Page navigation");
             var ul = "<ul class='pagination pagination-sm'>";
             ul += "<li><a aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
-            for(var i=1;i<=(data.total/data.pageSize+1);i++){
+            var size = data.total%data.pageSize == 0 && data.total != 0 ? data.total/data.pageSize : data.total/data.pageSize + 1;
+            for(var i=1;i<=size;i++){
                 if(i == data.pageNum)
                     ul += "<li class='active'><a>"+i+"</a></li>";
                 else
