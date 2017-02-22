@@ -7,6 +7,8 @@ $(function () {
 });
 settings.js = {};
 settings.js.init = function () {
+    $.dictInit([{name:"yn",table:"s_code_list",type:"YN"}]);
+    $("#query_isEnable").dict({table:"s_code_list",type:"YN"});
     // 获取type值
     var type = getParameter(location.hash,"type","users");
     // 绑定tab点击事件
@@ -24,7 +26,16 @@ settings.js.init = function () {
     }else{
         settings.js.fillUsers();
     }
-    $("#isEnable").dict({table:"t_code_list",type:"YN",where:"",order:""});
+    $("#query_isEnable").dict({table:"t_code_list",type:"YN",where:"",order:""});
+    // 初始化回车事件
+    $("#query_nickname,#query_username").enter(function () {
+        $("#query_box").query();
+    });
+    $("#query_isEnable").change(function () {
+        $("#query_box").query();
+    });
+    $("#username").val("");
+    $("#password").val("");
 };
 
 // 点击tab

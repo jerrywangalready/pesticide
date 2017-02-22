@@ -16,17 +16,16 @@
         <li role="presentation"><a href="javascript:void(0);" type = "objects">项目</a></li>
     </ul>
     <div style="margin-top:7px;">
-        <form class="form-inline row" role="form">
+        <form class="form-inline row" role="form" id="query_box">
             <div class="form-group col-md-4">
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="姓名" >
+                <input type="text" class="form-control" id="query_nickname" name="query_nickname" placeholder="姓名" >
             </div>
             <div class="form-group col-md-4">
-                <input type="text" class="form-control" id="exampleInputEmail2" placeholder="账号">
+                <input type="text" class="form-control" id="query_username" name="query_username" placeholder="账号">
             </div>
             <div class="form-group col-md-4">
-                是否在用：
-                <select class="form-control" id="isEnable">
-                    <option value=""></option>
+                <select class="form-control" id="query_isEnable" name="query_isEnable">
+                    <option value="">-- 是否在用 --</option>
                 </select>
             </div>
 
@@ -43,7 +42,7 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" >
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -51,7 +50,24 @@
                     <h4 class="modal-title" id="myModalLabel">添加人员信息</h4>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <form>
+                        <div class="form-group">
+                            <label for="username" class="control-label">账号:</label>
+                            <input id="username" type="text" class="form-control shadow">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="control-label">密码:</label>
+                            <input id="password" type="password" class="form-control shadow">
+                        </div>
+                        <div class="form-group">
+                            <label for="repassword" class="control-label">再次输入:</label>
+                            <input id="repassword" type="password" class="form-control shadow">
+                        </div>
+                        <div class="form-group">
+                            <label for="nickname" class="control-label">真实姓名:</label>
+                            <input id="nickname" type="text" class="form-control" id="nickname">
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -88,7 +104,7 @@
             <td>{{value.nickname}}</td>
             <td>{{value.username}}</td>
             <td>{{value.password}}</td>
-            <td>{{value.isEnable}}</td>
+            <td>{{value.isEnable | dict:'yn'}}</td>
             <td>
                 <span class="glyphicon glyphicon-pencil table_oper_button"></span>
                 <span class="glyphicon glyphicon-trash table_oper_button"></span>

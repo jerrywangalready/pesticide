@@ -34,6 +34,7 @@ demo.js.query = function () {
         data:JSON.stringify(collector),
         success:function (data) {
             var html = template('users',{'list':data.list});
+            console.info(data);
             $("#table_div").html(html);
             // 初始化页码按钮
             $("#page-bar").page(data);

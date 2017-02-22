@@ -5,7 +5,17 @@
 <mapper namespace="com.sgcc.pesticide.settings.dao.SettingsDao">
 
     <select id="queryUsers" resultType="Users" parameterType="java.util.Map">
-        select * FROM S_USERS
+        SELECT * FROM S_USERS T
+        WHERE 1=1
+        <if test="query_username != null and query_username != ''">
+            AND T.USERNAME like CONCAT('%',#{query_username},'%')
+        </if>
+        <if test="query_nickname != null and query_nickname != ''">
+            AND T.NICKNAME like CONCAT('%',#{query_nickname},'%')
+        </if>
+        <if test="query_isEnable != null and query_isEnable != ''">
+            AND T.ISENABLE = #{query_isEnable}
+        </if>
     </select>
     <select id="queryObject" resultType="Objects">
         select * FROM S_OBJECT

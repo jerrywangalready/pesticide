@@ -20,12 +20,12 @@ public class SettingsServiceImpl implements SettingsService {
 	@Autowired
 	SettingsDao settingsDao;
 	public Query queryUsersList(Map<String, String> param){
-		PageHelper.startPage(Integer.parseInt(param.get("pageNum")),10);
+		PageHelper.startPage(Integer.parseInt(param.get("pageNum")),3);
 		List<Users> list = settingsDao.queryUsers(param);
 		Query query = new Query();
 		query.setList(list);
 		query.setPageNum(Integer.parseInt(param.get("pageNum")));
-		query.setPageSize(10);
+		query.setPageSize(3);
 		query.setTotal(((Page)list).getTotal());
 		return query;
 	}
