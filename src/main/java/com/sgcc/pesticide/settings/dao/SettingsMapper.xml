@@ -3,7 +3,23 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sgcc.pesticide.settings.dao.SettingsDao">
-
+    <insert id="insertUsers" parameterType="java.util.Map">
+        INSERT INTO pesticide.s_users (
+          uuid,
+          username,
+          password,
+          nickname,
+          isenable,
+          create_time
+        ) VALUES (
+            #{uuid},
+            #{username,jdbcType = VARCHAR},
+            #{password,jdbcType = VARCHAR},
+            #{nickname,jdbcType = VARCHAR},
+            '1',
+            sysdate()
+        )
+    </insert>
     <select id="queryUsers" resultType="Users" parameterType="java.util.Map">
         SELECT * FROM S_USERS T
         WHERE 1=1
@@ -19,6 +35,9 @@
     </select>
     <select id="queryObject" resultType="Objects">
         select * FROM S_OBJECT
+    </select>
+    <select id="checkIsExist" parameterType="String" resultType="java.lang.String">
+        SELECT  COUNT(1) FROM pesticide.s_users T WHERE T.username=#{username}
     </select>
 
 </mapper>

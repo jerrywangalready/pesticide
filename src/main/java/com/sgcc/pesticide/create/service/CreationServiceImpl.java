@@ -1,4 +1,4 @@
-package com.sgcc.pesticide.create.service.impl;
+package com.sgcc.pesticide.create.service;
 
 import com.sgcc.comm.util.CommUtil;
 import com.sgcc.pesticide.create.dao.CreationDao;

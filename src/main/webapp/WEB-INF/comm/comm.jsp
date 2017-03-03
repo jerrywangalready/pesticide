@@ -15,7 +15,7 @@
 <script type="text/javascript">
     var path = '<%=path%>';
     <%if(userToken!=null){%>
-        comm.js.username = '<%=userToken.getUsername()%>';
-        comm.js.nickname = '<%=userToken.getNickname()%>';
+        //comm.js.username = '<%=userToken.getUsername()%>';
+        //comm.js.nickname = '<%=userToken.getNickname()%>';
     <%}%>
 </script>

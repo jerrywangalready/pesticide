@@ -2,6 +2,7 @@
  * Created by Administrator on 2017/1/15.
  */
 jQuery.namespace("settings");
+var updateUUID = "";
 $(function () {
     settings.js.init();
 });
@@ -34,8 +35,10 @@ settings.js.init = function () {
     $("#query_isEnable").change(function () {
         $("#query_box").query();
     });
-    $("#username").val("");
-    $("#password").val("");
+    $("#add").find("input").each(function () {
+        $(this).val("");
+    })
+
 };
 
 // 点击tab
@@ -53,7 +56,7 @@ settings.js.fillUsers = function () {
         contentType:'application/json',
         data:JSON.stringify(collector),
         success:function (data) {
-            var html = template('users',{'list':data.list});
+            var html = template('settings_users',{'list':data.list});
             $("#testDiv").html(html);
             // 初始化页码按钮
             $("#page-bar").page(data);
@@ -61,21 +64,84 @@ settings.js.fillUsers = function () {
     });
 
 
-}
+};
 
 // 填充object
 settings.js.fillObject = function () {
     $.post(path+"/settings/queryObject.do",
         {},
         function (data) {
-            console.info(data);
             var html = template('objects',{'list':data});
             $("#testDiv").html(html);
         });
-}
+};
 
 //查询项
 settings.js.query=function () {
 
-}
+};
+
+//新增人员信息
+settings.js.save=function (todo) {
+    var param = $("#add").validate();
+    console.info(param);
+    if(param){
+        $.ajax({
+            type:'POST',
+            url:path+'/settings/save.do',
+            contentType:'application/json',
+            data:JSON.stringify(param),
+            success:function (data) {
+                if(data=='success'){
+                    layer.msg('保存成功!', {
+                        offset: '50px'
+                    });
+                    $('#addUsersModal').modal('hide');
+                    settings.js.query();
+                }else if(data=='fail'){
+                    layer.msg('保存失败!', {
+                        offset: '50px'
+                    });
+                }
+            }
+
+        });
+    }
+};
+// 校验输入的两次密码是否一致
+settings.js.checkPassword=function () {
+    var password = $("#password").val();
+    var repassword = $("#repassword").val();
+    if ((password!=repassword)&&(repassword!='')){
+        alert("两次输入的密码不一致！");
+        $("#repassword").val("");
+    }
+};
+// 打开新增窗口
+settings.js.showModal=function () {
+    $('#addUsersModal').modal('show');
+    $("#add").find("input").each(function () {
+        $(this).val("");
+    })
+};
+// 打开修改窗口
+settings.js.updateUser=function (uuid) {
+    updateUUID = uuid;
+    layer.open({
+        type: 2,
+        title: '人员修改页面',
+        shadeClose: true,
+        shade: 0.8,
+        area: ['380px', '90%'],
+        content: [path+'/settings/addOrUpdateInit.do?uuid='+uuid+'type=update','no']
+    });
+};
+// 删除一条人员记录
+settings.js.deleteUser=function (uuid) {
+
+};
+
+settings.js.getUpdateUUID = function () {
+    return updateUUID;
+};
 

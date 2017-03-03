@@ -33,6 +33,7 @@ demo.js.query = function () {
         contentType:'application/json',
         data:JSON.stringify(collector),
         success:function (data) {
+            console.info(data);
             var html = template('users',{'list':data.list});
             console.info(data);
             $("#table_div").html(html);
