@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.registry.infomodel.User;
 import java.util.List;
 import java.util.Map;
 
@@ -57,7 +58,7 @@ public class SettingsController {
     }
 
     /**
-     * @Description
+     * @Description 保存
      * @author 杜成皓
      * @date 2017/3/1 22:39
      * @param param
@@ -87,5 +88,19 @@ public class SettingsController {
     @RequestMapping(value = "/addOrUpdateInit.do")
     public String addOrUpdateInit(@RequestBody String uuid,@RequestBody String type) {
         return "/settings/settingsUpdate";
+    }
+
+    /**
+     * @Description 根据uuid查询一条user对象
+     * @author 杜成皓
+     * @date 2017/3/6 22:10
+     * @param uuid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "queryUserByUUID.do")
+    public Users queryUserByUUID(String uuid){
+        Users users = usersService.queryUserByUUID(uuid);
+        return users;
     }
 }

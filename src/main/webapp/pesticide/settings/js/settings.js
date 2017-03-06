@@ -2,12 +2,18 @@
  * Created by Administrator on 2017/1/15.
  */
 jQuery.namespace("settings");
-var updateUUID = "";
 $(function () {
     settings.js.init();
 });
 settings.js = {};
+settings.js.updateUUID = "";
 settings.js.init = function () {
+    var type = getParameter(location.hash,"type","users");
+    if(type=="users"){
+
+    }else {
+
+    }
     $.dictInit([{name:"yn",table:"s_code_list",type:"YN"}]);
     $("#query_isEnable").dict({table:"s_code_list",type:"YN"});
     // 获取type值
@@ -83,8 +89,10 @@ settings.js.query=function () {
 
 //新增人员信息
 settings.js.save=function (todo) {
+    if(todo=="update"){
+
+    }
     var param = $("#add").validate();
-    console.info(param);
     if(param){
         $.ajax({
             type:'POST',
@@ -126,14 +134,14 @@ settings.js.showModal=function () {
 };
 // 打开修改窗口
 settings.js.updateUser=function (uuid) {
-    updateUUID = uuid;
+    settings.js.updateUUID = uuid;
     layer.open({
         type: 2,
         title: '人员修改页面',
         shadeClose: true,
         shade: 0.8,
-        area: ['380px', '90%'],
-        content: [path+'/settings/addOrUpdateInit.do?uuid='+uuid+'type=update','no']
+        area: ['380px', '75%'],
+        content: [path+'/settings/addOrUpdateInit.do','no']
     });
 };
 // 删除一条人员记录
@@ -141,7 +149,7 @@ settings.js.deleteUser=function (uuid) {
 
 };
 
-settings.js.getUpdateUUID = function () {
-    return updateUUID;
+function getUpdateUUID() {
+    return settings.js.updateUUID;
 };
 

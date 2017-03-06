@@ -71,4 +71,17 @@ public class SettingsServiceImpl implements SettingsService {
 		return flag;
 	}
 
+	/**
+	 * @Description 根据uuid查询user对象
+	 * @author 杜成皓
+	 * @date 2017/3/6 22:15
+	 * @param uuid
+	 * @return
+	 */
+	@Override
+	public Users queryUserByUUID(String uuid) {
+		Users users=settingsDao.queryUserByUUID(uuid);
+		return users;
+	}
+
 }

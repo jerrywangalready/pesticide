@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../../comm/head.jsp"%>
-
+<script type="text/javascript" src="<%=path%>/pesticide/settings/js/settingsUpdate.js"></script>
 <div class="modal-body">
     <form id="add">
         <div class="form-group">
@@ -30,13 +30,6 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-    <button type="button" class="btn btn-primary" onclick="settings.js.save('save')">保存</button>
+    <button type="button" class="btn btn-primary" onclick="settings.js.save('update')">保存</button>
 </div>
 
-
-<script type="text/javascript">
-    $(function () {
-        var uuid = parent.settings.js.getUpdateUUID();
-        alert(uuid);
-    })
-</script>

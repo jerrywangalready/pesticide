@@ -39,5 +39,11 @@
     <select id="checkIsExist" parameterType="String" resultType="java.lang.String">
         SELECT  COUNT(1) FROM pesticide.s_users T WHERE T.username=#{username}
     </select>
+    <select id="queryUserByUUID" parameterType="String" resultType="com.sgcc.pesticide.settings.model.Users">
+        select * from pesticide.s_users t where t.uuid=#{uuid};
+    </select>
+    <select id="checkUuid" resultType="java.lang.Boolean">
+        SELECT
+    </select>
 
 </mapper>
