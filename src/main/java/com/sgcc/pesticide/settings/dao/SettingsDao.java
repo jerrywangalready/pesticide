@@ -3,7 +3,6 @@ package com.sgcc.pesticide.settings.dao;
 import com.sgcc.pesticide.settings.model.Objects;
 import com.sgcc.pesticide.settings.model.Users;
 
-import javax.xml.registry.infomodel.User;
 import java.util.List;
 import java.util.Map;
 
@@ -14,5 +13,14 @@ public interface SettingsDao {
     void insertUsers(Map<String ,String> param);
     String checkIsExist(String username);
     Users queryUserByUUID(String uuid);
-    String  checkUuid(String uuid);
+    void updateUsers(Map<String,String> param);
+
+    /**
+     * @Description 删除一个user对象
+     * @author 杜成皓
+     * @date 2017/3/15 23:14
+     * @param uuid
+     * @return
+     */
+    void deleteUser(String uuid);
 }

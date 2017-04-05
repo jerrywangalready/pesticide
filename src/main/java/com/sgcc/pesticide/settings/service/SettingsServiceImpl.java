@@ -7,7 +7,6 @@ import com.sgcc.comm.util.CommUtil;
 import com.sgcc.pesticide.settings.dao.SettingsDao;
 import com.sgcc.pesticide.settings.model.Objects;
 import com.sgcc.pesticide.settings.model.Users;
-import com.sgcc.pesticide.settings.service.SettingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -84,4 +83,32 @@ public class SettingsServiceImpl implements SettingsService {
 		return users;
 	}
 
+	/**
+	 * @Description 修改一个user对象
+	 * @author 杜成皓
+	 * @date 2017/3/15 23:11
+	 * @param param
+	 */
+	@Override
+	public void updateTask(Map<String, String> param) {
+		settingsDao.updateUsers(param);
+	}
+
+	/**
+	 * @Description 删除一个user对象
+	 * @author 杜成皓
+	 * @date 2017/3/15 23:13
+	 * @param uuid
+	 * @return
+	 */
+	@Override
+	public String deleteUser(String uuid) {
+		try {
+			settingsDao.deleteUser(uuid);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "false";
+		}
+		return "true";
+	}
 }

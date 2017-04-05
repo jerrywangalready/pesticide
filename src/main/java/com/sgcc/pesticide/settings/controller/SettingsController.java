@@ -24,9 +24,14 @@ public class SettingsController {
     @Autowired
     SettingsService usersService;
 
-    @RequestMapping("/init")
+    @RequestMapping("/users")
     public String settingsInit() {
-        return "/settings/settingsInit";
+        return "/settings/settingsUsersInit";
+    }
+
+    @RequestMapping("/objects")
+    public String settingsObjectsInit(){
+        return "/settings/settingsObjectsInit";
     }
 
     /**
@@ -68,12 +73,18 @@ public class SettingsController {
     @RequestMapping(value = "/save.do", method = RequestMethod.POST)
     public String save(@RequestBody Map<String, String> param) {
         String username=param.get("username");
+        String todo = param.get("todo");
         String returnValue;
-        if (usersService.checkIsExist(username)){
-            usersService.insertTask(param);
+        if("update".equals(todo)){
+            usersService.updateTask(param);
             returnValue="success";
         }else{
-            returnValue="fail";
+            if(usersService.checkIsExist(username)){
+                usersService.insertTask(param);
+                returnValue="success";
+            }else{
+                returnValue="false";
+            }
         }
         return returnValue;
     }
@@ -87,7 +98,7 @@ public class SettingsController {
      */
     @RequestMapping(value = "/addOrUpdateInit.do")
     public String addOrUpdateInit(@RequestBody String uuid,@RequestBody String type) {
-        return "/settings/settingsUpdate";
+        return "/settings/settingsUsersUpdate";
     }
 
     /**
@@ -103,4 +114,28 @@ public class SettingsController {
         Users users = usersService.queryUserByUUID(uuid);
         return users;
     }
+    /**
+     * @Description 新增和修改页面的初始化方法
+     * @author 杜成皓
+     * @date 2017/3/2 23:17
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/addInit.do")
+    public String addInit() {
+        return "/settings/settingsUsersInsert";
+    }
+
+    /**
+     * @Description 删除一行数据
+     * @author 杜成皓
+     * @date 2017/3/15 23:05
+     * @param uuid
+     * @return
+     */
+    @RequestMapping(value = "/deleteUser.do")
+    public String deleteUser(String uuid){
+        return usersService.deleteUser(uuid);
+    }
+
 }
