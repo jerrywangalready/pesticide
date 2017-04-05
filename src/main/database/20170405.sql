@@ -63,12 +63,13 @@ create table t_bug
    priority             varchar(32) comment '优先级',
    bug_level            varchar(32) comment '严重级别',
    result               varchar(32) comment '解决结果',
-   deadline             data comment '截止时间',
+   deadline             date comment '截止时间',
    state                varchar(2) comment '状态',
    is_read              varchar(2) comment '是否已读',
    is_enable            varchar(2) comment '是否启用',
-   create_time          data comment '创建时间',
+   create_time          date comment '创建时间',
    primary key (uuid)
 );
 
 alter table t_bug comment 'bug';
+
