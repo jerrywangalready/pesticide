@@ -61,8 +61,8 @@
             <td>{{value.object_name}}</td>
             <td>{{value.isEnable | dict:'yn'}}</td>
             <td>
-                <span class="glyphicon glyphicon-pencil table_oper_button"></span>
-                <span class="glyphicon glyphicon-trash table_oper_button"></span>
+                <span class="glyphicon glyphicon-pencil table_oper_button" onclick=""></span>
+                <span class="glyphicon glyphicon-trash table_oper_button" onclick="objects.js.deleteObject('{{value.uuid}}')"></span>
             </td>
         </tr>
         {{/each}}

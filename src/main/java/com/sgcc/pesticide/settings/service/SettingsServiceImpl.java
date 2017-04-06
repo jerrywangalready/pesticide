@@ -30,9 +30,24 @@ public class SettingsServiceImpl implements SettingsService {
 		query.setTotal(((Page)list).getTotal());
 		return query;
 	}
-	public List<Objects> queryObjectList(){
-		List<Objects> list = settingsDao.queryObject();
-		return list;
+
+	/**
+	 * * @Description 查询object
+	 * @author 杜成皓
+	 * @date 2017/4/6 23:06
+	 * @param param
+	 * @return
+	 */
+	public Query queryObjectList(Map<String, String> param){
+		int pageSize=10;
+		PageHelper.startPage(Integer.parseInt(param.get("pageNum")),pageSize);
+		List<Objects> list = settingsDao.queryObject(param);
+		Query query = new Query();
+		query.setList(list);
+		query.setPageNum(Integer.parseInt(param.get("pageNum")));
+		query.setPageSize(pageSize);
+		query.setTotal(((Page)list).getTotal());
+		return query;
 	}
 
 
@@ -106,6 +121,24 @@ public class SettingsServiceImpl implements SettingsService {
 		try {
 			settingsDao.deleteUser(uuid);
 		} catch (Exception e) {
+			e.printStackTrace();
+			return "false";
+		}
+		return "true";
+	}
+
+	/**
+	 * @Description 删除一个object对象
+	 * @author 杜成皓
+	 * @date 2017/4/6 23:26
+	 * @param uuid
+	 * @return
+	 */
+	@Override
+	public String deleteObject(String uuid){
+		try{
+			settingsDao.deleteObject(uuid);
+		}catch (Exception e){
 			e.printStackTrace();
 			return "false";
 		}

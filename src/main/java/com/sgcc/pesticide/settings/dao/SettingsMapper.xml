@@ -33,6 +33,11 @@
         DELETE FROM pesticide.s_users WHERE uuid=#{uuid};
     </delete>
 
+    <!--删除用户-->
+    <delete id="deleteObject" parameterType="String">
+        DELETE FROM pesticide.s_object WHERE uuid=#{uuid};
+    </delete>
+
     <!--查询用户-->
     <select id="queryUsers" resultType="Users" parameterType="java.util.Map">
         SELECT * FROM S_USERS T
@@ -49,8 +54,17 @@
     </select>
 
     <!--查询项目-->
-    <select id="queryObject" resultType="Objects">
-        select * FROM S_OBJECT
+    <select id="queryObject" resultType="Objects" parameterType="java.util.Map">
+        select * FROM S_OBJECT T WHERE 1=1
+        <if test="query_objectCode != null and query_objectCode != ''">
+            AND T.object_code = #{query_objectCode}
+        </if>
+        <if test="query_objectName != null and query_objectName != ''">
+            AND T.OBJECT_NAME like CONCAT ('%',#{query_objectName},'%')
+        </if>
+        <if test="query_isEnable != null and query_isEnable != ''">
+            AND T.ISENABLE = #{query_isEnable}
+        </if>
     </select>
 
     <!--查询是否已经存在该名字的用户-->

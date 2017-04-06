@@ -48,8 +48,6 @@ public class SettingsController {
 
 
     /**
-     * @param request
-     * @param response
      * @return
      * @Description 查询object列表
      * @author 杜成皓
@@ -57,9 +55,8 @@ public class SettingsController {
      */
     @ResponseBody
     @RequestMapping(value = "/queryObject.do", method = RequestMethod.POST)
-    public List<Objects> queryObject(HttpServletRequest request, HttpServletResponse response) {
-        List<Objects> list = usersService.queryObjectList();
-        return list;
+    public Query queryObject(@RequestBody Map<String, String> param) {
+        return usersService.queryObjectList(param);
     }
 
     /**
@@ -138,4 +135,8 @@ public class SettingsController {
         return usersService.deleteUser(uuid);
     }
 
+    @RequestMapping(value = "/deleteObject.do")
+    public String deleteObject(String uuid){
+        return usersService.deleteObject(uuid);
+    }
 }

@@ -10,7 +10,14 @@ import java.util.Map;
 
 public interface SettingsService {
 	Query queryUsersList(Map<String, String> param);
-	List<Objects> queryObjectList();
+	/**
+	 * * @Description 查询object
+	 * @author 杜成皓
+	 * @date 2017/4/6 23:06
+	 * @param param
+	 * @return
+	 */
+	Query queryObjectList(Map<String, String> param);
 	String insertTask(Map<String, String> param);
 	Boolean checkIsExist(String username);
 	Users queryUserByUUID(String uuid);
@@ -24,4 +31,13 @@ public interface SettingsService {
 	 * @return
 	 */
 	String deleteUser(String uuid);
+
+	/**
+	 * @Description 删除一个object对象
+	 * @author 杜成皓
+	 * @date 2017/4/6 23:24
+	 * @param uuid
+	 * @return
+	 */
+	String deleteObject(String uuid);
 }
