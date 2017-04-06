@@ -67,7 +67,7 @@ create table t_bug
    state                varchar(2) comment '状态',
    is_read              varchar(2) comment '是否已读',
    is_enable            varchar(2) comment '是否启用',
-   create_time          data comment '创建时间',
+   create_time          date comment '创建时间',
    create_user          varchar(32) comment '创建人',
    primary key (uuid)
 );
