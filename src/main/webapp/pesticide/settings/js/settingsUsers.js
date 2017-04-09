@@ -57,6 +57,7 @@ settings.js.fillUsers = function () {
 
 // 填充object
 settings.js.fillObject = function () {
+
     $.post(path + "/settings/queryObject.do",
         {},
         function (data) {
@@ -95,7 +96,7 @@ settings.js.updateUser = function (uuid) {
         shade: 0.8,
         area: ['380px', '75%'],
         anim:2,
-        content: [path + '/settings/addOrUpdateInit.do', 'no']
+        content: [path + '/settings/updateUserInit.do', 'no']
     });
 };
 // 打开新增窗口

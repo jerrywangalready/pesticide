@@ -7,6 +7,7 @@ import com.sgcc.comm.util.CommUtil;
 import com.sgcc.pesticide.settings.dao.SettingsDao;
 import com.sgcc.pesticide.settings.model.Objects;
 import com.sgcc.pesticide.settings.model.Users;
+import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,6 +68,41 @@ public class SettingsServiceImpl implements SettingsService {
 	}
 
 	/**
+	 * @param param
+	 * @return
+	 * @Description 插入object
+	 * @author 杜成皓
+	 * @date 2017/4/7 23:11
+	 */
+	@Override
+	public String insertObject(Map<String, String> param) {
+		String uuid = CommUtil.getUUID();
+		param.put("uuid",uuid);
+		settingsDao.insertObject(param);
+		return uuid;
+	}
+
+
+	/**
+	 * @Description 校验项目名称是否重复
+	 * @author 杜成皓
+	 * @date 2017/4/7 23:12
+	 * @param objectName
+	 * @return
+	 */
+	@Override
+	public Boolean checkObjectName(String objectName) {
+		String count = settingsDao.checkObjectName(objectName);
+		Boolean flag;
+		if ("0".equals(count)){
+			flag=true;
+		}else{
+			flag=false;
+		}
+		return flag;
+	}
+
+	/**
 	 * @Description 检查用户名是否存在
 	 * @author 杜成皓
 	 * @date 2017/3/1 22:25
@@ -99,6 +135,19 @@ public class SettingsServiceImpl implements SettingsService {
 	}
 
 	/**
+	 * @param uuid
+	 * @return
+	 * @Description 通过uuid查询object对象
+	 * @author 杜成皓
+	 * @date 2017/4/9 23:02
+	 */
+	@Override
+	public Objects queryObjectByUUID(String uuid) {
+		Objects objects=settingsDao.queryObjectByUUID(uuid);
+		return objects;
+	}
+
+	/**
 	 * @Description 修改一个user对象
 	 * @author 杜成皓
 	 * @date 2017/3/15 23:11
@@ -107,6 +156,17 @@ public class SettingsServiceImpl implements SettingsService {
 	@Override
 	public void updateTask(Map<String, String> param) {
 		settingsDao.updateUsers(param);
+	}
+
+	/**
+	 * @param param
+	 * @Description 修改项目信息
+	 * @author 杜成皓
+	 * @date 2017/4/9 22:51
+	 */
+	@Override
+	public void updateObject(Map<String, String> param) {
+		settingsDao.updateObject(param);
 	}
 
 	/**
