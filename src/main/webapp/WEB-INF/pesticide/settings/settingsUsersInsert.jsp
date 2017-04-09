@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../../comm/head.jsp"%>
-<script type="text/javascript" src="<%=path%>/pesticide/settings/js/settingsInsert.js"></script>
+<script type="text/javascript" src="<%=path%>/pesticide/settings/js/settingsUsersInsert.js"></script>
 <div class="modal-body">
     <form id="add">
         <div class="form-group">

@@ -33,7 +33,7 @@
     </div>
     <div style="float:left;padding: 8px;">
         <!-- Button trigger modal -->
-        <button type="button" class="btn" data-toggle="modal" onclick="settings.js.addUsers()">
+        <button type="button" class="btn" data-toggle="modal" onclick="objects.js.addObject()">
             <span class="glyphicon glyphicon-plus"></span>
         </button>
     </div>
@@ -61,8 +61,8 @@
             <td>{{value.object_name}}</td>
             <td>{{value.isEnable | dict:'yn'}}</td>
             <td>
-                <span class="glyphicon glyphicon-pencil table_oper_button"></span>
-                <span class="glyphicon glyphicon-trash table_oper_button"></span>
+                <span class="glyphicon glyphicon-pencil table_oper_button" onclick="objects.js.updateObject('{{value.uuid}}')"></span>
+                <span class="glyphicon glyphicon-trash table_oper_button" onclick="objects.js.deleteObject('{{value.uuid}}')"></span>
             </td>
         </tr>
         {{/each}}

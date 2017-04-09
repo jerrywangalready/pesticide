@@ -34,12 +34,20 @@ objects.js.init = function () {
 
 // 填充object
 objects.js.fillObject = function () {
-    $.post(path + "/settings/queryObject.do",
-        {},
-        function (data) {
-            var html = template('objects', {'list': data});
+    var collector = $("#query_box").collector();
+    $.ajax({
+        type: 'POST',
+        url: path + "/settings/queryObject.do",
+        contentType: 'application/json',
+        data: JSON.stringify(collector),
+        success: function (data) {
+            var html = template('objects', {'list': data.list});
             $("#listDiv").html(html);
-        });
+            // 初始化页码按钮
+            $("#page-bar").page(data);
+        }
+    });
+
 };
 
 //查询项
@@ -63,39 +71,39 @@ objects.js.showModal = function () {
     })
 };
 // 打开修改窗口
-objects.js.updateUser = function (uuid) {
+objects.js.updateObject = function (uuid) {
     objects.js.updateUUID = uuid;
     objects.js.layerObject = layer.open({
         type: 2,
-        title: '人员修改页面',
+        title: '项目修改页面',
         shadeClose: true,
         shade: 0.8,
         area: ['380px', '75%'],
         anim:2,
-        content: [path + '/settings/addOrUpdateInit.do', 'no']
+        content: [path + '/settings/updateObjectInit.do', 'no']
     });
 };
 // 打开新增窗口
-objects.js.addUsers = function () {
+objects.js.addObject = function () {
     objects.js.layerObject = layer.open({
         type: 2,
-        title: '人员新增页面',
+        title: '项目新增页面',
         shadeClose: true,
         shade: 0.8,
         area: ['380px', '75%'],
         anim:2,
-        content: [path + '/settings/addInit.do', 'no']
+        content: [path + '/settings/addObjectInit.do', 'no']
     });
 };
 // 删除一条人员记录
-objects.js.deleteUser = function (uuid) {
+objects.js.deleteObject = function (uuid) {
     layer.confirm('确定要删除吗？此操作不可恢复！',{icon:7,title:'删除'},function (index) {
-        $.post(path + "/settings/deleteUser.do",{uuid:uuid},function (data) {
+        $.post(path + "/settings/deleteObject.do",{uuid:uuid},function (data) {
             console.info(data);
         })
         layer.msg('删除成功！', {icon: 1});
         layer.close(index);
-        objects.js.fillUsers();
+        objects.js.fillObject();
     });
 };
 

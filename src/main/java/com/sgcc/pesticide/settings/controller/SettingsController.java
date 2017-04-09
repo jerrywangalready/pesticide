@@ -48,8 +48,6 @@ public class SettingsController {
 
 
     /**
-     * @param request
-     * @param response
      * @return
      * @Description 查询object列表
      * @author 杜成皓
@@ -57,13 +55,12 @@ public class SettingsController {
      */
     @ResponseBody
     @RequestMapping(value = "/queryObject.do", method = RequestMethod.POST)
-    public List<Objects> queryObject(HttpServletRequest request, HttpServletResponse response) {
-        List<Objects> list = usersService.queryObjectList();
-        return list;
+    public Query queryObject(@RequestBody Map<String, String> param) {
+        return usersService.queryObjectList(param);
     }
 
     /**
-     * @Description 保存
+     * @Description 保存user
      * @author 杜成皓
      * @date 2017/3/1 22:39
      * @param param
@@ -90,15 +87,55 @@ public class SettingsController {
     }
 
     /**
-     * @Description 新增和修改页面的初始化方法
+     * @Description 保存object
+     * @author 杜成皓
+     * @date 2017/4/7 23:07
+     * @param param
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/saveObject.do", method = RequestMethod.POST)
+    public String saveObject(@RequestBody Map<String,String> param){
+        String objectCode = param.get("object_code");
+        String objectName = param.get("object_name");
+        String todo = param.get("todo");
+        String returnValue;
+        if ("update".equals(todo)){
+            usersService.updateObject(param);
+            returnValue = "success";
+        }else{
+            if(usersService.checkObjectName(objectName)){
+                usersService.insertObject(param);
+                returnValue="success";
+            }else{
+                returnValue="false";
+            }
+        }
+        return returnValue;
+    }
+
+    /**
+     * @Description 修改页面的初始化方法
      * @author 杜成皓
      * @date 2017/3/2 23:17
      * @param uuid
      * @return
      */
-    @RequestMapping(value = "/addOrUpdateInit.do")
-    public String addOrUpdateInit(@RequestBody String uuid,@RequestBody String type) {
+    @RequestMapping(value = "/updateUserInit.do")
+    public String updateUserInit(@RequestBody String uuid,@RequestBody String type) {
         return "/settings/settingsUsersUpdate";
+    }
+
+    /**
+     * @Description 项目修改页面的初始化方法
+     * @author 杜成皓
+     * @date 2017/4/9 22:49
+     * @param uuid
+     * @return
+     */
+    @RequestMapping(value = "updateObjectInit.do")
+    public String updateObjectInit(@RequestBody String uuid){
+        return "settings/settingsObjectsUpdate";
     }
 
     /**
@@ -114,8 +151,22 @@ public class SettingsController {
         Users users = usersService.queryUserByUUID(uuid);
         return users;
     }
+
     /**
-     * @Description 新增和修改页面的初始化方法
+     * @Description 通过uuid查询一个objec对象
+     * @author 杜成皓
+     * @date 2017/4/9 23:08
+     * @param uuid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "queryObjectByUUID.do")
+    public Objects queryUsersByUUID(String uuid){
+        Objects objects = usersService.queryObjectByUUID(uuid);
+        return objects;
+    }
+    /**
+     * @Description 新增和修改用户页面的初始化方法
      * @author 杜成皓
      * @date 2017/3/2 23:17
      * @param
@@ -127,7 +178,18 @@ public class SettingsController {
     }
 
     /**
-     * @Description 删除一行数据
+     * @Description 新增和修改项目页面的初始化方法
+     * @author 杜成皓
+     * @date 2017/4/7 22:19
+     * @return
+     */
+    @RequestMapping(value = "/addObjectInit.do")
+    public String addObjectInit(){
+        return "/settings/settingsObjectsInsert";
+    }
+
+    /**
+     * @Description 删除一行user数据
      * @author 杜成皓
      * @date 2017/3/15 23:05
      * @param uuid
@@ -138,4 +200,15 @@ public class SettingsController {
         return usersService.deleteUser(uuid);
     }
 
+    /**
+     * @Description 删除一条object数据
+     * @author 杜成皓
+     * @date 2017/4/7 22:48
+     * @param uuid
+     * @return
+     */
+    @RequestMapping(value = "/deleteObject.do")
+    public String deleteObject(String uuid){
+        return usersService.deleteObject(uuid);
+    }
 }

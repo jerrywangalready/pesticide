@@ -23,14 +23,41 @@
         )
     </insert>
 
+    <!--插入项目-->
+    <insert id="insertObject" parameterType="java.util.Map">
+        INSERT INTO pesticide.s_object (
+        uuid,
+        object_code,
+        object_name,
+        isenable,
+        create_time
+        ) VALUES (
+        #{uuid},
+        #{object_code,jdbcType = VARCHAR},
+        #{object_name,jdbcType = VARCHAR},
+        '1',
+        sysdate()
+        )
+    </insert>
+
     <!--修改用户-->
     <update id="updateUsers">
         UPDATE pesticide.s_users SET password=#{password},nickname=#{nickname} where uuid=#{uuid}
     </update>
 
+    <!--修改项目-->
+    <update id="updateObject">
+        UPDATE pesticide.s_object SET object_code=#{object_code},object_name=#{object_name} where uuid=#{uuid}
+    </update>
+
     <!--删除用户-->
     <delete id="deleteUser" parameterType="String">
         DELETE FROM pesticide.s_users WHERE uuid=#{uuid};
+    </delete>
+
+    <!--删除用户-->
+    <delete id="deleteObject" parameterType="String">
+        DELETE FROM pesticide.s_object WHERE uuid=#{uuid};
     </delete>
 
     <!--查询用户-->
@@ -49,8 +76,17 @@
     </select>
 
     <!--查询项目-->
-    <select id="queryObject" resultType="Objects">
-        select * FROM S_OBJECT
+    <select id="queryObject" resultType="Objects" parameterType="java.util.Map">
+        select * FROM S_OBJECT T WHERE 1=1
+        <if test="query_objectCode != null and query_objectCode != ''">
+            AND T.object_code = #{query_objectCode}
+        </if>
+        <if test="query_objectName != null and query_objectName != ''">
+            AND T.OBJECT_NAME like CONCAT ('%',#{query_objectName},'%')
+        </if>
+        <if test="query_isEnable != null and query_isEnable != ''">
+            AND T.ISENABLE = #{query_isEnable}
+        </if>
     </select>
 
     <!--查询是否已经存在该名字的用户-->
@@ -61,6 +97,16 @@
     <!--通过uuid查询用户-->
     <select id="queryUserByUUID" parameterType="String" resultType="com.sgcc.pesticide.settings.model.Users">
         select * from pesticide.s_users t where t.uuid=#{uuid};
+    </select>
+
+    <!--通过uuid查询项目-->
+    <select id="queryObjectByUUID" parameterType="String" resultType="com.sgcc.pesticide.settings.model.Objects">
+        select * from pesticide.s_object t where t.uuid=#{uuid};
+    </select>
+
+    <!--查询是否已经存在该名称的项目-->
+    <select id="checkObjectName" resultType="java.lang.String">
+        SELECT COUNT(1) FROM pesticide.s_object T WHERE T.object_name=#{objectName}
     </select>
 
 </mapper>
