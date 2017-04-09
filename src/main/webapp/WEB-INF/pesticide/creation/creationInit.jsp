@@ -15,8 +15,11 @@
         <input type="hidden" id="uuid" name="uuid">
         <div class="row">
             <div class="form-group has-defaut has-feedback btn-primary" style="display: none;" id="link_info">
-                <span style="margin-left: 15px;" id="link_info_text"></span>
+                <span class="glyphicon glyphicon-link" style="margin-left:15px;"></span>
+                <span style="margin-left: 7px;" id="link_info_text"></span>
                 <span class="glyphicon glyphicon-remove" id="link_info_close" aria-hidden="true"></span>
+                <input type="hidden" id="parent_code" name="parent_code">
+                <input type="hidden" id="parent_type" name="parent_type">
             </div>
             <div class="col-md-9">
                 <div class="form-group">
@@ -28,89 +31,75 @@
 
             </div>
             <div class="col-md-3">
-                <div class="mb_15 btn-group row" id="ssss" data-toggle="buttons" style="margin-left: 0px;width: 100%;">
-                    <label class="btn btn-primary col-md-4 active">
-                        <input type="radio" name="taskType_code" autocomplete="off" value="1" checked>开发
-                    </label>
-                    <label class="btn btn-success col-md-4">
-                        <input type="radio" name="taskType_code" autocomplete="off" value="2">测试
-                    </label>
-                    <label class="btn btn-warning col-md-4">
-                        <input type="radio" name="taskType_code" autocomplete="off" value="3">修改
-                    </label>
-                </div>
-                <div class="mb_15 btn-primary" id="monitor" style="width: 100%;height: 2px;"></div>
-                <div class="mb_15">
-                    <button type="button" class="btn btn-default full_button" id="link_button" data-toggle="modal" data-target="#link_table" style="display: none;" onclick="creation.js.getLinkInfo()">关联前序任务</button>
-                </div>
-                <div class="mb_15">
-                    <select class="form-control select_empty" id="model_select" name="model_code" validate="required">
-                        <option class="select_empty" value="">-- 选择模块 --</option>
-                    </select>
-                </div>
-                <div class="mb_15">
-                    <select class="form-control select_empty" id="dev_staff_select" name="develop_user" validate="required">
-                        <option class="select_empty" value="">-- 选择开发人员 --</option>
-                    </select>
-                </div>
-                <div class="mb_15">
-                    <select class="form-control select_empty" id="test_staff_select" name="test_user">
-                        <option class="select_empty" value="">-- 选择测试人员 --</option>
-                    </select>
-                </div>
-                <div class="mb_15">
-                    <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                        <input class="form-control" size="16" type="text" id="finish_date" readonly placeholder="完成时间">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                    </div>
-                    <input type="hidden" id="dtp_input2" value=""/>
-                </div>
-                <div class="mb_15">
-                    <select class="form-control select_empty" id="version_code" name="version_code" validate="required">
-                        <option class="select_empty" value="">-- 选择版本号 --</option>
-                    </select>
-                </div>
-                <div class="mb_15 bug_level" style="display: none;">
-                    <div class="radio col-md-3">
-                        <label style="color: #3071a9;">
-                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                            D
+                <div style="height: 456px;">
+                    <div class="mb_15 btn-group row" data-toggle="buttons" style="margin-left: 0px;width: 100%;">
+                        <label class="btn btn-primary col-md-6 active">
+                            <input type="radio" name="taskType_code" autocomplete="off" value="1" checked>Task
+                        </label>
+                        <label class="btn btn-warning col-md-6">
+                            <input type="radio" name="taskType_code" autocomplete="off" value="2">Bug
                         </label>
                     </div>
-                    <div class="radio col-md-3">
-                        <label style="color:#449d44;">
-                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                            C
+                    <div class="mb_15 btn-primary" id="monitor" style="width: 100%;height: 2px;"></div>
+                    <div class="mb_15">
+                        <button type="button" class="btn btn-default full_button" id="link_button"
+                                data-toggle="modal" data-target="#link_table" onclick="creation.js.getLinkInfo()">关联前序任务</button>
+                    </div>
+                    <div class="mb_15">
+                        <select class="form-control select_empty" id="model_select" name="model_code" validate="required">
+                            <option class="select_empty" value="">-- 选择模块 --</option>
+                        </select>
+                    </div>
+                    <div class="mb_15">
+                        <select class="form-control select_empty" id="principal" name="principal" validate="required">
+                            <option class="select_empty" value="">-- 选择负责人 --</option>
+                        </select>
+                    </div>
+                    <div class="mb_15">
+                        <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
+                             data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            <input class="form-control" size="16" type="text" id="deadline" name="deadline" readonly placeholder="完成时间">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input2" value=""/>
+                    </div>
+                    <div class="mb_15">
+                        <select class="form-control select_empty" id="version_code" name="version_code">
+                            <option class="select_empty" value="">-- 选择版本号 --</option>
+                        </select>
+                    </div>
+                    <div class="mb_15">
+                        <select class="form-control select_empty" id="priority" name="priority" validate="require">
+                            <option class="select_empty" value="">-- 选择优先级 --</option>
+                        </select>
+                    </div>
+                    <div id="bug_level_div" class="mb_15 btn-group" data-toggle="buttons" style="margin-left: 0px;width: 100%;display: none;">
+                        <label class="btn btn-danger border_bottom_3px col-md-3" title="bug级别:非常严重">
+                            <input type="radio" name="bug_level" autocomplete="off" value="1">A
+                        </label>
+                        <label class="btn btn-warning border_bottom_3px col-md-3 active" title="bug级别:严重">
+                            <input type="radio" name="bug_level" autocomplete="off" value="2" checked>B
+                        </label>
+                        <label class="btn btn-success border_bottom_3px col-md-3" title="bug级别:一般">
+                            <input type="radio" name="bug_level" autocomplete="off" value="3">C
+                        </label>
+                        <label class="btn btn-info border_bottom_3px col-md-3" title="bug级别:不严重">
+                            <input type="radio" name="bug_level" autocomplete="off" value="4">D
                         </label>
                     </div>
-                    <div class="radio col-md-3">
-                        <label style="color: #f0ad4e;">
-                            <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-                            B
-                        </label>
-                    </div>
-                    <div class="radio col-md-3 ">
-                        <label style="color: #a94442;">
-                            <input type="radio" name="optionsRadios" id="optionsRadios4" value="option3">
-                            A
-                        </label>
+                    <div class="mb_15" id="working_day_div">
+                        <input id="working_day" name="working_day" class="ui-spinner-input" style="width:181px;text-indent:10px;" placeholder="估算工时">
                     </div>
                 </div>
-                <div class="mb_15 checkbox">
-                    <label style="color: #a94442;">
-                        <input type="checkbox"> 紧急
-                    </label>
-                </div>
-                <%--<div class="mb_15">--%>
-                    <%--<input type="text" name="test" class="form-control" validate="required,length[-5]">--%>
-                <%--</div>--%>
                 <br>
-                <div class="mb_15">
-                    <button type="button" class="btn btn-success full_button" onclick="creation.js.save('save')">保存</button>
-                </div>
-                <div class="mb_15">
-                    <button type="button" class="btn btn-primary full_button" onclick="creation.js.commit()">提交</button>
+                <div>
+                    <div class="mb_15">
+                        <button type="button" class="btn btn-success full_button" onclick="creation.js.save('save')">保存</button>
+                    </div>
+                    <div class="mb_15">
+                        <button type="button" class="btn btn-primary full_button" onclick="creation.js.commit()">提交</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -124,6 +113,10 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">关联前序任务</h4>
+            </div>
+            <div class="link-proTask-search-input form-group has-feedback">
+                <input type="text" class="form-control" id="link_proTask" aria-describedby="inputSuccess2Status" placeholder="输入任务号">
+                <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
             </div>
             <div class="modal-body no-padding-lr" id="link_info_body">
             </div>
