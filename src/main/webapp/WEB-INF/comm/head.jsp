@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/comm/plugins/bootstrap/css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/comm/plugins/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/comm/plugins/jquery-css3-shake/css/shake.css" />
+<link rel="stylesheet" type="text/css" href="<%=path%>/comm/plugins/jquery-ui-1.12.1.custom/jquery-ui.css" />
 <script type="text/javascript" src="<%=path%>/comm/plugins/jQuery/jquery-3.1.1.min.js"></script>
 <!--[if lt IE 9]>
 <link rel="stylesheet" href="<%=path%>/pesticide/index/css/IE.css"/>
@@ -28,6 +29,7 @@
 <![endif]-->
 <!-- 外部插件 -->
 <script type="text/javascript" src="<%=path%>/comm/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=path%>/comm/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/hashchange/jquery.ba-hashchange.min.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/artTemplate/template.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/ckeditor/ckeditor.js"></script>
