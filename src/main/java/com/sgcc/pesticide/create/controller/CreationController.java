@@ -12,6 +12,7 @@ import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -60,28 +61,33 @@ public class CreationController {
 
         param.put("description",desTemp.toString());
 
-        if(!param.containsKey("uuid") || param.get("uuid").isEmpty()){
-            return creationService.insertTask(param);
+        if("commit".equals(param.get("todo"))){
+            param.put("state","1");
         }else {
-            creationService.updateTask(param);
-            return "";
+            param.put("state","0");
+        }
+
+        if("1".equals(param.get("typeCode"))){
+            return creationService.saveTask(param);
+        }else {
+            return creationService.saveBug(param);
         }
 
     }
 
     /**
-     * @Description 获取关联信息
+     * @Description 根据任务编号搜索任务
      * @author JerryWang
-     * @date 2017/1/29 17:22
-     * @param param
+     * @date 2017/4/2 10:39
+     * @param code
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "getLinkInfo",method = RequestMethod.POST)
-    public List<Map<String, String>> getLinkInfo(@RequestBody Map<String, String> param){
-        String username = CommUtil.getLoginInfo().getLogin_user();
-        param.put("login_user",username);
-        return creationService.getLinkInfo(param);
+    @RequestMapping(value = "searchTask",method = RequestMethod.POST)
+    public List<Map<String, String>> searchTask(String code,String objectCode){
+        Map<String, String> param = new HashMap<>();
+        param.put("code",code.toUpperCase());
+        param.put("objectCode",objectCode);
+        return creationService.searchTask(param);
     }
-
 }

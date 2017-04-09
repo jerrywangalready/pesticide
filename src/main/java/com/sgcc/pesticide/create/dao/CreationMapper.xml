@@ -4,176 +4,146 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sgcc.pesticide.create.dao.CreationDao">
 
-    <!-- 插入开发任务 -->
-    <insert id="insertDevTask" parameterType="java.util.Map">
-        INSERT INTO pesticide.t_development (
+    <!-- insert task info -->
+    <insert id="insertTask" parameterType="java.util.Map">
+        INSERT INTO t_task
+        (
         uuid,
-        development_code,
+        task_code,
+        object_code,
+        model_code,
         title,
         description,
-        develop_user,
-        test_user,
-        create_user,
-        create_time,
-        <if test="finish_time != ''">
-            finish_time,
-        </if>
+        principal,
+        parent_code,
         version_code,
+        priority,
+        working_day,
+        deadline,
         state,
-        object_code,
-        model_code
-        ) VALUES (
-        #{uuid},
-        #{task_code,jdbcType = VARCHAR},
-        #{title,jdbcType = VARCHAR},
-        #{description,jdbcType = VARCHAR},
-        #{develop_user,jdbcType = VARCHAR},
-        #{test_user,jdbcType = VARCHAR},
-        #{login_user,jdbcType = VARCHAR},
-        sysdate(),
-        <if test="finish_time != ''">
-            #{finish_time,jdbcType = DATE},
-        </if>
-        #{version_code,jdbcType = VARCHAR},
-        '0',
-        #{object_code},
-        #{model_code,jdbcType = VARCHAR}
-
+        is_read,
+        is_enable,
+        create_time,
+        create_user
         )
+        VALUES
+        (
+        #{uuid,jdbcType=VARCHAR},
+        #{task_code,jdbcType=VARCHAR},
+        #{object_code,jdbcType=VARCHAR},
+        #{model_code,jdbcType=VARCHAR},
+        #{title,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR},
+        #{principal,jdbcType=VARCHAR},
+        #{parent_code,jdbcType=VARCHAR},
+        #{version_code,jdbcType=VARCHAR},
+        #{priority,jdbcType=VARCHAR},
+        #{working_day,jdbcType=VARCHAR},
+        #{deadline,jdbcType=DATE},
+        #{state,jdbcType=VARCHAR},
+        '0',
+        '1',
+        sysdate(),
+        #{create_user,jdbcType=VARCHAR}
+        );
     </insert>
 
+    <!--update task info-->
+    <update id="updateTask" parameterType="java.util.Map">
+        UPDATE t_task
+        SET
+        object_code  = #{object_code,jdbcType=VARCHAR},
+        model_code   = #{model_code,jdbcType=VARCHAR},
+        title        = #{title,jdbcType=VARCHAR},
+        description  = #{description,jdbcType=VARCHAR},
+        principal    = #{principal,jdbcType=VARCHAR},
+        parent_code  = #{parent_code,jdbcType=VARCHAR},
+        version_code = #{version_code,jdbcType=VARCHAR},
+        priority     = #{priority,jdbcType=VARCHAR},
+        working_day  = #{working_day,jdbcType=VARCHAR},
+        deadline     = #{deadline,jdbcType=DATE},
+        state        = #{state,jdbcType=VARCHAR},
 
-    <!--修改任务信息-->
-    <update id="updateDevTask" parameterType="java.util.Map">
-        UPDATE t_development
-           SET
-              title = #{title,jdbcType = VARCHAR},
-              description = #{description,jdbcType = VARCHAR},
-              develop_user = #{develop_user,jdbcType = VARCHAR},
-              test_user = #{test_user,jdbcType = VARCHAR},
-              create_user = #{login_user,jdbcType = VARCHAR},
-              create_time = sysdate(),
-              finish_time = #{finish_time,jdbcType = DATE},
-              version_code = #{version_code,jdbcType = DATE},
-              model_code = #{model_code,jdbcType = VARCHAR}
-         WHERE uuid = #{uuid}
+        WHERE uuid = #{uuid}
     </update>
 
+    <!--get the max code of task-->
+    <select id="getTaskCode" resultType="int">
+        SELECT ifnull(MAX(CAST(REPLACE(task_code,'T','') as unsigned int)),0) FROM t_task
+    </select>
 
-    <!--插入测试任务-->
-    <insert id="insertTestTask" parameterType="java.util.Map">
-        INSERT INTO pesticide.t_testing (
+    <!--insert a new bug info-->
+    <insert id="insertBug" parameterType="java.util.Map">
+        INSERT INTO t_bug (
           uuid,
-          test_code,
+          bug_code,
+          object_code,
+          model_code,
           title,
           description,
-          test_user,
-          create_user,
-          create_time,
-          development_code,
+          principal,
+          parent_code,
+          version_code,
+          priority,
+          bug_level,
+          result,
+          deadline,
           state,
-          object_code,
-          model_code
-        ) VALUES (
-            #{uuid},
-            #{task_code,jdbcType = VARCHAR},
-            #{title,jdbcType = VARCHAR},
-            #{description,jdbcType = VARCHAR},
-            #{test_user,jdbcType = VARCHAR},
-            #{login_user,jdbcType = VARCHAR},
-            sysdate(),
-            #{development_code,jdbcType = DATE},
-            #{version_code,jdbcType = DATE},
-            '0',
-            #{object_code},
-            #{model_code,jdbcType = VARCHAR}
-
+          is_read,
+          is_enable,
+          create_time,
+          create_user
         )
+        VALUES (
+          #{uuid, jdbcType=VARCHAR},
+          #{bug_code, jdbcType=VARCHAR},
+          #{object_code, jdbcType=VARCHAR},
+          #{model_code, jdbcType=VARCHAR},
+          #{title, jdbcType=VARCHAR},
+          #{description, jdbcType=VARCHAR},
+          #{principal, jdbcType=VARCHAR},
+          #{parent_code, jdbcType=VARCHAR},
+          #{version_code, jdbcType=VARCHAR},
+          #{priority, jdbcType=VARCHAR},
+          #{bug_level, jdbcType=VARCHAR},
+          #{result, jdbcType=VARCHAR},
+          #{deadline, jdbcType=DATE},
+          #{state, jdbcType=VARCHAR},
+          '0',
+          '1',
+          sysdate(),
+          #{create_user, jdbcType=VARCHAR}
+        );
     </insert>
 
-
-    <!--修改测试任务-->
-    <update id="updateTestTask" parameterType="java.util.Map">
-
+    <!--update the bug info-->
+    <update id="updateBug" parameterType="java.util.Map">
+        UPDATE t_bug
+        SET
+          object_code = #{object_code, jdbcType=VARCHAR},
+          model_code = #{model_code, jdbcType=VARCHAR},
+          title = #{title, jdbcType=VARCHAR},
+          description = #{description, jdbcType=VARCHAR},
+          principal = #{principal, jdbcType=VARCHAR},
+          parent_code = #{parent_code, jdbcType=VARCHAR},
+          version_code = #{version_code, jdbcType=VARCHAR},
+          priority = #{priority, jdbcType=VARCHAR},
+          bug_level = #{bug_level, jdbcType=VARCHAR},
+          result = #{result, jdbcType=VARCHAR},
+          deadline = #{deadline, jdbcType=DATE},
+          state = #{state, jdbcType=VARCHAR}
+        WHERE uuid = #{uuid};
     </update>
-    <!--插入修任务-->
-    <insert id="insertModTask" parameterType="java.util.Map">
 
-    </insert>
-
-    <!-- 修改修改任务 -->
-    <update id="updateModTask" parameterType="java.util.Map">
-
-    </update>
-
-    <!--获取任务编号-->
-    <select id="getTaskCode" parameterType="java.util.Map" resultType="String">
-        <choose>
-            <when test="taskType_code == '1'">
-                SELECT development_code FROM pesticide.t_development WHERE object_code = #{object_code}
-            </when>
-            <when test="taskType_code == '2'">
-                SELECT modification_code FROM pesticide.t_modification WHERE object_code = #{object_code}
-            </when>
-            <when test="taskType_code == '3'">
-                SELECT test_code FROM pesticide.t_testing WHERE object_code = #{object_code}
-            </when>
-        </choose>
+    <!--get the max code of bug-->
+    <select id="getBugCode" resultType="int">
+        SELECT ifnull(MAX(CAST(REPLACE(bug_code,'B','') as unsigned int)),0) FROM t_bug
     </select>
 
-    <!--获取可以链接的开发任务-->
-    <select id="getLinkDevInfo" parameterType="java.util.Map" resultType="java.util.Map">
-        SELECT td.development_code code,
-               td.title,
-               td.model_code,
-               ifnull(td.test_user,'') staff,
-               ifnull(td.version_code,'') version_code,
-               td.actual_finish_time
-          FROM pesticide.t_development td
-          LEFT JOIN pesticide.t_testing tt
-            ON td.development_code = tt.development_code
-         WHERE td.develop_user = #{login_user}
-           AND td.state = '1'
-           AND tt.development_code IS NULL
-           AND td.object_code = #{object_code}
-         ORDER BY td.actual_finish_time DESC
-    </select>
-
-    <!--获取可以链接的测试任务-->
-    <select id="getLinkTestInfo" parameterType="java.util.Map" resultType="java.util.Map">
-        SELECT td.test_code code,
-               td.title,
-               td.model_code,
-               ifnull(td.create_user,'') staff
-          FROM pesticide.t_testing td
-          LEFT JOIN pesticide.t_modification tt
-            ON td.test_code = tt.testing_code
-         WHERE td.test_user = #{login_user}
-           AND td.object_code = #{object_code}
-         ORDER BY td.create_time DESC
-    </select>
-
-    <select id="getNewDevNum" parameterType="java.util.Map" resultType="String">
-        SELECT CONCAT('D', CAST(REPLACE(TD.development_code, 'D', '') AS UNSIGNED INT)+1)
-          FROM pesticide.t_development TD
-         ORDER BY CAST(REPLACE(TD.development_code, 'D', '') AS UNSIGNED INT) DESC
-         LIMIT 0,1;
-    </select>
-
-    <select id="getNewTestNum" parameterType="java.util.Map" resultType="String">
-        SELECT CAST(REPLACE(tt.testing_code, #{development_code}, '') AS UNSIGNED INT) + 1
-          FROM pesticide.t_testing TT
-         WHERE TT.development_code = #{development_code}
-         ORDER BY CAST(REPLACE(tt.testing_code, #{development_code}, '') AS UNSIGNED INT) DESC
-         LIMIT 0,1;
-    </select>
-
-    <select id="getNewModNum" parameterType="java.util.Map" resultType="String">
-        SELECT CAST(REPLACE(TM.modification_code, CONCAT(#{testing_code},'M'), '') AS UNSIGNED INT) + 1
-          FROM pesticide.t_modification TM
-         WHERE TM.testing_code = #{testing_code}
-         ORDER BY CAST(REPLACE(TM.modification_code, CONCAT(#{testing_code},'M'), '') AS UNSIGNED INT) DESC
-         LIMIT 0,1;
+    <select id="searchTask" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT CODE,TITLE,ISSUE_TYPE
+          FROM PESTICIDE.V_ISSUE
+         WHERE CODE LIKE concat('%',#{code},'%') AND OBJECT_CODE = #{objectCode}
     </select>
 
 </mapper>

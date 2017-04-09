@@ -15,7 +15,7 @@ public interface CreationService {
      * @param param
      * @return
      */
-    public String insertTask(Map<String, String> param);
+    String saveTask(Map<String, String> param);
 
     /**
      * @Description 修改任务
@@ -23,14 +23,14 @@ public interface CreationService {
      * @date 2017/1/27 17:51
      * @param param
      */
-    public void updateTask(Map<String, String> param);
+    String saveBug(Map<String, String> param);
 
     /**
-     * @Description 获取关联信息
+     * @Description 根据任务编号获取任务列表
      * @author JerryWang
-     * @date 2017/1/29 17:16
-     * @param param
+     * @date 2017/3/26 00:00
+     * @param code
      * @return
      */
-    public List<Map<String, String>> getLinkInfo(Map<String, String> param);
+    List<Map<String, String>> searchTask(Map<String, String> param);
 }

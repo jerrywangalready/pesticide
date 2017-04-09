@@ -20,55 +20,69 @@ public class CreationServiceImpl implements CreationService {
     CreationDao creationDao;
 
     /**
-     * @Description 插入任务
+     * @Description save a task info
      * @author JerryWang
      * @date 2017/1/27 17:44
      * @param param
      * @return
      */
     @Override
-    public String insertTask(Map<String, String> param){
-        String uuid = CommUtil.getUUID();
-        param.put("uuid",uuid);
-        if("commit".equals(param.get("todo"))){
-            String taskCode = creationDao.getNewDevNum(param);
-            param.put("task_code",taskCode);
+    public String saveTask(Map<String, String> param){
+        if(param.get("uuid").isEmpty()){
+            param.put("uuid",CommUtil.getUUID());
+            param.put("task_code",getNewTaskCode());
+            creationDao.insertTask(param);
+        }else{
+            creationDao.updateTask(param);
         }
-        creationDao.insertDevTask(param);
-        return uuid;
+        return param.get("uuid");
     }
 
     /**
-     * @Description 修改任务
+     * @Description get a new task code
+     * @author JerryWang
+     * @date 2017/2/15 21:27
+     */
+    private String getNewTaskCode(){
+        return "T"+(creationDao.getTaskCode()+1);
+    }
+
+    /**
+     * @Description save a bug info
      * @author JerryWang
      * @date 2017/1/27 17:45
      * @param param
      */
     @Override
-    public void updateTask(Map<String, String> param) {
-        if("commit".equals(param.get("todo"))){
-            String taskCode = creationDao.getNewDevNum(param);
-            param.put("task_code",taskCode);
+    public String saveBug(Map<String, String> param) {
+        if(param.get("uuid").isEmpty()){
+            param.put("uuid",CommUtil.getUUID());
+            param.put("bug_code",getNewBugCode());
+            creationDao.insertBug(param);
+        }else{
+            creationDao.updateBug(param);
         }
-        creationDao.updateDevTask(param);
+        return param.get("uuid");
     }
 
     /**
-     * @Description 获取关联信息
+     * @Description get a new task code
      * @author JerryWang
-     * @date 2017/1/29 17:16
+     * @date 2017/2/15 21:27
+     */
+    private String getNewBugCode(){
+        return "B"+(creationDao.getBugCode()+1);
+    }
+
+    /**
+     * @Description 根据任务编号获取任务列表
+     * @author JerryWang
+     * @date 2017/3/25 23:59
      * @param param
      * @return
      */
-    public List<Map<String, String>> getLinkInfo(Map<String, String> param){
-        List<Map<String, String>> rl = new ArrayList<>();
-        if("2".equals(param.get("taskType"))){
-            rl = creationDao.getLinkDevInfo(param);
-        }else if("3".equals(param.get("taskType"))){
-            rl = creationDao.getLinkTestInfo(param);
-        }
-        return rl;
+    public List<Map<String, String>> searchTask(Map<String, String> param){
+        return creationDao.searchTask(param);
     }
-
 
 }

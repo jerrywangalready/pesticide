@@ -115,3 +115,34 @@ form > div {
     -ms-animation-play-state: running;
     animation-play-state: running
 }
+
+.link-proTask-search-input{
+    padding:5px;
+}
+.link-proTask-search-input span{
+    top:5px;
+    right:5px;
+}
+.working_day{
+}
+.working_day span{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 14px !important;
+    font-style:normal;
+}
+.border_bottom_3px{
+    border-bottom-width:3px;
+    padding-bottom:4px;
+}
+.btn-danger.border_bottom_3px.active{
+    border-bottom-color:#5cb85c;
+}
+.btn-warning.border_bottom_3px.active{
+    border-bottom-color:#5bc0de;
+}
+.btn-success.border_bottom_3px.active{
+    border-bottom-color:#d9534f;
+}
+.btn-info.border_bottom_3px.active{
+    border-bottom-color:#f0ad4e;
+}
