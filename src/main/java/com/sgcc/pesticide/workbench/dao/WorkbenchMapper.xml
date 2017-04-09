@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sgcc.pesticide.workbench.dao.WorkbenchDao">
+
+    <select id="getIssueList" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT
+          UUID,
+          CODE,
+          TITLE,
+          ISSUE_TYPE,
+          PRIORITY,
+          VERSION_CODE
+         FROM v_issue
+        WHERE principal = #{principal}
+          AND object_code = #{object_code}
+        ORDER BY create_time DESC
+    </select>
+
+</mapper>
