@@ -104,7 +104,7 @@
             </div>
         </div>
 
-        <img style="width: 15%;height: auto;" src='/upload/1eba5114f3204fabad340569bc98ea3e.png' />
+        <%--<img style="width: 15%;height: auto;" src='/upload/1eba5114f3204fabad340569bc98ea3e.png' />--%>
     </form>
 </div>
 <div class="modal fade" id="link_table" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
