@@ -1,11 +1,10 @@
-package com.sgcc.pesticide.demo.service.impl;
+package com.sgcc.pesticide.demo.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sgcc.comm.model.Query;
 import com.sgcc.pesticide.demo.dao.DemoDao;
 import com.sgcc.pesticide.demo.model.Demo;
-import com.sgcc.pesticide.demo.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

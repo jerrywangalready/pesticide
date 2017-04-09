@@ -30,7 +30,7 @@
 <nav id="page-bar">
 </nav>
 
-<script id="users" type="text/html">
+<script id="demo_users" type="text/html">
     <table class="table border_solid table-hover">
         <thead>
         <tr>

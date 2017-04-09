@@ -31,7 +31,7 @@
                 <ul class="social_icons">
                     <li style="width:45px;"><span style="float:left;margin:2px 2px;" class="glyphicon glyphicon-bell"></span> <a name="bell" href="javascript:void(0);"></a></li>
                     <li><span class="glyphicon glyphicon-book"></span>
-                        <a name="a_object" href="javascript:void(0);" class="" data-toggle="modal" data-target="#myModal"></a>
+                        <a name="a_object" href="javascript:void(0);" class="" data-toggle="modal" data-target="#Object_Modal"></a>
                     </li>
                     <li><span class="glyphicon glyphicon-user"></span> <a name="a_name" href="javascript:void(0);" class=""></a></li>
                     <li><span class="glyphicon glyphicon-log-out"></span> <a href="javascript:void(0);" class="" onclick="index.js.logout()">退出</a></li>
@@ -55,7 +55,7 @@
                 <ul class="social_icons">
                     <li style="width:45px;"><span style="float:left;margin:2px 2px;" class="glyphicon glyphicon-bell"></span> <a name="bell" href="javascript:void(0);"></a></li>
                     <li><span class="glyphicon glyphicon-book"></span>
-                        <a name="a_object" href="javascript:void(0);" class="" data-toggle="modal" data-target="#myModal"></a>
+                        <a name="a_object" href="javascript:void(0);" class="" data-toggle="modal" data-target="#Object_Modal"></a>
                     </li>
                     <li><span class="glyphicon glyphicon-user"></span> <a name="a_name" href="javascript:void(0);" class=""></a></li>
                     <li><span class="glyphicon glyphicon-log-out"></span> <a href="javascript:void(0);" class="" onclick="index.js.logout()">退出</a></li>
@@ -159,7 +159,7 @@
 </footer>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="Object_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog-index" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -175,11 +175,5 @@
     </div>
 </div>
 
-
-<%--<script type="text/javascript" src="../../../../../../../../../Documents/hh/H159/js/custom-main.js"></script>--%>
-<%--<script type="text/javascript" src="../../../../../../../../../Documents/hh/H159/js/jquery.prettyPhoto.js"></script>--%>
-<%--<script type="text/javascript" src="../../../../../../../../../Documents/hh/H159/js/slides.min.jquery.js"></script>--%>
-<%--<script type="text/javascript" src="../../../../../../../../../Documents/hh/H159/js/jquery.cycle.all.min.js"></script>--%>
-<%--<script type="text/javascript" src="../../../../../../../../../Documents/hh/H159/js/jquery.easing.1.3.js"></script>--%>
 </body>
 </html>

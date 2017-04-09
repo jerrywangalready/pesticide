@@ -1,4 +1,4 @@
-package com.sgcc.pesticide.login.service.impl;
+package com.sgcc.pesticide.login.service;
 
 import com.sgcc.pesticide.login.dao.LoginDao;
 import com.sgcc.pesticide.login.model.UserToken;
