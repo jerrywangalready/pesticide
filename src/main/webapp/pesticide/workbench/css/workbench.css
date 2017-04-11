@@ -6,6 +6,8 @@
     padding: 7px;
     border-radius: 4px;
     cursor: pointer;
+    /*background: #EEEEEE;*/
+    box-shadow: #888 1px 1px 3px;
 }
 
 .grid-item.task {
@@ -70,4 +72,14 @@
 }
 .gray{
     color: #bbbbbb;
+}
+
+.issue_card{
+    width: 100%;
+}
+.issue_card td{
+    padding: 2px 2px;
+}
+.issue_card td:nth-child(odd){
+    text-align: right;
 }

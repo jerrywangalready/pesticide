@@ -9,6 +9,7 @@ import com.sgcc.pesticide.workbench.dao.WorkbenchDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,5 +41,22 @@ public class WorkbenchServiceImpl implements WorkbenchService {
 
         return query;
 //        return workbenchDao.getIssueList(param);
+    }
+
+    /**
+     * @Description 获取详细信息
+     * @author JerryWang
+     * @date 2017/4/10 18:33
+     * @author JerryWang
+     * @param uuid
+     * @param type
+     * @return
+     */
+    public Map<String, String> getDetail(String uuid, String type){
+        if("T".equals(type)){
+            return workbenchDao.getTaskDetail(uuid);
+        }else {
+            return workbenchDao.getBugDetail(uuid);
+        }
     }
 }

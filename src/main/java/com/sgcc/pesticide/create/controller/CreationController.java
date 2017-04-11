@@ -50,7 +50,7 @@ public class CreationController {
 
                 end = des.indexOf("/>");
                 String imgData = des.substring(0,end).replace("<img src=\"data:image/png;base64,","").replace("\" />","");
-                desTemp.append("<img src='"+CommUtil.getInstance().saveImage(imgData,CommUtil.getResourceProperty("upload-path"))+"' />");
+                desTemp.append("<img style='width: 20%;height: auto;' src='"+CommUtil.getInstance().saveImage(imgData,CommUtil.getResourceProperty("upload-path"))+"' ");
                 // 返回新img
                 des = des.substring(end,des.length());
             }else {

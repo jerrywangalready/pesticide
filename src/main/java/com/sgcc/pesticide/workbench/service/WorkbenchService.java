@@ -19,4 +19,15 @@ public interface WorkbenchService {
      */
     Query getIssueList(Map<String, String> param);
 
+    /**
+     * @Description 获取详细信息
+     * @author JerryWang
+     * @date 2017/4/10 18:33
+     * @author JerryWang
+     * @param uuid
+     * @param type
+     * @return
+     */
+    Map<String, String> getDetail(String uuid,String type);
+
 }

@@ -17,4 +17,23 @@ public interface WorkbenchDao {
      */
     List<Map<String, String>> getIssueList(Map<String, String> param);
 
+
+    /**
+     * @Description 获取详细信息
+     * @author JerryWang
+     * @date 2017/4/10 18:28
+     * @param uuid
+     * @return
+     */
+    Map<String, String> getTaskDetail(String uuid);
+
+    /**
+     * @Description 获取详细信息
+     * @author JerryWang
+     * @date 2017/4/10 18:28
+     * @param uuid
+     * @return
+     */
+    Map<String, String> getBugDetail(String uuid);
+
 }

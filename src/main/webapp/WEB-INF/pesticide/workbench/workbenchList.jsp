@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../../comm/comm.jsp"%>
 <link href="<%=path%>/pesticide/workbench/css/workbench.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="<%=path%>/pesticide/workbench/js/workbench.js"></script>
+<script type="text/javascript" src="<%=path%>/pesticide/workbench/js/workbenchList.js"></script>
 <br>
 <div >
     <div id="query_box"></div>
@@ -21,7 +21,7 @@
 <script id="grid_template" type="text/html">
         {{each list as value i}}
         <div class="grid-item {{if value.ISSUE_TYPE == 'T'}}task{{/if}}{{if value.ISSUE_TYPE == 'B'}}bug{{/if}}"
-             onclick="workbench.js.detail('{{value.UUID}}','{{value.ISSUE_TYPE}}')">
+             onclick="workbenchList.js.detail('{{value.UUID}}','{{value.ISSUE_TYPE}}')">
             <div class="left">
                 <div class="left code_title">
                     <div class="left code">
