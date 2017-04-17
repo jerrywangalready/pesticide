@@ -66,10 +66,6 @@ settings.js.fillObject = function () {
         });
 };
 
-//查询项
-settings.js.query = function () {
-
-};
 // 校验输入的两次密码是否一致
 settings.js.checkPassword = function () {
     var password = $("#password").val();

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sgcc.pesticide.issuePool.dao.IssuePoolDao">
+
+    <select id="getIssueList" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT
+        V.UUID,
+        V.CODE,
+        V.TITLE,
+        V.ISSUE_TYPE,
+        V.PRIORITY,
+        V.VERSION_CODE,
+        V.principal,
+        V.create_user
+        FROM v_issue V
+        LEFT JOIN s_users S
+        ON V.create_user = S.username
+        LEFT JOIN s_users S1
+        ON V.principal = S1.username
+        WHERE 1=1
+        <if test="issue_code != null and issue_code != ''">
+            AND V.CODE like CONCAT('%',#{issue_code},'%')
+        </if>
+        <if test="issue_name != null and issue_name != ''">
+            AND V.TITLE like CONCAT('%',#{issue_name},'%')
+        </if>
+        <if test="query_create_user != null and query_create_user != ''">
+            AND S.NICKNAME like CONCAT('%',#{query_create_user},'%')
+        </if>
+        <if test="query_principal != null and query_principal != ''">
+            AND S1.NICKNAME like CONCAT('%',#{query_principal},'%')
+        </if>
+        <if test="query_issue_type != null and query_issue_type != ''">
+            AND V.ISSUE_TYPE = #{query_issue_type}
+        </if>
+        <if test="query_state != null and query_state != ''">
+            AND V.STATE = #{query_state}
+        </if>
+        ORDER BY V.create_time DESC
+    </select>
+
+    <select id="getTaskDetail" resultType="java.util.Map" parameterType="String">
+        SELECT
+          t.uuid,
+          t.task_code issue_code,
+          t.object_code,
+          t.model_code,
+          t.title,
+          t.description,
+          t.principal,
+          u1.nickname principal_user_name,
+          t.parent_code,
+          t.version_code,
+          t.priority,
+          t.working_day,
+          t.deadline,
+          t.state,
+          t.is_read,
+          t.is_enable,
+          t.create_time,
+          t.create_user,
+          u2.nickname create_user_name
+        FROM t_task t
+        LEFT JOIN s_users u1
+          ON u1.username = t.principal
+         AND u1.isenable = '1'
+        LEFT JOIN s_users u2
+          ON u2.username = t.create_user
+         AND u2.isenable = '1'
+        WHERE t.uuid = #{uuid}
+    </select>
+
+    <select id="getBugDetail" resultType="java.util.Map" parameterType="String">
+        SELECT
+          t.uuid,
+          t.bug_code issue_code,
+          t.object_code,
+          t.model_code,
+          t.title,
+          t.description,
+          t.principal,
+          u1.nickname principal_user_name,
+          t.parent_code,
+          t.version_code,
+          t.priority,
+          t.bug_level,
+          t.result,
+          t.deadline,
+          t.state,
+          t.is_read,
+          t.is_enable,
+          t.create_time,
+          t.create_user,
+          u2.nickname create_user_name
+        FROM t_bug t
+        LEFT JOIN s_users u1
+          ON u1.username = t.principal
+         AND u1.isenable = '1'
+        LEFT JOIN s_users u2
+          ON u2.username = t.create_user
+         AND u2.isenable = '1'
+        WHERE t.uuid = #{uuid}
+    </select>
+
+</mapper>
