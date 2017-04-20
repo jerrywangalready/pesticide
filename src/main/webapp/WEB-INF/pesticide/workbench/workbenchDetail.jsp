@@ -13,11 +13,46 @@
 <div id="detail_body">
 
 </div>
+<!-- Modal -->
+<div class="modal fade" id="handle_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">选择发布模块</h4>
+            </div>
+            <div class="modal-body no-padding-lr checkbox">
+
+            </div>
+            <div class="modal-footer">
+                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.push()">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script id="detail_template" type="text/html">
     <div style="height:50px;">
         <h4 class="left" style="margin-top:12px;">{{issue_code}}</h4>
-        <button type="button" class="btn btn-default navbar-btn right" style="font-size:11px;padding: 4px 10px;">返回</button>
+        <button type="button" class="btn btn-default btn-sm right" style="margin-top:10px;">返回</button>
+        <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#handle_Modal">送测</button>
+            <input id="uuid" type="hidden" value="{{uuid}}">
+            <input id="model_code" type="hidden" value="{{model_code}}">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">暂缓测试</a></li>
+                <li><a href="#">指派</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">退回</a></li>
+            </ul>
+        </div>
     </div>
     <div class="alert alert-{{if type == 'T'}}info{{/if}}{{if type == 'B'}}warning{{/if}}" role="alert">
         <table class="issue_card">
@@ -49,15 +84,12 @@
     </div>
     <hr>
     <div>
-        <span>{{title}}</span>
+        <span style="font-size:16px;">{{title}}</span>
     </div>
     <hr>
     <div id="description">
 
     </div>
-    <hr>
-    <div>
-        <button type="button" class="btn btn-success full_button" onclick="creation.js.save('save')">送测</button>
-    </div>
+    <%--<hr>--%>
 </script>
 

@@ -36,4 +36,21 @@ public interface WorkbenchDao {
      */
     Map<String, String> getBugDetail(String uuid);
 
+    /**
+     * @Description 获取项目下的模块
+     * @author JerryWang
+     * @date 2017/4/18 22:35
+     * @param objectId
+     * @return
+     */
+    List<String> getModel(String objectId);
+
+    /**
+     * @Description 推送
+     * @author JerryWang
+     * @date 2017/4/18 23:16
+     * @param param
+     * @return
+     */
+    void updateTaskState(Map<String, String> param);
 }

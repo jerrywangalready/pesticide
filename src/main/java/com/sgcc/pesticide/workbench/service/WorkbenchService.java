@@ -30,4 +30,22 @@ public interface WorkbenchService {
      */
     Map<String, String> getDetail(String uuid,String type);
 
+    /**
+     * @Description 获取项目下的模块
+     * @author JerryWang
+     * @date 2017/4/18 22:33
+     * @param objectId
+     * @return
+     */
+    List<String> getModel(String objectId);
+
+
+    /**
+     * @Description 送测
+     * @author JerryWang
+     * @date 2017/4/18 23:14
+     * @param param
+     * @return
+     */
+    boolean push(Map<String, String> param);
 }

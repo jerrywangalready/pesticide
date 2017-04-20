@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,5 +55,22 @@ public class WorkbenchController {
     @RequestMapping("/getDetail")
     public @ResponseBody Map<String, String> detail(String uuid, String type){
         return workbenchService.getDetail(uuid, type);
+    }
+
+    /**
+     * @Description 获取项目下的所有模块
+     * @author JerryWang
+     * @date 2017/4/18 22:32
+     * @param objectId
+     * @return
+     */
+    @RequestMapping("/getModel")
+    public @ResponseBody List<String> getModel(String objectId){
+        return workbenchService.getModel(objectId);
+    }
+
+    @RequestMapping("/push")
+    public boolean push(@RequestBody Map<String, String> param){
+        return workbenchService.push(param);
     }
 }

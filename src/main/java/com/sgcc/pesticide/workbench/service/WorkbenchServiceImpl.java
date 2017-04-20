@@ -3,13 +3,10 @@ package com.sgcc.pesticide.workbench.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sgcc.comm.model.Query;
-import com.sgcc.comm.util.CommUtil;
-import com.sgcc.pesticide.demo.model.Demo;
 import com.sgcc.pesticide.workbench.dao.WorkbenchDao;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -54,6 +51,36 @@ public class WorkbenchServiceImpl implements WorkbenchService {
             return workbenchDao.getTaskDetail(uuid);
         }else {
             return workbenchDao.getBugDetail(uuid);
+        }
+    }
+
+
+    /**
+     * @Description 获取项目下的模块
+     * @author JerryWang
+     * @date 2017/4/18 22:33
+     * @param objectId
+     * @return
+     */
+    public List<String> getModel(String objectId){
+        return workbenchDao.getModel(objectId);
+    }
+
+    /**
+     * @Description 送测
+     * @author JerryWang
+     * @date 2017/4/18 23:14
+     * @param param
+     * @return
+     */
+    public boolean push(Map<String, String> param){
+
+
+        try {
+            workbenchDao.updateTaskState(param);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 }

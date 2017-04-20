@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sgcc.pesticide.workbench.dao.WorkbenchDao">
+    
 
     <select id="getIssueList" resultType="java.util.Map" parameterType="java.util.Map">
         SELECT
@@ -81,4 +82,11 @@
         WHERE t.uuid = #{uuid}
     </select>
 
+    <select id="getModel" resultType="java.lang.String" parameterType="String">
+        select model_code from s_model where object_code = #{objectId};
+    </select>
+
+    <update id="updateTaskState" parameterType="Map">
+        update t_task set state = '' where uuid = #{uuid};
+    </update>
 </mapper>

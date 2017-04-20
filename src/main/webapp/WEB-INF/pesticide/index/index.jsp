@@ -89,6 +89,7 @@
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('creation/init')">创建</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('issuePool/init')">任务池</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('demo/init')">Demo</a></li>
+                <li><a href="javascript:void(0);" onclick="index.js.menuClick('demo/init')">送测</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test4')">记录</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test5')">图表</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('settings/users')">设置</a></li>

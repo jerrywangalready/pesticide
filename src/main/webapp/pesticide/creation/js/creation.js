@@ -42,7 +42,7 @@ creation.js.init = function () {
     // 负责人下拉框初始化
     $("#principal").dict({table:"V_OBJECT_USERS",key:"username",value:"nickname",where:"object_code='"+creation.js.objectCode+"'"});
     // 优先级下拉框初始化
-    $("#priority").dict({table:"t_code_list",key:"code_key",value:"code_value"});
+    $("#priority").dict({table:"t_code_list",key:"code_key",value:"code_value",type:"priority"});
     // 完成时间
     $('.form_date').datetimepicker({
         language:  'zh-CN',

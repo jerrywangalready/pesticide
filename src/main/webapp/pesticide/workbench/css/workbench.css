@@ -83,3 +83,6 @@
 .issue_card td:nth-child(odd){
     text-align: right;
 }
+ul li{
+    margin-bottom: 0px !important;
+}
