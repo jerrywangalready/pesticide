@@ -11,7 +11,7 @@ create table t_record
   operator             varchar(32) comment '操作人',
   operate_detail       varchar(200) comment '操作详情',
   is_enable            varchar(2) comment '是否有效',
-  REMARK               varchar(1500) comment '备注',
+  remark               varchar(1500) comment '备注',
   primary key (uuid)
 );
 
