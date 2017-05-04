@@ -3,14 +3,14 @@
  */
 jQuery.namespace("workbenchReject");
 $(function () {
-    workbenchReject.js.init();
+    workbenchReject.js.param = parent.workbenchDetail.js.getParameter();
 });
 
 workbenchReject.js = {};
 workbenchReject.js.reject = function () {
     var param = {};
-    param.businessId = workbenchChangePrincipal.js.param.uuid;
-    param.issueType = workbenchChangePrincipal.js.param.issueType;
+    param.businessId = workbenchReject.js.param.uuid;
+    param.issueType = workbenchReject.js.param.issueType;
     param.state = "6";
     param.remark = $("#remark").val();
     $.ajax({
