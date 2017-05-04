@@ -5,9 +5,6 @@ jQuery.namespace("workbenchDetail");
 $(function () {
     workbenchDetail.js.init();
 
-    workbenchDetail.js.modalInit();
-
-
 });
 
 workbenchDetail.js = {};
@@ -33,22 +30,45 @@ workbenchDetail.js.init = function () {
     });
 };
 
-workbenchDetail.js.modalInit = function () {
-    var object = getParameter(location.hash, "obj", "");
-    $.post(path + "/workbench/getModel.do", {objectId: object}, function (data) {
-        for (var i = 0; i < data.length; i++) {
-            $(".modal-body").append("<div style='padding-left: 15px;'><label><input type='checkbox' name='push_model' value='" + data[i] + "'>" + data[i] + "</label></div>");
-        }
-        $("input[value=" + $("#model_code").val() + "]").attr("checked", "checked");
+/**
+ * 送测按钮点击事件
+ */
+workbenchDetail.js.pushButtonClick = function (state) {
+    layer.open({
+        type:2,
+        title:"选择送测模块",
+        area:['300px','auto'],
+        content:[path + '/workbench/choseModelInit.do?state='+state, 'no']
+    });
+};
+workbenchDetail.js.getParameter = function () {
+    var param = {};
+    param.objectCode = getParameter(location.hash,"obj","");
+    param.model_code = $("#model_code").val();
+    param.uuid = $("#uuid").val();
+    param.issueType = $("#issue_type").val();
+    return param;
+};
+workbenchDetail.js.return = function () {
+    setHash("on=workbench/init&obj="+getParameter(location.hash,"obj",""));
+};
+
+workbenchDetail.js.changePrincipal = function () {
+    layer.open({
+        type:2,
+        title:"任务指派",
+        area:['300px','250px'],
+        content:[path + '/workbench/changePrincipalInit.do', 'no']
     });
 };
 
-workbenchDetail.js.push = function () {
-    //搜集参数
-
-
-    $.post(path + '/workbench/push.do', {}, function (data) {
-
+workbenchDetail.js.reject = function () {
+    layer.open({
+        type:2,
+        title:"任务退回",
+        area:['300px','200px'],
+        content:[path + '/workbench/rejectInit.do', 'no']
     });
 };
+
 

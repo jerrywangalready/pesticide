@@ -40,6 +40,8 @@ jQuery.namespace = function(){
     }
 };
 
+
+
 jQuery.namespace("comm");
 comm.js = {};
 comm.js.dictionary = {};
@@ -84,4 +86,19 @@ comm.js.hashAppand = function () {
     setHash(newHash);
 
 
+};
+
+/**
+ *
+ * <p>Discription:[iframe关闭当前弹出层]</p>
+ * Created on 2016年03月10日
+ * @author: [王景钰]
+ */
+comm.js.closeLayer = function(){
+    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+    parent.layer.close(index); //再执行关闭
+};
+comm.js.iframeAuto = function () {
+    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+    parent.layer.iframeAuto(index);
 };

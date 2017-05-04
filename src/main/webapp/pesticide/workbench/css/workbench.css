@@ -86,3 +86,13 @@
 ul li{
     margin-bottom: 0px !important;
 }
+
+.layer_button{
+    float: right;
+    width: 100%;
+    padding: 5px 17px 15px 17px;
+    position: relative;
+}
+.layer_button button{
+    float: right;
+}

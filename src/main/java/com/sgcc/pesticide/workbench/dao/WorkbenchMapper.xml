@@ -5,6 +5,7 @@
 <mapper namespace="com.sgcc.pesticide.workbench.dao.WorkbenchDao">
     
 
+
     <select id="getIssueList" resultType="java.util.Map" parameterType="java.util.Map">
         SELECT
           UUID,
@@ -22,6 +23,7 @@
     <select id="getTaskDetail" resultType="java.util.Map" parameterType="String">
         SELECT
           t.uuid,
+          'T' issue_type,
           t.task_code issue_code,
           t.object_code,
           t.model_code,
@@ -53,6 +55,7 @@
     <select id="getBugDetail" resultType="java.util.Map" parameterType="String">
         SELECT
           t.uuid,
+          'B' issue_type,
           t.bug_code issue_code,
           t.object_code,
           t.model_code,
@@ -86,7 +89,78 @@
         select model_code from s_model where object_code = #{objectId};
     </select>
 
-    <update id="updateTaskState" parameterType="Map">
-        update t_task set state = '' where uuid = #{uuid};
+    <update id="updateTask" parameterType="Map">
+        UPDATE t_task
+           SET
+           <if test="state != null and state != ''">
+           state = #{state}
+           </if>
+           <if test="principal != null and principal != ''">
+           principal = #{principal}
+           </if>
+         WHERE uuid = #{businessId};
     </update>
+
+    <update id="updateBug" parameterType="Map">
+        UPDATE t_bug
+           SET
+            <if test="state != null and state != ''">
+                state = #{state}
+            </if>
+            <if test="principal != null and principal != ''">
+                principal = #{principal}
+            </if>
+         WHERE uuid = #{businessId};
+    </update>
+
+    <insert id="insertPushInfo" parameterType="Map">
+        INSERT INTO t_push
+        (
+          uuid,
+          business_id,
+          issue_type,
+          model_code,
+          description,
+          create_user,
+          create_time,
+          push_state,
+          isenable
+        )
+        VALUES
+        (
+          #{uuid,jdbcType = VARCHAR},
+          #{businessId,jdbcType = VARCHAR},
+          #{issueType,jdbcType = VARCHAR},
+          #{model_code,jdbcType = VARCHAR},
+          #{description,jdbcType = VARCHAR},
+          #{create_user,jdbcType = VARCHAR},
+          sysdate(),
+          '0',
+          '1'
+        );
+    </insert>
+
+    <insert id="insertIssueRecord" parameterType="com.sgcc.pesticide.workbench.model.IssueRecord">
+        INSERT INTO t_record
+            (
+                uuid,
+                business_code,
+                operate_time,
+                operator,
+                operate_detail,
+                remark,
+                is_enable
+            )
+        VALUES
+            (
+                #{uuid,jdbcType = VARCHAR},
+                #{businessCode,jdbcType = VARCHAR},
+                SYSDATE(),
+                #{operator,jdbcType = VARCHAR},
+                #{operateDetail,jdbcType = VARCHAR},
+                #{remark,jdbcType = VARCHAR},
+                '1'
+            )
+    </insert>
+
 </mapper>

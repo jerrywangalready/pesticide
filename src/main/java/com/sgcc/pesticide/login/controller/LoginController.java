@@ -46,7 +46,8 @@ public class LoginController {
             session.setAttribute("userToken",userToken);
             session.setMaxInactiveInterval(Integer.parseInt(CommUtil.getResourceProperty("session-time").toString()));
 
-            CommUtil.getLoginInfo().setLogin_user(userToken.getUsername());
+            CommUtil.getLoginInfo().setLoginUser(userToken.getUsername());
+            CommUtil.getLoginInfo().setLoginNickname(userToken.getNickname());
 
             return "true";
         }
