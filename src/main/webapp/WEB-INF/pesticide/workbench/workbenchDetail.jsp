@@ -17,7 +17,7 @@
 <script id="detail_template" type="text/html">
     <div style="height:50px;">
         <h4 class="left" style="margin-top:12px;">{{issue_code}}</h4>
-        <button type="button" class="btn btn-default btn-sm right" style="margin-top:10px;">返回</button>
+        <button type="button" class="btn btn-default btn-sm right" style="margin-top:10px;" onclick="workbenchDetail.js.return()">返回</button>
         <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
             <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.pushButtonClick('2')">送测</button>
             <input id="uuid" type="hidden" value="{{uuid}}">
