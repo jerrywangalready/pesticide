@@ -51,6 +51,9 @@ $.fn.extend({
             form.find('input,select,textarea').each(function () {
                 var name = $(this).attr("name");
                 var value = $(this).val();
+                if($(this).attr("type") == "radio" && $(this).attr("checked") != "checked"){
+                    return true;
+                }
                 if($(this).is(':visible') == true) {
                     var validate = $(this).attr("validate");
                     // 如果有validate属性,获取值并按照validate校验
