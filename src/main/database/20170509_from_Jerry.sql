@@ -1,0 +1,13 @@
+ALTER TABLE pesticide.t_task MODIFY deadline DATETIME COMMENT '截止时间';
+ALTER TABLE pesticide.t_task MODIFY create_time DATETIME COMMENT '创建时间';
+ALTER TABLE pesticide.t_record MODIFY operate_time DATETIME COMMENT '操作时间';
+ALTER TABLE pesticide.t_push MODIFY create_time DATETIME COMMENT '创建时间';
+ALTER TABLE pesticide.t_push MODIFY push_time DATETIME COMMENT '推送时间';
+ALTER TABLE pesticide.t_publish MODIFY push_time DATETIME COMMENT '送测时间';
+ALTER TABLE pesticide.t_publish MODIFY publish_time DATETIME COMMENT '发布时间';
+ALTER TABLE pesticide.t_file MODIFY create_time DATETIME COMMENT '创建时间';
+ALTER TABLE pesticide.t_bug MODIFY deadline DATETIME COMMENT '截止时间';
+ALTER TABLE pesticide.t_bug MODIFY create_time DATETIME COMMENT '创建时间';
+ALTER TABLE pesticide.s_users MODIFY create_time DATETIME COMMENT '创建时间';
+ALTER TABLE pesticide.s_object_users MODIFY create_time DATETIME COMMENT '创建时间';
+ALTER TABLE pesticide.s_object MODIFY create_time DATETIME COMMENT '创建时间';
