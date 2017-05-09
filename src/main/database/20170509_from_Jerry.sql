@@ -11,3 +11,4 @@ ALTER TABLE pesticide.t_bug MODIFY create_time DATETIME COMMENT '创建时间';
 ALTER TABLE pesticide.s_users MODIFY create_time DATETIME COMMENT '创建时间';
 ALTER TABLE pesticide.s_object_users MODIFY create_time DATETIME COMMENT '创建时间';
 ALTER TABLE pesticide.s_object MODIFY create_time DATETIME COMMENT '创建时间';
+ALTER TABLE pesticide.s_version MODIFY publish_date DATETIME COMMENT '上线时间';
