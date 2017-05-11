@@ -19,7 +19,9 @@
         version_code,
         priority,
         working_day,
+        <if test="deadline != null or deadline != '' ">
         deadline,
+        </if>
         state,
         is_read,
         is_enable,
@@ -39,7 +41,9 @@
         #{version_code,jdbcType=VARCHAR},
         #{priority,jdbcType=VARCHAR},
         #{working_day,jdbcType=VARCHAR},
-        #{deadline,jdbcType=DATE},
+        <if test="deadline != null or deadline != '' ">
+        #{deadline},
+        </if>
         #{state,jdbcType=VARCHAR},
         '0',
         '1',
@@ -61,7 +65,9 @@
         version_code = #{version_code,jdbcType=VARCHAR},
         priority     = #{priority,jdbcType=VARCHAR},
         working_day  = #{working_day,jdbcType=VARCHAR},
-        deadline     = #{deadline,jdbcType=DATE},
+        <if test="deadline != null or deadline != '' ">
+        deadline     = #{deadline},
+        </if>
         state        = #{state,jdbcType=VARCHAR},
 
         WHERE uuid = #{uuid}
@@ -87,7 +93,9 @@
           priority,
           bug_level,
           result,
+          <if test="deadline != null or deadline != '' ">
           deadline,
+          </if>
           state,
           is_read,
           is_enable,
@@ -107,7 +115,9 @@
           #{priority, jdbcType=VARCHAR},
           #{bug_level, jdbcType=VARCHAR},
           #{result, jdbcType=VARCHAR},
-          #{deadline, jdbcType=DATE},
+          <if test="deadline != null or deadline != '' ">
+          #{deadline},
+          </if>
           #{state, jdbcType=VARCHAR},
           '0',
           '1',
@@ -130,7 +140,9 @@
           priority = #{priority, jdbcType=VARCHAR},
           bug_level = #{bug_level, jdbcType=VARCHAR},
           result = #{result, jdbcType=VARCHAR},
-          deadline = #{deadline, jdbcType=DATE},
+          <if test="deadline != null or deadline != '' ">
+          deadline = #{deadline},
+          </if>
           state = #{state, jdbcType=VARCHAR}
         WHERE uuid = #{uuid};
     </update>

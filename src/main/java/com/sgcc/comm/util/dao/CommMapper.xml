@@ -26,5 +26,21 @@
                 '1'
             )
     </insert>
+    <select id="getIssueRecord" resultType="java.util.Map">
+        select
+          tr.uuid,
+          date_format(tr.operate_time, '%Y-%m-%d') sdate,
+          date_format(tr.operate_time, '%T') stime,
+          tr.operator,
+          su.nickname,
+          tr.operate_detail,
+          tr.remark
+         from t_record tr
+         left join s_users su
+           on su.username = tr.operator
+        where business_id = #{businessId}
+          and is_enable = '1'
+        order by operate_time desc
+    </select>
 
 </mapper>

@@ -13,7 +13,9 @@
 <div id="detail_body">
 
 </div>
+<div id="operation_details" >
 
+</div>
 <script id="detail_template" type="text/html">
     <div style="height:50px;">
         <h4 class="left" style="margin-top:12px;">{{issue_code}}</h4>
@@ -71,6 +73,31 @@
     <div id="description">
 
     </div>
-    <%--<hr>--%>
+    <hr>
+
+</script>
+
+<script id="operation_template" type="text/html">
+    <ul class="recent-posts">
+        {{each list as value i}}
+        <li>
+            <%--<div class="user-thumb"> <img alt="User" src="img/demo/av1.jpg" height="40" width="40"> </div>--%>
+            <div class="article-post" style="min-height: 40px;">
+                <div class="left" style="width:95px;margin-right: 12px;border-right:2px solid #ccc;">
+                    <div style="text-align: center;height: 20px;">
+                        <span class="user-info">2017/05/06</span>
+                    </div>
+                    <div style="text-align: center;height: 20px;">
+                        <span class="user-info">22:17</span>
+                    </div>
+                </div>
+                <div class="left">
+                    <a>{{value.nickname}}</a>&nbsp;&nbsp;<span class="user-info">{{value.operate_detail}}</span>
+                    <p>{{value.remark}}</p>
+                </div>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
 </script>
 

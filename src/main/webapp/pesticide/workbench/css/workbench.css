@@ -96,3 +96,22 @@ ul li{
 .layer_button button{
     float: right;
 }
+
+.recent-posts, .recent-comments, .recent-users {
+    margin:0 0 20px 0;
+    padding: 0;
+}
+.recent-posts li, .recent-comments li, .article-post li, .recent-users li {
+    border-bottom: 1px dotted #AEBDC8;
+    list-style: none outside none;
+    padding: 10px 0;
+    background: #f8f8f8;
+}
+
+.recent-posts li:last-child{
+    border-bottom: 0px !important;
+}
+.article-post p{
+    margin-bottom:0px;
+    outline:none;
+}

@@ -17,6 +17,7 @@
          FROM v_issue
         WHERE principal = #{principal}
           AND object_code = #{object_code}
+          AND STATE = '1'
         ORDER BY create_time DESC
     </select>
 
@@ -138,29 +139,6 @@
           '0',
           '1'
         );
-    </insert>
-
-    <insert id="insertIssueRecord" parameterType="com.sgcc.pesticide.workbench.model.IssueRecord">
-        INSERT INTO t_record
-            (
-                uuid,
-                business_code,
-                operate_time,
-                operator,
-                operate_detail,
-                remark,
-                is_enable
-            )
-        VALUES
-            (
-                #{uuid,jdbcType = VARCHAR},
-                #{businessCode,jdbcType = VARCHAR},
-                SYSDATE(),
-                #{operator,jdbcType = VARCHAR},
-                #{operateDetail,jdbcType = VARCHAR},
-                #{remark,jdbcType = VARCHAR},
-                '1'
-            )
     </insert>
 
 </mapper>

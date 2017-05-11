@@ -1,5 +1,6 @@
 package com.sgcc.comm.util.dao;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,5 +15,14 @@ public interface CommDao{
      * @param param
      */
     void insertIssueRecord(Map<String, String> param);
+
+    /**
+     * @Description 根据businessId获取操作日志
+     * @author JerryWang
+     * @date 2017/5/11 21:20
+     * @param businessId
+     * @return
+     */
+    List<Map<String, String>> getIssueRecord(String businessId);
 
 }

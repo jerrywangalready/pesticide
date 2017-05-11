@@ -4,13 +4,11 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sgcc.comm.model.Query;
 import com.sgcc.comm.util.CommUtil;
+import com.sgcc.comm.util.service.CommService;
 import com.sgcc.pesticide.workbench.dao.WorkbenchDao;
-import com.sgcc.pesticide.workbench.model.IssueRecord;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +20,8 @@ import java.util.Map;
 public class WorkbenchServiceImpl implements WorkbenchService {
     @Autowired
     WorkbenchDao workbenchDao;
+    @Autowired
+    CommService commService;
 
     /**
      * @Description 获取问题列表
@@ -93,32 +93,13 @@ public class WorkbenchServiceImpl implements WorkbenchService {
                 workbenchDao.updateBug(param);
             }
             // 保存操作记录
-            insertIssueRecord(param.get("businessId"),"送测","");
+            commService.insertIssueRecord(param.get("businessId"),"送测","");
 
             return "true";
         } catch (Exception e) {
             return "false";
         }
     }
-
-    /**
-     * @Description 保存操作记录
-     * @author JerryWang
-     * @date 2017/4/29 16:21
-     * @param businessId
-     * @param operateDetail
-     * @author JerryWang
-     */
-    public void insertIssueRecord(String businessId,String operateDetail,String remark) {
-        IssueRecord issueRecord = new IssueRecord();
-        issueRecord.setUuid(CommUtil.getUUID());
-        issueRecord.setBusinessCode(businessId);
-        issueRecord.setOperator(CommUtil.getLoginInfo().getLoginUser());
-        issueRecord.setOperateDetail(operateDetail);
-        issueRecord.setRemark(remark);
-        workbenchDao.insertIssueRecord(issueRecord);
-    }
-
 
     /**
      * @Description 修改负责人
@@ -134,7 +115,7 @@ public class WorkbenchServiceImpl implements WorkbenchService {
             } else if ("B".equals(param.get("issueType"))) {
                 workbenchDao.updateBug(param);
             }
-            insertIssueRecord(param.get("businessId"),"指派给 "+param.get("principalName"),param.get("remark"));
+            commService.insertIssueRecord(param.get("businessId"),"指派给 "+param.get("principalName"),param.get("remark"));
             return "true";
         } catch (Exception e) {
             return "false";
@@ -155,11 +136,22 @@ public class WorkbenchServiceImpl implements WorkbenchService {
             } else if ("B".equals(param.get("issueType"))) {
                 workbenchDao.updateBug(param);
             }
-            insertIssueRecord(param.get("businessId"),"退回",param.get("remark"));
+            commService.insertIssueRecord(param.get("businessId"),"退回",param.get("remark"));
             return "true";
         } catch (Exception e) {
             return "false";
         }
+    }
+
+    /**
+     * @Description 获取操作记录
+     * @author JerryWang
+     * @date 2017/5/9 22:58
+     * @param businessId
+     * @return
+     */
+    public List<Map<String, String>> getRecord(String businessId) {
+        return commService.getIssueRecord(businessId);
     }
 
 

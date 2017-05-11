@@ -139,4 +139,9 @@ public class WorkbenchController {
     public @ResponseBody String reject(@RequestBody Map<String, String> param){
         return workbenchService.reject(param);
     }
+
+    @RequestMapping("/getRecord")
+    public @ResponseBody List<Map<String, String>> getRecord(String businessId) {
+        return workbenchService.getRecord(businessId);
+    }
 }

@@ -19,7 +19,7 @@ workbenchDetail.js.init = function () {
         {name: "mc", table: "s_model", key: "model_code", value: "model_name", where: "object_code=" + object},
         {name: "priority", table: "t_code_list", type: "priority"}
     ]);
-
+    // 初始化详细页面
     $.post(path + "/workbench/getDetail.do", {uuid: uuid, type: type}, function (data) {
         data.type = type;
         var html = template('detail_template', data);
@@ -27,6 +27,12 @@ workbenchDetail.js.init = function () {
 
         $("#description").html(data.description);
 
+    });
+    // 初始化操作日志
+    $.post(path + "/workbench/getRecord.do", {businessId:uuid}, function (data) {
+        console.info(data)
+        var html = template('operation_template', {list:data});
+        $("#operation_details").html(html);
     });
 };
 

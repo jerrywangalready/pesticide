@@ -16,7 +16,7 @@
         </select>
     </div>
     <div style="margin-bottom: 15px;">
-        <textarea id="remark" class="form-control" rows="3" placeholder="备注"></textarea>
+        <textarea id="remark" class="form-control" rows="3" placeholder="备注" maxlength="60"></textarea>
     </div>
     <div class="layer_button" style="padding: 0;">
         <button type="button" class="btn btn-primary" onclick="workbenchChangePrincipal.js.changePrincipal()">确认</button>

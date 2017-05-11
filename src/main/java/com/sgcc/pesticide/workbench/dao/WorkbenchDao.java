@@ -1,7 +1,5 @@
 package com.sgcc.pesticide.workbench.dao;
 
-import com.sgcc.pesticide.workbench.model.IssueRecord;
-
 import java.util.List;
 import java.util.Map;
 
@@ -71,13 +69,5 @@ public interface WorkbenchDao {
      * @param param
      */
     void insertPushInfo(Map<String, String> param);
-
-    /**
-     * @Description 插入问题日志记录
-     * @author JerryWang
-     * @date 2017/4/29 14:55
-     * @param issueRecord
-     */
-    void insertIssueRecord(IssueRecord issueRecord);
 
 }

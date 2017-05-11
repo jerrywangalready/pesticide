@@ -9,8 +9,6 @@ $(function () {
 creation.js = {};
 // 富文本域
 creation.js.description;
-// 任务类型
-creation.js.type = '1';
 // 项目编号
 creation.js.objectCode = "";
 // 初始化
@@ -80,16 +78,17 @@ creation.js.init = function () {
 // 保存
 creation.js.save = function(todo){
     var param = $("#main_form").validate();
+
     if(param){
         var description = creation.js.description.getData();
         param.description = description;
         param.object_code = creation.js.objectCode;
-        param.typeCode = creation.js.type;
         param.create_user = comm.js.username;
         param.todo = todo;
-        if(creation.js.type = '2'){
+        if(param.issueType == 'B'){
             param.bug_level = $("input[name=bug_level]:checked").val();
         }
+        console.info(param)
         $.ajax({
             type:'POST',
             url:path+'/creation/save.do',
@@ -165,7 +164,6 @@ creation.js.commit = function () {
 };
 // 选择Task
 creation.js.chooseTask = function () {
-    creation.js.type = '1';
     $("#monitor").removeClass().addClass("mb_15 btn-primary");
     $("#link_info_close").click();
     $("#bug_level_div").hide();
@@ -175,7 +173,6 @@ creation.js.chooseTask = function () {
 
 // 选择bug
 creation.js.chooseBug = function () {
-    creation.js.type = '2';
     $("#monitor").removeClass().addClass("mb_15 btn-warning");
     $("#link_info_close").click();
     $("#bug_level_div").show();

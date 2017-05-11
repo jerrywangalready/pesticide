@@ -67,7 +67,7 @@ public class CreationController {
             param.put("state","0");
         }
 
-        if("1".equals(param.get("typeCode"))){
+        if("T".equals(param.get("issueType"))){
             return creationService.saveTask(param);
         }else {
             return creationService.saveBug(param);

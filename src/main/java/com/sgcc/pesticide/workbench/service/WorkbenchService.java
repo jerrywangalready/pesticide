@@ -1,7 +1,6 @@
 package com.sgcc.pesticide.workbench.service;
 
 import com.sgcc.comm.model.Query;
-import com.sgcc.pesticide.workbench.model.IssueRecord;
 
 import java.util.List;
 import java.util.Map;
@@ -51,16 +50,6 @@ public interface WorkbenchService {
     String push(Map<String, String> param);
 
     /**
-     * @Description 保存操作记录
-     * @author JerryWang
-     * @date 2017/4/29 16:22
-     * @param businessId    
-     * @param operateDetail
-     * @author JerryWang
-     */
-    void insertIssueRecord(String businessId,String operateDetail,String remark);
-
-    /**
      * @Description 修改负责人
      * @author JerryWang
      * @date 2017/5/1 23:27
@@ -77,4 +66,13 @@ public interface WorkbenchService {
      * @return
      */
     String reject(Map<String, String> param);
+
+    /**
+     * @Description 获取操作记录
+     * @author JerryWang
+     * @date 2017/5/9 22:58
+     * @param businessId
+     * @return
+     */
+    List<Map<String, String>> getRecord(String businessId);
 }

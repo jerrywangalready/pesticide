@@ -34,10 +34,10 @@
                 <div style="height: 456px;">
                     <div class="mb_15 btn-group row" data-toggle="buttons" style="margin-left: 0px;width: 100%;">
                         <label class="btn btn-primary col-md-6 active">
-                            <input type="radio" name="taskType_code" autocomplete="off" value="1" checked>Task
+                            <input type="radio" name="issueType" autocomplete="off" value="T" checked>Task
                         </label>
                         <label class="btn btn-warning col-md-6">
-                            <input type="radio" name="taskType_code" autocomplete="off" value="2">Bug
+                            <input type="radio" name="issueType" autocomplete="off" value="B">Bug
                         </label>
                     </div>
                     <div class="mb_15 btn-primary" id="monitor" style="width: 100%;height: 2px;"></div>
@@ -95,10 +95,10 @@
                 <br>
                 <div>
                     <div class="mb_15">
-                        <button type="button" class="btn btn-success full_button" onclick="creation.js.save('save')">保存</button>
+                        <button type="button" class="btn btn-success full_button" onclick="creation.js.save('save')" >保存</button>
                     </div>
                     <div class="mb_15">
-                        <button type="button" class="btn btn-primary full_button" onclick="creation.js.commit()">提交</button>
+                        <button type="button" class="btn btn-primary full_button" onclick="creation.js.commit()" >提交</button>
                     </div>
                 </div>
             </div>
