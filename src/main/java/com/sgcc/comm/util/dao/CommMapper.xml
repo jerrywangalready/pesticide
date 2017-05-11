@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sgcc.comm.util.dao.CommDao">
+
+    <insert id="insertIssueRecord" parameterType="java.util.Map">
+        INSERT INTO t_record
+            (
+                uuid,
+                business_id,
+                operate_time,
+                operator,
+                operate_detail,
+                remark,
+                is_enable
+            )
+        VALUES
+            (
+                #{uuid,jdbcType = VARCHAR},
+                #{businessId,jdbcType = VARCHAR},
+                SYSDATE(),
+                #{operator,jdbcType = VARCHAR},
+                #{operateDetail,jdbcType = VARCHAR},
+                #{remark,jdbcType = VARCHAR},
+                '1'
+            )
+    </insert>
+
+</mapper>

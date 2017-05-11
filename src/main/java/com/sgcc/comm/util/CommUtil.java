@@ -1,6 +1,5 @@
 package com.sgcc.comm.util;
 
-import com.sun.org.apache.xml.internal.security.utils.JavaUtils;
 import sun.misc.BASE64Decoder;
 
 import java.io.File;
@@ -33,7 +32,6 @@ public class CommUtil {
     public static String getUUID(){
         return UUID.randomUUID().toString().replaceAll("-", "");
     }
-
 
     /**
      * @Description 将图片流转出图片并存储
@@ -146,5 +144,6 @@ public class CommUtil {
             LoginInfo.loginNickname = loginNickname;
         }
     }
+
 
 }
