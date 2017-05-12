@@ -6,7 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="../../comm/head.jsp"%>
+<%--<%@ include file="../../comm/head.jsp"%>--%>
+<%
+    String path = request.getContextPath();
+%>
 <link href="<%=path%>/pesticide/workbench/css/workbench.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="<%=path%>/pesticide/workbench/js/workbenchDetail.js"></script>
 <br>
@@ -20,11 +23,11 @@
     <div style="height:50px;">
         <h4 class="left" style="margin-top:12px;">{{issue_code}}</h4>
         <button type="button" class="btn btn-default btn-sm right" style="margin-top:10px;" onclick="workbenchDetail.js.return()">返回</button>
+        <input id="uuid" type="hidden" value="{{uuid}}">
+        <input id="model_code" type="hidden" value="{{model_code}}">
+        <input id="issue_type" type="hidden" value="{{issue_type}}">
         <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
             <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.pushButtonClick('2')">送测</button>
-            <input id="uuid" type="hidden" value="{{uuid}}">
-            <input id="model_code" type="hidden" value="{{model_code}}">
-            <input id="issue_type" type="hidden" value="{{issue_type}}">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="caret"></span>
                 <span class="sr-only">Toggle Dropdown</span>
@@ -85,10 +88,10 @@
             <div class="article-post" style="min-height: 40px;">
                 <div class="left" style="width:95px;margin-right: 12px;border-right:2px solid #ccc;">
                     <div style="text-align: center;height: 20px;">
-                        <span class="user-info">2017/05/06</span>
+                        <span class="user-info">{{value.sdate}}</span>
                     </div>
                     <div style="text-align: center;height: 20px;">
-                        <span class="user-info">22:17</span>
+                        <span class="user-info">{{value.stime}}</span>
                     </div>
                 </div>
                 <div class="left">

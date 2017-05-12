@@ -30,7 +30,6 @@ workbenchDetail.js.init = function () {
     });
     // 初始化操作日志
     $.post(path + "/workbench/getRecord.do", {businessId:uuid}, function (data) {
-        console.info(data)
         var html = template('operation_template', {list:data});
         $("#operation_details").html(html);
     });

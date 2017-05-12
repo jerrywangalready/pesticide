@@ -6,7 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="../../comm/comm.jsp"%>
+<%--<%@ include file="../../comm/comm.jsp"%>--%>
+<%
+    String path = request.getContextPath();
+%>
 <link href="<%=path%>/pesticide/creation/css/creation.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="<%=path%>/pesticide/creation/js/creation.js"></script>
 <div>

@@ -6,7 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="../../comm/comm.jsp"%>
+<%--<%@ include file="../../comm/comm.jsp"%>--%>
+<%
+    String path = request.getContextPath();
+%>
 <script type="text/javascript" src="<%=path%>/pesticide/demo/js/demo.js"></script>
 <div class="mb_15" style="margin-top:7px;">
     <form id="query_box" class="form-inline row" role="form">
