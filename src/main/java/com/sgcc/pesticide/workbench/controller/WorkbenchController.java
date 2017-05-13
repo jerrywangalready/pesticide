@@ -144,4 +144,5 @@ public class WorkbenchController {
     public @ResponseBody List<Map<String, String>> getRecord(String businessId) {
         return workbenchService.getRecord(businessId);
     }
+
 }

@@ -38,7 +38,7 @@ issuePool.js.query = function () {
             $("#page-bar").page(data);
         }
     });
-}
+};
 
 // 详细信息
 issuePool.js.detail = function (uuid, type) {

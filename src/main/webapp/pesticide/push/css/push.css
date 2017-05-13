@@ -1,0 +1,91 @@
+.grid-item {
+    border: 1px solid #ccc;
+    border-left: 5px solid;
+    height: 50px;
+    margin-bottom: 4px;
+    padding: 7px;
+    border-radius: 4px;
+    cursor: pointer;
+    /*background: #EEEEEE;*/
+    box-shadow: #888 1px 1px 3px;
+}
+
+.grid-item.task {
+    border-left-color: #428bca;
+}
+
+.grid-item.bug {
+    border-left-color: #f0ad4e;
+}
+
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.code {
+    width: 62px;
+}
+.code span{
+    width: 40px;
+}
+
+.title {
+}
+
+.priority{
+    width:16px;
+    height:10px;
+    margin-top:7px;
+    border-radius: 5px;
+}
+
+.priority.l1{
+    background: #d9534f;
+}
+.priority.l2{
+    background: #f0ad4e;
+}
+.priority.l3{
+    background: #5cb85c;
+}
+.priority.l4{
+    background: #5bc0de;
+}
+.glyphicon.l1{
+    color: #d9534f;
+}
+.glyphicon.l2{
+    color: #f0ad4e;
+}
+.glyphicon.l3{
+    /*color: #5cb85c;*/
+    color: #fff;
+}
+.glyphicon.l4{
+    /*color: #5bc0de;*/
+    color: #fff;
+}
+.code_title{
+    width: 100%;
+}
+.gray{
+    color: #bbbbbb;
+}
+
+.issue_card{
+    width: 100%;
+}
+.issue_card td{
+    padding: 2px 2px;
+}
+.issue_card td:nth-child(odd){
+    text-align: right;
+}
+.query-form {
+    margin-bottom: 13px !important;
+}
+.query-form > div{
+    margin: 4px 0;
+}

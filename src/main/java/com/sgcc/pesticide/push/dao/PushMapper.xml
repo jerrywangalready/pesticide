@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sgcc.pesticide.push.dao.PushDao">
+
+    <select id="getPushList" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT
+          T.MODEL_CODE,
+          S.MODEL_NAME
+        FROM T_PUSH T LEFT JOIN S_MODEL S ON T.MODEL_CODE = S.MODEL_CODE
+        WHERE T.PUSH_STATE = '0' AND T.ISENABLE = '1'
+        GROUP BY T.MODEL_CODE
+    </select>
+    <select id="getPushDetail" resultType="java.util.Map" >
+        SELECT
+          V.CODE,
+          V.TITLE,
+          V.ISSUE_TYPE
+        FROM T_PUSH P LEFT JOIN V_ISSUE V ON P.BUSINESS_ID = V.UUID
+        WHERE P.MODEL_CODE=#{modelCode}
+    </select>
+</mapper>
