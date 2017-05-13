@@ -9,7 +9,9 @@ $.fn.extend({
             _this.addClass("page-bar").attr("aria-label","Page navigation");
             var ul = "<ul class='pagination pagination-sm'>";
             ul += "<li><a aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
-            var size = data.total%data.pageSize == 0 && data.total != 0 ? data.total/data.pageSize : data.total/data.pageSize + 1;
+            // var size = data.total%data.pageSize == 0 && data.total != 0 ? data.total/data.pageSize : data.total/data.pageSize + 1;
+            var pn = parseInt((data.total-1)/data.pageSize + 1);
+            var size = data.total == 0 ? 1 : pn;
             for(var i=1;i<=size;i++){
                 if(i == data.pageNum)
                     ul += "<li class='active'><a>"+i+"</a></li>";
@@ -22,7 +24,7 @@ $.fn.extend({
             if(data.pageNum == 1){
                 _this.find("li:first").addClass("disabled");
             }
-            if(data.pageNum == parseInt(data.total/data.pageSize+1)){
+            if(data.pageNum == pn){
                 _this.find("li:last").addClass("disabled");
             }
             // 数字按钮绑定
@@ -39,7 +41,7 @@ $.fn.extend({
             });
             // 向后按钮绑定
             _this.find("li:last").click(function () {
-                if(data.pageNum < parseInt(data.total/data.pageSize+1)){
+                if(data.pageNum < pn){
                     comm.js.hashAppand("pn",data.pageNum + 1);
                 }
             });
