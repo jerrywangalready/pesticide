@@ -10,7 +10,7 @@ $.fn.extend({
             var ul = "<ul class='pagination pagination-sm'>";
             ul += "<li><a aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
             // var size = data.total%data.pageSize == 0 && data.total != 0 ? data.total/data.pageSize : data.total/data.pageSize + 1;
-            var pn = parseInt((data.total-1)/data.pageSize + 1);
+            var pn = parseInt((data.total-1)/data.pageSize) + 1;
             var size = data.total == 0 ? 1 : pn;
             for(var i=1;i<=size;i++){
                 if(i == data.pageNum)
