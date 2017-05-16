@@ -49,14 +49,23 @@
     margin: 0 auto;
 }
 .page-bar ul{
-    float: right;
     margin-top:0px;
 }
+/*.page-bar :nth-child(1){*/
+    /*float: left;*/
+/*}*/
+/*.page-bar :nth-child(2){*/
+    /*float: right;*/
+/*}*/
 .page-bar li{
     cursor: pointer;
 }
 .page-bar ul > li + li{
     margin-left:0;
+}
+.page-bar-total {
+    float: left;
+    margin: 11px;
 }
 /*ck编辑器圆角效果*/
 .cke_chrome{
