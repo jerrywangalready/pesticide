@@ -76,4 +76,38 @@ workbenchDetail.js.reject = function () {
     });
 };
 
+workbenchDetail.js.finish = function () {
+    var businessId = $("#uuid").val();
+    var issueType = $("#issue_type").val();
+    $.post(path + '/workbench/finish.do',{businessId:businessId,issueType:issueType},function (data) {
+        if(data == "true"){
+            parent.layer.msg("操作成功!");
+            workbenchDetail.js.return();
+        }else {
+            layer.alert("操作失败!");
+        }
+    });
+};
+
+workbenchDetail.js.back = function () {
+    layer.open({
+        type:2,
+        title:"测试不通过",
+        area:['300px','200px'],
+        content:[path + '/workbench/backInit.do', 'no']
+    });
+};
+
+workbenchDetail.js.terminate = function () {
+    var businessId = $("#uuid").val();
+    var issueType = $("#issue_type").val();
+    $.post(path + '/workbench/terminate.do',{businessId:businessId,issueType:issueType},function (data) {
+        if(data == "true"){
+            parent.layer.msg("操作成功!");
+            workbenchDetail.js.return();
+        }else {
+            layer.alert("操作失败!");
+        }
+    });
+};
 

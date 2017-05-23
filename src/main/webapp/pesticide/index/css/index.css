@@ -2,7 +2,12 @@
     height: 67px;
     width:auto;
 }
-
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
 #content-container{
     min-height: 556px;
     text-align: center;
@@ -106,4 +111,14 @@
 
 .select_empty option {
     color: #000;
+}
+
+.bookmark{
+    float: left;
+    margin: -10px 0 0 -5px;
+    width:10px;
+    height:40px;
+}
+.bookmark span{
+    color: #d9534f;
 }

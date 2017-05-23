@@ -1,6 +1,7 @@
 package com.sgcc.pesticide.push.controller;
 
 import com.sgcc.comm.model.Query;
+import com.sgcc.comm.util.CommUtil;
 import com.sgcc.pesticide.push.service.PushService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,7 @@ public class PushController {
      */
     @RequestMapping("/getPushList")
     public @ResponseBody Query getPushList(@RequestBody Map<String, String> param){
+        param.put("principal", CommUtil.getInstance().getLoginInfo().getLoginUser());
         return pushService.getPushList(param);
     }
 
@@ -46,8 +48,12 @@ public class PushController {
      * @return
      */
     @RequestMapping("/getPushDetail")
-    public @ResponseBody
-    List<Map<String,String>> getPushDetail(String modelCode){
+    public @ResponseBody List<Map<String,String>> getPushDetail(String modelCode){
         return pushService.getPushDetail(modelCode);
+    }
+
+    @RequestMapping("/publish")
+    public @ResponseBody String publish(String modelCodes){
+        return pushService.publish(modelCodes);
     }
 }

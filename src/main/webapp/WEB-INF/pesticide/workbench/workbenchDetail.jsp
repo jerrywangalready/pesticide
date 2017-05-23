@@ -26,6 +26,7 @@
         <input id="uuid" type="hidden" value="{{uuid}}">
         <input id="model_code" type="hidden" value="{{model_code}}">
         <input id="issue_type" type="hidden" value="{{issue_type}}">
+        {{if state == '1'}}
         <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
             <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.pushButtonClick('2')">送测</button>
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,6 +40,21 @@
                 <li><a onclick="workbenchDetail.js.reject()" href="javascript:void(0);">退回</a></li>
             </ul>
         </div>
+        {{/if}}
+        {{if state == '4'}}
+        <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
+            <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.finish()">完成</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a onclick="workbenchDetail.js.back()" href="javascript:void(0);">不通过</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a onclick="workbenchDetail.js.terminate()" href="javascript:void(0);">终止</a></li>
+            </ul>
+        </div>
+        {{/if}}
     </div>
     <div class="alert alert-{{if type == 'T'}}info{{/if}}{{if type == 'B'}}warning{{/if}}" role="alert">
         <table class="issue_card">

@@ -36,10 +36,10 @@
             <div class="col-md-3">
                 <div style="height: 456px;">
                     <div class="mb_15 btn-group row" data-toggle="buttons" style="margin-left: 0px;width: 100%;">
-                        <label class="btn btn-primary col-md-6 active">
+                        <label class="btn btn-primary col-md-6 active" onclick="creation.js.chooseTask(this)">
                             <input type="radio" name="issueType" autocomplete="off" value="T" checked>Task
                         </label>
-                        <label class="btn btn-warning col-md-6">
+                        <label class="btn btn-warning col-md-6" onclick="creation.js.chooseBug(this)">
                             <input type="radio" name="issueType" autocomplete="off" value="B">Bug
                         </label>
                     </div>

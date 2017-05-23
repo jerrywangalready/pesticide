@@ -27,4 +27,13 @@ public interface PushService {
      * @return
      */
     List<Map<String,String>> getPushDetail(String modelCode);
+
+    /**
+     * @Description 发布
+     * @author JerryWang
+     * @date 2017/5/14 15:41
+     * @param modelCodes
+     * @return
+     */
+    String publish(String modelCodes);
 }

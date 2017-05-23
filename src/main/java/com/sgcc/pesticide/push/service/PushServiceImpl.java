@@ -3,12 +3,12 @@ package com.sgcc.pesticide.push.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sgcc.comm.model.Query;
+import com.sgcc.comm.util.CommUtil;
 import com.sgcc.pesticide.push.dao.PushDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by DCH on 2017/5/2.
@@ -49,5 +49,33 @@ public class PushServiceImpl implements PushService {
     @Override
     public List<Map<String,String>> getPushDetail(String modelCode) {
         return  pushDao.getPushDetail(modelCode);
+    }
+
+    /**
+     * @param modelCodes
+     * @return
+     * @Description 发布
+     * @author JerryWang
+     * @date 2017/5/14 15:22
+     */
+    @Override
+    public String publish(String modelCodes) {
+//        modelCodes = modelCodes.replace(",", "','");
+
+        try {
+            String[] modelCodesArr = modelCodes.split(",");
+            List<String> l = Arrays.asList(modelCodesArr);
+            // 修改送测的任务的状态
+            Map<String, Object> param = new HashMap<>();
+            param.put("l", l);
+            pushDao.updateTaskState(param);
+            pushDao.updateBugState(param);
+            // 发布
+            param.put("operator", CommUtil.getLoginInfo().getLoginUser());
+            pushDao.updatePushInfo(param);
+        } catch (Exception e) {
+            return "false";
+        }
+        return "true";
     }
 }

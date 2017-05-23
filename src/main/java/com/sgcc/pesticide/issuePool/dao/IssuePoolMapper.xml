@@ -13,7 +13,8 @@
         V.PRIORITY,
         V.VERSION_CODE,
         V.principal,
-        V.create_user
+        date_format(V.CREATE_TIME, '%Y-%m-%d %T') CREATE_TIME,
+        S.NICKNAME
         FROM v_issue V
         LEFT JOIN s_users S
         ON V.create_user = S.username

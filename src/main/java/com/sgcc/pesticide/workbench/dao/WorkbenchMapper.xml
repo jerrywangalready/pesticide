@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sgcc.pesticide.workbench.dao.WorkbenchDao">
-    
-
 
     <select id="getIssueList" resultType="java.util.Map" parameterType="java.util.Map">
         SELECT
-          UUID,
-          CODE,
-          TITLE,
-          ISSUE_TYPE,
-          PRIORITY,
-          VERSION_CODE
-         FROM v_issue
-        WHERE principal = #{principal}
-          AND object_code = #{object_code}
-          AND STATE = '1'
-        ORDER BY create_time DESC
+          vi.UUID,
+          vi.CODE,
+          vi.TITLE,
+          vi.ISSUE_TYPE,
+          vi.PRIORITY,
+          vi.VERSION_CODE,
+          date_format(Vi.update_time, '%Y-%m-%d %T') UPDATE_TIME,
+          su.NICKNAME CREATE_USER,
+          vi.STATE,
+          su2.nickname PRINCIPAL
+         FROM v_issue vi
+         LEFT JOIN s_users su
+           ON su.username = vi.create_user
+         LEFT JOIN s_users su2
+           ON su2.username = vi.principal
+        WHERE 1=1
+          AND vi.object_code = #{object_code}
+          AND (vi.STATE = '1' AND vi.principal = #{principal})
+          OR (vi.STATE = '4' AND vi.create_user = #{principal})
+        ORDER BY vi.update_time DESC
     </select>
 
     <select id="getTaskDetail" resultType="java.util.Map" parameterType="String">
@@ -93,23 +98,26 @@
     <update id="updateTask" parameterType="Map">
         UPDATE t_task
            SET
+           update_time  = sysdate()
            <if test="state != null and state != ''">
-           state = #{state}
+           ,state = #{state}
            </if>
            <if test="principal != null and principal != ''">
-           principal = #{principal}
+           ,principal = #{principal}
            </if>
+
          WHERE uuid = #{businessId};
     </update>
 
     <update id="updateBug" parameterType="Map">
         UPDATE t_bug
            SET
+            update_time  = sysdate()
             <if test="state != null and state != ''">
-                state = #{state}
+                ,state = #{state}
             </if>
             <if test="principal != null and principal != ''">
-                principal = #{principal}
+                ,principal = #{principal}
             </if>
          WHERE uuid = #{businessId};
     </update>

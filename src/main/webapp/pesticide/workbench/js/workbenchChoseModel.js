@@ -31,7 +31,7 @@ workbenchChoseModel.js.push = function () {
         model_codes += $(this).val() + ",";
     });
     model_codes = model_codes.substr(0,model_codes.length-1);
-    param.model_code = model_codes;
+    param.modelCodes = model_codes;
     param.description = "";
     $.ajax({
         type:'POST',

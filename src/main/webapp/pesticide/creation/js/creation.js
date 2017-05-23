@@ -24,16 +24,6 @@ creation.js.init = function () {
     creation.js.description.on('blur',function () {
         $('#cke_description').removeClass("edit_focus");
     });
-    $("input[name=taskType_code]").each(function () {
-        var taskRadio = $(this);
-        taskRadio.parent().click(function () {
-            var tv = taskRadio.val();
-            switch(tv){
-                case '1':creation.js.chooseTask();break;
-                case '2':creation.js.chooseBug();break;
-            }
-        });
-    });
 
     // 模块下拉框
     $("#model_select").dict({table:"s_model",key:"model_code",value:"model_name",where:"isenable='1' and object_code='"+creation.js.objectCode+"'"});
@@ -64,6 +54,10 @@ creation.js.init = function () {
 
     });
 
+    // bug等级按钮点击事件绑定
+    $("input[name=bug_level]").parent().click(function () {
+        $(this).find("input").attr("checked",true);
+    });
 
     $("#link_info_close").click(function () {
         $("#link_info").slideUp();
@@ -77,6 +71,7 @@ creation.js.init = function () {
 };
 // 保存
 creation.js.save = function(todo){
+
     var param = $("#main_form").validate();
 
     if(param){
@@ -163,7 +158,9 @@ creation.js.commit = function () {
 
 };
 // 选择Task
-creation.js.chooseTask = function () {
+creation.js.chooseTask = function (obj) {
+    $(obj).find("input").attr("checked",true);
+    console.info('task')
     $("#monitor").removeClass().addClass("mb_15 btn-primary");
     $("#link_info_close").click();
     $("#bug_level_div").hide();
@@ -172,7 +169,9 @@ creation.js.chooseTask = function () {
 };
 
 // 选择bug
-creation.js.chooseBug = function () {
+creation.js.chooseBug = function (obj) {
+    $(obj).find("input").attr("checked",true);
+    console.info('bug')
     $("#monitor").removeClass().addClass("mb_15 btn-warning");
     $("#link_info_close").click();
     $("#bug_level_div").show();
@@ -231,4 +230,13 @@ creation.js.getLinkInfo = function () {
         }
     });
 
+};
+
+creation.js.test = function () {
+    $("#131").attr("checked",true);
+    $("#248").attr("checked",true);
+    console.info($("#131").is(":radio"));
+    console.info($("#248").is(":text"));
+    var t = $("input[name=test]:checked").val();
+    console.info(t)
 };

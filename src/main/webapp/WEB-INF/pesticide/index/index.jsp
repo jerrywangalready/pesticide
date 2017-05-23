@@ -18,10 +18,10 @@
                 <ul class="custom-menu">
                     <li class="current-menu-item"><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/init')">工作台</a></li>
                     <li><a href="javascript:void(0);" onclick="index.js.menuClick('creation/init')">创建</a></li>
-                    <li id="li_task_pool"><a class="shake shake-horizontal" href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">任务池</a></li>
-                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">记录</a></li>
-                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">图表</a></li>
-                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/workbench')">设置</a></li>
+                    <li id="li_task_pool"><a class="shake shake-horizontal" href="javascript:void(0);" onclick="index.js.menuClick('issuePool/init')">任务池</a></li>
+                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('push/init')">送测</a></li>
+                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('chart/init')">图表</a></li>
+                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('settings/users')">设置</a></li>
                 </ul>
             </div>
         </div>
@@ -88,11 +88,10 @@
                 <li class="current-menu-item"><a href="javascript:void(0);" onclick="index.js.menuClick('workbench/init')">工作台</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('creation/init')">创建</a></li>
                 <li><a id="menu_task_pool" href="javascript:void(0);" onclick="index.js.menuClick('issuePool/init')">任务池</a></li>
-                <li><a href="javascript:void(0);" onclick="index.js.menuClick('demo/init')">Demo</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('push/init')">送测</a></li>
-                <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test4')">记录</a></li>
-                <li><a href="javascript:void(0);" onclick="index.js.menuClick('test/test5')">图表</a></li>
+                <li><a href="javascript:void(0);" onclick="index.js.menuClick('chart/init')">图表</a></li>
                 <li><a href="javascript:void(0);" onclick="index.js.menuClick('settings/users')">设置</a></li>
+                <%--<li><a href="javascript:void(0);" onclick="index.js.menuClick('demo/init')">Demo</a></li>--%>
             </ul>
         </nav>
         <!-- END Main Navigation -->

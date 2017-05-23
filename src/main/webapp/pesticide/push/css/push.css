@@ -1,7 +1,7 @@
 .grid-item {
     border: 1px solid #ccc;
     border-left: 5px solid;
-    height: 50px;
+    height: 37px;
     margin-bottom: 4px;
     padding: 7px;
     border-radius: 4px;
@@ -17,13 +17,14 @@
 .grid-item.bug {
     border-left-color: #f0ad4e;
 }
+.grid-item input{
+    margin-right:5px;
+}
+.grid-item.bg-grey{
+    background: #EFEFEF;
+    color: #555555;
+}
 
-.left{
-    float: left;
-}
-.right{
-    float: right;
-}
 .code {
     width: 62px;
 }

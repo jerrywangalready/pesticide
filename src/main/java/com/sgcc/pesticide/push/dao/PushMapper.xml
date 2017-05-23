@@ -17,7 +17,45 @@
           V.CODE,
           V.TITLE,
           V.ISSUE_TYPE
-        FROM T_PUSH P LEFT JOIN V_ISSUE V ON P.BUSINESS_ID = V.UUID
+        FROM T_PUSH P
+        LEFT JOIN V_ISSUE V ON P.BUSINESS_ID = V.UUID
         WHERE P.MODEL_CODE=#{modelCode}
+        AND P.PUSH_STATE = '0'
     </select>
+    <update id="updateTaskState">
+        UPDATE t_task t
+        SET t.state = '4'
+        WHERE t.uuid IN (SELECT tp.business_id
+                          FROM t_push tp
+                          WHERE tp.model_code IN
+        <foreach collection="l" index="index" item="item" open="(" separator="," close=")">
+         	       #{item}
+        </foreach>
+                          AND tp.push_state = '0'
+                          AND tp.issue_type = 'T')
+    </update>
+    <update id="updateBugState">
+        UPDATE t_bug t
+        SET t.state = '4'
+        WHERE t.uuid IN (SELECT tp.business_id
+                          FROM t_push tp
+                          WHERE tp.model_code IN
+        <foreach collection="l" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+                          AND tp.push_state = '0'
+                          AND tp.issue_type = 'B')
+    </update>
+    <update id="updatePushInfo">
+        UPDATE t_push tp
+        SET tp.push_state = '1',
+          tp.push_time = sysdate(),
+          tp.push_user = #{operator},
+          tp.push_version = date_format(sysdate(),'%Y%m%d%H%i%S')
+        WHERE tp.model_code IN
+        <foreach collection="l" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+         AND tp.push_state = '0'
+    </update>
 </mapper>

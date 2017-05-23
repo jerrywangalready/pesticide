@@ -25,4 +25,15 @@ public interface PushDao {
      * @return
      */
     List<Map<String,String>> getPushDetail(String modelCode);
+
+    void updateTaskState(Map<String, Object> param);
+    void updateBugState(Map<String, Object> param);
+
+    /**
+     * @Description 修改推送表信息
+     * @author JerryWang
+     * @date 2017/5/14 15:58
+     * @param param
+     */
+    void updatePushInfo(Map<String, Object> param);
 }

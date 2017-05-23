@@ -75,4 +75,33 @@ public interface WorkbenchService {
      * @return
      */
     List<Map<String, String>> getRecord(String businessId);
+
+    /**
+     * @Description 完成
+     * @author JerryWang
+     * @date 2017/5/23 22:50
+     * @param businessId
+     * @param issueType
+     * @return
+     */
+    String finish(String businessId, String issueType);
+
+    /**
+     * @Description 测试不通过
+     * @author JerryWang
+     * @date 2017/5/23 23:16
+     * @param param
+     * @return
+     */
+    String back(Map<String, String> param);
+
+    /**
+     * @Description 终止
+     * @author JerryWang
+     * @date 2017/5/23 23:26
+     * @param businessId
+     * @param issueType
+     * @return
+     */
+    String terminate(String businessId, String issueType);
 }
