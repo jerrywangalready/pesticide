@@ -9,6 +9,7 @@ import com.sgcc.pesticide.workbench.dao.WorkbenchDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,12 +32,13 @@ public class WorkbenchServiceImpl implements WorkbenchService {
      * @return
      */
     public Query getIssueList(Map<String, String> param) {
-        PageHelper.startPage(Integer.parseInt(param.get("pageNum")),10);
+
+        PageHelper.startPage(Integer.parseInt(param.get("pageNum")),Integer.parseInt(param.get("pageSize")));
         List<Map<String, String>> list = workbenchDao.getIssueList(param);
         Query query = new Query();
         query.setList(list);
         query.setPageNum(Integer.parseInt(param.get("pageNum")));
-        query.setPageSize(10);
+        query.setPageSize(Integer.parseInt(param.get("pageSize")));
         query.setTotal(((Page)list).getTotal());
         return query;
     }
@@ -80,17 +82,21 @@ public class WorkbenchServiceImpl implements WorkbenchService {
     public String push(Map<String, String> param){
 
         try {
-            param.put("uuid", CommUtil.getUUID());
             param.put("create_user",CommUtil.getLoginInfo().getLoginUser());
 //            param.put("state","2");// 待发布
-            // 插入送测信息到送测表中
-            workbenchDao.insertPushInfo(param);
 
             // 修改任务状态
             if("T".equals(param.get("issueType"))){
                 workbenchDao.updateTask(param);
             }else{
                 workbenchDao.updateBug(param);
+            }
+            // 插入送测信息到送测表中
+            String[] modelCode = param.get("modelCodes").split(",");
+            for(int i=0;i<modelCode.length;i++){
+                param.put("uuid", CommUtil.getUUID());
+                param.put("model_code", modelCode[i]);
+                workbenchDao.insertPushInfo(param);
             }
             // 保存操作记录
             commService.insertIssueRecord(param.get("businessId"),"送测","");
@@ -152,6 +158,78 @@ public class WorkbenchServiceImpl implements WorkbenchService {
      */
     public List<Map<String, String>> getRecord(String businessId) {
         return commService.getIssueRecord(businessId);
+    }
+
+    /**
+     * @param businessId
+     * @param issueType
+     * @return
+     * @Description 完成
+     * @author JerryWang
+     * @date 2017/5/23 22:49
+     */
+    public String finish(String businessId, String issueType) {
+        try {
+            Map<String, String> param = new HashMap<>();
+            param.put("businessId", businessId);
+            param.put("state", "5");
+            if ("T".equals(issueType)) {
+                workbenchDao.updateTask(param);
+            } else if ("B".equals(issueType)) {
+                workbenchDao.updateBug(param);
+            }
+            commService.insertIssueRecord(param.get("businessId"),"完成","");
+            return "true";
+        } catch (Exception e) {
+            return "false";
+        }
+    }
+
+    /**
+     * @param param
+     * @return
+     * @Description 测试不通过
+     * @author JerryWang
+     * @date 2017/5/23 23:16
+     */
+    public String back(Map<String, String> param) {
+        try {
+            param.put("state", "1");
+            if ("T".equals(param.get("issueType"))) {
+                workbenchDao.updateTask(param);
+            } else if ("B".equals(param.get("issueType"))) {
+                workbenchDao.updateBug(param);
+            }
+            commService.insertIssueRecord(param.get("businessId"),"测试不通过",param.get("remark"));
+            return "true";
+        } catch (Exception e) {
+            return "false";
+        }
+    }
+
+    /**
+     * @param businessId
+     * @param issueType
+     * @return
+     * @Description 终止
+     * @author JerryWang
+     * @date 2017/5/23 23:26
+     */
+    public String terminate(String businessId, String issueType) {
+        try {
+            Map<String, String> param = new HashMap<>();
+            param.put("businessId", businessId);
+            param.put("state", "9");
+            if ("T".equals(issueType)) {
+                workbenchDao.updateTask(param);
+            } else if ("B".equals(issueType)) {
+                workbenchDao.updateBug(param);
+            }
+            commService.insertIssueRecord(param.get("businessId"),"终止","");
+            return "true";
+        } catch (Exception e) {
+            return "false";
+        }
     }
 
 

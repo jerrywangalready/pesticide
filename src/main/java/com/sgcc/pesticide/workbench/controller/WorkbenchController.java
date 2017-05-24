@@ -145,4 +145,23 @@ public class WorkbenchController {
         return workbenchService.getRecord(businessId);
     }
 
+    @RequestMapping("/finish")
+    public @ResponseBody String finish(String businessId, String issueType){
+        return workbenchService.finish(businessId, issueType);
+    }
+
+    @RequestMapping("/backInit")
+    public String backInit(){
+        return "workbench/workbenchBackInit";
+    }
+
+    @RequestMapping("/back")
+    public @ResponseBody String back(@RequestBody Map<String, String> param){
+        return workbenchService.back(param);
+    }
+
+    @RequestMapping("/terminate")
+    public @ResponseBody String terminate(String businessId, String issueType){
+        return workbenchService.terminate(businessId, issueType);
+    }
 }

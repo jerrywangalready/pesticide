@@ -2,7 +2,12 @@
     height: 67px;
     width:auto;
 }
-
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
 #content-container{
     min-height: 556px;
     text-align: center;
@@ -49,14 +54,23 @@
     margin: 0 auto;
 }
 .page-bar ul{
-    float: right;
     margin-top:0px;
 }
+/*.page-bar :nth-child(1){*/
+    /*float: left;*/
+/*}*/
+/*.page-bar :nth-child(2){*/
+    /*float: right;*/
+/*}*/
 .page-bar li{
     cursor: pointer;
 }
 .page-bar ul > li + li{
     margin-left:0;
+}
+.page-bar-total {
+    float: left;
+    margin: 11px;
 }
 /*ck编辑器圆角效果*/
 .cke_chrome{
@@ -97,4 +111,14 @@
 
 .select_empty option {
     color: #000;
+}
+
+.bookmark{
+    float: left;
+    margin: -10px 0 0 -5px;
+    width:10px;
+    height:40px;
+}
+.bookmark span{
+    color: #d9534f;
 }

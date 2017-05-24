@@ -22,27 +22,35 @@
 </div>
 
 <script id="grid_template" type="text/html">
-        {{each list as value i}}
-        <div class="grid-item {{if value.ISSUE_TYPE == 'T'}}task{{/if}}{{if value.ISSUE_TYPE == 'B'}}bug{{/if}}"
-             onclick="workbenchList.js.detail('{{value.UUID}}','{{value.ISSUE_TYPE}}')">
-            <div class="left">
-                <div class="left code_title">
-                    <div class="left code">
-                        <span>{{value.CODE}}</span>
-                    </div>
-                    <div class="left title">
-                        <span>{{value.TITLE}}</span>
-                    </div>
+    {{if list.length == 0}}
+    <div><span>未查询到任何数据！</span></div>
+    {{/if}}
+    {{each list as value i}}
+    <div class="grid-item {{if value.ISSUE_TYPE == 'T'}}task{{/if}}{{if value.ISSUE_TYPE == 'B'}}bug{{/if}}"
+         onclick="workbenchList.js.detail('{{value.UUID}}','{{value.ISSUE_TYPE}}')">
+        <%--<div class="bookmark">--%>
+            <%--<span class="left glyphicon glyphicon-bookmark {{if value.STATE != '4'}}hide{{/if}}"></span>--%>
+        <%--</div>--%>
+        <div class="left item-left">
+            <div class="left code_title">
+                <div class="left code">
+                    <span>{{value.CODE}}</span>
                 </div>
-                <div class="left">
-                    <span class="gray">{{value.VERSION_CODE}}</span>
+                <div class="left title">
+                    <span>{{value.TITLE}}</span>
                 </div>
             </div>
-            <div class="right">
-                <div class="priority">
-                    <span class="glyphicon glyphicon-flag l{{value.PRIORITY}}"></span>
-                </div>
+            <div class="left brief_info">
+                <span class="gray">{{if value.STATE == '1'}}{{value.CREATE_USER}}{{else}}{{value.PRINCIPAL}}{{/if}}</span>
+                <span class="gray">{{value.UPDATE_TIME}}</span>
+                <span class="gray">{{value.VERSION_CODE}}</span>
             </div>
         </div>
-        {{/each}}
+        <div class="right">
+            <div class="priority">
+                <span class="glyphicon glyphicon-flag l{{value.PRIORITY}}"></span>
+            </div>
+        </div>
+    </div>
+    {{/each}}
 </script>

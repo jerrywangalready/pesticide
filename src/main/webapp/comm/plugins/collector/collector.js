@@ -6,6 +6,7 @@ $.fn.extend({
 
         var hash = location.hash;
         var pn = getParameter(hash,"pn","1");
+        var ps = getParameter(hash,"ps","10");
 
 
         var obj = {};
@@ -24,6 +25,7 @@ $.fn.extend({
         });
 
         obj.pageNum = pn;
+        obj.pageSize = ps;
         return obj;
     }
 });

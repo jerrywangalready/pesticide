@@ -44,7 +44,7 @@
     </nav>
 </div>
 
-<script id="grid_template" type="text/html">
+<script id="issuePool_template" type="text/html">
     {{if list.length == 0}}
     <div><span>未查询到任何数据！</span></div>
     {{/if}}
@@ -60,10 +60,11 @@
                         <span>{{value.TITLE}}</span>
                     </div>
                 </div>
-                <div class="left">
+                <div class="left brief_info">
+                    <span class="gray">{{value.NICKNAME}}</span>
+                    <span class="gray">{{value.CREATE_TIME}}</span>
                     <span class="gray">{{value.VERSION_CODE}}</span>
                     <span class="gray">{{value.PRINCIPAL}}</span>
-                    <span class="gray">{{value.CREATE_USER}}</span>
                 </div>
             </div>
             <div class="right">

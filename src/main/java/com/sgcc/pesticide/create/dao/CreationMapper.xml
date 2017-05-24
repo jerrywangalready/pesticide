@@ -26,6 +26,7 @@
         is_read,
         is_enable,
         create_time,
+        update_time,
         create_user
         )
         VALUES
@@ -48,6 +49,7 @@
         '0',
         '1',
         sysdate(),
+        sysdate(),
         #{create_user,jdbcType=VARCHAR}
         );
     </insert>
@@ -68,6 +70,7 @@
         <if test="deadline != null or deadline != '' ">
         deadline     = #{deadline},
         </if>
+        update_time  = sysdate(),
         state        = #{state,jdbcType=VARCHAR},
 
         WHERE uuid = #{uuid}
@@ -100,6 +103,7 @@
           is_read,
           is_enable,
           create_time,
+          udpate_time,
           create_user
         )
         VALUES (
@@ -122,6 +126,7 @@
           '0',
           '1',
           sysdate(),
+          sysdate(),
           #{create_user, jdbcType=VARCHAR}
         );
     </insert>
@@ -143,6 +148,7 @@
           <if test="deadline != null or deadline != '' ">
           deadline = #{deadline},
           </if>
+          update_time  = sysdate(),
           state = #{state, jdbcType=VARCHAR}
         WHERE uuid = #{uuid};
     </update>

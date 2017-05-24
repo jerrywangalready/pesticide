@@ -18,12 +18,6 @@
     border-left-color: #f0ad4e;
 }
 
-.left{
-    float: left;
-}
-.right{
-    float: right;
-}
 .code {
     width: 62px;
 }
@@ -88,4 +82,8 @@
 }
 .query-form > div{
     margin: 4px 0;
+}
+
+.brief_info span{
+    margin-right:30px;
 }

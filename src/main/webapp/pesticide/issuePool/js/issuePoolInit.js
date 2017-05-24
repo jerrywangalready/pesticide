@@ -26,13 +26,16 @@ issuePool.js.query = function () {
     var param = $("#query_box").collector();
     param.principal = comm.js.username;
     param.object_code = getParameter(location.hash,"obj","");
+    if(getParameter(location.hash,"ps","") == ""){
+        param.pageSize = "50";
+    }
     $.ajax({
         type:'POST',
         url:path+'/issuePool/getIssueList.do',
         contentType:'application/json',
         data:JSON.stringify(param),
         success:function (data) {
-            var html = template('grid_template',{'list':data.list});
+            var html = template('issuePool_template',{'list':data.list});
             $("#grid").html(html);
             // 初始化页码按钮
             $("#page-bar").page(data);

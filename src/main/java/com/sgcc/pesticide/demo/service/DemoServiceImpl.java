@@ -19,12 +19,12 @@ public class DemoServiceImpl implements DemoService {
 	DemoDao demoDao;
 	public Query queryDemoList(Map<String, String> param){
 
-		PageHelper.startPage(Integer.parseInt(param.get("pageNum")),10);
+		PageHelper.startPage(Integer.parseInt(param.get("pageNum")),Integer.parseInt(param.get("pageSize")));
 		List<Demo> list = demoDao.queryDemoList(param);
 		Query query = new Query();
 		query.setList(list);
 		query.setPageNum(Integer.parseInt(param.get("pageNum")));
-		query.setPageSize(10);
+		query.setPageSize(Integer.parseInt(param.get("pageSize")));
 		query.setTotal(((Page)list).getTotal());
 
 		return query;

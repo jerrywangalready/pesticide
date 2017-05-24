@@ -29,15 +29,14 @@ public class IssuePoolServiceImpl implements IssuePoolService {
      * @return
      */
     public Query getIssueList(Map<String, String> param) {
-        param.put("pageNum","1");
-        PageHelper.startPage(Integer.parseInt(param.get("pageNum")),10);
+        int pageNum = Integer.parseInt(param.get("pageNum"));
+        PageHelper.startPage(pageNum,Integer.parseInt(param.get("pageSize")));
         List<Map<String, String>> list = issuePoolDao.getIssueList(param);
         Query query = new Query();
         query.setList(list);
-        query.setPageNum(Integer.parseInt(param.get("pageNum")));
-        query.setPageSize(10);
+        query.setPageNum(pageNum);
+        query.setPageSize(Integer.parseInt(param.get("pageSize")));
         query.setTotal(((Page)list).getTotal());
-
         return query;
     }
 

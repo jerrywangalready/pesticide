@@ -18,12 +18,6 @@
     border-left-color: #f0ad4e;
 }
 
-.left{
-    float: left;
-}
-.right{
-    float: right;
-}
 .code {
     width: 62px;
 }
@@ -114,4 +108,11 @@ ul li{
 .article-post p{
     margin-bottom:0px;
     outline:none;
+}
+
+.brief_info span{
+    margin-right:30px;
+}
+.item-left{
+    margin-left:7px;
 }

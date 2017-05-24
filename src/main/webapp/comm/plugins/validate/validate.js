@@ -51,7 +51,7 @@ $.fn.extend({
             form.find('input,select,textarea').each(function () {
                 var name = $(this).attr("name");
                 var value = $(this).val();
-                if($(this).attr("type") == "radio" && $(this).attr("checked") != "checked"){
+                if($(this).is(":radio") && !$(this).is(":checked")){
                     return true;
                 }
                 if($(this).is(':visible') == true) {

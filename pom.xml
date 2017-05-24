@@ -74,7 +74,7 @@
         <!--插件版本变量 end-->
 
         <!--其他变量 start-->
-        <war-name.version>ssm</war-name.version>
+        <war-name.version>pesticide</war-name.version>
         <jdk.version>1.7</jdk.version>
 
         <tomcat-port.version>8080</tomcat-port.version>
