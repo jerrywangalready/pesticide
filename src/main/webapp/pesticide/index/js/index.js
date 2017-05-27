@@ -4,6 +4,9 @@
  */
 jQuery.namespace("index");
 $(function () {
+    if("admin" == comm.js.username){
+        $("li[name=settings_li]").show();
+    }
     // index页面头脚信息初始化
     index.js.init();
     // 初始化body区
