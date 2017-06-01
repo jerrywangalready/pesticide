@@ -49,7 +49,7 @@ $.fn.extend({
             });
             // 初始化每页显示条数
             _this.find("ul:eq(0) a").click(function () {
-                comm.js.hashAppand("ps",$(this).text());
+                comm.js.hashAppand({"ps":$(this).text(),"pn":1});
             }).each(function () {
                 if(data.pageSize == $(this).text()) {
                     $(this).parent().addClass("active");
