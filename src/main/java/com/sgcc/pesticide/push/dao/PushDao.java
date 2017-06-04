@@ -45,4 +45,13 @@ public interface PushDao {
      * @return
      */
     List<Map<String,String>> getTaskUuid(Map<String, Object> param);
+
+    /**
+     * @Description 查询权限
+     * @author JerryWang
+     * @date 2017/6/4 11:19
+     * @param username
+     * @return
+     */
+    String checkRole(String username);
 }

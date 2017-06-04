@@ -4,6 +4,9 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sgcc.comm.model.Query;
 import com.sgcc.comm.util.CommUtil;
+import com.sgcc.comm.util.service.BaseServiceImpl;
+import com.sgcc.comm.util.service.CommService;
+import com.sgcc.comm.util.service.CommServiceImpl;
 import com.sgcc.pesticide.push.dao.PushDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +18,11 @@ import java.util.*;
  */
 
 @Service
-public class PushServiceImpl implements PushService {
+public class PushServiceImpl extends BaseServiceImpl implements PushService {
     @Autowired
     PushDao pushDao;
+    @Autowired
+    CommService commService;
 
     /**
      * @param param
@@ -56,7 +61,7 @@ public class PushServiceImpl implements PushService {
             pushDao.updateTaskState(param);
             pushDao.updateBugState(param);
             // 发布
-            param.put("operator", CommUtil.getLoginInfo().getLoginUser());
+            param.put("operator", commService.getLoginInfo().getLoginUser());
             pushDao.updatePushInfo(param);
 
         } catch (Exception e) {
@@ -74,6 +79,16 @@ public class PushServiceImpl implements PushService {
      */
     public List<Map<String, String>> getTaskUuid(Map<String, Object> param) {
         return pushDao.getTaskUuid(param);
+    }
+
+    /**
+     * @return
+     * @Description 查询是否有操作发布按钮的权限
+     * @author JerryWang
+     * @date 2017/6/4 11:17
+     */
+    public String checkRole(String username) {
+        return pushDao.checkRole(username);
     }
 
 

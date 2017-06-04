@@ -23,7 +23,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/login")
-public class LoginController {
+public class LoginController  {
 
     @Autowired
     LoginService loginService;
@@ -46,11 +46,12 @@ public class LoginController {
             session.setAttribute("userToken",userToken);
             session.setMaxInactiveInterval(Integer.parseInt(CommUtil.getResourceProperty("session-time").toString()));
 
-            CommUtil.getLoginInfo().setLoginUser(userToken.getUsername());
-            CommUtil.getLoginInfo().setLoginNickname(userToken.getNickname());
+//            CommUtil.getLoginInfo().setLoginUser(userToken.getUsername());
+//            CommUtil.getLoginInfo().setLoginNickname(userToken.getNickname());
 
             return "true";
         }
 
     }
+
 }

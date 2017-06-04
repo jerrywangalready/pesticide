@@ -1,6 +1,7 @@
 package com.sgcc.pesticide.push.service;
 
 import com.sgcc.comm.model.Query;
+import com.sgcc.comm.util.service.BaseService;
 
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.Map;
 /**
  * Created by DCH on 2017/5/2.
  */
-public interface PushService {
+public interface PushService extends BaseService{
 
     /**
      * @Description 查询推送列表
@@ -45,4 +46,12 @@ public interface PushService {
      * @return
      */
     List<Map<String,String>> getTaskUuid(Map<String, Object> param);
+
+    /**
+     * @Description 查询是否有操作发布按钮的权限
+     * @author JerryWang
+     * @date 2017/6/4 11:17
+     * @return
+     */
+    String checkRole(String username);
 }

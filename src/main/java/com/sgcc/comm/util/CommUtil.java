@@ -111,40 +111,6 @@ public class CommUtil {
         return bundle.getString(name);
     }
 
-    /**
-     * @Description 获取登录信息
-     * @author JerryWang
-     * @date 2017/4/29 15:11
-     * @return
-     */
-    public static LoginInfo getLoginInfo(){
-        LoginInfo loginInfo = new LoginInfo();
-        return loginInfo;
-    }
-
-    public static class LoginInfo{
-
-        private static String loginUser;
-
-        private static String loginNickname;
-
-        public static String getLoginUser() {
-            return loginUser;
-        }
-
-        public static void setLoginUser(String loginUser) {
-            LoginInfo.loginUser = loginUser;
-        }
-
-        public static String getLoginNickname() {
-            return loginNickname;
-        }
-
-        public static void setLoginNickname(String loginNickname) {
-            LoginInfo.loginNickname = loginNickname;
-        }
-    }
-
     public static String saveImage(String des){
         int end;
         StringBuffer desTemp = new StringBuffer();

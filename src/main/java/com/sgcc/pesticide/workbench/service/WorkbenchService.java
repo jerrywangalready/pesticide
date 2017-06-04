@@ -1,6 +1,7 @@
 package com.sgcc.pesticide.workbench.service;
 
 import com.sgcc.comm.model.Query;
+import com.sgcc.comm.util.service.BaseService;
 
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.Map;
 /**
  * @author jerrywang
  */
-public interface WorkbenchService {
+public interface WorkbenchService extends BaseService{
 
     /**
      * @Description 获取问题列表

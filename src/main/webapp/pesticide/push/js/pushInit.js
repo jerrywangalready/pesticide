@@ -27,6 +27,15 @@ push.js.query = function () {
             $("#grid").html(html);
         }
     });
+
+    console.info(888)
+    // 判断是否有权限发布
+    $.post(path + "/push/checkRole.do",{},function (data) {
+        console.info(data)
+        if(data != "0"){
+            $("#publish_button").show();
+        }
+    });
 };
 
 push.js.detail = function (obj, model_code) {
@@ -86,15 +95,5 @@ push.js.publish = function () {
 
     });
 
-
-    // 传送给后台进行存储
-    // $.post(path + "/push/publish.do",{modelCodes:modelCodes},function (data) {
-    //     if("true" == data){
-    //         layer.alert("发布成功");
-    //         push.js.query();
-    //     }else {
-    //         layer.alert("发布失败");
-    //     }
-    // });
 };
 

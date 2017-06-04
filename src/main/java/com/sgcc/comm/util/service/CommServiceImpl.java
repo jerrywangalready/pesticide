@@ -1,10 +1,16 @@
 package com.sgcc.comm.util.service;
 
+import com.sgcc.comm.model.LoginInfo;
 import com.sgcc.comm.util.CommUtil;
 import com.sgcc.comm.util.dao.CommDao;
+import com.sgcc.pesticide.login.model.UserToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +20,7 @@ import java.util.Map;
  * @create 2017/5/10.
  */
 @Service
-public class CommServiceImpl implements CommService {
+public class CommServiceImpl extends BaseServiceImpl implements CommService{
     @Autowired
     CommDao commDao;
 
@@ -32,7 +38,7 @@ public class CommServiceImpl implements CommService {
         param.put("operateDetail", operateDetail);
         param.put("remark", remark);
         param.put("uuid", CommUtil.getUUID());
-        param.put("operator", CommUtil.getLoginInfo().getLoginUser());
+        param.put("operator", getLoginInfo().getLoginUser());
         commDao.insertIssueRecord(param);
     }
 
@@ -46,4 +52,15 @@ public class CommServiceImpl implements CommService {
     public List<Map<String, String>> getIssueRecord(String businessId) {
         return commDao.getIssueRecord(businessId);
     }
+
+    public LoginInfo getLoginInfo(){
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession context = request.getSession();
+        UserToken userToken = (UserToken)context.getAttribute("userToken");
+        LoginInfo loginInfo = new LoginInfo();
+        loginInfo.setLoginUser(userToken.getUsername());
+        loginInfo.setLoginNickname(userToken.getNickname());
+        return loginInfo;
+    }
+
 }

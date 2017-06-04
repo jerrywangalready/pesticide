@@ -15,7 +15,7 @@
 <div >
     <div style="height:42px;">
         <h3 class="left" style="margin-top:5px;">送测列表</h3>
-        <button type="button" class="btn btn-primary right" onclick="push.js.publish()">发布</button>
+        <button type="button" id="publish_button" style="display: none;" class="btn btn-primary right" onclick="push.js.publish()">发布</button>
     </div>
     <div id="grid">
     </div>

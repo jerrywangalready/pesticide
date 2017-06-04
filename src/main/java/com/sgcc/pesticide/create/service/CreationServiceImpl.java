@@ -2,7 +2,9 @@ package com.sgcc.pesticide.create.service;
 
 import com.sgcc.comm.util.CommUtil;
 import com.sgcc.comm.util.dao.CommDao;
+import com.sgcc.comm.util.service.BaseServiceImpl;
 import com.sgcc.comm.util.service.CommService;
+import com.sgcc.comm.util.service.CommServiceImpl;
 import com.sgcc.pesticide.create.dao.CreationDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,7 @@ import java.util.Map;
  * @create 2017/1/27.
  */
 @Service
-public class CreationServiceImpl implements CreationService {
+public class CreationServiceImpl extends BaseServiceImpl implements CreationService{
     @Autowired
     CreationDao creationDao;
 
@@ -36,7 +38,7 @@ public class CreationServiceImpl implements CreationService {
             param.put("uuid",CommUtil.getUUID());
             param.put("task_code",getNewTaskCode());
             creationDao.insertTask(param);
-            param.put("operator", CommUtil.getLoginInfo().getLoginUser());
+            param.put("operator", commService.getLoginInfo().getLoginUser());
             commService.insertIssueRecord(param.get("uuid"),"创建","");
         }else{
             creationDao.updateTask(param);
@@ -66,7 +68,7 @@ public class CreationServiceImpl implements CreationService {
             param.put("uuid",CommUtil.getUUID());
             param.put("bug_code",getNewBugCode());
             creationDao.insertBug(param);
-            param.put("operator", CommUtil.getLoginInfo().getLoginUser());
+            param.put("operator", commService.getLoginInfo().getLoginUser());
             commService.insertIssueRecord(param.get("uuid"),"创建","");
         }else{
             creationDao.updateBug(param);

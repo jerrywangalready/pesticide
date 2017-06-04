@@ -1,12 +1,14 @@
 package com.sgcc.comm.util.service;
 
+import com.sgcc.comm.model.LoginInfo;
+
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author jerrywang
  */
-public interface CommService {
+public interface CommService extends BaseService{
 
     /**
      * @Description 插入操作日志
@@ -26,4 +28,6 @@ public interface CommService {
      * @return
      */
     List<Map<String, String>> getIssueRecord(String businessId);
+
+    LoginInfo getLoginInfo();
 }

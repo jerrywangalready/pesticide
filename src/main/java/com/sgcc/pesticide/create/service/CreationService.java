@@ -1,12 +1,15 @@
 package com.sgcc.pesticide.create.service;
 
+import com.sgcc.comm.util.service.BaseService;
+import com.sgcc.comm.util.service.CommService;
+
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author jerrywang
  */
-public interface CreationService {
+public interface CreationService extends BaseService {
 
     /**
      * @Description 插入任务

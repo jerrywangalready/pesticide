@@ -74,4 +74,8 @@
               AND V.OBJECT_CODE = #{object_code}
               AND P.PUSH_STATE = '0'
     </select>
+
+    <select id="checkRole" resultType="java.lang.String">
+        SELECT count(1) FROM p_role_user WHERE role_id = 'publisher' AND username = #{username};
+    </select>
 </mapper>

@@ -4,7 +4,9 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sgcc.comm.model.Query;
 import com.sgcc.comm.util.CommUtil;
+import com.sgcc.comm.util.service.BaseServiceImpl;
 import com.sgcc.comm.util.service.CommService;
+import com.sgcc.comm.util.service.CommServiceImpl;
 import com.sgcc.pesticide.workbench.dao.WorkbenchDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +20,7 @@ import java.util.Map;
  * @create 2017/1/27.
  */
 @Service
-public class WorkbenchServiceImpl implements WorkbenchService {
+public class WorkbenchServiceImpl extends BaseServiceImpl implements WorkbenchService {
     @Autowired
     WorkbenchDao workbenchDao;
     @Autowired
@@ -82,7 +84,7 @@ public class WorkbenchServiceImpl implements WorkbenchService {
     public String push(Map<String, String> param){
 
         try {
-            param.put("create_user",CommUtil.getLoginInfo().getLoginUser());
+            param.put("create_user",commService.getLoginInfo().getLoginUser());
 //            param.put("state","2");// 待发布
 
             // 修改任务状态
