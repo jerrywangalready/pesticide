@@ -145,5 +145,27 @@ public class CommUtil {
         }
     }
 
+    public static String saveImage(String des){
+        int end;
+        StringBuffer desTemp = new StringBuffer();
+        while (des.length() > 0){
+            end = des.indexOf("<img");
+            if(end >= 0){
+                // 将img前的代码保存
+                desTemp.append(des.substring(0,end));
+                // 处理img
+                des = des.substring(end,des.length());
 
+                end = des.indexOf("/>");
+                String imgData = des.substring(0,end).replace("<img src=\"data:image/png;base64,","").replace("\" />","");
+                desTemp.append("<img src='"+ CommUtil.getInstance().saveImage(imgData,CommUtil.getResourceProperty("upload-path"))+"' ");
+                // 返回新img
+                des = des.substring(end,des.length());
+            }else {
+                desTemp.append(des);
+                break;
+            }
+        }
+        return desTemp.toString();
+    }
 }

@@ -45,13 +45,7 @@ issuePool.js.query = function () {
 
 // 详细信息
 issuePool.js.detail = function (uuid, type) {
-    $.ajax({
-        type:'POST',
-        url:path+'/issuePool/getIssueList.do',
-        contentType:'application/json',
-        data:JSON.stringify(param),
-        success:function (data) {
-
-        }
-    });
+    var hash = location.hash;
+    var obj = getParameter(hash, "obj", "");
+    setHash("on=issuePool/detail&obj="+obj+"&uuid="+uuid+"&type="+type);
 };

@@ -34,32 +34,10 @@ public class CreationController {
     @ResponseBody
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     public String save(@RequestBody Map<String, String> param){
+        // 将图片数据转存到服务器磁盘上
+        String description = CommUtil.saveImage(param.get("description"));
 
-        String des = param.get("description");
-        StringBuffer desTemp = new StringBuffer();
-
-        int end;
-
-        while (des.length() > 0){
-            end = des.indexOf("<img");
-            if(end >= 0){
-                // 将img前的代码保存
-                desTemp.append(des.substring(0,end));
-                // 处理img
-                des = des.substring(end,des.length());
-
-                end = des.indexOf("/>");
-                String imgData = des.substring(0,end).replace("<img src=\"data:image/png;base64,","").replace("\" />","");
-                desTemp.append("<img src='"+CommUtil.getInstance().saveImage(imgData,CommUtil.getResourceProperty("upload-path"))+"' ");
-                // 返回新img
-                des = des.substring(end,des.length());
-            }else {
-                desTemp.append(des);
-                break;
-            }
-        }
-
-        param.put("description",desTemp.toString());
+        param.put("description",description);
 
         if("commit".equals(param.get("todo"))){
             param.put("state","1");

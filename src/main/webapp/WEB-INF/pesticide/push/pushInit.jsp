@@ -19,8 +19,6 @@
     </div>
     <div id="grid">
     </div>
-    <nav id="page-bar">
-    </nav>
 </div>
 <script id="model_grid_template" type="text/html">
     {{if list.length == 0}}

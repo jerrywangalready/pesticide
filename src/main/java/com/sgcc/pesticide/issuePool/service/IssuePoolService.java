@@ -29,4 +29,24 @@ public interface IssuePoolService {
      */
     Map<String, String> getDetail(String uuid, String type);
 
+
+    /**
+     * @Description save a task info
+     * @author JerryWang
+     * @date 2017/1/27 17:44
+     * @param param
+     * @return
+     */
+    public String saveTask(Map<String, String> param);
+
+
+    /**
+     * @Description save a task info
+     * @author JerryWang
+     * @date 2017/1/27 17:44
+     * @param param
+     * @return
+     */
+    public String saveBug(Map<String, String> param);
+
 }

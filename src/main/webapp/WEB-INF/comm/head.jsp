@@ -35,7 +35,7 @@
 <script type="text/javascript" src="<%=path%>/comm/plugins/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
-<script type="text/javascript" src="<%=path%>/comm/plugins/layer/layer.js"></script>
+<script type="text/javascript" src="<%=path%>/comm/plugins/layer/layer.min.js"></script>
 
 <!-- 自封装插件 -->
 <script type="text/javascript" src="<%=path%>/comm/plugins/enterListener/enterListener.js"></script>

@@ -105,4 +105,47 @@
         WHERE t.uuid = #{uuid}
     </select>
 
+    <!--update task info-->
+    <update id="updateTask" parameterType="java.util.Map">
+        UPDATE t_task
+        SET
+        object_code  = #{object_code,jdbcType=VARCHAR},
+        model_code   = #{model_code,jdbcType=VARCHAR},
+        title        = #{title,jdbcType=VARCHAR},
+        description  = #{description,jdbcType=VARCHAR},
+        principal    = #{principal,jdbcType=VARCHAR},
+        parent_code  = #{parent_code,jdbcType=VARCHAR},
+        version_code = #{version_code,jdbcType=VARCHAR},
+        priority     = #{priority,jdbcType=VARCHAR},
+        working_day  = #{working_day,jdbcType=VARCHAR},
+        <if test="deadline != null or deadline != '' ">
+            deadline     = #{deadline},
+        </if>
+        update_time  = sysdate(),
+        state        = #{state,jdbcType=VARCHAR},
+
+        WHERE uuid = #{uuid}
+    </update>
+
+    <!--update the bug info-->
+    <update id="updateBug" parameterType="java.util.Map">
+        UPDATE t_bug
+        SET
+        object_code = #{object_code, jdbcType=VARCHAR},
+        model_code = #{model_code, jdbcType=VARCHAR},
+        title = #{title, jdbcType=VARCHAR},
+        description = #{description, jdbcType=VARCHAR},
+        principal = #{principal, jdbcType=VARCHAR},
+        parent_code = #{parent_code, jdbcType=VARCHAR},
+        version_code = #{version_code, jdbcType=VARCHAR},
+        priority = #{priority, jdbcType=VARCHAR},
+        bug_level = #{bug_level, jdbcType=VARCHAR},
+        result = #{result, jdbcType=VARCHAR},
+        <if test="deadline != null or deadline != '' ">
+            deadline = #{deadline},
+        </if>
+        update_time  = sysdate(),
+        state = #{state, jdbcType=VARCHAR}
+        WHERE uuid = #{uuid};
+    </update>
 </mapper>

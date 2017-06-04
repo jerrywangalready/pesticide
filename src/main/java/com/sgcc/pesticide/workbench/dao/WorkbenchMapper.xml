@@ -21,8 +21,9 @@
            ON su2.username = vi.principal
         WHERE 1=1
           AND vi.object_code = #{object_code}
-          AND (vi.STATE = '1' AND vi.principal = #{principal})
-          OR (vi.STATE = '4' AND vi.create_user = #{principal})
+          AND ((vi.STATE in ('1','3') AND vi.principal = #{principal})
+          OR (vi.STATE in ('0','5','7') AND vi.create_user = #{principal})
+          OR (vi.STATE = '4' AND 1=(SELECT COUNT(*) FROM p_role_user pru WHERE pru.object_code = #{object_code} AND pru.USERNAME = #{principal} AND pru.ROLE_ID = 'tester')))
         ORDER BY vi.update_time DESC
     </select>
 
@@ -41,11 +42,11 @@
           t.version_code,
           t.priority,
           t.working_day,
-          t.deadline,
+          date_format(t.deadline, '%Y-%m-%d') deadline,
           t.state,
           t.is_read,
           t.is_enable,
-          t.create_time,
+          date_format(t.create_time, '%Y-%m-%d %T') create_time,
           t.create_user,
           u2.nickname create_user_name
         FROM t_task t
@@ -74,11 +75,11 @@
           t.priority,
           t.bug_level,
           t.result,
-          t.deadline,
+          date_format(t.deadline, '%Y-%m-%d') deadline,
           t.state,
           t.is_read,
           t.is_enable,
-          t.create_time,
+          date_format(t.create_time, '%Y-%m-%d %T') create_time,
           t.create_user,
           u2.nickname create_user_name
         FROM t_bug t

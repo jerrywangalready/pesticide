@@ -17,6 +17,7 @@ workbenchChoseModel.js.init = function () {
         $("input[value=" + workbenchChoseModel.js.param.model_code + "]").attr("checked", "checked");
         comm.js.iframeAuto();
     });
+
 };
 
 

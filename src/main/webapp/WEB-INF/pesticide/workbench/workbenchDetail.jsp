@@ -26,6 +26,21 @@
         <input id="uuid" type="hidden" value="{{uuid}}">
         <input id="model_code" type="hidden" value="{{model_code}}">
         <input id="issue_type" type="hidden" value="{{issue_type}}">
+        <input id="state" type="hidden" value="">
+        {{if state == '0'}}
+        <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
+            <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.changeState('1')">提交</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a onclick="workbenchDetail.js.update()" href="javascript:void(0);">修改</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a onclick="workbenchDetail.js.forDelete()" href="javascript:void(0);">删除</a></li>
+            </ul>
+        </div>
+        {{/if}}
         {{if state == '1'}}
         <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
             <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.pushButtonClick('2')">送测</button>
@@ -34,24 +49,50 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
-                <li><a onclick="workbenchDetail.js.pushButtonClick('3')" href="javascript:void(0);">暂缓测试</a></li>
+                <li><a onclick="workbenchDetail.js.changeState('3')" href="javascript:void(0);">挂起(不可用)</a></li>
                 <li><a onclick="workbenchDetail.js.changePrincipal()" href="javascript:void(0);">指派</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a onclick="workbenchDetail.js.reject()" href="javascript:void(0);">退回</a></li>
+                <li><a onclick="workbenchDetail.js.changeStateWithReason('7')" href="javascript:void(0);">拒绝</a></li>
             </ul>
         </div>
         {{/if}}
         {{if state == '4'}}
         <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
-            <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.finish()">完成</button>
+            <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.changeState('5')">通过</button>
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="caret"></span>
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
-                <li><a onclick="workbenchDetail.js.back()" href="javascript:void(0);">不通过</a></li>
+                <li><a onclick="workbenchDetail.js.changeStateWithReason('1')" href="javascript:void(0);">退回</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a onclick="workbenchDetail.js.terminate()" href="javascript:void(0);">终止</a></li>
+                <li><a onclick="workbenchDetail.js.changeStateWithReason('9')" href="javascript:void(0);">废弃</a></li>
+            </ul>
+        </div>
+        {{/if}}
+        {{if state == '5'}}
+        <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
+            <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.changeState('6')">结束</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a onclick="workbenchDetail.js.changeStateWithReason('9')" href="javascript:void(0);">废弃</a></li>
+            </ul>
+        </div>
+        {{/if}}
+        {{if state == '7'}}
+        <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
+            <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.changeState('1')">提交</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a onclick="workbenchDetail.js.update()" href="javascript:void(0);">修改</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a onclick="workbenchDetail.js.changeStateWithReason('9')" href="javascript:void(0);">废弃</a></li>
             </ul>
         </div>
         {{/if}}

@@ -129,27 +129,6 @@ public class WorkbenchServiceImpl implements WorkbenchService {
     }
 
     /**
-     * @Description 退回
-     * @author JerryWang
-     * @date 2017/5/4 22:53
-     * @param param
-     * @return
-     */
-    public String reject(Map<String, String> param) {
-        try {
-            if ("T".equals(param.get("issueType"))) {
-                workbenchDao.updateTask(param);
-            } else if ("B".equals(param.get("issueType"))) {
-                workbenchDao.updateBug(param);
-            }
-            commService.insertIssueRecord(param.get("businessId"),"退回",param.get("remark"));
-            return "true";
-        } catch (Exception e) {
-            return "false";
-        }
-    }
-
-    /**
      * @Description 获取操作记录
      * @author JerryWang
      * @date 2017/5/9 22:58
@@ -161,74 +140,22 @@ public class WorkbenchServiceImpl implements WorkbenchService {
     }
 
     /**
-     * @param businessId
-     * @param issueType
-     * @return
-     * @Description 完成
+     * @Description 修改状态
      * @author JerryWang
-     * @date 2017/5/23 22:49
-     */
-    public String finish(String businessId, String issueType) {
-        try {
-            Map<String, String> param = new HashMap<>();
-            param.put("businessId", businessId);
-            param.put("state", "5");
-            if ("T".equals(issueType)) {
-                workbenchDao.updateTask(param);
-            } else if ("B".equals(issueType)) {
-                workbenchDao.updateBug(param);
-            }
-            commService.insertIssueRecord(param.get("businessId"),"完成","");
-            return "true";
-        } catch (Exception e) {
-            return "false";
-        }
-    }
-
-    /**
+     * @date 2017/5/31 11:32
      * @param param
      * @return
-     * @Description 测试不通过
-     * @author JerryWang
-     * @date 2017/5/23 23:16
      */
-    public String back(Map<String, String> param) {
+    public boolean updateState(Map<String, String> param){
         try {
-            param.put("state", "1");
-            if ("T".equals(param.get("issueType"))) {
+            if("T".equals(param.get("issueType"))){
                 workbenchDao.updateTask(param);
-            } else if ("B".equals(param.get("issueType"))) {
+            }else if ("B".equals(param.get("issueType"))){
                 workbenchDao.updateBug(param);
             }
-            commService.insertIssueRecord(param.get("businessId"),"测试不通过",param.get("remark"));
-            return "true";
-        } catch (Exception e) {
-            return "false";
-        }
-    }
-
-    /**
-     * @param businessId
-     * @param issueType
-     * @return
-     * @Description 终止
-     * @author JerryWang
-     * @date 2017/5/23 23:26
-     */
-    public String terminate(String businessId, String issueType) {
-        try {
-            Map<String, String> param = new HashMap<>();
-            param.put("businessId", businessId);
-            param.put("state", "9");
-            if ("T".equals(issueType)) {
-                workbenchDao.updateTask(param);
-            } else if ("B".equals(issueType)) {
-                workbenchDao.updateBug(param);
-            }
-            commService.insertIssueRecord(param.get("businessId"),"终止","");
-            return "true";
-        } catch (Exception e) {
-            return "false";
+            return true;
+        }catch (Exception e){
+            return false;
         }
     }
 

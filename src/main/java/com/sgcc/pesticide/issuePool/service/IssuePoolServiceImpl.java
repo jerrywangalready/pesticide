@@ -3,6 +3,7 @@ package com.sgcc.pesticide.issuePool.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sgcc.comm.model.Query;
+import com.sgcc.comm.util.CommUtil;
 import com.sgcc.pesticide.issuePool.dao.IssuePoolDao;
 import com.sgcc.pesticide.workbench.dao.WorkbenchDao;
 import com.sgcc.pesticide.workbench.service.WorkbenchService;
@@ -55,5 +56,29 @@ public class IssuePoolServiceImpl implements IssuePoolService {
         }else {
             return issuePoolDao.getBugDetail(uuid);
         }
+    }
+
+    /**
+     * @Description save a task info
+     * @author JerryWang
+     * @date 2017/1/27 17:44
+     * @param param
+     * @return
+     */
+    public String saveTask(Map<String, String> param){
+        issuePoolDao.updateTask(param);
+
+        return param.get("uuid");
+    }
+
+    /**
+     * @Description save a bug info
+     * @author JerryWang
+     * @date 2017/1/27 17:45
+     * @param param
+     */
+    public String saveBug(Map<String, String> param) {
+        issuePoolDao.updateBug(param);
+        return param.get("uuid");
     }
 }

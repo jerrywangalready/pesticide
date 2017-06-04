@@ -27,7 +27,16 @@ $(function () {
             $("#top_toolbar").fadeOut();
         }
     })
+    // 主内容区大小赋值
+    var h = $(window).height();
+    $("#content-container").css({minHeight:h-182});
+    $(window).resize(function () {
+        var h = $(window).height();
+        $("#content-container").css({minHeight:h-182});
+    });
 
+    // 关闭artTemplate缓存
+    template.config('cache',false);
 });
 
 index.js = {};
@@ -46,8 +55,6 @@ index.js.load = function (on) {
     } else {
         $("#menu_bar").children().each(function (i,e) {
             var oc = $(this).find("a").attr("onclick");
-            console.info(oc)
-            console.info(on)
             if (oc.indexOf(on) > 0) {
                 $(this).addClass("current-menu-item");
                 $("#top_toolbar").find("li:eq("+i+")").addClass("current-menu-item");
@@ -55,6 +62,7 @@ index.js.load = function (on) {
             }
         });
     }
+    // $("body").remove($("script[type='text/heml']"));
     $("#content-container").load(path+"/"+on+".do");
 };
 // 菜单按钮点击事件

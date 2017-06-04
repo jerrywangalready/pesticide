@@ -24,7 +24,7 @@ public interface PushDao {
      * @param modelCode
      * @return
      */
-    List<Map<String,String>> getPushDetail(String modelCode);
+    List<Map<String,String>> getPushDetail(Map<String, String> param);
 
     void updateTaskState(Map<String, Object> param);
     void updateBugState(Map<String, Object> param);
@@ -36,4 +36,13 @@ public interface PushDao {
      * @param param
      */
     void updatePushInfo(Map<String, Object> param);
+
+    /**
+     * @Description 获取任务uuid
+     * @author JerryWang
+     * @date 2017/6/2 10:43
+     * @param modelCodes
+     * @return
+     */
+    List<Map<String,String>> getTaskUuid(Map<String, Object> param);
 }

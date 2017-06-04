@@ -103,7 +103,7 @@
           is_read,
           is_enable,
           create_time,
-          udpate_time,
+          update_time,
           create_user
         )
         VALUES (

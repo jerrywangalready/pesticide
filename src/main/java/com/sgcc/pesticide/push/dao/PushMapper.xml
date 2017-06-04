@@ -10,6 +10,7 @@
           S.MODEL_NAME
         FROM T_PUSH T LEFT JOIN S_MODEL S ON T.MODEL_CODE = S.MODEL_CODE
         WHERE T.PUSH_STATE = '0' AND T.ISENABLE = '1'
+        AND S.object_code = #{object_code}
         GROUP BY T.MODEL_CODE
     </select>
     <select id="getPushDetail" resultType="java.util.Map" >
@@ -19,9 +20,11 @@
           V.ISSUE_TYPE
         FROM T_PUSH P
         LEFT JOIN V_ISSUE V ON P.BUSINESS_ID = V.UUID
-        WHERE P.MODEL_CODE=#{modelCode}
+        WHERE P.MODEL_CODE= #{modelCode}
+        AND V.OBJECT_CODE = #{object_code}
         AND P.PUSH_STATE = '0'
     </select>
+
     <update id="updateTaskState">
         UPDATE t_task t
         SET t.state = '4'
@@ -58,4 +61,17 @@
         </foreach>
          AND tp.push_state = '0'
     </update>
+
+    <select id="getTaskUuid" resultType="java.util.Map">
+        SELECT DISTINCT
+          V.uuid
+        FROM T_PUSH P
+          LEFT JOIN V_ISSUE V ON P.BUSINESS_ID = V.UUID
+        WHERE P.MODEL_CODE IN
+        <foreach collection="l" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+              AND V.OBJECT_CODE = #{object_code}
+              AND P.PUSH_STATE = '0'
+    </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.sgcc.pesticide.workbench.controller;
 
 import com.sgcc.comm.model.Query;
+import com.sgcc.comm.util.service.CommService;
 import com.sgcc.pesticide.workbench.service.WorkbenchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +24,8 @@ public class WorkbenchController {
 
     @Autowired
     WorkbenchService workbenchService;
+    @Autowired
+    CommService commService;
 
     @RequestMapping("/init")
     public String initWorkbench(){
@@ -137,7 +141,10 @@ public class WorkbenchController {
      */
     @RequestMapping("/reject")
     public @ResponseBody String reject(@RequestBody Map<String, String> param){
-        return workbenchService.reject(param);
+        boolean result =  workbenchService.updateState(param);
+        if(result)
+            commService.insertIssueRecord(param.get("businessId"),"退回",param.get("remark"));
+        return String.valueOf(result);
     }
 
     @RequestMapping("/getRecord")
@@ -145,23 +152,58 @@ public class WorkbenchController {
         return workbenchService.getRecord(businessId);
     }
 
-    @RequestMapping("/finish")
-    public @ResponseBody String finish(String businessId, String issueType){
-        return workbenchService.finish(businessId, issueType);
+    @RequestMapping("/inputReason")
+    public String inputReason(){
+        return "workbench/workbenchInputReason";
     }
 
-    @RequestMapping("/backInit")
-    public String backInit(){
-        return "workbench/workbenchBackInit";
+    @RequestMapping("/changeStateWithReason")
+    public @ResponseBody String changeStateWithReason(@RequestBody Map<String, String> param){
+        boolean result =  workbenchService.updateState(param);
+        if(result) {
+            String operateDetail = "";
+            switch (param.get("state")) {
+                case "1" : operateDetail = "提交";break;
+                case "7" : operateDetail = "拒绝";break;
+                case "9" : operateDetail = "废弃";break;
+            }
+            commService.insertIssueRecord(param.get("businessId"), operateDetail + " 了任务", param.get("remark"));
+        }
+        return String.valueOf(result);
     }
 
-    @RequestMapping("/back")
-    public @ResponseBody String back(@RequestBody Map<String, String> param){
-        return workbenchService.back(param);
-    }
-
-    @RequestMapping("/terminate")
-    public @ResponseBody String terminate(String businessId, String issueType){
-        return workbenchService.terminate(businessId, issueType);
+    /**
+     * @Description 修改任务状态
+     * @author JerryWang
+     * @date 2017/5/31 13:49
+     * @param businessId
+     * @param issueType
+     * @param state
+     * @return
+     */
+    @RequestMapping("/changeState")
+    public @ResponseBody String changeState(String businessId, String issueType, String state){
+        Map<String, String> param = new HashMap<>();
+        param.put("businessId", businessId);
+        param.put("issueType", issueType);
+        param.put("state", state);
+        boolean result =  workbenchService.updateState(param);
+        if(result){
+            String operateDetail = "";
+            switch (state){
+                case "1" : operateDetail = "提交";
+                    break;
+                case "3" : operateDetail = "挂起";
+                    break;
+                case "4" : operateDetail = "发布";
+                    break;
+                case "5" : operateDetail = "通过";
+                    break;
+                case "6" : operateDetail = "结束";
+                    break;
+            }
+            commService.insertIssueRecord(businessId,operateDetail + " 了任务","");
+        }
+        return String.valueOf(result);
     }
 }

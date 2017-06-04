@@ -35,4 +35,19 @@ public interface IssuePoolDao {
      */
     Map<String, String> getBugDetail(String uuid);
 
+    /**
+     * @Description 修改任务
+     * @author JerryWang
+     * @date 2017/1/27 17:23
+     * @param param
+     */
+    void updateTask(Map<String, String> param);
+
+    /**
+     * @Description update the bug info
+     * @author JerryWang
+     * @date 2017/1/27 17:23
+     * @param param
+     */
+    void updateBug(Map<String, String> param);
 }

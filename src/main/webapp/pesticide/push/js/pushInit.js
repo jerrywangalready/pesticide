@@ -23,11 +23,8 @@ push.js.query = function () {
         contentType:'application/json',
         data:JSON.stringify(param),
         success:function (data) {
-            console.info(data)
-            var html = template('model_grid_template',{'list':data.list});
+            var html = template('model_grid_template',{'list':data});
             $("#grid").html(html);
-            // 初始化页码按钮
-            $("#page-bar").page(data);
         }
     });
 };
@@ -36,10 +33,24 @@ push.js.detail = function (obj, model_code) {
     var state = $(obj).attr("state");
 
     if(state=="0"){
-        $.post(path+"/push/getPushDetail.do",{modelCode:model_code},function (data) {
-            var html = template('grid_two',{'list':data});
-            $(obj).after(html);
+        var param = {};
+        param.object_code = getParameter(location.hash,"obj","");
+        param.modelCode = model_code;
+        $.ajax({
+            type:'POST',
+            url:path+'/push/getPushDetail.do',
+            contentType:'application/json',
+            data:JSON.stringify(param),
+            success:function (data) {
+                var html = template('grid_two',{'list':data});
+                $(obj).after(html);
+            }
+
         });
+        // $.post(path+"/push/getPushDetail.do",{modelCode:model_code},function (data) {
+        //     var html = template('grid_two',{'list':data});
+        //     $(obj).after(html);
+        // });
         $(obj).attr("state","1");
     }else{
         $(obj).next().remove();
@@ -55,14 +66,35 @@ push.js.publish = function () {
         modelCodes += "," + $(this).val() ;
     });
     modelCodes = modelCodes.replace(",","");
-    // 传送给后台进行存储
-    $.post(path + "/push/publish.do",{modelCodes:modelCodes},function (data) {
-        if("true" == data){
-            layer.alert("发布成功");
-            push.js.query();
-        }else {
-            layer.alert("发布失败");
+
+    var param = {};
+    param.object_code = getParameter(location.hash,"obj","");
+    param.modelCodes = modelCodes;
+    $.ajax({
+        type:'POST',
+        url:path+'/push/publish.do',
+        contentType:'application/json',
+        data:JSON.stringify(param),
+        success:function (data) {
+            if("true" == data){
+                layer.alert("发布成功");
+                push.js.query();
+            }else {
+                layer.alert("发布失败");
+            }
         }
+
     });
+
+
+    // 传送给后台进行存储
+    // $.post(path + "/push/publish.do",{modelCodes:modelCodes},function (data) {
+    //     if("true" == data){
+    //         layer.alert("发布成功");
+    //         push.js.query();
+    //     }else {
+    //         layer.alert("发布失败");
+    //     }
+    // });
 };
 

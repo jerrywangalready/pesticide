@@ -1,25 +1,26 @@
 /**
  * Created by jerrywang on 2017/5/23.
  */
-jQuery.namespace("workbenchBackInit");
+jQuery.namespace("workbenchInputReason");
 $(function () {
-    workbenchBackInit.js.param = parent.workbenchDetail.js.getParameter();
-    workbenchBackInit.js.init();
+    workbenchInputReason.js.param = parent.workbenchDetail.js.getParameter();
+    workbenchInputReason.js.init();
 });
 
-workbenchBackInit.js = {};
-workbenchBackInit.js.init = function () {
+workbenchInputReason.js = {};
+workbenchInputReason.js.init = function () {
 
 };
 
-workbenchBackInit.js.back = function () {
+workbenchInputReason.js.changeStateWithReason = function () {
     var param = {};
-    param.businessId = workbenchBackInit.js.param.uuid;
-    param.issueType = workbenchBackInit.js.param.issueType;
+    param.businessId = workbenchInputReason.js.param.uuid;
+    param.issueType = workbenchInputReason.js.param.issueType;
+    param.state = workbenchInputReason.js.param.state;
     param.remark = $("#remark").val();
     $.ajax({
         type:'POST',
-        url:path+'/workbench/back.do',
+        url:path+'/workbench/changeStateWithReason.do',
         contentType:'application/json',
         data:JSON.stringify(param),
         success:function (data) {

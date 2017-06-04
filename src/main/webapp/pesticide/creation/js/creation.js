@@ -160,7 +160,6 @@ creation.js.commit = function () {
 // 选择Task
 creation.js.chooseTask = function (obj) {
     $(obj).find("input").attr("checked",true);
-    console.info('task')
     $("#monitor").removeClass().addClass("mb_15 btn-primary");
     $("#link_info_close").click();
     $("#bug_level_div").hide();
@@ -171,7 +170,6 @@ creation.js.chooseTask = function (obj) {
 // 选择bug
 creation.js.chooseBug = function (obj) {
     $(obj).find("input").attr("checked",true);
-    console.info('bug')
     $("#monitor").removeClass().addClass("mb_15 btn-warning");
     $("#link_info_close").click();
     $("#bug_level_div").show();

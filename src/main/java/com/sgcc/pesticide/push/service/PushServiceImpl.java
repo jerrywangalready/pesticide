@@ -26,56 +26,55 @@ public class PushServiceImpl implements PushService {
      * @author 杜成皓
      * @date 2017/5/3 23:21
      */
-    @Override
-    public Query getPushList(Map<String, String> param) {
-        param.put("pageNum","1");
-        PageHelper.startPage(Integer.parseInt(param.get("pageNum")),10);
+    public List<Map<String, String>> getPushList(Map<String, String> param) {
         List<Map<String, String>> list = pushDao.getPushList(param);
-        Query query = new Query();
-        query.setList(list);
-        query.setPageNum(Integer.parseInt(param.get("pageNum")));
-        query.setPageSize(10);
-        query.setTotal(((Page)list).getTotal());
-        return query;
+        return list;
     }
 
     /**
-     * @param modelCode
+     * @param param
      * @return
      * @Description 二级列表
      * @author 杜成皓
      * @date 2017/5/11 23:17
      */
-    @Override
-    public List<Map<String,String>> getPushDetail(String modelCode) {
-        return  pushDao.getPushDetail(modelCode);
+    public List<Map<String,String>> getPushDetail(Map<String, String> param) {
+        return  pushDao.getPushDetail(param);
     }
 
     /**
-     * @param modelCodes
+     * @param param
      * @return
      * @Description 发布
      * @author JerryWang
      * @date 2017/5/14 15:22
      */
-    @Override
-    public String publish(String modelCodes) {
-//        modelCodes = modelCodes.replace(",", "','");
+    public boolean publish(Map<String, Object> param) {
 
         try {
-            String[] modelCodesArr = modelCodes.split(",");
-            List<String> l = Arrays.asList(modelCodesArr);
             // 修改送测的任务的状态
-            Map<String, Object> param = new HashMap<>();
-            param.put("l", l);
             pushDao.updateTaskState(param);
             pushDao.updateBugState(param);
             // 发布
             param.put("operator", CommUtil.getLoginInfo().getLoginUser());
             pushDao.updatePushInfo(param);
+
         } catch (Exception e) {
-            return "false";
+            return false;
         }
-        return "true";
+        return true;
     }
+
+    /**
+     * @param param
+     * @return
+     * @Description 获取任务uuid
+     * @author JerryWang
+     * @date 2017/6/1 17:24
+     */
+    public List<Map<String, String>> getTaskUuid(Map<String, Object> param) {
+        return pushDao.getTaskUuid(param);
+    }
+
+
 }

@@ -21,6 +21,7 @@ workbenchDetail.js.init = function () {
     ]);
     // 初始化详细页面
     $.post(path + "/workbench/getDetail.do", {uuid: uuid, type: type}, function (data) {
+        console.info(data)
         data.type = type;
         var html = template('detail_template', data);
         $("#detail_body").html(html);
@@ -42,7 +43,7 @@ workbenchDetail.js.pushButtonClick = function (state) {
     layer.open({
         type:2,
         title:"选择送测模块",
-        area:['300px','auto'],
+        area:['300px','500px'],
         content:[path + '/workbench/choseModelInit.do?state='+state, 'no']
     });
 };
@@ -52,12 +53,13 @@ workbenchDetail.js.getParameter = function () {
     param.model_code = $("#model_code").val();
     param.uuid = $("#uuid").val();
     param.issueType = $("#issue_type").val();
+    param.state = $("#state").val();
     return param;
 };
 workbenchDetail.js.return = function () {
     setHash("on=workbench/init&obj="+getParameter(location.hash,"obj",""));
 };
-
+// 指派
 workbenchDetail.js.changePrincipal = function () {
     layer.open({
         type:2,
@@ -67,19 +69,15 @@ workbenchDetail.js.changePrincipal = function () {
     });
 };
 
-workbenchDetail.js.reject = function () {
-    layer.open({
-        type:2,
-        title:"任务退回",
-        area:['300px','200px'],
-        content:[path + '/workbench/rejectInit.do', 'no']
-    });
+workbenchDetail.js.update = function () {
+    alert()
 };
 
-workbenchDetail.js.finish = function () {
+// 修改状态
+workbenchDetail.js.changeState = function (state) {
     var businessId = $("#uuid").val();
     var issueType = $("#issue_type").val();
-    $.post(path + '/workbench/finish.do',{businessId:businessId,issueType:issueType},function (data) {
+    $.post(path + '/workbench/changeState.do',{businessId:businessId,issueType:issueType,state:state},function (data) {
         if(data == "true"){
             parent.layer.msg("操作成功!");
             workbenchDetail.js.return();
@@ -89,25 +87,20 @@ workbenchDetail.js.finish = function () {
     });
 };
 
-workbenchDetail.js.back = function () {
+// 修改状态
+workbenchDetail.js.changeStateWithReason = function (state) {
+    var title = "";
+    switch (state){
+        case "1": title = "退回";break;
+        case "7": title = "拒绝";break;
+        case "9": title = "废弃";break;
+    }
+    $("#state").val(state);
     layer.open({
         type:2,
-        title:"测试不通过",
+        title:title+"原因",
         area:['300px','200px'],
-        content:[path + '/workbench/backInit.do', 'no']
-    });
-};
-
-workbenchDetail.js.terminate = function () {
-    var businessId = $("#uuid").val();
-    var issueType = $("#issue_type").val();
-    $.post(path + '/workbench/terminate.do',{businessId:businessId,issueType:issueType},function (data) {
-        if(data == "true"){
-            parent.layer.msg("操作成功!");
-            workbenchDetail.js.return();
-        }else {
-            layer.alert("操作失败!");
-        }
+        content:[path + '/workbench/inputReason.do', 'no']
     });
 };
 

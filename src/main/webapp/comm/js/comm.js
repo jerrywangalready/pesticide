@@ -71,7 +71,7 @@ comm.js.hashAppand = function () {
         for(var j=0;j<p.length;j++){
             var pj = p[j].split("=");
 
-            if (kvs.hasOwnProperty(pj[0])) {
+            if (kvs.hasOwnProperty(pj[0])){
                 continue;
             }
             newHash += p[j] + "&";

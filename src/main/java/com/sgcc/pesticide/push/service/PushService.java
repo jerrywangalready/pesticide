@@ -17,23 +17,32 @@ public interface PushService {
      * @param param
      * @return
      */
-    Query getPushList(Map<String,String> param);
+    List<Map<String, String>> getPushList(Map<String,String> param);
 
     /**
      * @Description 二级列表
      * @author 杜成皓
      * @date 2017/5/11 23:20
-     * @param modelCode
+     * @param param
      * @return
      */
-    List<Map<String,String>> getPushDetail(String modelCode);
+    List<Map<String,String>> getPushDetail(Map<String, String> param);
 
     /**
      * @Description 发布
      * @author JerryWang
      * @date 2017/5/14 15:41
-     * @param modelCodes
+     * @param param
      * @return
      */
-    String publish(String modelCodes);
+    boolean publish(Map<String, Object> param);
+
+    /**
+     * @Description 获取任务uuid
+     * @author JerryWang
+     * @date 2017/6/1 17:24
+     * @param param
+     * @return
+     */
+    List<Map<String,String>> getTaskUuid(Map<String, Object> param);
 }

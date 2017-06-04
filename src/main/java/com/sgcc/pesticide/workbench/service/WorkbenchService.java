@@ -59,15 +59,6 @@ public interface WorkbenchService {
     String changePrincipal(Map<String, String> param);
 
     /**
-     * @Description 退回
-     * @author JerryWang
-     * @date 2017/5/4 23:09
-     * @param param
-     * @return
-     */
-    String reject(Map<String, String> param);
-
-    /**
      * @Description 获取操作记录
      * @author JerryWang
      * @date 2017/5/9 22:58
@@ -77,31 +68,11 @@ public interface WorkbenchService {
     List<Map<String, String>> getRecord(String businessId);
 
     /**
-     * @Description 完成
+     * @Description 修改状态
      * @author JerryWang
-     * @date 2017/5/23 22:50
-     * @param businessId
-     * @param issueType
-     * @return
-     */
-    String finish(String businessId, String issueType);
-
-    /**
-     * @Description 测试不通过
-     * @author JerryWang
-     * @date 2017/5/23 23:16
+     * @date 2017/5/31 11:32
      * @param param
      * @return
      */
-    String back(Map<String, String> param);
-
-    /**
-     * @Description 终止
-     * @author JerryWang
-     * @date 2017/5/23 23:26
-     * @param businessId
-     * @param issueType
-     * @return
-     */
-    String terminate(String businessId, String issueType);
+    public boolean updateState(Map<String, String> param);
 }
