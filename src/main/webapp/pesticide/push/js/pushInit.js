@@ -28,10 +28,8 @@ push.js.query = function () {
         }
     });
 
-    console.info(888)
     // 判断是否有权限发布
     $.post(path + "/push/checkRole.do",{},function (data) {
-        console.info(data)
         if(data != "0"){
             $("#publish_button").show();
         }

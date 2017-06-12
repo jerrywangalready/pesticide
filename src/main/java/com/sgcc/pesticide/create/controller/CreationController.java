@@ -1,7 +1,6 @@
 package com.sgcc.pesticide.create.controller;
 
 import com.sgcc.comm.util.CommUtil;
-import com.sgcc.comm.util.service.CommService;
 import com.sgcc.pesticide.create.service.CreationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,10 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
-import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,9 +32,9 @@ public class CreationController {
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     public String save(@RequestBody Map<String, String> param){
         // 将图片数据转存到服务器磁盘上
-        String description = CommUtil.saveImage(param.get("description"));
+//        String description = CommUtil.saveImage(param.get("description"));
 
-        param.put("description",description);
+//        param.put("description",description);
 
         if("commit".equals(param.get("todo"))){
             param.put("state","1");

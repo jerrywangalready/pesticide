@@ -7,7 +7,6 @@ import com.sgcc.comm.util.CommUtil;
 import com.sgcc.pesticide.settings.dao.SettingsDao;
 import com.sgcc.pesticide.settings.model.Objects;
 import com.sgcc.pesticide.settings.model.Users;
-import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

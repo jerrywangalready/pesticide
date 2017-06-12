@@ -42,5 +42,8 @@
           and is_enable = '1'
         order by operate_time desc
     </select>
+    <select id="getPropertiesByKey" resultType="java.util.Map">
+        SELECT p_key,p_value FROM s_properties
+    </select>
 
 </mapper>

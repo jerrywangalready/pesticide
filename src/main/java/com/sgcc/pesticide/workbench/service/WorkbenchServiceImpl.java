@@ -6,12 +6,10 @@ import com.sgcc.comm.model.Query;
 import com.sgcc.comm.util.CommUtil;
 import com.sgcc.comm.util.service.BaseServiceImpl;
 import com.sgcc.comm.util.service.CommService;
-import com.sgcc.comm.util.service.CommServiceImpl;
 import com.sgcc.pesticide.workbench.dao.WorkbenchDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

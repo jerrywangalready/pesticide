@@ -22,6 +22,7 @@
 <script id="detail_template" type="text/html">
     <div style="height:50px;">
         <h4 class="left" style="margin-top:12px;">{{issue_code}}</h4>
+        <span id="issue_state" class="label label-primary" style="margin: 14px;float: left;">{{state | dict:'state'}}</span>
         <button type="button" class="btn btn-default btn-sm right" style="margin-top:10px;" onclick="workbenchDetail.js.return()">返回</button>
         <input id="uuid" type="hidden" value="{{uuid}}">
         <input id="model_code" type="hidden" value="{{model_code}}">
@@ -125,12 +126,11 @@
             </tr>
         </table>
     </div>
-    <hr>
     <div>
         <span style="font-size:16px;">{{title}}</span>
     </div>
     <hr>
-    <div id="description">
+    <div id="description" style="min-height: 100px;">
 
     </div>
     <hr>

@@ -11,8 +11,11 @@
         V.TITLE,
         V.ISSUE_TYPE,
         V.PRIORITY,
+        PRI.code_value PRIORITY_VALUE,
         V.VERSION_CODE,
         V.principal,
+        V.STATE,
+        SCL.code_value                            STATE_VALUE,
         date_format(V.CREATE_TIME, '%Y-%m-%d %T') CREATE_TIME,
         S.NICKNAME
         FROM v_issue V
@@ -20,7 +23,12 @@
         ON V.create_user = S.username
         LEFT JOIN s_users S1
         ON V.principal = S1.username
-        WHERE 1=1
+        LEFT JOIN t_code_list scl
+        ON V.state = scl.code_key
+        AND scl.code_type = 'state'
+        LEFT JOIN t_code_list pri
+        ON V.priority = pri.code_key
+        WHERE 1 = 1
         <if test="issue_code != null and issue_code != ''">
             AND V.CODE like CONCAT('%',#{issue_code},'%')
         </if>
@@ -105,6 +113,10 @@
         WHERE t.uuid = #{uuid}
     </select>
 
+    <select id="getParentIssue" resultType="java.util.Map">
+        select v.code,v.issue_type,v.title from v_issue v WHERE CODE = #{issueCode};
+    </select>
+
     <!--update task info-->
     <update id="updateTask" parameterType="java.util.Map">
         UPDATE t_task
@@ -122,7 +134,7 @@
             deadline     = #{deadline},
         </if>
         update_time  = sysdate(),
-        state        = #{state,jdbcType=VARCHAR},
+        state        = #{state,jdbcType=VARCHAR}
 
         WHERE uuid = #{uuid}
     </update>

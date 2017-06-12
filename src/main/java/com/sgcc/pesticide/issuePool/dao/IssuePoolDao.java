@@ -50,4 +50,13 @@ public interface IssuePoolDao {
      * @param param
      */
     void updateBug(Map<String, String> param);
+
+    /**
+     * @Description 获取前序任务
+     * @author JerryWang
+     * @date 2017/6/4 19:49
+     * @param issueCode
+     * @return
+     */
+    Map<String,String> getParentIssue(String issueCode);
 }

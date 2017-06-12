@@ -49,4 +49,20 @@ public interface IssuePoolService {
      */
     public String saveBug(Map<String, String> param);
 
+    /**
+     * @Description 获取前序任务
+     * @author JerryWang
+     * @date 2017/6/4 19:48
+     * @param issueCode
+     * @return
+     */
+    Map<String,String> getParentIssue(String issueCode);
+
+    /**
+     * @Description 导出Excel
+     * @author JerryWang
+     * @date 2017/6/7 14:17
+     * @return
+     */
+    String exportExcel(Map<String, String> param);
 }

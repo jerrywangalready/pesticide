@@ -86,7 +86,29 @@ issuePoolUpdate.js.init = function () {
         $("#working_day").val(data.working_day);
         $("input[name=bug_level][value="+data.bug_level+"]").parent().click();
         issuePoolUpdate.js.description.setData(data.description);
+        if(data.parent_code != ""){
+
+            $.post(path + "/issuePool/getParentIssue.do",{issueCode:data.parent_code},function (result) {
+                // 初始化关联的前序任务
+                $("#link_info_text").text(result.code + " : " + result.title);
+                $("#parent_code").val(result.code);
+                $("#parent_type").val(result.issue_type);
+                // $("#title").val(title);
+                switch (result.issue_type) {
+                    case "T":$("#link_info").removeClass("btn-warning").addClass("btn-primary");
+                        // $("#test_staff_select").val(staff);
+                        break;
+                    case "B":$("#link_info").removeClass("btn-primary").addClass("btn-warning");
+                        //$("#dev_staff_select").val(staff);
+                        break;
+                }
+                $("#link_info").slideDown('fast');
+
+            });
+        }
+
     });
+
 };
 // 选择Task
 issuePoolUpdate.js.chooseTask = function (obj) {
@@ -120,7 +142,6 @@ issuePoolUpdate.js.save = function(todo){
         if(param.issueType == 'B'){
             param.bug_level = $("input[name=bug_level]:checked").val();
         }
-        console.info(param)
         $.ajax({
             type:'POST',
             url:path+'/issuePool/save.do',
@@ -149,5 +170,61 @@ issuePoolUpdate.js.commit = function () {
     var type = getParameter(hash, "type", "");
     setHash("on=issuePool/detail&obj="+obj+"&uuid="+uuid+"&type="+type);
 
+
+};
+
+
+// 获取关联信息
+issuePoolUpdate.js.getLinkInfo = function () {
+
+    setTimeout(function(){
+        $("#link_proTask").focus();
+
+    },800);
+    var obj = getParameter(location.hash,"obj","");
+    // $("#link_proTask").focus();
+    // 搜索前序任务绑定输入事件
+    $("#link_proTask").keyup(function () {
+
+        var code = $(this).val();
+        if(code.length > 0){
+            $.post(path+'/creation/searchTask.do',{code:code,objectCode:obj},function (data) {
+                $("#link_info_body").html("");
+                for(var i=0;i<data.length;i++){
+                    var item = data[i];
+                    $("#link_info_body").append("<div class='modal-item'><span tp='"+item.ISSUE_TYPE+"' title='"+item.TITLE+"' tc='"+item.CODE+"'>"+item.CODE+" : "+item.TITLE+"</span></div>");
+                    // $("#link_info_body").append("<div class='modal-item'><span mc='"+item.model_code+"' sta='"+item.staff+"' vc='"+item.version_code+"' title='"+item.title+"' tc='"+item.code+"'>"+item.code+" : "+item.title+"</span></div>");
+                }
+                // 给弹出层的关联信息绑定点击事件
+                $("#link_info_body span").each(function () {
+                    var text = $(this).text();
+                    var taskCode = $(this).attr("tc");
+                    var title = $(this).attr("title");
+                    var taskType = $(this).attr("tp");
+                    // var model_code = $(this).attr("mc");
+                    // var staff = $(this).attr("sta");
+                    // var version_code = $(this).attr("vc");
+                    // 绑定点击一条任务的事件
+                    $(this).parent().on('click',function () {
+                        $("#link_table").modal('hide');
+                        $("#link_info_text").text(text);
+                        $("#parent_code").val(taskCode);
+                        $("#parent_type").val(taskType);
+                        // $("#title").val(title);
+                        switch (taskType) {
+                            case "T":$("#link_info").removeClass("btn-warning").addClass("btn-primary");
+                                // $("#test_staff_select").val(staff);
+                                break;
+                            case "B":$("#link_info").removeClass("btn-primary").addClass("btn-warning");
+                                //$("#dev_staff_select").val(staff);
+                                break;
+                        }
+                        $("#link_info").slideDown('fast');
+
+                    });
+                })
+            });
+        }
+    });
 
 };

@@ -47,6 +47,7 @@ $.extend({
     dictInit:function (propertiesArray) {
         $.ajax({
             type:'POST',
+            async:false,
             url:path+"/dict/getDictByArray.do",
             contentType:'application/json',
             data:JSON.stringify(propertiesArray),

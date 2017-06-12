@@ -93,6 +93,7 @@
                     <li><a href="javascript:void(0);" onclick="index.js.menuClick('push/init')">送测</a></li>
                     <li><a href="javascript:void(0);" onclick="index.js.menuClick('chart/init')">图表</a></li>
                     <li name="settings_li" style="display:none;"><a href="javascript:void(0);" onclick="index.js.menuClick('settings/users')">设置</a></li>
+                    <%--<li><a href="javascript:void(0);" onclick="index.js.menuClick('image/init')">图</a></li>--%>
                     <%--<li><a href="javascript:void(0);" onclick="index.js.menuClick('demo/init')">Demo</a></li>--%>
                 </ul>
             </nav>

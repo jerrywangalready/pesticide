@@ -22,6 +22,7 @@
 <script id="detail_template" type="text/html">
     <div style="height:50px;">
         <h4 class="left" style="margin-top:12px;">{{issue_code}}</h4>
+        <span id="issue_state" class="label label-primary" style="margin: 14px;float: left;">{{state | dict:'state'}}</span>
         <button type="button" class="btn btn-default btn-sm right" style="margin-top:10px;" onclick="issuePoolDetail.js.return()">返回</button>
         {{if create_user == username}}
         <button type="button" class="btn btn-primary btn-sm right" style="margin-top:10px;margin-right: 10px;" onclick="issuePoolDetail.js.update()">修改</button>
@@ -87,12 +88,12 @@
             </tr>
         </table>
     </div>
-    <hr>
+
     <div>
         <span style="font-size:16px;">{{title}}</span>
     </div>
     <hr>
-    <div id="description">
+    <div id="description" style="min-height: 100px;">
 
     </div>
     <hr>

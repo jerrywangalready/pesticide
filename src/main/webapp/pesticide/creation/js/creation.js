@@ -73,8 +73,8 @@ creation.js.init = function () {
 creation.js.save = function(todo){
 
     var param = $("#main_form").validate();
-
     if(param){
+        console.info(88888)
         var description = creation.js.description.getData();
         param.description = description;
         param.object_code = creation.js.objectCode;
@@ -83,7 +83,6 @@ creation.js.save = function(todo){
         if(param.issueType == 'B'){
             param.bug_level = $("input[name=bug_level]:checked").val();
         }
-        console.info(param)
         $.ajax({
             type:'POST',
             url:path+'/creation/save.do',
@@ -95,6 +94,7 @@ creation.js.save = function(todo){
                         offset: '50px'
                     });
                     $("#uuid").val(data);
+                    return true;
                 }
             }
 
@@ -104,8 +104,10 @@ creation.js.save = function(todo){
 };
 // 提交
 creation.js.commit = function () {
+    var param = $("#main_form").validate();
     // 保存数据
     creation.js.save('commit');
+
     // 动画
     var scrollT = $(document).scrollTop();
     // var scrollL = $(document).scrollLeft();
@@ -156,6 +158,7 @@ creation.js.commit = function () {
     creation.js.description.setData("");
 
 
+
 };
 // 选择Task
 creation.js.chooseTask = function (obj) {
@@ -182,7 +185,7 @@ creation.js.getLinkInfo = function () {
     setTimeout(function(){
         $("#link_proTask").focus();
 
-    },800)
+    },800);
     // $("#link_proTask").focus();
     // 搜索前序任务绑定输入事件
     $("#link_proTask").keyup(function () {
@@ -228,13 +231,4 @@ creation.js.getLinkInfo = function () {
         }
     });
 
-};
-
-creation.js.test = function () {
-    $("#131").attr("checked",true);
-    $("#248").attr("checked",true);
-    console.info($("#131").is(":radio"));
-    console.info($("#248").is(":text"));
-    var t = $("input[name=test]:checked").val();
-    console.info(t)
 };

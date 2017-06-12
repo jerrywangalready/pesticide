@@ -33,6 +33,7 @@
 <script type="text/javascript" src="<%=path%>/comm/plugins/hashchange/jquery.ba-hashchange.min.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/artTemplate/template.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/ckeditor/ckeditor.js"></script>
+<%--<script src="http://cdn.ckeditor.com/4.7.0/standard-all/ckeditor.js"></script>--%>
 <script type="text/javascript" src="<%=path%>/comm/plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/layer/layer.min.js"></script>

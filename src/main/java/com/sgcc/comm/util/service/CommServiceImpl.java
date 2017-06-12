@@ -63,4 +63,13 @@ public class CommServiceImpl extends BaseServiceImpl implements CommService{
         return loginInfo;
     }
 
+    /**
+     * @return
+     * @Description 获取配置信息
+     * @author JerryWang
+     * @date 2017/6/7 16:03
+     */
+    public List<Map<String, String>> getProperties() {
+        return commDao.getPropertiesByKey();
+    }
 }

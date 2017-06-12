@@ -5,6 +5,8 @@ import sun.misc.BASE64Decoder;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
@@ -14,14 +16,15 @@ import java.util.UUID;
  */
 public class CommUtil {
 
-    private static CommUtil instance;
+    private static final CommUtil instance = new CommUtil();
+
+    private CommUtil(){
+    }
 
     public static CommUtil getInstance() {
-        if (instance == null) {
-            instance = new CommUtil();
-        }
         return instance;
     }
+
 
     /**
      * @Description 获取UUID
@@ -124,7 +127,7 @@ public class CommUtil {
 
                 end = des.indexOf("/>");
                 String imgData = des.substring(0,end).replace("<img src=\"data:image/png;base64,","").replace("\" />","");
-                desTemp.append("<img src='"+ CommUtil.getInstance().saveImage(imgData,CommUtil.getResourceProperty("upload-path"))+"' ");
+                desTemp.append("<img src='"+ CommUtil.getInstance().saveImage(imgData,CommUtil.getInstance().PROPERTIES.get("upload-path"))+"' ");
                 // 返回新img
                 des = des.substring(end,des.length());
             }else {
@@ -134,4 +137,10 @@ public class CommUtil {
         }
         return desTemp.toString();
     }
+
+    /**
+     * 配置信息
+     */
+    public static Map<String, String> PROPERTIES = new HashMap<>();
+
 }

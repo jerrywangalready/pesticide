@@ -1,12 +1,7 @@
 package com.sgcc.pesticide.push.service;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
-import com.sgcc.comm.model.Query;
-import com.sgcc.comm.util.CommUtil;
 import com.sgcc.comm.util.service.BaseServiceImpl;
 import com.sgcc.comm.util.service.CommService;
-import com.sgcc.comm.util.service.CommServiceImpl;
 import com.sgcc.pesticide.push.dao.PushDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

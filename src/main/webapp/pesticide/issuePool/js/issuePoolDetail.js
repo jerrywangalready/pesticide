@@ -16,7 +16,8 @@ issuePoolDetail.js.init = function () {
 
     $.dictInit([
         {name: "mc", table: "s_model", key: "model_code", value: "model_name", where: "object_code=" + object},
-        {name: "priority", table: "t_code_list", type: "priority"}
+        {name: "priority", table: "t_code_list", type: "priority"},
+        {name: "state", table: "t_code_list", type: "state"}
     ]);
     // 初始化详细页面
     $.post(path + "/workbench/getDetail.do", {uuid: uuid, type: type}, function (data) {

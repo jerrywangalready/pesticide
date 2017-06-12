@@ -38,10 +38,15 @@
             <input type="text" class="form-control" id="query_principal" name="query_principal" placeholder="接受者">
         </div>
     </form>
+    <div style="height: 50px;">
+        <button type="button" id="publish_button" class="btn btn-primary right" onclick="issuePool.js.exportExcel()">导出</button>
+    </div>
     <div id="grid">
     </div>
     <nav id="page-bar">
     </nav>
+
+    <form id="dddd" action="<%=request.getContextPath()%>/issuePool/exportExcel.do" method="post"></form>
 </div>
 
 <script id="issuePool_template" type="text/html">

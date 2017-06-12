@@ -25,4 +25,11 @@ public interface CommDao{
      */
     List<Map<String, String>> getIssueRecord(String businessId);
 
+    /**
+     * @Description 获取配置信息
+     * @author JerryWang
+     * @date 2017/6/7 16:07
+     * @return
+     */
+    List<Map<String, String>> getPropertiesByKey();
 }

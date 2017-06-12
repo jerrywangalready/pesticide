@@ -49,3 +49,10 @@ issuePool.js.detail = function (uuid, type) {
     var obj = getParameter(hash, "obj", "");
     setHash("on=issuePool/detail&obj="+obj+"&uuid="+uuid+"&type="+type);
 };
+
+issuePool.js.exportExcel = function () {
+    // $.post(path + "/issuePool/exportExcel.do",{},function () {
+    //
+    // });
+    $("#dddd").submit();
+};
