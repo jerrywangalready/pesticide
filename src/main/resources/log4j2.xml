@@ -6,12 +6,12 @@
 
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n" />
+            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%level][%class][%line]:%message%n" />
         </Console>
 
         <RollingRandomAccessFile name="infoLog" fileName="${LOG_HOME}/app.log"
                                  filePattern="${LOG_HOME}/app.%d{yyyy-MM-dd}-%i.log.gz" append="true">
-            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
+            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%level][%class][%line]:%message%n"/>
             <Filters>
                 <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
             </Filters>
@@ -26,7 +26,7 @@
                 <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
                 <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
-            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
+            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%level][%class][%line]:%message%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
             </Policies>
@@ -37,7 +37,7 @@
             <Filters>
                 <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
-            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
+            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%level][%class][%line]:%message%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
             </Policies>
@@ -46,7 +46,7 @@
 
         <RollingRandomAccessFile name="jobLog" fileName="${LOG_HOME}/job.log"
                                  filePattern="${LOG_HOME}/job.%d{yyyy-MM-dd}-%i.log.gz" append="true">
-            <PatternLayout pattern="[emidas-lottery-job][%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
+            <PatternLayout pattern="[emidas-lottery-job][%date{yyyy-MM-dd HH:mm:ss.SSS}][%level][%class][%line]:%message%n"/>
             <Filters>
                 <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
             </Filters>

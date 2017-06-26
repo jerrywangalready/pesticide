@@ -13,7 +13,7 @@
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
     http://www.springframework.org/schema/task
-    http://www.springframework.org/schema/task/spring-task-4.1.xsd" default-lazy-init="false">
+    http://www.springframework.org/schema/task/spring-task-3.2.xsd" default-lazy-init="false">
 
     <!-- 扫描controller（controller层注入） -->
     <context:component-scan base-package="com.sgcc.*.*.controller"/>

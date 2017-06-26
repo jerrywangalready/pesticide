@@ -1,0 +1,45 @@
+.lane-box{
+    width: 1199px;
+    border-left: 1px solid #ddd !important;
+}
+.lane{
+    /*padding:8px;*/
+    width: 238px;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-left: 0px;
+
+}
+.lane-title{
+    border-bottom: 1px solid #bbbbbb;
+    background: #EFEFEF;
+    height:30px;
+    padding: 5px;
+    -webkit-box-shadow: 0px 1px 2px #aaa;
+    -moz-box-shadow: 0px 1px 2px #aaa;
+    box-shadow: 0px 1px 2px #aaa;
+}
+.task-item{
+    border:1px solid #bbbbbb;
+    border-radius: 4px;
+    min-height:120px;
+    margin: 5px;
+    -webkit-box-shadow: 1px 1px 3px #aaa;
+    -moz-box-shadow: 1px 1px 3px #aaa;
+    box-shadow: 1px 1px 3px #aaa;
+    background: #fff;
+}
+.task-item-title{
+    padding:3px 8px;
+    color: #fff;
+}
+.task-item-body{
+    padding:3px 8px;
+
+}
+.bug{
+    background: #f0ad4e;
+}
+.task{
+    background: #428bca;
+}

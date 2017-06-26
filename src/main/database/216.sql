@@ -9,3 +9,5 @@ create table s_properties
 );
 
 alter table s_properties comment '配置信息表';
+
+ALTER TABLE pesticide.s_version ADD is_complete VARCHAR(2) NULL;

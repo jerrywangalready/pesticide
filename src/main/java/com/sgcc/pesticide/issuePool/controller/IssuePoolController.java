@@ -5,14 +5,7 @@ import com.sgcc.comm.util.CommUtil;
 import com.sgcc.comm.util.service.CommService;
 import com.sgcc.pesticide.create.service.CreationService;
 import com.sgcc.pesticide.issuePool.service.IssuePoolService;
-import com.sun.deploy.net.HttpResponse;
-import com.sun.deploy.net.URLEncoder;
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -83,10 +76,6 @@ public class IssuePoolController {
 
     @RequestMapping(value = "/save")
     public @ResponseBody String save(@RequestBody Map<String, String> param){
-
-        String description = CommUtil.saveImage(param.get("description"));
-
-        param.put("description",description);
 
         if("commit".equals(param.get("todo"))){
             param.put("state","1");

@@ -1,0 +1,29 @@
+.model_box {
+    padding: 15px;
+}
+
+.model_num {
+    width: 100px;
+    height: 377px;
+    padding: 70px 15px 120px 6px;
+    text-align: center;
+    border-right: 1px dashed #ccc;
+}
+
+.model_num button{
+    margin-top: 50px;
+}
+
+.model_num h2 {
+    color: #bbb;
+}
+
+.model_list_box {
+    width: 365px;
+    height: 377px;
+    overflow-y: auto;
+}
+
+.model_list ul li {
+    list-style: none none;
+}

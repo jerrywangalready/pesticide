@@ -17,6 +17,7 @@ public class DemoServiceImpl implements DemoService {
 
 	@Autowired
 	DemoDao demoDao;
+
 	public Query queryDemoList(Map<String, String> param){
 
 		PageHelper.startPage(Integer.parseInt(param.get("pageNum")),Integer.parseInt(param.get("pageSize")));

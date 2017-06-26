@@ -56,7 +56,7 @@
         {{each list as value i}}
         <div class="grid-item {{if value.ISSUE_TYPE == 'T'}}task{{/if}}{{if value.ISSUE_TYPE == 'B'}}bug{{/if}}"
              onclick="issuePool.js.detail('{{value.UUID}}','{{value.ISSUE_TYPE}}')">
-            <div class="left">
+            <div class="left item-left">
                 <div class="left code_title">
                     <div class="left code">
                         <span>{{value.CODE}}</span>
