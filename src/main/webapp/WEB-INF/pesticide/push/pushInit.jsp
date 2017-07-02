@@ -22,7 +22,7 @@
 </div>
 <script id="model_grid_template" type="text/html">
     {{if list.length == 0}}
-    <div><span>未查询到任何数据！</span></div>
+    <div class="nothing"><span></span></div>
     {{/if}}
     {{each list as value i}}
     <div class="grid-item" state="0" onclick="push.js.detail(this,'{{value.MODEL_CODE}}')">

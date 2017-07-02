@@ -1,8 +1,8 @@
-.lane-box{
-    width: 1199px;
+.lane-box {
     border-left: 1px solid #ddd !important;
 }
-.lane{
+
+.lane {
     /*padding:8px;*/
     width: 238px;
     border: 1px solid #ddd;
@@ -10,36 +10,90 @@
     border-left: 0px;
 
 }
-.lane-title{
+
+.lane-title {
     border-bottom: 1px solid #bbbbbb;
     background: #EFEFEF;
-    height:30px;
+    height: 30px;
     padding: 5px;
     -webkit-box-shadow: 0px 1px 2px #aaa;
     -moz-box-shadow: 0px 1px 2px #aaa;
     box-shadow: 0px 1px 2px #aaa;
 }
-.task-item{
-    border:1px solid #bbbbbb;
+
+.task-item {
+    border: 1px solid #bbbbbb;
     border-radius: 4px;
-    min-height:120px;
+    min-height: 120px;
     margin: 5px;
     -webkit-box-shadow: 1px 1px 3px #aaa;
     -moz-box-shadow: 1px 1px 3px #aaa;
     box-shadow: 1px 1px 3px #aaa;
     background: #fff;
 }
-.task-item-title{
-    padding:3px 8px;
+
+.task-item-title {
+    padding: 3px 8px;
     color: #fff;
 }
-.task-item-body{
-    padding:3px 8px;
+
+.task-item-body {
+    padding: 3px 8px;
 
 }
-.bug{
+
+.bug {
     background: #f0ad4e;
 }
-.task{
+
+.task {
     background: #428bca;
+}
+
+.task-pool {
+    min-height: 500px;
+    overflow-x: scroll;
+    background: #f6f7f9;
+    padding: 8px;
+    position: relative;
+
+}
+
+.left-box-shadow{
+    width:10px;
+    position: relative;
+    left:0;
+    top:0;
+    -moz-box-shadow: 5px 5px 5px #999 inset; /* For Firefox3.6+ */
+    -webkit-box-shadow: 5px 5px 5px #999 inset; /* For Chrome5+, Safari5+ */
+    box-shadow: 5px 5px 5px #999 inset; /* For Latest Opera */
+
+}
+
+.left-box-shadow,.right-box-shadow{
+    display: block;
+    width: 14px;
+    /*height: 100%;*/
+    position: absolute;
+    box-shadow: 0px 0px 7px rgb(136, 136, 136);
+    top: 9px;
+    /*margin: -10px 0 0 0;*/
+}
+.left-box-shadow{
+    /*background: rgba(0, 0, 0, 0) -moz-linear-gradient(center left,rgb(245, 245, 245) 0%, rgba(255, 255, 255, 0) 100%) repeat scroll 0 0 !important;*/
+    left: -15px;
+}
+.right-box-shadow{
+    /*background: rgba(0, 0, 0, 0) -moz-linear-gradient(center right,rgb(245, 245, 245) 0%, rgba(255, 255, 255, 0) 100%) repeat scroll 0 0 !important;*/
+    right: -14px;
+}
+
+.task-pool-mirror{
+    overflow-x: scroll;
+    height:11px;
+    position: relative;
+    top:0px;
+}
+.lane-box-mirror{
+    height:11px;
 }

@@ -1,13 +1,34 @@
-/*==============================================================*/
-/* Table: s_properties                                          */
-/*==============================================================*/
-create table s_properties
-(
-  p_key                varchar(100) not null comment 'key',
-  p_value              varchar(400) comment 'value',
-  primary key (p_key)
-);
-
-alter table s_properties comment '配置信息表';
-
-ALTER TABLE pesticide.s_version ADD is_complete VARCHAR(2) NULL;
+CREATE OR REPLACE VIEW v_issue AS
+  SELECT
+    t_task.uuid         AS uuid,
+    t_task.task_code    AS CODE,
+    t_task.model_code   AS model_code,
+    t_task.title        AS title,
+    'T'                 AS ISSUE_TYPE,
+    t_task.principal    AS principal,
+    t_task.state        AS state,
+    t_task.object_code  AS object_code,
+    t_task.version_code AS version_code,
+    t_task.priority     AS priority,
+    t_task.create_time  AS create_time,
+    t_task.create_user  AS create_user,
+    t_task.update_time  AS update_time,
+    ''                  AS bug_level
+  FROM t_task
+  UNION ALL
+  SELECT
+    t_bug.uuid         AS uuid,
+    t_bug.bug_code     AS CODE,
+    t_bug.model_code   AS model_code,
+    t_bug.title        AS title,
+    'B'                AS ISSUE_TYPE,
+    t_bug.principal    AS principal,
+    t_bug.state        AS state,
+    t_bug.object_code  AS object_code,
+    t_bug.version_code AS version_code,
+    t_bug.priority     AS priority,
+    t_bug.create_time  AS create_time,
+    t_bug.create_user  AS create_user,
+    t_bug.update_time  AS update_time,
+    t_bug.bug_level    AS bug_level
+  FROM t_bug;

@@ -94,4 +94,21 @@ public class CreationServiceImpl extends BaseServiceImpl implements CreationServ
         return creationDao.searchTask(param);
     }
 
+    /**
+     * @param param
+     * @return
+     * @Description 新增版本信息
+     * @author JerryWang
+     * @date 2017/6/28 14:22
+     */
+    public String addVersion(Map<String, String> param) {
+        try {
+            creationDao.addVersion(param);
+            return "true";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "false";
+        }
+    }
+
 }

@@ -117,4 +117,13 @@ public class LaunchServiceImpl implements LaunchService {
         return launchDao.getLaunchDetail(param);
     }
 
+    public boolean checkRole(Map<String, String> param) {
+        int num = launchDao.checkRole(param);
+        if(num == 0){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
 }

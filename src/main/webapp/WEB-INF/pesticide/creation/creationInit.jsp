@@ -67,13 +67,16 @@
                         </div>
                         <input type="hidden" id="dtp_input2" value=""/>
                     </div>
-                    <div class="mb_15">
+                    <div class="mb_15" style="position:relative;z-index: 100">
                         <select class="form-control select_empty" id="version_code" name="version_code">
                             <option class="select_empty" value="">-- 选择版本号 --</option>
                         </select>
                     </div>
+                    <div class="version-add-div" data-toggle="modal" data-target="#addVersionModal">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </div>
                     <div class="mb_15">
-                        <select class="form-control select_empty" id="priority" name="priority" validate="require">
+                        <select class="form-control select_empty" id="priority" name="priority" validate="required">
                             <option class="select_empty" value="">-- 选择优先级 --</option>
                         </select>
                     </div>
@@ -115,13 +118,40 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">关联前序任务</h4>
+                <h4 class="modal-title">关联前序任务</h4>
             </div>
             <div class="link-proTask-search-input form-group has-feedback">
                 <input type="text" class="form-control" id="link_proTask" aria-describedby="inputSuccess2Status" placeholder="输入任务号">
                 <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
             </div>
             <div class="modal-body no-padding-lr" id="link_info_body">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="addVersionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog-index" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">新增版本号</h4>
+            </div>
+            <div class="version-body no-padding-lr">
+                <input id="addVersionCode" class="form-control" placeholder="版本号">
+                <br>
+                <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
+                     data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" size="16" type="text" id="publishDate" name="publishDate" readonly placeholder="上线时间">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input3" value=""/>
+                <br>
+                <div style="text-align: right">
+                    <button type="button" class="btn btn-primary" onclick="creation.js.addVersion()">确认</button>
+                </div>
             </div>
         </div>
     </div>

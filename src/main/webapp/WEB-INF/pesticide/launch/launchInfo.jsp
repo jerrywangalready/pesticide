@@ -13,7 +13,7 @@
     <div class="left model_num">
         <h2>Total</h2>
         <h1 id="total_num"></h1>
-        <button type="button" class="btn btn-primary" onclick="launchInfo.js.forLaunch()">确认</button>
+        <button id="launch_button" type="button" style="display: none;" class="btn btn-primary" onclick="launchInfo.js.forLaunch()">确认</button>
     </div>
     <div class="right model_list_box">
         <div class="model_list">

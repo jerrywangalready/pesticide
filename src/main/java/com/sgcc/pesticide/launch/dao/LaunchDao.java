@@ -56,4 +56,6 @@ public interface LaunchDao {
     void updateIssueState(Map<String, String> param);
 
     List<Map<String,String>> getLaunchDetail(Map<String, String> param);
+
+    int checkRole(Map<String, String> param);
 }

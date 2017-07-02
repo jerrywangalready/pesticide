@@ -12,9 +12,16 @@
 <link href="<%=path%>/pesticide/launch/css/launch.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="<%=path%>/pesticide/launch/js/launchInit.js"></script>
 <br>
-<div style="min-height: 500px;overflow-x: scroll;background:#f6f7f9;padding: 8px;">
-    <div class="left lane-box">
-
+<div style="position: relative;overflow: hidden">
+    <div class="task-pool">
+        <div class="left lane-box">
+    
+        </div>
+    </div>
+    <span class="left-box-shadow" style="display: none;"></span>
+    <span class="right-box-shadow" style="display: none;"></span>
+    <div class="task-pool-mirror">
+        <div class="left lane-box-mirror"></div>
     </div>
 </div>
 <script id="laneTemplate" type="text/html">

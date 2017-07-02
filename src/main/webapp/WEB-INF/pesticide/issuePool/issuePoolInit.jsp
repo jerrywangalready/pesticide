@@ -14,7 +14,8 @@
 <script type="text/javascript" src="<%=path%>/pesticide/issuePool/js/issuePoolInit.js"></script>
 <br>
 <div >
-    <form class="form-inline row query-form" role="form" id="query_box">
+    <form class="row query-form" role="form" id="query_box" action="<%=request.getContextPath()%>/issuePool/exportExcel.do" method="post">
+        <input type="hidden" name="object_code" id="object_code">
         <div class="col-md-4">
             <input type="text" class="form-control" id="issue_code" name="issue_code" placeholder="编号" >
         </div>
@@ -46,12 +47,11 @@
     <nav id="page-bar">
     </nav>
 
-    <form id="dddd" action="<%=request.getContextPath()%>/issuePool/exportExcel.do" method="post"></form>
 </div>
 
 <script id="issuePool_template" type="text/html">
     {{if list.length == 0}}
-    <div><span>未查询到任何数据！</span></div>
+    <div class="nothing"><span></span></div>
     {{/if}}
         {{each list as value i}}
         <div class="grid-item {{if value.ISSUE_TYPE == 'T'}}task{{/if}}{{if value.ISSUE_TYPE == 'B'}}bug{{/if}}"

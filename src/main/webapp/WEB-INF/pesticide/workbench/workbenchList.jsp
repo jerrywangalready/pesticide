@@ -23,7 +23,7 @@
 
 <script id="grid_template" type="text/html">
     {{if list.length == 0}}
-    <div><span>未查询到任何数据！</span></div>
+    <div class="nothing"><span></span></div>
     {{/if}}
     {{each list as value i}}
     <div class="grid-item {{if value.ISSUE_TYPE == 'T'}}task{{/if}}{{if value.ISSUE_TYPE == 'B'}}bug{{/if}}"
@@ -48,7 +48,7 @@
         </div>
         <div class="right">
             <div class="priority">
-                <span class="glyphicon glyphicon-flag l{{value.PRIORITY}}"></span>
+                <span class="glyphicon glyphicon-flag l{{value.PRIORITY}}" title="优先级"></span>
             </div>
         </div>
     </div>

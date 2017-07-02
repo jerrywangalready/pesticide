@@ -97,4 +97,12 @@ public class LaunchController {
         param.put("versionCode", versionCode);
         return launchService.getLaunchDetail(param);
     }
+
+    @RequestMapping("/checkRole")
+    public @ResponseBody String checkRole(String objectCode){
+        Map<String, String> param = new HashMap<>();
+        param.put("objectCode", objectCode);
+        param.put("username", commService.getLoginInfo().getLoginUser());
+        return String.valueOf(launchService.checkRole(param));
+    }
 }

@@ -12,7 +12,8 @@ CREATE OR REPLACE VIEW v_issue AS
     t_task.priority     AS priority,
     t_task.create_time  AS create_time,
     t_task.create_user  AS create_user,
-    t_task.update_time  AS update_time
+    t_task.update_time  AS update_time,
+    ''                  AS bug_level
   FROM t_task
   UNION ALL
   SELECT
@@ -28,5 +29,6 @@ CREATE OR REPLACE VIEW v_issue AS
     t_bug.priority     AS priority,
     t_bug.create_time  AS create_time,
     t_bug.create_user  AS create_user,
-    t_bug.update_time  AS update_time
+    t_bug.update_time  AS update_time,
+    t_bug.bug_level    AS bug_level
   FROM t_bug;

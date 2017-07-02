@@ -164,4 +164,8 @@
          WHERE CODE LIKE concat('%',#{code},'%') AND OBJECT_CODE = #{objectCode}
     </select>
 
+    <insert id="addVersion">
+        insert into s_version (uuid, version_code, publish_date, object_code)
+        values (#{uuid}, #{versionCode}, #{publishDate}, #{objectCode});
+    </insert>
 </mapper>

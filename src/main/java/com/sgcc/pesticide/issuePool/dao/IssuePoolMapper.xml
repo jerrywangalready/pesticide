@@ -14,10 +14,14 @@
         PRI.code_value PRIORITY_VALUE,
         V.VERSION_CODE,
         V.principal,
+        S1.NICKNAME PRINCIPAL_NAME,
         V.STATE,
-        SCL.code_value                            STATE_VALUE,
+        SCL.code_value STATE_VALUE,
         date_format(V.CREATE_TIME, '%Y-%m-%d %T') CREATE_TIME,
-        S.NICKNAME
+        S.NICKNAME,
+        V.MODEL_CODE,
+        SM.MODEL_NAME,
+        V.BUG_LEVEL
         FROM v_issue V
         LEFT JOIN s_users S
         ON V.create_user = S.username
@@ -28,7 +32,11 @@
         AND scl.code_type = 'state'
         LEFT JOIN t_code_list pri
         ON V.priority = pri.code_key
-        WHERE 1 = 1
+        AND pri.code_type = 'priority'
+        LEFT JOIN s_model sm
+        ON sm.model_code = v.model_code
+        AND sm.object_code = #{object_code}
+        WHERE V.OBJECT_CODE = #{object_code}
         <if test="issue_code != null and issue_code != ''">
             AND V.CODE like CONCAT('%',#{issue_code},'%')
         </if>

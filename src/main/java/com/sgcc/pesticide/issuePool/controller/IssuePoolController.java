@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.HashMap;
@@ -116,9 +117,16 @@ public class IssuePoolController {
     }
 
     @RequestMapping("/exportExcel")
-    public void exportExcel(HttpServletResponse response){
+    public void exportExcel(HttpServletRequest request, HttpServletResponse response){
 
         Map<String, String> param = new HashMap<>();
+        param.put("object_code", request.getParameter("object_code"));
+        param.put("issue_code", request.getParameter("issue_code"));
+        param.put("issue_name", request.getParameter("issue_name"));
+        param.put("query_issue_type", request.getParameter("query_issue_type"));
+        param.put("query_state", request.getParameter("query_state"));
+        param.put("query_create_user", request.getParameter("query_create_user"));
+        param.put("query_principal", request.getParameter("query_principal"));
         String uuid = issuePoolService.exportExcel(param);
 
         String path = CommUtil.getInstance().PROPERTIES.get("file");

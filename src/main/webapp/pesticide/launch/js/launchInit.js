@@ -20,16 +20,9 @@ launchInit.js.init = function () {
             var html = template('laneTemplate',{'list':data});
             $(".lane-box").html(html);
 
-            var maxHeight = 0;
-            $(".lane").each(function () {
-                if($(this).height()>maxHeight){
-                    maxHeight = $(this).height();
-                }
-            });
+            launchInit.js.resizeMaxHeight();
 
-            $(".lane-box").width(238*data.length);
-
-            $(".lane").height(maxHeight);
+            $(".lane-box,.lane-box-mirror").width(238*data.length+8);
 
             $(".lane").sortable({
                 connectWith: ".lane",
@@ -53,12 +46,54 @@ launchInit.js.init = function () {
 
                     });
                     launchInit.js.checkedPublishButton();
+
+                    launchInit.js.resizeMaxHeight();
                 }
             }).disableSelection();
             launchInit.js.checkedPublishButton();
+
+            // 左右阴影
+            $(".task-pool").scroll(function () {
+                if($(this).scrollLeft() < 1){
+                    $(".left-box-shadow").hide();
+                }else {
+                    $(".left-box-shadow").show();
+                }
+                if($(this).scrollLeft() > 238*data.length-944){
+                    $(".right-box-shadow").hide();
+                }else {
+                    $(".right-box-shadow").show();
+
+                }
+
+            }).scroll();
+
+            // 浮动滚动条
+            $(".task-pool").scroll(function () {
+                $(".task-pool-mirror").scrollLeft($(this).scrollLeft());
+            });
+            $(".task-pool-mirror").scroll(function () {
+                $(".task-pool").scrollLeft($(this).scrollLeft());
+            });
+            // 浏览器右侧滚动条滚动时触发
+            $(window).scroll(function () {
+                var distancefrombottom = $(".task-pool").height() - ($(window).height() - $(".task-pool").offset().top + $(window).scrollTop());
+                if (1 >= distancefrombottom) {
+                    $(".task-pool-mirror").hide();
+                } else {
+                    $(".task-pool-mirror").show();
+                    $(".task-pool-mirror").scrollLeft($(".task-pool").scrollLeft());
+                    $(".task-pool-mirror").css("top", 0 - distancefrombottom - 28);
+                }
+            }).scroll().resize(function () {
+                $(window).scroll();
+            });
+
+
         }
 
     });
+
 };
 
 launchInit.js.checkedPublishButton = function () {
@@ -95,4 +130,15 @@ launchInit.js.getParameter = function () {
     param.objectCode = objectCode;
     param.versionCode = versionCode;
     return param;
+};
+
+launchInit.js.resizeMaxHeight = function () {
+    var num = 0;
+    $(".lane").each(function () {
+        var thisSize = $(this).children().length;
+        if(thisSize>num){
+            num = thisSize;
+        }
+    });
+    $(".lane,.left-box-shadow,.right-box-shadow").height(num*125-90);
 };

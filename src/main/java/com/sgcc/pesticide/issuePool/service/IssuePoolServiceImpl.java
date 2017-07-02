@@ -110,7 +110,7 @@ public class IssuePoolServiceImpl implements IssuePoolService {
             HSSFSheet sheet = wb.createSheet("new sheet");
             HSSFRow titleRow = sheet.createRow(0);
             titleRow.setHeight((short) 420);
-            int[] ints = {2048,2048,2048,2048,2048,2048,2048,2048,2048};
+            int[] ints = {2048,2048,20480,2048,3048,2048,2048,2048,2048};
             String[] title = {"序号","编号","标题","状态","模块","优先级","问题级别","发布者","接收者"};
             // 循环表头
             for(int i=0;i<title.length;i++){
@@ -128,11 +128,11 @@ public class IssuePoolServiceImpl implements IssuePoolService {
                 row.createCell(1).setCellValue(map.get("CODE"));
                 row.createCell(2).setCellValue(map.get("TITLE"));
                 row.createCell(3).setCellValue(map.get("STATE_VALUE"));
-                row.createCell(4).setCellValue(map.get("CODE"));
-                row.createCell(5).setCellValue(map.get("CODE"));
-                row.createCell(6).setCellValue(map.get("CODE"));
-                row.createCell(7).setCellValue(map.get("CODE"));
-                row.createCell(8).setCellValue(map.get("CODE"));
+                row.createCell(4).setCellValue(map.get("MODEL_NAME"));
+                row.createCell(5).setCellValue(map.get("PRIORITY_VALUE"));
+                row.createCell(6).setCellValue(map.get("BUG_LEVEL"));
+                row.createCell(7).setCellValue(map.get("NICKNAME"));
+                row.createCell(8).setCellValue(map.get("PRINCIPAL_NAME"));
             }
 
 

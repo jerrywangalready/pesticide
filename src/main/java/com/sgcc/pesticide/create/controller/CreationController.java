@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -65,4 +66,15 @@ public class CreationController {
         param.put("objectCode",objectCode);
         return creationService.searchTask(param);
     }
+
+    @RequestMapping("/addVersion")
+    public @ResponseBody String addVersion(String versionCode, String publishDate, String objectCode){
+        Map<String, String> param = new HashMap<>();
+        param.put("versionCode", versionCode);
+        param.put("publishDate", publishDate);
+        param.put("objectCode", objectCode);
+        param.put("uuid", CommUtil.getUUID());
+        return creationService.addVersion(param);
+    }
+
 }

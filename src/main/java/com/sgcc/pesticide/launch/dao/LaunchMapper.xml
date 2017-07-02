@@ -66,4 +66,7 @@
         and version_code = #{versionCode}
         group by model_code
     </select>
+    <select id="checkRole" resultType="java.lang.Integer">
+        select count(1) from p_role_user WHERE username = #{username} and object_code = #{objectCode};
+    </select>
 </mapper>

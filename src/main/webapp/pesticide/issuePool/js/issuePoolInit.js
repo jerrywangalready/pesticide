@@ -51,8 +51,7 @@ issuePool.js.detail = function (uuid, type) {
 };
 
 issuePool.js.exportExcel = function () {
-    // $.post(path + "/issuePool/exportExcel.do",{},function () {
-    //
-    // });
-    $("#dddd").submit();
+    var object_code = getParameter(location.hash, "obj", "");
+    $("#object_code").val(object_code);
+    $("#query_box").submit();
 };

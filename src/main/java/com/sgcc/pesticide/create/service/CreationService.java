@@ -32,8 +32,17 @@ public interface CreationService extends BaseService {
      * @Description 根据任务编号获取任务列表
      * @author JerryWang
      * @date 2017/3/26 00:00
-     * @param code
+     * @param param
      * @return
      */
     List<Map<String, String>> searchTask(Map<String, String> param);
+
+    /**
+     * @Description 新增版本信息
+     * @author JerryWang
+     * @date 2017/6/28 14:22
+     * @param param
+     * @return
+     */
+    String addVersion(Map<String, String> param);
 }

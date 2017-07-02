@@ -66,4 +66,12 @@ public interface CreationDao {
     List<Map<String, String>> searchTask(Map<String, String> param);
 
 
+    /**
+     * @Description 新增版本信息
+     * @author JerryWang
+     * @date 2017/6/28 14:23
+     * @param param
+     * @return
+     */
+    void addVersion(Map<String, String> param);
 }

@@ -11,12 +11,14 @@ creation.js = {};
 creation.js.description;
 // 项目编号
 creation.js.objectCode = "";
+creation.js.flag = false;
 // 初始化
 creation.js.init = function () {
 
     creation.js.objectCode = getParameter(location.hash,"obj","");
-
-    CKEDITOR.replace('description',{ height: '440px'});
+    var h = $(window).height()-377;
+    var th = 440 > h ? 440 : h;
+    CKEDITOR.replace('description',{ height: th + 'px'});
     creation.js.description = CKEDITOR.instances.description;
     creation.js.description.on('focus',function () {
         $('#cke_description').addClass("edit_focus");
@@ -43,7 +45,23 @@ creation.js.init = function () {
         forceParse: 0
     });
     // 版本号下拉框
-    $("#version_code").dict({table:"S_VERSION",key:"VERSION_CODE",value:"VERSION_CODE",where:"object_code='"+creation.js.objectCode+"' AND publish_date > SYSDATE()"});
+    $("#version_code").dict({table:"S_VERSION",key:"VERSION_CODE",value:"VERSION_CODE",where:"object_code='"+creation.js.objectCode+"' AND publish_date >= curdate() ORDER BY publish_date desc"})
+        .focusin(function () {
+            creation.js.flag = false;
+            $(".version-add-div").animate({marginLeft:'-23px'},"fast");
+        }).focusout(function () {
+            if(!creation.js.flag){
+                $(".version-add-div").animate({marginLeft:'0px'},"fast");
+            }
+        });
+    $(".version-add-div").mouseenter(function () {
+        creation.js.flag = true;
+        $("#version_code").blur();
+    }).mouseleave(function () {
+        if(creation.js.flag){
+            $(".version-add-div").animate({marginLeft:'0px'},"fast");
+        }
+    });
     // 绑定灰黑样式切换
     $("#model_select,#principal,#version_code,#priority").change(function () {
         if($(this).val()==""){
@@ -74,7 +92,6 @@ creation.js.save = function(todo){
 
     var param = $("#main_form").validate();
     if(param){
-        console.info(88888)
         var description = creation.js.description.getData();
         param.description = description;
         param.object_code = creation.js.objectCode;
@@ -167,7 +184,7 @@ creation.js.chooseTask = function (obj) {
     $("#link_info_close").click();
     $("#bug_level_div").hide();
     $("#working_day_div").show();
-
+    creation.js.description.setData("");
 };
 
 // 选择bug
@@ -177,6 +194,9 @@ creation.js.chooseBug = function (obj) {
     $("#link_info_close").click();
     $("#bug_level_div").show();
     $("#working_day_div").hide();
+    var model = "<p>Bug复现步骤</p><hr /><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>实际结果</p>"
+            + "<hr /><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>期望结果</p><hr /><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>";
+    creation.js.description.setData(model);
 };
 
 // 获取关联信息
@@ -228,6 +248,23 @@ creation.js.getLinkInfo = function () {
                     });
                 })
             });
+        }
+    });
+
+};
+creation.js.addVersion = function () {
+    var versionCode = $("#addVersionCode").val();
+    var publishDate = $("#publishDate").val();
+    var objectCode = getParameter(location.hash, "obj", "");
+    $.post(path + "/creation/addVersion.do",{versionCode:versionCode,publishDate:publishDate,objectCode:objectCode},function (data) {
+        if(data == "true"){
+            $("#addVersionModal").modal('hide');
+            layer.msg("操作成功!");
+            // 版本号下拉框
+            $("#version_code").html("<option class=\"select_empty\" value=\"\">-- 选择版本号 --</option>").dict({table:"S_VERSION",key:"VERSION_CODE",value:"VERSION_CODE",where:"object_code='"+creation.js.objectCode+"' AND publish_date >= curdate() ORDER BY publish_date desc"})
+                .val(versionCode);
+        }else {
+            layer.alert("操作失败!");
         }
     });
 

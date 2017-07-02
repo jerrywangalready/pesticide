@@ -53,4 +53,6 @@ public interface LaunchService {
     void updateIssueState(Map<String, String> param) throws Exception;
 
     List<Map<String,String>> getLaunchDetail(Map<String, String> param);
+
+    boolean checkRole(Map<String, String> param);
 }
