@@ -8,6 +8,8 @@ drop table if exists p_resource_role;
 
 drop table if exists p_role;
 
+drop table if exists p_role_user;
+
 drop table if exists s_code_list;
 
 drop table if exists s_model;
@@ -15,6 +17,8 @@ drop table if exists s_model;
 drop table if exists s_object;
 
 drop table if exists s_object_users;
+
+drop table if exists s_properties;
 
 drop table if exists s_users;
 
@@ -40,10 +44,6 @@ drop table if exists t_task;
 
 drop table if exists t_testing;
 
-drop table if exists p_role_user;
-
-drop table if exists p_role;
-
 /*==============================================================*/
 /* Table: demo                                                  */
 /*==============================================================*/
@@ -65,6 +65,8 @@ alter table demo comment 'demo';
 create table p_menu
 (
    uuid                 varchar(32) not null comment '主键',
+   menu_id              varchar(50),
+   menu_name            varchar(300),
    primary key (uuid)
 );
 
@@ -98,10 +100,26 @@ alter table p_resource_role comment '资源角色表';
 create table p_role
 (
    uuid                 varchar(32) not null comment '主键',
+   role_id              varchar(50) comment '角色编号',
+   role_name            varchar(300) comment '角色',
    primary key (uuid)
 );
 
 alter table p_role comment '角色表';
+
+/*==============================================================*/
+/* Table: p_role_user                                           */
+/*==============================================================*/
+create table p_role_user
+(
+   uuid                 varchar(32) not null,
+   role_id              varchar(50),
+   username             varchar(50),
+   object_code          varchar(32),
+   primary key (uuid)
+);
+
+alter table p_role_user comment '人员角色关系表';
 
 /*==============================================================*/
 /* Table: s_code_list                                           */
@@ -166,6 +184,18 @@ create table s_object_users
 alter table s_object_users comment '项目人员关系表';
 
 /*==============================================================*/
+/* Table: s_properties                                          */
+/*==============================================================*/
+create table s_properties
+(
+   p_key                varchar(100) not null comment 'key',
+   p_value              varchar(400) comment 'value',
+   primary key (p_key)
+);
+
+alter table s_properties comment '配置信息表';
+
+/*==============================================================*/
 /* Table: s_users                                               */
 /*==============================================================*/
 create table s_users
@@ -182,18 +212,19 @@ create table s_users
 alter table s_users comment '用户';
 
 /*==============================================================*/
-/* Table: s_version                                             */
+/* Table: s_verison                                             */
 /*==============================================================*/
-create table s_version
+create table s_verison
 (
    uuid                 varchar(32) not null comment '主键',
    version_code         varchar(32) comment '版本号',
    publish_date         date comment '上线时间',
    object_code          varchar(32) comment '项目编号',
+   is_complete          varchar(2) comment '发布完成',
    primary key (uuid)
 );
 
-alter table s_version comment '版本';
+alter table s_verison comment '版本';
 
 /*==============================================================*/
 /* Table: t_bug                                                 */
@@ -273,7 +304,8 @@ create table t_file
    business_id          varchar(32) comment '业务主键',
    issue_type           varchar(32) comment '任务类型',
    file_name            varchar(200) comment '文件名称',
-   file_type            varchar(32) comment '文件类型',
+   file_type            varchar(300) comment '文件类型',
+   file_size            varchar(13) comment '文件大小',
    create_user          varchar(32) comment '创建人员',
    create_time          datetime comment '创建时间',
    isenable             varchar(2) comment '是否在用',
@@ -412,62 +444,3 @@ create table t_testing
 );
 
 alter table t_testing comment '测试任务';
-
-CREATE OR REPLACE VIEW v_issue AS
-  SELECT
-    t_task.uuid         AS uuid,
-    t_task.task_code    AS CODE,
-    t_task.model_code   AS model_code,
-    t_task.title        AS title,
-    'T'                 AS ISSUE_TYPE,
-    t_task.principal    AS principal,
-    t_task.state        AS state,
-    t_task.object_code  AS object_code,
-    t_task.version_code AS version_code,
-    t_task.priority     AS priority,
-    t_task.create_time  AS create_time,
-    t_task.create_user  AS create_user,
-    t_task.update_time  AS update_time
-  FROM t_task
-  UNION ALL
-  SELECT
-    t_bug.uuid         AS uuid,
-    t_bug.bug_code     AS CODE,
-    t_bug.model_code   AS model_code,
-    t_bug.title        AS title,
-    'B'                AS ISSUE_TYPE,
-    t_bug.principal    AS principal,
-    t_bug.state        AS state,
-    t_bug.object_code  AS object_code,
-    t_bug.version_code AS version_code,
-    t_bug.priority     AS priority,
-    t_bug.create_time  AS create_time,
-    t_bug.create_user  AS create_user,
-    t_bug.update_time  AS update_time
-  FROM t_bug;
-
-/*==============================================================*/
-/* Table: p_role                                                */
-/*==============================================================*/
-create table p_role
-(
-   uuid                 varchar(32) not null comment '主键',
-   role_id              varchar(50) comment '角色编号',
-   role_name            varchar(300) comment '角色',
-   primary key (uuid)
-);
-
-alter table p_role comment '角色表';
-/*==============================================================*/
-/* Table: p_role_user                                           */
-/*==============================================================*/
-create table p_role_user
-(
-   uuid                 varchar(32) not null,
-   role_id              varchar(50),
-   username             varchar(50),
-   object_code          varchar(32),
-   primary key (uuid)
-);
-
-alter table p_role_user comment '人员角色关系表';
