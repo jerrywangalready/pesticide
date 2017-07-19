@@ -102,3 +102,18 @@ comm.js.iframeAuto = function () {
     var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
     parent.layer.iframeAuto(index);
 };
+
+comm.js.getUUID = function () {
+    var uuid = "";
+    $.ajax({
+        type:'POST',
+        async:false,
+        url:path+'/CommUtil/getUUID.do',
+        contentType:'application/json',
+        success:function (data) {
+            uuid = data;
+        }
+
+    });
+    return uuid;
+};

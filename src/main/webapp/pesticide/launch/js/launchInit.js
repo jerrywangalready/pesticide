@@ -75,9 +75,11 @@ launchInit.js.init = function () {
             $(".task-pool-mirror").scroll(function () {
                 $(".task-pool").scrollLeft($(this).scrollLeft());
             });
+            var height = $(".task-pool").height();
+            var top = $(".task-pool").offset().top;
             // 浏览器右侧滚动条滚动时触发
             $(window).scroll(function () {
-                var distancefrombottom = $(".task-pool").height() - ($(window).height() - $(".task-pool").offset().top + $(window).scrollTop());
+                var distancefrombottom = height - ($(window).height() - top + $(window).scrollTop());
                 if (1 >= distancefrombottom) {
                     $(".task-pool-mirror").hide();
                 } else {

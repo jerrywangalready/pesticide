@@ -31,7 +31,7 @@ public class IndexController {
      * @return
      */
     @RequestMapping(value = "/index.do")
-    public String index(HttpServletRequest request, HttpServletResponse response){
+    public String index(){
         return "/index/index";
     }
 
@@ -45,7 +45,7 @@ public class IndexController {
      */
     @ResponseBody
     @RequestMapping(value = "/logout.do")
-    public String logout(HttpServletRequest request, HttpServletResponse response){
+    public String logout(HttpServletRequest request){
         request.getSession().invalidate();
         return "true";
     }

@@ -10,6 +10,7 @@ import com.sgcc.pesticide.workbench.dao.WorkbenchDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -159,5 +160,45 @@ public class WorkbenchServiceImpl extends BaseServiceImpl implements WorkbenchSe
         }
     }
 
+    /**
+     * @param businessId
+     * @return
+     * @Description 获取附件信息
+     * @author JerryWang
+     * @date 2017/7/13 12:57
+     */
+    public List<Map<String, String>> getAttachment(String businessId) {
+        List<Map<String, String>> list =  workbenchDao.getAttachment(businessId);
+        DecimalFormat df = new DecimalFormat("#.00");
+        for (int i = 0; i < list.size(); i++) {
+            double size = Long.parseLong(list.get(i).get("file_size"));
+            int in = 2147483647;
+            double o = 122147483647D;
+            if (size >= 0 && size < 1024){
+                list.get(i).put("file_size", size +" B");
+            }else if(size >= 1024D && size < 1048576D){
+                list.get(i).put("file_size", df.format(size/1024) +" KB");
+            }else if(size >= 1048576D && size < 1073741824D){
+                list.get(i).put("file_size", df.format(size/1024/1024) +" MB");
+            }else if(size >= 1073741824D && size < 1099511627776D){
+                list.get(i).put("file_size", df.format(size/1024/1024/1024) +" GB");
+            }else if(size >= 1099511627776D){
+                list.get(i).put("file_size", df.format(size/1024/1024/1024/1024) +" TB");
+            }
+        }
+
+        return list;
+    }
+
+    /**
+     * @param uuid
+     * @return
+     * @Description 通过uuid获取附件详细信息
+     * @author JerryWang
+     * @date 2017/7/16 22:54
+     */
+    public String getAttachmentNameByUuid(String uuid) {
+        return workbenchDao.getAttachmentDetailByUuid(uuid);
+    }
 
 }

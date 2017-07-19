@@ -14,6 +14,10 @@ creation.js.objectCode = "";
 creation.js.flag = false;
 // 初始化
 creation.js.init = function () {
+    console.info(path)
+    // 获取uuid
+    var uuid = comm.js.getUUID();
+    $("#uuid").val(uuid);
 
     creation.js.objectCode = getParameter(location.hash,"obj","");
     var h = $(window).height()-377;
@@ -86,6 +90,48 @@ creation.js.init = function () {
         step: 0.5
     });
 
+    // 上传附件组件初始化
+    $("#attachment").fileinput({
+        language: 'zh',
+        showUpload: false,
+        initialPreview: [
+        ],
+        uploadUrl: path + '/creation/uploadFile.do',
+        uploadExtraData: {businessId: uuid},
+        initialPreviewAsData: true,
+        initialPreviewConfig: [
+        ],
+        hiddenThumbnailContent: true,
+        showCaption: false,
+        showPreview: true,
+        overwriteInitial: false,
+        showUploadedThumbs: true,
+        maxFileSize: 2147483648,//2GB
+        showCaption: true,
+        dropZoneTitleClass: 'hide',
+        dropZoneEnabled: false,
+        showRemove: false,
+        showCancel: false,
+        showClose: false,
+        initialCaption: "添加附件",
+        layoutTemplates:{
+            actions: '<div class="file-upload-indicator" title="Uploaded" style="margin-left: 0px;"><i class="glyphicon glyphicon-ok-sign text-success"></i></div>\n' +
+            '<div class="file-actions">\n' +
+                '    <div class="file-footer-buttons">\n' +
+            '        {upload} {delete}  {other}' +
+            '    </div>\n' +
+            '    <div class="clearfix"></div>\n' +
+            '</div>'
+        }
+    }).on("filebatchselected", function(event, files) {
+        $(this).fileinput("upload");
+    }).on("fileuploaded", function (event, data, previewId, index) {
+        // console.info(event)
+        // console.info(data)
+        // console.info(previewId)
+        // console.info(index)
+    });
+
 };
 // 保存
 creation.js.save = function(todo){
@@ -110,69 +156,81 @@ creation.js.save = function(todo){
                     layer.msg('保存成功!', {
                         offset: '50px'
                     });
-                    $("#uuid").val(data);
+                    $("#mode").val("u");
                     return true;
+                }else{
+                    $("#mode").val("i");
                 }
             }
 
         });
+        return true;
+    }else{
+        return false;
     }
 
 };
 // 提交
 creation.js.commit = function () {
-    var param = $("#main_form").validate();
     // 保存数据
-    creation.js.save('commit');
+    var ret = creation.js.save('commit');
+    if(ret){
 
-    // 动画
-    var scrollT = $(document).scrollTop();
-    // var scrollL = $(document).scrollLeft();
-    var x = $("#menu_task_pool").offset();
-    var h = $(window).height();
-    var w = $(window).width();
-    $("body").append("<div class='greybackground'></div><div id='letter' style='display:none;top:"+(h/2-50)+"px;left:"+(w/2-50)+"px;position: fixed;z-index: 99999;'><span class='glyphicon glyphicon-envelope' style='font-size:100px;'></span></div>")
-    $(".greybackground").show("fast");
-    $(".greybackground").addClass("addw").addClass("add");
-    setTimeout(function () {
-        $(".greybackground").hide();
-        $(".greybackground").remove();
-        $("#letter").fadeIn("fast");
-        $("#letter").animate({top:h/2-110},"100");
-        $("#letter").animate({top:"-180px"},"500");
-        $("body").append("<div id='miniletter' style='top:-30px;left:"+(x.left+25)+"px;position: fixed;z-index: 99999;'><span class='glyphicon glyphicon-envelope' style='font-size:13px;'></span></div>")
+        // 动画
+        var scrollT = $(document).scrollTop();
+        // var scrollL = $(document).scrollLeft();
+        var x = $("#menu_task_pool").offset();
+        var h = $(window).height();
+        var w = $(window).width();
+        $("body").append("<div class='greybackground'></div><div id='letter' style='display:none;top:"+(h/2-50)+"px;left:"+(w/2-50)+"px;position: fixed;z-index: 99999;'><span class='glyphicon glyphicon-envelope' style='font-size:100px;'></span></div>")
+        $(".greybackground").show("fast");
+        $(".greybackground").addClass("addw").addClass("add");
         setTimeout(function () {
-            $("#letter").remove();
-            if($("#top_toolbar").is(":visible")){
-                $("#li_task_pool").children().addClass("shake-horizontal-add");
-                setTimeout(function () {
-                    $("#li_task_pool").children().removeClass("shake-horizontal-add");
-                },200);
-            }else {
-                $("#miniletter").animate({top:x.top-scrollT});
-                $("#miniletter").fadeOut();
-                setTimeout(function () {
-                    $("#menu_task_pool").addClass("shake-horizontal-add");
+            $(".greybackground").hide();
+            $(".greybackground").remove();
+            $("#letter").fadeIn("fast");
+            $("#letter").animate({top:h/2-110},"100");
+            $("#letter").animate({top:"-180px"},"500");
+            $("body").append("<div id='miniletter' style='top:-30px;left:"+(x.left+25)+"px;position: fixed;z-index: 99999;'><span class='glyphicon glyphicon-envelope' style='font-size:13px;'></span></div>")
+            setTimeout(function () {
+                $("#letter").remove();
+                if($("#top_toolbar").is(":visible")){
+                    $("#li_task_pool").children().addClass("shake-horizontal-add");
                     setTimeout(function () {
-                        $("#menu_task_pool").removeClass("shake-horizontal-add");
-                        $("#miniletter").remove();
+                        $("#li_task_pool").children().removeClass("shake-horizontal-add");
+                    },200);
+                }else {
+                    $("#miniletter").animate({top:x.top-scrollT});
+                    $("#miniletter").fadeOut();
+                    setTimeout(function () {
+                        $("#menu_task_pool").addClass("shake-horizontal-add");
+                        setTimeout(function () {
+                            $("#menu_task_pool").removeClass("shake-horizontal-add");
+                            $("#miniletter").remove();
 
-                    }, 200);
-                },500);
-            }
+                        }, 200);
+                    },500);
+                }
 
-        },1100);
-    },400);
+            },1100);
+        },400);
 
 
-    // $("#lalla").slideUp(10);
-    // 刷新页面
-    // $(window).hashchange();
-    $("#main_form").find("input[type=text],input[type=hidden],select").each(function () {
-        $(this).val("");
-    });
-    $("#isUrgency").prop("checked",false);
-    creation.js.description.setData("");
+        // $("#lalla").slideUp(10);
+        // 刷新页面
+        // $(window).hashchange();
+        $("#main_form").find("#title,#deadline,#priority,#working_day,input[type=hidden]").each(function () {
+            $(this).val("");
+        });
+        $("#isUrgency").prop("checked",false);
+        if($("input[name=issueType][checked=checked]").val() == "B"){
+            var model = "<p>Bug复现步骤</p><hr /><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>实际结果</p>"
+                + "<hr /><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>期望结果</p><hr /><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>";
+            creation.js.description.setData(model);
+        }else {
+            creation.js.description.setData("");
+        }
+    }
 
 
 

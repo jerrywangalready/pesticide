@@ -16,6 +16,8 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/pesticide/index/css/_mobile.css" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/pesticide/index/css/primary-blue.css" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/comm/plugins/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="<%=path%>/comm/plugins/bootstrap-fileinput-master/css/fileinput.min.css" />
+<%--<link rel="stylesheet" type="text/css" href="<%=path%>/comm/plugins/bootstrap-fileinput-master/css/fileinput-rtl.min.css" />--%>
 <link rel="stylesheet" type="text/css" href="<%=path%>/comm/plugins/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/comm/plugins/jquery-css3-shake/css/shake.css" />
 <link rel="stylesheet" type="text/css" href="<%=path%>/comm/plugins/jquery-ui-1.12.1.custom/jquery-ui.css" />
@@ -29,6 +31,8 @@
 <![endif]-->
 <!-- 外部插件 -->
 <script type="text/javascript" src="<%=path%>/comm/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=path%>/comm/plugins/bootstrap-fileinput-master/js/fileinput.min.js"></script>
+<script type="text/javascript" src="<%=path%>/comm/plugins/bootstrap-fileinput-master/js/locales/zh.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/hashchange/jquery.ba-hashchange.min.js"></script>
 <script type="text/javascript" src="<%=path%>/comm/plugins/artTemplate/template.js"></script>

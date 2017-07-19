@@ -31,6 +31,9 @@
 
                 <textarea name="description" id="description" style="display: none;" rows="10" cols="80"></textarea>
 
+                <label class="control-label">附件</label>
+                <input id="attachment" name="attachment" type="file" multiple class="file-loading">
+
 
             </div>
             <div class="col-md-3">

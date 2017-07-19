@@ -2,6 +2,7 @@ package com.sgcc.pesticide.issuePool.service;
 
 import com.sgcc.comm.model.Query;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -65,4 +66,13 @@ public interface IssuePoolService {
      * @return
      */
     String exportExcel(Map<String, String> param);
+
+    /**
+     * @Description 获取附件信息
+     * @author JerryWang
+     * @date 2017/7/17 13:00
+     * @param businessId
+     * @return
+     */
+    List<Map<String,String>> getAttachment(String businessId);
 }

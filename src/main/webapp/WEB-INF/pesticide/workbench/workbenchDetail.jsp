@@ -16,6 +16,9 @@
 <div id="detail_body">
 
 </div>
+<div id="attachment_box">
+
+</div>
 <div id="operation_details" >
 
 </div>
@@ -137,10 +140,38 @@
 
 </script>
 
+<script id="attachment_template" type="text/html">
+    {{each list as value i}}
+    <div class="attachment_item">
+        <span class="attachment {{value.typeClass}} left"></span>
+        <a class="attachment_a left" href="javascript:void(0);" onclick="workbenchDetail.js.downloadAttachment('{{value.uuid}}')">{{value.file_name}}</a>
+        <span class="attachment_size">{{value.create_time}}</span>
+        <span class="attachment_time">{{value.file_size}}</span>
+    </div>
+    {{/each}}
+    <hr>
+</script>
+
 <script id="operation_template" type="text/html">
     <ul class="recent-posts">
-        {{each list as value i}}
         <li>
+            <div class="article-post" style="min-height: 54px;">
+                <div class="left" style="width:95px;margin-right: 12px;border-right:2px solid #ccc;height: 55px;">
+                    <div style="text-align: center;height: 20px;">
+                        <span class="user-info"></span>
+                    </div>
+                    <div style="text-align: center;height: 20px;">
+                        <span class="user-info">备注</span>
+                    </div>
+                </div>
+                <div class="left">
+                    <textarea id="remark" class="left form-control" rows="2" style="height: 55px;width: 780px;"></textarea>
+                    <button id="submit_remark" type="submit" onclick="workbenchDetail.js.submitRemark();" class="left btn-sm btn-primary" style="margin:11px 0 0 13px;">确认</button>
+                </div>
+            </div>
+        </li>
+        {{each list as value i}}
+        <li {{if i == 0}}style="display:none;"{{/if}}>
             <%--<div class="user-thumb"> <img alt="User" src="img/demo/av1.jpg" height="40" width="40"> </div>--%>
             <div class="article-post" style="min-height: 40px;">
                 <div class="left" style="width:95px;margin-right: 12px;border-right:2px solid #ccc;">

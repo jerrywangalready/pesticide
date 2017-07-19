@@ -20,6 +20,7 @@ issuePool.js.init = function () {
     $("#query_issue_type,#query_state").change(function () {
         $("#query_box").query();
     });
+
 };
 
 issuePool.js.query = function () {

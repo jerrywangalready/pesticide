@@ -23,6 +23,9 @@ push.js.query = function () {
         contentType:'application/json',
         data:JSON.stringify(param),
         success:function (data) {
+            if(data.length == 0){
+                $("#publish_button").attr("disabled", "disabled");
+            }
             var html = template('model_grid_template',{'list':data});
             $("#grid").html(html);
         }

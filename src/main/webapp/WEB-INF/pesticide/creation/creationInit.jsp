@@ -16,6 +16,7 @@
     <br>
     <form role="form" id="main_form">
         <input type="hidden" id="uuid" name="uuid">
+        <input type="hidden" id="mode" name="mode" value="i">
         <div class="row">
             <div class="form-group has-defaut has-feedback btn-primary" style="display: none;" id="link_info">
                 <span class="glyphicon glyphicon-link" style="margin-left:15px;"></span>
@@ -31,6 +32,8 @@
 
                 <textarea name="description" id="description" style="display: none;" rows="10" cols="80"></textarea>
 
+                <label class="control-label">附件</label>
+                <input id="attachment" name="attachment" type="file" multiple class="file-loading">
 
             </div>
             <div class="col-md-3">

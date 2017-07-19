@@ -117,3 +117,144 @@ ul li{
     margin-left:7px;
     height:40px;
 }
+.attachment_item{
+    height: 33px;
+}
+.attachment{
+    width: 28px;
+    height: 32px;
+    display: block;
+}
+.attachment_item span{
+    color: #737373;
+}
+.attachment_a{
+    margin-top:4px;
+}
+.attachment_size{
+    float: right;
+    margin-left: 20px;
+    margin-top:4px;
+}
+.attachment_time{
+    float: right;
+    margin-left: 10px;
+    margin-top:4px;
+}
+.attachment.png{
+    background: url("../../../comm/image/icon/32/png_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.ai{
+    background: url("../../../comm/image/icon/32/ai_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.avi{
+    background: url("../../../comm/image/icon/32/avi_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.css{
+    background: url("../../../comm/image/icon/32/css_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.csv{
+    background: url("../../../comm/image/icon/32/csv_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.dbf{
+    background: url("../../../comm/image/icon/32/dbf_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.doc{
+    background: url("../../../comm/image/icon/32/doc_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.dwg{
+    background: url("../../../comm/image/icon/32/dwg_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.exe{
+    background: url("../../../comm/image/icon/32/exe_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.fla{
+    background: url("../../../comm/image/icon/32/fla_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.html{
+    background: url("../../../comm/image/icon/32/html_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.iso{
+    background: url("../../../comm/image/icon/32/iso_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.jpg{
+    background: url("../../../comm/image/icon/32/jpg_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.js{
+    background: url("../../../comm/image/icon/32/js_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.json{
+    background: url("../../../comm/image/icon/32/json_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.mp3{
+    background: url("../../../comm/image/icon/32/mp3_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.mp4{
+    background: url("../../../comm/image/icon/32/mp4_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.pdf{
+    background: url("../../../comm/image/icon/32/pdf_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.ppt{
+    background: url("../../../comm/image/icon/32/ppt_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.psd{
+    background: url("../../../comm/image/icon/32/psd_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.rtf{
+    background: url("../../../comm/image/icon/32/rtf_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.search{
+    background: url("../../../comm/image/icon/32/search_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.svg{
+    background: url("../../../comm/image/icon/32/svg_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.txt{
+    background: url("../../../comm/image/icon/32/txt_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.unknown{
+    background: url("../../../comm/image/icon/32/unknown_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.xls{
+    background: url("../../../comm/image/icon/32/xls_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.xml{
+    background: url("../../../comm/image/icon/32/xml_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.zip2{
+    background: url("../../../comm/image/icon/32/zip2_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+.attachment.zip{
+    background: url("../../../comm/image/icon/32/zip_32.png") no-repeat 0 0;
+    background-size: 65%;
+}
+

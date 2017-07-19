@@ -16,6 +16,9 @@
 <div id="detail_body">
 
 </div>
+<div id="attachment_box">
+
+</div>
 <div id="operation_details" >
 
 </div>
@@ -98,6 +101,18 @@
     </div>
     <hr>
 
+</script>
+
+<script id="attachment_template" type="text/html">
+    {{each list as value i}}
+    <div class="attachment_item">
+        <span class="attachment {{value.typeClass}} left"></span>
+        <a class="attachment_a left" href="javascript:void(0);" onclick="issuePoolDetail.js.downloadAttachment('{{value.uuid}}')">{{value.file_name}}</a>
+        <span class="attachment_size">{{value.create_time}}</span>
+        <span class="attachment_time">{{value.file_size}}</span>
+    </div>
+    {{/each}}
+    <hr>
 </script>
 
 <script id="operation_template" type="text/html">

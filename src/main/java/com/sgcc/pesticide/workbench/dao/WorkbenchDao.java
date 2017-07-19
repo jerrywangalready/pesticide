@@ -70,4 +70,21 @@ public interface WorkbenchDao {
      */
     void insertPushInfo(Map<String, String> param);
 
+    /**
+     * @Description 获取附件详情
+     * @author JerryWang
+     * @date 2017/7/13 12:55
+     * @param businessId
+     * @return
+     */
+    List<Map<String, String>> getAttachment(String businessId);
+
+    /**
+     * @Description 根据uuid获取附件名称
+     * @author JerryWang
+     * @date 2017/7/16 22:55
+     * @param uuid
+     * @return
+     */
+    String getAttachmentDetailByUuid(String uuid);
 }

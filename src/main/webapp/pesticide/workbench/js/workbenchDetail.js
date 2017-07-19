@@ -29,10 +29,27 @@ workbenchDetail.js.init = function () {
         $("#description").html(data.description);
 
     });
+    // 初始化附件信息
+    $.post(path + "/workbench/getAttachment.do", {businessId: uuid}, function (data) {
+        var html = template('attachment_template', {list:data});
+        $("#attachment_box").html(html);
+    });
+
+    workbenchDetail.js.initOperation(uuid);
+
+};
+
+workbenchDetail.js.initOperation = function (uuid) {
     // 初始化操作日志
     $.post(path + "/workbench/getRecord.do", {businessId:uuid}, function (data) {
         var html = template('operation_template', {list:data});
         $("#operation_details").html(html);
+        //
+        $(".recent-posts li:eq(1)").slideDown("normal");
+        //
+        $("#remark").enter(function () {
+            workbenchDetail.js.submitRemark();
+        });
     });
 };
 
@@ -103,4 +120,33 @@ workbenchDetail.js.changeStateWithReason = function (state) {
         content:[path + '/workbench/inputReason.do', 'no']
     });
 };
+
+// download attachment
+workbenchDetail.js.downloadAttachment =function (uuid) {
+    var form=$("<form>");//定义一个form表单
+    form.attr("style","display:none");
+    form.attr("target","");
+    form.attr("method","post");
+    form.attr("action",path + "/workbench/downloadAttachment.do");
+    var input=$("<input>");
+    input.attr("type","hidden");
+    input.attr("name","uuid");
+    input.attr("value",uuid);
+    $("body").append(form);//将表单放置在web中
+    form.append(input);
+    form.submit();//表单提交
+};
+
+workbenchDetail.js.submitRemark = function () {
+    var uuid = $("#uuid").val();
+    var remark = $("#remark").val();
+    $.post(path + "/workbench/submitRemark.do",{uuid: uuid, remark: remark}, function (data) {
+        if(data == "true"){
+            workbenchDetail.js.initOperation(uuid);
+        }else {
+            alert("操作失败");
+        }
+    });
+};
+
 

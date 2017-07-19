@@ -1,5 +1,9 @@
 package com.sgcc.comm.util.controller;
 
+import com.sgcc.comm.util.CommUtil;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -18,6 +22,8 @@ import java.util.List;
  * @ClassName: ImageUploadUtil
  * @Description: 图片上传工具类，包括ckeditor操作
  */
+@Controller
+@RequestMapping("/image")
 public class ImageUploadUtil {
 
     // 图片类型
@@ -74,7 +80,6 @@ public class ImageUploadUtil {
                         }
                         // 获得上传路径的绝对路径地址(/upload)-->
                         String realPath = request.getSession().getServletContext().getRealPath("/" + DirectoryName);
-                        System.out.println(realPath);
                         // 如果路径不存在，则创建该路径
                         File realPathDirectory = new File(realPath);
                         if (realPathDirectory == null || !realPathDirectory.exists()) {
@@ -85,7 +90,6 @@ public class ImageUploadUtil {
                         // 定义上传路径 .../upload/111112323.jpg
                         File uploadFile = new File("Users/jerrywang/code/apphome/pesticide/upload/" + fileName);
 //                        File uploadFile = new File(realPathDirectory + "\\" + fileName);
-                        System.out.println(uploadFile);
                         file.transferTo(uploadFile);
                     }
                 }
@@ -122,5 +126,27 @@ public class ImageUploadUtil {
         out.println("</script>");
         out.flush();
         out.close();
+    }
+
+    /**
+     * @Description
+     * @author 杜成皓
+     * @date 2017/1/21 22:26
+     * @return
+     */
+    @RequestMapping("/uploadImage")
+    public @ResponseBody
+    String uploadImage(String command, String type, String responseType, HttpServletRequest request){
+        MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+        MultipartFile file = multiRequest.getFile("upload");
+        String uuid = CommUtil.getUUID();
+        String path = CommUtil.getInstance().PROPERTIES.get("image-path");
+        try {
+            File uploadFile = new File(path + uuid + ".png");
+            file.transferTo(uploadFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "{\"uploaded\":1,\"fileName\":\""+uuid+".png\",\"url\":\"/upload/image/"+uuid+".png\"}";
     }
 }

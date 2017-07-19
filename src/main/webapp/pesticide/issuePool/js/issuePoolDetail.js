@@ -29,6 +29,11 @@ issuePoolDetail.js.init = function () {
         $("#description").html(data.description);
 
     });
+    // 初始化附件信息
+    $.post(path + "/workbench/getAttachment.do", {businessId: uuid}, function (data) {
+        var html = template('attachment_template', {list:data});
+        $("#attachment_box").html(html);
+    });
     // 初始化操作日志
     $.post(path + "/workbench/getRecord.do", {businessId:uuid}, function (data) {
         var html = template('operation_template', {list:data});
@@ -46,4 +51,20 @@ issuePoolDetail.js.update = function () {
     var uuid = getParameter(hash, "uuid", "");
     var type = getParameter(hash, "type", "");
     setHash("on=issuePool/update&obj="+obj+"&uuid="+uuid+"&type="+type);
+};
+
+// download attachment
+issuePoolDetail.js.downloadAttachment = function (uuid) {
+    var form=$("<form>");//定义一个form表单
+    form.attr("style","display:none");
+    form.attr("target","");
+    form.attr("method","post");
+    form.attr("action",path + "/workbench/downloadAttachment.do");
+    var input=$("<input>");
+    input.attr("type","hidden");
+    input.attr("name","uuid");
+    input.attr("value",uuid);
+    $("body").append(form);//将表单放置在web中
+    form.append(input);
+    form.submit();//表单提交
 };

@@ -153,4 +153,15 @@ public class IssuePoolServiceImpl implements IssuePoolService {
         return uuid;
     }
 
+    /**
+     * @param businessId
+     * @return
+     * @Description 获取附件信息
+     * @author JerryWang
+     * @date 2017/7/17 13:00
+     */
+    public List<Map<String, String>> getAttachment(String businessId) {
+        return issuePoolDao.getAttachment(businessId);
+    }
+
 }

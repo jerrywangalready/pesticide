@@ -124,6 +124,9 @@
     <select id="getParentIssue" resultType="java.util.Map">
         select v.code,v.issue_type,v.title from v_issue v WHERE CODE = #{issueCode};
     </select>
+    <select id="getAttachment" resultType="java.util.Map">
+        select tf.uuid,tf.file_name,tf.file_size,tf.file_type from t_file tf WHERE tf.business_id = #{businessId};
+    </select>
 
     <!--update task info-->
     <update id="updateTask" parameterType="java.util.Map">

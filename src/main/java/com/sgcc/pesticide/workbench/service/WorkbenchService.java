@@ -76,4 +76,22 @@ public interface WorkbenchService extends BaseService{
      * @return
      */
     public boolean updateState(Map<String, String> param);
+
+    /**
+     * @Description 获取附件信息
+     * @author JerryWang
+     * @date 2017/7/13 12:57
+     * @param businessId
+     * @return
+     */
+    List<Map<String,String>> getAttachment(String businessId);
+
+    /**
+     * @Description 通过uuid获取附件详细信息
+     * @author JerryWang
+     * @date 2017/7/16 22:54
+     * @param uuid
+     * @return
+     */
+    String getAttachmentNameByUuid(String uuid);
 }

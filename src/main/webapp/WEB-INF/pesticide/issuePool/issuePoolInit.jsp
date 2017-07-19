@@ -36,7 +36,7 @@
             <input type="text" class="form-control" id="query_create_user" name="query_create_user" placeholder="发布者">
         </div>
         <div class="col-md-4">
-            <input type="text" class="form-control" id="query_principal" name="query_principal" placeholder="接受者">
+            <input type="text" class="form-control" id="query_principal" name="query_principal" placeholder="负责人">
         </div>
     </form>
     <div style="height: 50px;">

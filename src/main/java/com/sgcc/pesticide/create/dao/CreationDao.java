@@ -74,4 +74,20 @@ public interface CreationDao {
      * @return
      */
     void addVersion(Map<String, String> param);
+
+    /**
+     * @Description 保存附件欣欣
+     * @author JerryWang
+     * @date 2017/7/9 18:54
+     * @param param
+     */
+    void saveAttachment(Map<String, String> param);
+
+    /**
+     * @Description 删除附件信息
+     * @author JerryWang
+     * @date 2017/7/10 23:48
+     * @param uuid
+     */
+    void deleteAttachment(String uuid);
 }

@@ -29,6 +29,12 @@ public interface CommService extends BaseService{
      */
     List<Map<String, String>> getIssueRecord(String businessId);
 
+    /**
+     * @Description 获取登录人信息
+     * @author JerryWang
+     * @date 2017/7/9 19:06
+     * @return
+     */
     LoginInfo getLoginInfo();
 
     /**

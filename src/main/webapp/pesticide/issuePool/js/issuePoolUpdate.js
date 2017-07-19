@@ -107,7 +107,62 @@ issuePoolUpdate.js.init = function () {
             });
         }
 
+        $.post(path + "/issuePool/getAttachment.do",{businessId: data.uuid},function (data) {
+            console.info(data);
+            var initialPreview = [];
+            var initialPreviewConfig = [];
+            for(var i=0;i<data.length;i++){
+                initialPreview[i] = "/pesticide/comm/image/icon/"+data[i].image;
+                initialPreviewConfig[i] = {caption: data[i].file_name, size: data[i].file_size, width: "120px", key: i};
+            }
+            // 上传附件组件初始化
+            $("#attachment").fileinput({
+                language: 'zh',
+                showUpload: false,
+                initialPreview: initialPreview,
+                uploadUrl: path + '/creation/uploadFile.do',
+                uploadExtraData: {businessId: uuid},
+                initialPreviewAsData: true,
+                initialPreviewConfig: initialPreviewConfig,
+                // deleteUrl: path + '/creation/deleteAttachment.do',
+                // deleteExtraData: {uuid: 'jjjjjj'},// 删除时额外传入的参数
+                hiddenThumbnailContent: true,
+                showCaption: false,
+                showPreview: true,
+                overwriteInitial: false,
+                showUploadedThumbs: true,
+                maxFileSize: 2147483648,//2GB
+                showCaption: true,
+                dropZoneTitleClass: 'hide',
+                dropZoneEnabled: false,
+                showRemove: false,
+                showCancel: false,
+                showClose: false,
+                // allowedFileTypes: ['jpg','txt','jpeg','png','xls'],
+                // mainClass: "glyphicon glyphicon-send",
+                // previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+                // showUploadedThumbs:false,
+                initialCaption: "添加附件",
+                layoutTemplates:{
+                    actions: '<div class="file-upload-indicator" title="Uploaded" style="margin-left: 0px;"><i class="glyphicon glyphicon-ok-sign text-success"></i></div>\n' +
+                    '<div class="file-actions">\n' +
+                    '    <div class="file-footer-buttons">\n' +
+                    '        {upload} {delete}  {other}' +
+                    '    </div>\n' +
+                    '    <div class="clearfix"></div>\n' +
+                    '</div>'
+                }
+            }).on("filebatchselected", function(event, files) {
+                $(this).fileinput("upload");
+            }).on("fileuploaded", function (event, data, previewId, index) {
+                // console.info(event)
+                // console.info(data)
+                // console.info(previewId)
+                // console.info(index)
+            });
+        });
     });
+
 
 };
 // 选择Task

@@ -59,4 +59,13 @@ public interface IssuePoolDao {
      * @return
      */
     Map<String,String> getParentIssue(String issueCode);
+
+    /**
+     * @Description 获取附件信息
+     * @author JerryWang
+     * @date 2017/7/17 13:00
+     * @param businessId
+     * @return
+     */
+    List<Map<String,String>> getAttachment(String businessId);
 }

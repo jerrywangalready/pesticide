@@ -74,4 +74,19 @@ public class CommUtil {
      */
     public static Map<String, String> PROPERTIES = new HashMap<>();
 
+    /**
+     * @Description 根据路径删除文件
+     * @author JerryWang
+     * @date 2017/7/10 23:44
+     * @param sPath
+     * @return
+     */
+    public static void deleteFile(String sPath){
+        File file = new File(sPath);
+        // 路径为文件且不为空则进行删除
+		if (file.isFile() && file.exists()) {
+            file.delete();
+        }
+    }
+
 }

@@ -95,6 +95,20 @@
     <select id="getModel" resultType="java.lang.String" parameterType="String">
         select model_code from s_model where object_code = #{objectId};
     </select>
+    <select id="getAttachment" resultType="java.util.Map">
+        SELECT
+            t.uuid,
+            t.file_name,
+            t.file_size,
+            t.file_type,
+            date_format(t.create_time, '%Y-%m-%d %T') create_time,
+            t.create_user
+        FROM t_file t
+        WHERE t.isenable = '1' AND business_id = #{businessId};
+    </select>
+    <select id="getAttachmentDetailByUuid" resultType="java.lang.String">
+        select t.file_name from t_file t WHERE t.uuid = #{uuid};
+    </select>
 
     <update id="updateTask" parameterType="Map">
         UPDATE t_task
@@ -149,5 +163,6 @@
           '1'
         );
     </insert>
+
 
 </mapper>

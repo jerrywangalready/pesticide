@@ -31,8 +31,8 @@ public class CreationServiceImpl extends BaseServiceImpl implements CreationServ
      */
     @Override
     public String saveTask(Map<String, String> param){
-        if(param.get("uuid").isEmpty()){
-            param.put("uuid",CommUtil.getUUID());
+        if("i".equals(param.get("mode"))){
+//            param.put("uuid",CommUtil.getUUID());
             param.put("task_code",getNewTaskCode());
             creationDao.insertTask(param);
             param.put("operator", commService.getLoginInfo().getLoginUser());
@@ -61,8 +61,8 @@ public class CreationServiceImpl extends BaseServiceImpl implements CreationServ
      */
     @Override
     public String saveBug(Map<String, String> param) {
-        if(param.get("uuid").isEmpty()){
-            param.put("uuid",CommUtil.getUUID());
+        if("i".equals(param.get("mode"))){
+//            param.put("uuid",CommUtil.getUUID());
             param.put("bug_code",getNewBugCode());
             creationDao.insertBug(param);
             param.put("operator", commService.getLoginInfo().getLoginUser());
@@ -109,6 +109,27 @@ public class CreationServiceImpl extends BaseServiceImpl implements CreationServ
             e.printStackTrace();
             return "false";
         }
+    }
+
+
+    /**
+     * @Description 保存附件信息
+     * @author JerryWang
+     * @date 2017/7/9 18:53
+     * @param param
+     */
+    public void saveAttachment(Map<String, String> param) {
+        creationDao.saveAttachment(param);
+    }
+
+    /**
+     * @param uuid
+     * @Description 删除附件信息
+     * @author JerryWang
+     * @date 2017/7/10 23:47
+     */
+    public void deleteAttachment(String uuid) {
+        creationDao.deleteAttachment(uuid);
     }
 
 }

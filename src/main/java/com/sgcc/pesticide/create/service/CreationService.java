@@ -45,4 +45,20 @@ public interface CreationService extends BaseService {
      * @return
      */
     String addVersion(Map<String, String> param);
+
+    /**
+     * @Description 保存附件信息
+     * @author JerryWang
+     * @date 2017/7/9 18:52
+     * @param param
+     */
+    void saveAttachment(Map<String, String> param);
+
+    /**
+     * @Description 删除附件信息
+     * @author JerryWang
+     * @date 2017/7/13 12:54
+     * @param uuid
+     */
+    void deleteAttachment(String uuid);
 }

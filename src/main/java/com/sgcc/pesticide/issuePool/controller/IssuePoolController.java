@@ -159,4 +159,30 @@ public class IssuePoolController {
             file.delete();
         }
     }
+
+    @RequestMapping("/getAttachment")
+    public @ResponseBody List<Map<String, String>> getAttachment(String businessId) {
+        Map<String, String> iconMap = new HashMap<>();
+        iconMap.put("application/msword","doc.png");
+        iconMap.put("image/png","png.png");
+        iconMap.put("image/jpeg","jpg.png");
+        iconMap.put("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","xls.png");
+        iconMap.put("application/zip","zip.png");
+        iconMap.put("application/octet-stream","exe.png");
+        iconMap.put("video/mp4","mp4.png");
+        iconMap.put("text/rtf","rtf.png");
+        iconMap.put("text/plain","txt.png");
+        iconMap.put("application/x-rar","zip2.png");
+
+        List<Map<String, String>> list = issuePoolService.getAttachment(businessId);
+        for (int i = 0; i < list.size(); i++) {
+            if(iconMap.containsKey(list.get(i).get("file_type"))){
+                list.get(i).put("image", iconMap.get(list.get(i).get("file_type")));
+            }else {
+                list.get(i).put("image", "unknown.png");
+
+            }
+        }
+        return list;
+    }
 }
