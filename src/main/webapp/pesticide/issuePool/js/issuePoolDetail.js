@@ -34,10 +34,21 @@ issuePoolDetail.js.init = function () {
         var html = template('attachment_template', {list:data});
         $("#attachment_box").html(html);
     });
+
+    issuePoolDetail.js.initOperation(uuid);
+};
+
+issuePoolDetail.js.initOperation = function (uuid) {
     // 初始化操作日志
     $.post(path + "/workbench/getRecord.do", {businessId:uuid}, function (data) {
         var html = template('operation_template', {list:data});
         $("#operation_details").html(html);
+
+        $(".recent-posts li:eq(1)").slideDown("normal");
+        //
+        $("#remark").enter(function () {
+            issuePoolDetail.js.submitRemark();
+        });
     });
 };
 
@@ -67,4 +78,16 @@ issuePoolDetail.js.downloadAttachment = function (uuid) {
     $("body").append(form);//将表单放置在web中
     form.append(input);
     form.submit();//表单提交
+};
+
+issuePoolDetail.js.submitRemark = function () {
+    var uuid = $("#uuid").val();
+    var remark = $("#remark").val();
+    $.post(path + "/workbench/submitRemark.do",{uuid: uuid, remark: remark}, function (data) {
+        if(data == "true"){
+            issuePoolDetail.js.initOperation(uuid);
+        }else {
+            alert("操作失败");
+        }
+    });
 };

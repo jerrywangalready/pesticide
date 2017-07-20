@@ -94,6 +94,35 @@
     position: relative;
     top:0px;
 }
-.lane-box-mirror{
-    height:11px;
+.lane-box-mirror {
+    height: 11px;
+}
+
+.search-box {
+    transform-origin: 100% 100%;
+    transform: rotate(-90deg);
+    transition-property: transform;
+    transition-duration: 0.7s;
+    transition-timing-function: ease;
+    border: 1px solid #337ab7;
+    margin-left: 539px;
+    padding: 9px 0px;
+    width: 421px;
+}
+.search-switch {
+    height: 20px;
+    width: 20px;
+    background: #337ab7;
+    margin-left: 940px;
+    margin-top: 0px;
+    border-radius: 20px 0px 0px 0px;
+}
+
+.search-switch span {
+    color: white;
+    margin: 4px;
+}
+
+.search-switch-close span {
+    transform: scaleX(-1) rotate(37deg);
 }

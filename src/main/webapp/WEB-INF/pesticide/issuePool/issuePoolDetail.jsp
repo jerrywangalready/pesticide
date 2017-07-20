@@ -117,6 +117,22 @@
 
 <script id="operation_template" type="text/html">
     <ul class="recent-posts">
+        <li>
+            <div class="article-post" style="min-height: 54px;">
+                <div class="left" style="width:95px;margin-right: 12px;border-right:2px solid #ccc;height: 55px;">
+                    <div style="text-align: center;height: 20px;">
+                        <span class="user-info"></span>
+                    </div>
+                    <div style="text-align: center;height: 20px;">
+                        <span class="user-info">备注</span>
+                    </div>
+                </div>
+                <div class="left">
+                    <textarea id="remark" class="left form-control" rows="2" style="height: 55px;width: 780px;"></textarea>
+                    <button id="submit_remark" onclick="issuePoolDetail.js.submitRemark();" class="left btn-sm btn-primary" style="margin:11px 0 0 13px;">确认</button>
+                </div>
+            </div>
+        </li>
         {{each list as value i}}
         <li>
             <%--<div class="user-thumb"> <img alt="User" src="img/demo/av1.jpg" height="40" width="40"> </div>--%>

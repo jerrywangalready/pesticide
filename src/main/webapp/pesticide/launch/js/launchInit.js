@@ -41,7 +41,7 @@ launchInit.js.init = function () {
                         contentType:'application/json',
                         data:JSON.stringify(param),
                         success:function (data) {
-                            console.info(data);
+                            // console.info(data);
                         }
 
                     });
@@ -94,6 +94,30 @@ launchInit.js.init = function () {
 
         }
 
+    });
+
+    // 完成时间
+    $('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        // todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+
+    $("#search-switch").click(function () {
+        var fla = $(this).attr("fla");
+        if(fla == "1"){
+            $("#search-switch").attr("fla","0").addClass("search-switch-close");
+            $("#search_box").css({transform: "rotate(0deg)"});
+        }else{
+            $("#search-switch").attr("fla","1").removeClass("search-switch-close");
+            $("#search_box").css({transform: "rotate(-90deg)"});
+
+        }
     });
 
 };

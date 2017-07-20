@@ -14,7 +14,6 @@ creation.js.objectCode = "";
 creation.js.flag = false;
 // 初始化
 creation.js.init = function () {
-    console.info(path)
     // 获取uuid
     var uuid = comm.js.getUUID();
     $("#uuid").val(uuid);
