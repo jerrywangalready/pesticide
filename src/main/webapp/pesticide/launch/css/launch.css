@@ -126,3 +126,6 @@
 .search-switch-close span {
     transform: scaleX(-1) rotate(37deg);
 }
+.launched .task-item{
+    background: #ddd;
+}

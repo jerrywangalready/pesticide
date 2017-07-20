@@ -31,10 +31,11 @@ public class LaunchServiceImpl implements LaunchService {
         List<Map<String, String>> list = launchDao.getIssueList(param);
         List<Map<String, Object>> returnList = new ArrayList<>();
         // 获取所有版本
-        List<String> versionList = launchDao.getVersionList(param);
-        for (String s : versionList) {
+        List<Map<String, String>> versionList = launchDao.getVersionList(param);
+        for (Map<String, String> s : versionList) {
             Map<String, Object> laneMap = new HashMap<>();
-            laneMap.put("VERSION_CODE",s);
+            laneMap.put("VERSION_CODE",s.get("VERSION_CODE"));
+            laneMap.put("IS_COMPLETE",s.get("IS_COMPLETE"));
             returnList.add(laneMap);
         }
 

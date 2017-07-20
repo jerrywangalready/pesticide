@@ -9,8 +9,43 @@ $(function () {
 launchInit.js = {};
 launchInit.js.init = function () {
 
+    launchInit.js.gridInit();
+
+    // 完成时间
+    $('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        // todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    
+    $("#beginDate,#endDate").change(function () {
+        launchInit.js.gridInit();
+    });
+
+    $("#search-switch").click(function () {
+        var fla = $(this).attr("fla");
+        if(fla == "1"){
+            $("#search-switch").attr("fla","0").addClass("search-switch-close");
+            $("#search_box").css({transform: "rotate(0deg)"});
+        }else{
+            $("#search-switch").attr("fla","1").removeClass("search-switch-close");
+            $("#search_box").css({transform: "rotate(-90deg)"});
+
+        }
+    });
+
+};
+
+launchInit.js.gridInit = function () {
     var param = {};
     param.object_code = getParameter(location.hash,"obj","");
+    param.beginDate = $("#beginDate").val();
+    param.endDate = $("#endDate").val();
     $.ajax({
         type:'POST',
         url:path+'/launch/getIssueList.do',
@@ -19,12 +54,14 @@ launchInit.js.init = function () {
         success:function (data) {
             var html = template('laneTemplate',{'list':data});
             $(".lane-box").html(html);
+            // 初始化上线按钮
+            $(".sort:eq(0)").find("span[name=version_code]").after("<button id=\"publish_button\" type=\"button\" class=\"right btn btn-xs btn-success\" style=\"margin-top: -2px;\" onclick=\"launchInit.js.forLaunch()\">上线</button>");
 
             launchInit.js.resizeMaxHeight();
 
             $(".lane-box,.lane-box-mirror").width(238*data.length+8);
 
-            $(".lane").sortable({
+            $(".sort").sortable({
                 connectWith: ".lane",
                 items: "div:not(.notSortable)",
                 start: function(event, ui) {
@@ -95,31 +132,6 @@ launchInit.js.init = function () {
         }
 
     });
-
-    // 完成时间
-    $('.form_date').datetimepicker({
-        language:  'zh-CN',
-        weekStart: 1,
-        // todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        minView: 2,
-        forceParse: 0
-    });
-
-    $("#search-switch").click(function () {
-        var fla = $(this).attr("fla");
-        if(fla == "1"){
-            $("#search-switch").attr("fla","0").addClass("search-switch-close");
-            $("#search_box").css({transform: "rotate(0deg)"});
-        }else{
-            $("#search-switch").attr("fla","1").removeClass("search-switch-close");
-            $("#search_box").css({transform: "rotate(-90deg)"});
-
-        }
-    });
-
 };
 
 launchInit.js.checkedPublishButton = function () {

@@ -28,7 +28,7 @@ public interface LaunchDao {
      */
     void changeVersionCode(Map<String, String> param);
 
-    List<String> getVersionList(Map<String, String> param);
+    List<Map<String, String>> getVersionList(Map<String, String> param);
 
     /**
      * @Description 获取问题清单by版本号

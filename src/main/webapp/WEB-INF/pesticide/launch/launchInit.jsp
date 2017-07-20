@@ -17,8 +17,8 @@
         <div id="search_box" class="row search-box">
             <div class="mb_15 col-md-4" style="width: 195px;">
                 <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
-                     data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" size="16" type="text" id="dateBegin" style="width: 100px;" name="deadline" readonly placeholder="开始时间">
+                     data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" size="16" type="text" id="beginDate" style="width: 100px;" name="beginDate" readonly placeholder="开始时间">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
@@ -27,7 +27,7 @@
             <div class="mb_15 col-md-4">
                 <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd"
                      data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" size="16" type="text" id="dateEnd" style="width: 100px;" name="deadline" readonly placeholder="结束时间">
+                    <input class="form-control" size="16" type="text" id="endDate" style="width: 100px;" name="endDate" readonly placeholder="结束时间">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
@@ -56,11 +56,11 @@
 </div>
 <script id="laneTemplate" type="text/html">
     {{each list as value i}}
-    <div class="left lane" vc="{{value.VERSION_CODE}}">
+    <div class="left lane {{if value.IS_COMPLETE == '1'}} noSort launched{{else}}sort{{/if}}" vc="{{value.VERSION_CODE}}">
         <div class="lane-title notSortable">
-            <span>版本 : {{if value.VERSION_CODE == ''}}X.X{{else}}{{value.VERSION_CODE}}{{/if}}</span>
-            {{if i == 0}}
-            <button id="publish_button" type="button" class="right btn btn-xs btn-success" style="margin-top: -2px;" onclick="launchInit.js.forLaunch()">上线</button>
+            <span name="version_code">版本 : {{if value.VERSION_CODE == ''}}X.X{{else}}{{value.VERSION_CODE}}{{/if}}</span>
+            {{if value.IS_COMPLETE == '1'}}
+            <span class="right">已上线</span>
             {{/if}}
         </div>
         {{each value.issueList as issueMap j}}

@@ -25,6 +25,7 @@
                         <li><a href="javascript:void(0);" onclick="index.js.menuClick('launch/init')">上线</a></li>
                         <li><a href="javascript:void(0);" onclick="index.js.menuClick('chart/init')">图表</a></li>
                         <li><a href="javascript:void(0);" onclick="index.js.menuClick('demo/init')">Demo</a></li>
+                        <li><a href="javascript:void(0);" onclick="index.js.menuClick('demo2/init')">Demo2</a></li>
                         <li name="settings_li" style="display:none;"><a href="javascript:void(0);" onclick="index.js.menuClick('settings/users')">设置</a></li>
                     </ul>
                 </div>
@@ -96,6 +97,7 @@
                     <li><a href="javascript:void(0);" onclick="index.js.menuClick('launch/init')">上线</a></li>
                     <li><a href="javascript:void(0);" onclick="index.js.menuClick('chart/init')">图表</a></li>
                     <li><a href="javascript:void(0);" onclick="index.js.menuClick('demo/init')">Demo</a></li>
+                    <li><a href="javascript:void(0);" onclick="index.js.menuClick('demo2/init')">Demo2</a></li>
                     <li name="settings_li" style="display:none;"><a href="javascript:void(0);" onclick="index.js.menuClick('settings/users')">设置</a></li>
                     <%--<li><a href="javascript:void(0);" onclick="index.js.menuClick('image/init')">图</a></li>--%>
                     <%--<li><a href="javascript:void(0);" onclick="index.js.menuClick('demo/init')">Demo</a></li>--%>

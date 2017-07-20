@@ -35,7 +35,7 @@ demo.js.query = function () {
         success:function (data) {
             console.info(data);
             var html = template('demo_users',{'list':data.list});
-            console.info(data);
+            console.info(html);
             $("#table_div").html(html);
             // 初始化页码按钮
             $("#page-bar").page(data);

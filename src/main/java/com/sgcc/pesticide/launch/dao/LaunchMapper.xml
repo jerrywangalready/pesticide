@@ -32,11 +32,22 @@
         WHERE UUID = #{uuid}
     </update>
 
-    <select id="getVersionList" resultType="java.lang.String">
-        SELECT VERSION_CODE
-          FROM S_VERSION
+    <select id="getVersionList" resultType="java.util.Map">
+        SELECT VERSION_CODE, IS_COMPLETE
+          FROM S_VERSION S
          WHERE OBJECT_CODE = #{object_code}
+         <if test="beginDate == '' and endDate == ''">
            AND IS_COMPLETE is null
+         </if>
+         <if test="beginDate != ''">
+           AND PUBLISH_DATE >= #{beginDate}
+         </if>
+         <if test="endDate != ''">
+             <![CDATA[
+           AND PUBLISH_DATE <= #{endDate}
+           ]]>
+         </if>
+
          ORDER BY PUBLISH_DATE
     </select>
     <select id="getIssueListByVersionCode" resultType="java.util.Map">

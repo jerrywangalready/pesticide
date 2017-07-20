@@ -134,7 +134,7 @@
             </div>
         </li>
         {{each list as value i}}
-        <li>
+        <li {{if i == 0}}style="display:none;"{{/if}}>
             <%--<div class="user-thumb"> <img alt="User" src="img/demo/av1.jpg" height="40" width="40"> </div>--%>
             <div class="article-post" style="min-height: 40px;">
                 <div class="left" style="width:95px;margin-right: 12px;border-right:2px solid #ccc;">
