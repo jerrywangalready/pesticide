@@ -55,4 +55,13 @@ public interface LaunchService {
     List<Map<String,String>> getLaunchDetail(Map<String, String> param);
 
     boolean checkRole(Map<String, String> param);
+
+    /**
+     * @Description 获取可上线版本
+     * @author JerryWang
+     * @date 2017/7/21 16:52
+     * @param obj
+     * @return
+     */
+    String getLaunchVersion(String obj);
 }

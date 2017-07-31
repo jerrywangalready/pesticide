@@ -149,4 +149,49 @@ workbenchDetail.js.submitRemark = function () {
     });
 };
 
+workbenchDetail.js.uploadAttachment = function () {
+
+    // 上传附件组件初始化
+    $("#attachment").fileinput({
+        language: 'zh',
+        showUpload: false,
+        initialPreview: [
+        ],
+        uploadUrl: path + '/creation/uploadFile.do',
+        uploadExtraData: {businessId: uuid},
+        initialPreviewAsData: true,
+        initialPreviewConfig: [
+        ],
+        hiddenThumbnailContent: true,
+        showCaption: false,
+        showPreview: true,
+        overwriteInitial: false,
+        showUploadedThumbs: true,
+        maxFileSize: 2147483648,//2GB
+        showCaption: true,
+        dropZoneTitleClass: 'hide',
+        dropZoneEnabled: false,
+        showRemove: false,
+        showCancel: false,
+        showClose: false,
+        initialCaption: "添加附件",
+        layoutTemplates:{
+            actions: '<div class="file-upload-indicator" title="Uploaded" style="margin-left: 0px;"><i class="glyphicon glyphicon-ok-sign text-success"></i></div>\n' +
+            '<div class="file-actions">\n' +
+            '    <div class="file-footer-buttons">\n' +
+            '        {upload} {delete}  {other}' +
+            '    </div>\n' +
+            '    <div class="clearfix"></div>\n' +
+            '</div>'
+        }
+    }).on("filebatchselected", function(event, files) {
+        $(this).fileinput("upload");
+    }).on("fileuploaded", function (event, data, previewId, index) {
+        // console.info(event)
+        // console.info(data)
+        // console.info(previewId)
+        // console.info(index)
+    });
+};
+
 

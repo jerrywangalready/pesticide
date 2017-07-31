@@ -17,7 +17,7 @@
           LEFT JOIN S_VERSION SV
             ON SV.VERSION_CODE = VI.VERSION_CODE
         WHERE VI.OBJECT_CODE = #{object_code}
-        ORDER BY ifnull(sv.publish_date, str_to_date('9999-12-31', '%Y-%m-%d'));
+        ORDER BY ifnull(sv.publish_date, str_to_date('9999-12-31', '%Y-%m-%d')),VI.CREATE_TIME DESC;
     </select>
 
     <update id="changeVersionCode">
@@ -79,5 +79,12 @@
     </select>
     <select id="checkRole" resultType="java.lang.Integer">
         select count(1) from p_role_user WHERE username = #{username} and object_code = #{objectCode};
+    </select>
+    <select id="getLaunchVersion" resultType="java.lang.String">
+        SELECT VERSION_CODE
+          FROM S_VERSION S
+         WHERE OBJECT_CODE = #{object_code}
+           AND IS_COMPLETE is null
+      ORDER BY PUBLISH_DATE
     </select>
 </mapper>

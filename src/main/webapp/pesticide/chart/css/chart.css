@@ -1,0 +1,46 @@
+.version-item {
+    height: 70px;
+    padding: 2px 12px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: #888 1px 1px 3px;
+}
+
+.version-item-info {
+    width: 160px;
+}
+
+.version-item-progress {
+    height: 50px;
+    width: 770px;
+    padding: 18px 5px;
+}
+
+.total {
+    height: 30px;
+}
+
+.total .progress-bar {
+    line-height: 30px;
+    font-size: 15px;
+}
+
+.version-item-detail {
+    background-color: #eee;
+    padding: 5px 19px;
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
+}
+
+.version-item-detail .nickname {
+    width:70px;
+    padding:17px 0;
+}
+.detail-progress-box {
+    width: 780px;
+}
+.version-item-detail .num {
+    width:70px;
+    padding:17px 0;
+}

@@ -100,9 +100,9 @@
                 </div>
                 <br>
                 <div>
-                    <div class="mb_15">
-                        <button type="button" class="btn btn-success full_button" onclick="issuePoolUpdate.js.save('save')" >保存</button>
-                    </div>
+                    <%--<div class="mb_15">--%>
+                        <%--<button type="button" class="btn btn-success full_button" onclick="issuePoolUpdate.js.save('save')" >保存</button>--%>
+                    <%--</div>--%>
                     <div class="mb_15">
                         <button type="button" class="btn btn-primary full_button" onclick="issuePoolUpdate.js.commit()" >提交</button>
                     </div>

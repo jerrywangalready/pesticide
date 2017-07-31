@@ -42,8 +42,9 @@ launchInit.js.init = function () {
 };
 
 launchInit.js.gridInit = function () {
+    var obj = getParameter(location.hash,"obj","");
     var param = {};
-    param.object_code = getParameter(location.hash,"obj","");
+    param.object_code = obj;
     param.beginDate = $("#beginDate").val();
     param.endDate = $("#endDate").val();
     $.ajax({
@@ -54,8 +55,11 @@ launchInit.js.gridInit = function () {
         success:function (data) {
             var html = template('laneTemplate',{'list':data});
             $(".lane-box").html(html);
-            // 初始化上线按钮
-            $(".sort:eq(0)").find("span[name=version_code]").after("<button id=\"publish_button\" type=\"button\" class=\"right btn btn-xs btn-success\" style=\"margin-top: -2px;\" onclick=\"launchInit.js.forLaunch()\">上线</button>");
+            // 找出可上线版本,增加上线按钮
+            $.post(path + "/launch/getLaunchVersion.do",{obj:obj},function (data) {
+                console.info(data)
+                $("span[name=version_code][vc='"+data+"']").after("<button id=\"publish_button\" type=\"button\" class=\"right btn btn-xs btn-success\" style=\"margin-top: -2px;\" onclick=\"launchInit.js.forLaunch()\">上线</button>");
+            });
 
             launchInit.js.resizeMaxHeight();
 

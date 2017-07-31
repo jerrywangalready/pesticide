@@ -105,4 +105,9 @@ public class LaunchController {
         param.put("username", commService.getLoginInfo().getLoginUser());
         return String.valueOf(launchService.checkRole(param));
     }
+
+    @RequestMapping("/getLaunchVersion")
+    public @ResponseBody String getLaunchVersion(String obj){
+        return launchService.getLaunchVersion(obj);
+    }
 }

@@ -36,7 +36,7 @@
                 <input id="attachment" name="attachment" type="file" multiple class="file-loading">
 
             </div>
-            <div class="col-md-3">
+            <div id="operate_area" class="col-md-3 alert alert-info">
                 <div style="height: 456px;">
                     <div class="mb_15 btn-group row" data-toggle="buttons" style="margin-left: 0px;width: 100%;">
                         <label class="btn btn-primary col-md-6 active" onclick="creation.js.chooseTask(this)">
@@ -46,7 +46,7 @@
                             <input type="radio" name="issueType" autocomplete="off" value="B">Bug
                         </label>
                     </div>
-                    <div class="mb_15 btn-primary" id="monitor" style="width: 100%;height: 2px;"></div>
+                    <%--<div class="mb_15 btn-primary" id="monitor" style="width: 100%;height: 2px;"></div>--%>
                     <div class="mb_15">
                         <button type="button" class="btn btn-default full_button" id="link_button"
                                 data-toggle="modal" data-target="#link_table" onclick="creation.js.getLinkInfo()">关联前序任务</button>
@@ -103,9 +103,9 @@
                 </div>
                 <br>
                 <div>
-                    <div class="mb_15">
-                        <button type="button" class="btn btn-success full_button" onclick="creation.js.save('save')" >保存</button>
-                    </div>
+                    <%--<div class="mb_15">--%>
+                        <%--<button type="button" class="btn btn-success full_button" onclick="creation.js.save('save')" >保存</button>--%>
+                    <%--</div>--%>
                     <div class="mb_15">
                         <button type="button" class="btn btn-primary full_button" onclick="creation.js.commit()" >提交</button>
                     </div>

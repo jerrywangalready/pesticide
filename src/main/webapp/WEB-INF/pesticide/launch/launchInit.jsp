@@ -58,7 +58,7 @@
     {{each list as value i}}
     <div class="left lane {{if value.IS_COMPLETE == '1'}} noSort launched{{else}}sort{{/if}}" vc="{{value.VERSION_CODE}}">
         <div class="lane-title notSortable">
-            <span name="version_code">版本 : {{if value.VERSION_CODE == ''}}X.X{{else}}{{value.VERSION_CODE}}{{/if}}</span>
+            <span name="version_code" vc="{{value.VERSION_CODE}}">版本 : {{if value.VERSION_CODE == ''}}X.X{{else}}{{value.VERSION_CODE}}{{/if}}</span>
             {{if value.IS_COMPLETE == '1'}}
             <span class="right">已上线</span>
             {{/if}}

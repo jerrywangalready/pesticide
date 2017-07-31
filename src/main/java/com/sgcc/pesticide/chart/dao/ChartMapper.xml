@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sgcc.pesticide.chart.dao.ChartDao">
+
+    <select id="getVersion" resultType="java.util.Map">
+        SELECT
+          sv.version_code,
+          sv.publish_date,
+          sv.is_complete,
+          concat(ifnull(vvif.f_num,0),'') f_num,
+          concat(ifnull(vvia.a_num,0),'') a_num
+        FROM s_version sv
+          LEFT JOIN (SELECT
+                       via.version_code,
+                       count(1) a_num
+                     FROM v_issue via
+                     WHERE via.version_code != ''
+                           AND via.state != '9'
+                           AND object_code = #{objectCode}
+                     GROUP BY via.version_code) vvia
+            ON sv.version_code = vvia.version_code
+          LEFT JOIN (SELECT
+                       vif.version_code,
+                       count(1) f_num
+                     FROM v_issue vif
+                     WHERE vif.version_code != ''
+                           AND (vif.state = '4' OR vif.state = '5')
+                           AND object_code = #{objectCode}
+                     GROUP BY vif.version_code) vvif
+            ON sv.version_code = vvif.version_code
+        WHERE sv.object_code = #{objectCode}
+        <if test="startDate == '' and finishDate == ''">
+            AND sv.IS_COMPLETE is null
+        </if>
+        <if test="startDate != ''">
+            AND sv.PUBLISH_DATE >= #{startDate}
+        </if>
+        <if test="finishDate != ''">
+            <![CDATA[
+            AND sv.PUBLISH_DATE <= #{finishDate}
+           ]]>
+        </if>
+        ORDER BY sv.publish_date
+    </select>
+
+    <select id="getStaffByObjCode" resultType="java.util.Map">
+        SELECT
+          sou.username,
+          su.nickname,
+          pru.role_id
+        FROM s_object_users sou
+          LEFT JOIN s_users su ON sou.username = su.username
+          LEFT JOIN p_role_user pru ON sou.username = pru.username
+          AND pru.object_code = #{objectCode}
+          AND (pru.role_id = 'developer' or pru.role_id = 'tester')
+        WHERE sou.object_code = #{objectCode}
+        ORDER BY sou.username
+    </select>
+
+    <select id="getTotalIssueNumGroupByPrincipal" resultType="com.sgcc.pesticide.chart.model.StaffIssueNum">
+        SELECT
+          vi.principal username,
+          count(1) num
+         FROM v_issue vi
+        WHERE vi.version_code = #{version}
+          AND vi.object_code = #{objectCode}
+        GROUP BY vi.principal;
+    </select>
+
+    <select id="getFinishedIssueNumGroupByPrincipal" resultType="com.sgcc.pesticide.chart.model.StaffIssueNum">
+        SELECT
+          vi.principal username,
+          count(1) num
+         FROM v_issue vi
+        WHERE (vi.state = '4' OR vi.state = '5')
+          AND vi.version_code = #{version}
+          AND vi.object_code = #{objectCode}
+        GROUP BY vi.principal;
+    </select>
+
+    <select id="getTotalTaskNum" resultType="java.lang.Integer">
+        SELECT count(1) num
+          FROM v_issue vi
+         WHERE vi.ISSUE_TYPE = 'T'
+           AND vi.version_code = #{version}
+           AND vi.object_code = #{objectCode};
+    </select>
+
+    <select id="getFinishedTaskNum" resultType="java.lang.Integer">
+        SELECT count(1) num
+          FROM v_issue vi
+         WHERE (vi.state = '4' OR vi.state = '5')
+           AND vi.version_code = #{version}
+           AND vi.ISSUE_TYPE = 'T'
+           AND vi.object_code = #{objectCode};
+    </select>
+    <select id="getTotalBugNumByCreateUser" resultType="com.sgcc.pesticide.chart.model.StaffIssueNum">
+        SELECT
+               vi.create_user username,
+               pru.role_id roleId,
+               count(1) num
+          FROM v_issue vi
+          LEFT JOIN p_role_user pru ON vi.create_user = pru.username
+         WHERE vi.ISSUE_TYPE = 'B'
+           AND vi.version_code = #{version}
+           AND vi.object_code = #{objectCode}
+         GROUP BY vi.create_user;
+    </select>
+    <select id="getFinishedBugNumByCreateUser" resultType="com.sgcc.pesticide.chart.model.StaffIssueNum">
+        SELECT
+               vi.create_user username,
+               pru.role_id roleId,
+               count(1) num
+          FROM v_issue vi
+          LEFT JOIN p_role_user pru ON vi.create_user = pru.username
+         WHERE vi.version_code = #{version}
+           AND (vi.state = '4' OR vi.state = '5')
+           AND vi.ISSUE_TYPE = 'B'
+           AND vi.object_code = #{objectCode}
+         GROUP BY vi.create_user;
+    </select>
+
+
+</mapper>

@@ -127,4 +127,20 @@ public class LaunchServiceImpl implements LaunchService {
         }
     }
 
+    /**
+     * @param obj
+     * @return
+     * @Description 获取可上线版本
+     * @author JerryWang
+     * @date 2017/7/21 16:51
+     */
+    public String getLaunchVersion(String obj) {
+        List<String> list = launchDao.getLaunchVersion(obj);
+        if(list.size() > 0){
+            return list.get(0);
+        }else {
+            return "";
+        }
+    }
+
 }

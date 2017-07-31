@@ -5,7 +5,6 @@ import java.util.Map;
 
 /**
  * @author jerrywang
- * @create 2017/6/14.
  */
 public interface LaunchDao {
 
@@ -58,4 +57,13 @@ public interface LaunchDao {
     List<Map<String,String>> getLaunchDetail(Map<String, String> param);
 
     int checkRole(Map<String, String> param);
+
+    /**
+     * @Description 获取可发布版本
+     * @author JerryWang
+     * @date 2017/7/21 16:52
+     * @param obj
+     * @return
+     */
+    List<String> getLaunchVersion(String obj);
 }

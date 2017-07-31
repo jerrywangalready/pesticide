@@ -221,6 +221,7 @@ creation.js.commit = function () {
         $("#main_form").find("#title,#deadline,#priority,#working_day,input[type=hidden]").each(function () {
             $(this).val("");
         });
+        $("#uuid").val(comm.js.getUUID());
         $("#isUrgency").prop("checked",false);
         if($("input[name=issueType][checked=checked]").val() == "B"){
             var model = "<p>Bug复现步骤</p><hr /><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>实际结果</p>"
@@ -237,7 +238,8 @@ creation.js.commit = function () {
 // 选择Task
 creation.js.chooseTask = function (obj) {
     $(obj).find("input").attr("checked",true);
-    $("#monitor").removeClass().addClass("mb_15 btn-primary");
+    // $("#monitor").removeClass().addClass("mb_15 btn-primary");
+    $("#operate_area").removeClass("alert-warning").addClass("alert-info");
     $("#link_info_close").click();
     $("#bug_level_div").hide();
     $("#working_day_div").show();
@@ -247,7 +249,8 @@ creation.js.chooseTask = function (obj) {
 // 选择bug
 creation.js.chooseBug = function (obj) {
     $(obj).find("input").attr("checked",true);
-    $("#monitor").removeClass().addClass("mb_15 btn-warning");
+    // $("#monitor").removeClass().addClass("mb_15 btn-warning");
+    $("#operate_area").removeClass("alert-info").addClass("alert-warning");
     $("#link_info_close").click();
     $("#bug_level_div").show();
     $("#working_day_div").hide();

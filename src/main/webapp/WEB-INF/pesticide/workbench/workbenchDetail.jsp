@@ -53,7 +53,7 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
-                <li><a onclick="workbenchDetail.js.changeState('3')" href="javascript:void(0);">挂起(不可用)</a></li>
+                <li><a onclick="workbenchDetail.js.uploadAttachment()" href="javascript:void(0);">上传附件</a></li>
                 <li><a onclick="workbenchDetail.js.changePrincipal()" href="javascript:void(0);">指派</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a onclick="workbenchDetail.js.changeStateWithReason('7')" href="javascript:void(0);">拒绝</a></li>
@@ -149,7 +149,9 @@
         <span class="attachment_time">{{value.file_size}}</span>
     </div>
     {{/each}}
+    {{if list.length > 0}}
     <hr>
+    {{/if}}
 </script>
 
 <script id="operation_template" type="text/html">
