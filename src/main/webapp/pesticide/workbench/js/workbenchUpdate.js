@@ -1,29 +1,29 @@
 /**
  * Created by jerrywang on 2017/5/28.
  */
-jQuery.namespace("issuePoolUpdate");
+jQuery.namespace("workbenchUpdate");
 $(function () {
-    issuePoolUpdate.js.init();
+    workbenchUpdate.js.init();
 });
 
-issuePoolUpdate.js = {};
-issuePoolUpdate.js.description;
-issuePoolUpdate.js.init = function () {
-    issuePoolUpdate.js.objectCode = getParameter(location.hash,"obj","");
+workbenchUpdate.js = {};
+workbenchUpdate.js.description;
+workbenchUpdate.js.init = function () {
+    workbenchUpdate.js.objectCode = getParameter(location.hash,"obj","");
 
     CKEDITOR.replace('description',{ height: '440px'});
-    issuePoolUpdate.js.description = CKEDITOR.instances.description;
-    issuePoolUpdate.js.description.on('focus',function () {
+    workbenchUpdate.js.description = CKEDITOR.instances.description;
+    workbenchUpdate.js.description.on('focus',function () {
         $('#cke_description').addClass("edit_focus");
     });
-    issuePoolUpdate.js.description.on('blur',function () {
+    workbenchUpdate.js.description.on('blur',function () {
         $('#cke_description').removeClass("edit_focus");
     });
 
     // 模块下拉框
-    $("#model_select").dict({table:"s_model",key:"model_code",value:"model_name",where:"isenable='1' and object_code='"+issuePoolUpdate.js.objectCode+"'"});
+    $("#model_select").dict({table:"s_model",key:"model_code",value:"model_name",where:"isenable='1' and object_code='"+workbenchUpdate.js.objectCode+"'"});
     // 负责人下拉框初始化
-    $("#principal").dict({table:"V_OBJECT_USERS",key:"username",value:"nickname",where:"object_code='"+issuePoolUpdate.js.objectCode+"'"});
+    $("#principal").dict({table:"V_OBJECT_USERS",key:"username",value:"nickname",where:"object_code='"+workbenchUpdate.js.objectCode+"'"});
     // 优先级下拉框初始化
     $("#priority").dict({table:"t_code_list",key:"code_key",value:"code_value",type:"priority"});
     // 完成时间
@@ -38,7 +38,7 @@ issuePoolUpdate.js.init = function () {
         forceParse: 0
     });
     // 版本号下拉框
-    $("#version_code").dict({table:"S_VERSION",key:"VERSION_CODE",value:"VERSION_CODE",where:"object_code='"+issuePoolUpdate.js.objectCode+"' AND publish_date > SYSDATE()"});
+    $("#version_code").dict({table:"S_VERSION",key:"VERSION_CODE",value:"VERSION_CODE",where:"object_code='"+workbenchUpdate.js.objectCode+"' AND publish_date > SYSDATE()"});
     // 绑定灰黑样式切换
     $("#model_select,#principal,#version_code,#priority").change(function () {
         if($(this).val()==""){
@@ -85,7 +85,7 @@ issuePoolUpdate.js.init = function () {
         // if()
         $("#working_day").val(data.working_day);
         $("input[name=bug_level][value="+data.bug_level+"]").parent().click();
-        issuePoolUpdate.js.description.setData(data.description);
+        workbenchUpdate.js.description.setData(data.description);
         if(data.parent_code != ""){
 
             $.post(path + "/issuePool/getParentIssue.do",{issueCode:data.parent_code},function (result) {
@@ -112,7 +112,7 @@ issuePoolUpdate.js.init = function () {
             var initialPreviewConfig = [];
             for(var i=0;i<data.length;i++){
                 initialPreview[i] = "/pesticide/comm/image/icon/"+data[i].image;
-                initialPreviewConfig[i] = {caption: data[i].file_name, size: data[i].file_size, width: "120px", key: i};
+                initialPreviewConfig[i] = {caption: data[i].file_name, size: data[i].file_size, width: "120px", key: i, showDrag:false, showZoom:false};
             }
             // 上传附件组件初始化
             $("#attachment").fileinput({
@@ -126,7 +126,6 @@ issuePoolUpdate.js.init = function () {
                 // deleteUrl: path + '/creation/deleteAttachment.do',
                 // deleteExtraData: {uuid: 'jjjjjj'},// 删除时额外传入的参数
                 hiddenThumbnailContent: true,
-                showCaption: false,
                 showPreview: true,
                 overwriteInitial: false,
                 showUploadedThumbs: true,
@@ -143,13 +142,6 @@ issuePoolUpdate.js.init = function () {
                 // showUploadedThumbs:false,
                 initialCaption: "添加附件",
                 layoutTemplates:{
-                    actions: '<div class="file-upload-indicator" title="Uploaded" style="margin-left: 0px;"><i class="glyphicon glyphicon-ok-sign text-success"></i></div>\n' +
-                    '<div class="file-actions">\n' +
-                    '    <div class="file-footer-buttons">\n' +
-                    '        {upload} {delete}  {other}' +
-                    '    </div>\n' +
-                    '    <div class="clearfix"></div>\n' +
-                    '</div>'
                 }
             }).on("filebatchselected", function(event, files) {
                 $(this).fileinput("upload");
@@ -165,7 +157,7 @@ issuePoolUpdate.js.init = function () {
 
 };
 // 选择Task
-issuePoolUpdate.js.chooseTask = function (obj) {
+workbenchUpdate.js.chooseTask = function (obj) {
     $(obj).find("input").attr("checked",true);
     $("#operate_area").removeClass("alert-warning").addClass("alert-info");
     $("#link_info_close").click();
@@ -175,7 +167,7 @@ issuePoolUpdate.js.chooseTask = function (obj) {
 };
 
 // 选择bug
-issuePoolUpdate.js.chooseBug = function (obj) {
+workbenchUpdate.js.chooseBug = function (obj) {
     $(obj).find("input").attr("checked",true);
     $("#operate_area").removeClass("alert-info").addClass("alert-warning");
     $("#link_info_close").click();
@@ -183,12 +175,12 @@ issuePoolUpdate.js.chooseBug = function (obj) {
     $("#working_day_div").hide();
 };
 // 保存
-issuePoolUpdate.js.save = function(todo){
+workbenchUpdate.js.save = function(todo){
 
     var param = $("#main_form").validate();
 
     if(param){
-        var description = issuePoolUpdate.js.description.getData();
+        var description = workbenchUpdate.js.description.getData();
         param.description = description;
         param.object_code = getParameter(location.hash,"obj","");
         param.create_user = comm.js.username;
@@ -214,22 +206,22 @@ issuePoolUpdate.js.save = function(todo){
 
 };
 // 提交
-issuePoolUpdate.js.commit = function () {
+workbenchUpdate.js.commit = function () {
     // 保存数据
-    issuePoolUpdate.js.save('commit');
+    workbenchUpdate.js.save('commit');
 
     var hash = location.hash;
     var obj = getParameter(hash, "obj", "");
     var uuid = getParameter(hash, "uuid", "");
     var type = getParameter(hash, "type", "");
-    setHash("on=issuePool/detail&obj="+obj+"&uuid="+uuid+"&type="+type);
+    setHash("on=workbench/detail&obj="+obj+"&uuid="+uuid+"&type="+type);
 
 
 };
 
 
 // 获取关联信息
-issuePoolUpdate.js.getLinkInfo = function () {
+workbenchUpdate.js.getLinkInfo = function () {
 
     setTimeout(function(){
         $("#link_proTask").focus();
@@ -283,10 +275,10 @@ issuePoolUpdate.js.getLinkInfo = function () {
 
 };
 
-issuePoolUpdate.js.return = function () {
+workbenchUpdate.js.return = function () {
     var hash = location.hash;
     var obj = getParameter(hash, "obj", "");
     var uuid = getParameter(hash, "uuid", "");
     var type = getParameter(hash, "type", "");
-    setHash("on=issuePool/detail&obj="+obj+"&uuid="+uuid+"&type="+type);
+    setHash("on=workbench/detail&obj="+obj+"&uuid="+uuid+"&type="+type);
 };

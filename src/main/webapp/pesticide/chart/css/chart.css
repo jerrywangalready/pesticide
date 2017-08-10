@@ -5,6 +5,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: #888 1px 1px 3px;
+    cursor: pointer;
 }
 
 .version-item-info {
@@ -28,19 +29,35 @@
 
 .version-item-detail {
     background-color: #eee;
-    padding: 5px 19px;
+    padding: 10px 0px;
+    /*padding: 5px 19px;*/
     border-radius: 0 0 5px 5px;
     overflow: hidden;
 }
 
 .version-item-detail .nickname {
-    width:70px;
-    padding:17px 0;
+    width: 70px;
+    padding: 17px 0;
 }
+
 .detail-progress-box {
-    width: 780px;
+    width: 320px;
 }
+
 .version-item-detail .num {
-    width:70px;
-    padding:17px 0;
+    width: 55px;
+    padding: 17px 0;
+}
+
+.version-item-progress-detail {
+    height: 50px;
+    width: 315px;
+    padding: 18px 5px;
+}
+
+.item-detail {
+    margin-left: 30px;
+}
+.item-detail:nth-child(odd){
+    border-right: 1px solid #fff;
 }

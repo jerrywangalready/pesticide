@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,8 +51,13 @@ public class WorkbenchController {
      * @return
      */
     @RequestMapping("/getIssueList")
-    public @ResponseBody Query getIssueList(@RequestBody Map<String, String> param){
-        return workbenchService.getIssueList(param);
+    public @ResponseBody Map<String, Object> getIssueList(@RequestBody Map<String, String> param){
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Map<String, Object> map = new HashMap<>();
+        map.put("dt", sdf.format(now));
+        map.put("query", workbenchService.getIssueList(param));
+        return map;
     }
 
     @RequestMapping("/detail")
@@ -302,6 +309,11 @@ public class WorkbenchController {
             e.printStackTrace();
             return "false";
         }
+    }
+
+    @RequestMapping("/update")
+    public String updateInit(){
+        return "/workbench/workbenchUpdate";
     }
 
 }

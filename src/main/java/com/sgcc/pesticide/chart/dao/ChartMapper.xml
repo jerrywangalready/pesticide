@@ -66,6 +66,7 @@
          FROM v_issue vi
         WHERE vi.version_code = #{version}
           AND vi.object_code = #{objectCode}
+          AND vi.state != '9'
         GROUP BY vi.principal;
     </select>
 
@@ -84,6 +85,7 @@
         SELECT count(1) num
           FROM v_issue vi
          WHERE vi.ISSUE_TYPE = 'T'
+           AND vi.state != '9'
            AND vi.version_code = #{version}
            AND vi.object_code = #{objectCode};
     </select>
@@ -104,6 +106,7 @@
           FROM v_issue vi
           LEFT JOIN p_role_user pru ON vi.create_user = pru.username
          WHERE vi.ISSUE_TYPE = 'B'
+           AND vi.state != '9'
            AND vi.version_code = #{version}
            AND vi.object_code = #{objectCode}
          GROUP BY vi.create_user;

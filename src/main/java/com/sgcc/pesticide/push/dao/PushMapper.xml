@@ -27,7 +27,7 @@
 
     <update id="updateTaskState">
         UPDATE t_task t
-        SET t.state = '4'
+        SET t.state = '3'
         WHERE t.uuid IN (SELECT tp.business_id
                           FROM t_push tp
                           WHERE tp.model_code IN
@@ -39,7 +39,7 @@
     </update>
     <update id="updateBugState">
         UPDATE t_bug t
-        SET t.state = '4'
+        SET t.state = '3'
         WHERE t.uuid IN (SELECT tp.business_id
                           FROM t_push tp
                           WHERE tp.model_code IN

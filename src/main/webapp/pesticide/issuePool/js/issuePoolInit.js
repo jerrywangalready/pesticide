@@ -10,6 +10,8 @@ $(function () {
 issuePool.js = {};
 // 初始化
 issuePool.js.init = function () {
+    $.dictInit([{name:"state",table:"t_code_list",type:"state", key:"code_key", value:"code_value"}]);
+
     $("#query_issue_type").dict({table: "t_code_list", type: "issueType", key:"code_key", value:"code_value"});
     $("#query_state").dict({table: "t_code_list", type: "state", key:"code_key", value:"code_value"});
     issuePool.js.query();

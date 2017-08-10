@@ -125,27 +125,38 @@
         select v.code,v.issue_type,v.title from v_issue v WHERE CODE = #{issueCode};
     </select>
     <select id="getAttachment" resultType="java.util.Map">
-        select tf.uuid,tf.file_name,tf.file_size,tf.file_type from t_file tf WHERE tf.business_id = #{businessId};
+        SELECT
+          tf.uuid,
+          tf.file_name,
+          tf.file_size,
+          tf.file_type,
+          tf.create_user
+        FROM t_file tf
+        WHERE tf.business_id = #{businessId}
+        ORDER BY tf.create_time
+    </select>
+    <select id="checkTester" resultType="java.lang.Integer">
+        select count(1) from p_role_user WHERE role_id = 'tester' AND object_code = #{objectCode} AND username = #{username};
     </select>
 
     <!--update task info-->
     <update id="updateTask" parameterType="java.util.Map">
         UPDATE t_task
         SET
-        object_code  = #{object_code,jdbcType=VARCHAR},
-        model_code   = #{model_code,jdbcType=VARCHAR},
-        title        = #{title,jdbcType=VARCHAR},
-        description  = #{description,jdbcType=VARCHAR},
-        principal    = #{principal,jdbcType=VARCHAR},
-        parent_code  = #{parent_code,jdbcType=VARCHAR},
+        object_code = #{object_code,jdbcType=VARCHAR},
+        model_code = #{model_code,jdbcType=VARCHAR},
+        title = #{title,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        principal = #{principal,jdbcType=VARCHAR},
+        parent_code = #{parent_code,jdbcType=VARCHAR},
         version_code = #{version_code,jdbcType=VARCHAR},
-        priority     = #{priority,jdbcType=VARCHAR},
-        working_day  = #{working_day,jdbcType=VARCHAR},
+        priority = #{priority,jdbcType=VARCHAR},
+        working_day = #{working_day,jdbcType=VARCHAR},
         <if test="deadline != null or deadline != '' ">
-            deadline     = #{deadline},
+            deadline = #{deadline},
         </if>
-        update_time  = sysdate(),
-        state        = #{state,jdbcType=VARCHAR}
+        update_time = sysdate(),
+        state = #{state,jdbcType=VARCHAR}
 
         WHERE uuid = #{uuid}
     </update>
@@ -167,7 +178,7 @@
         <if test="deadline != null or deadline != '' ">
             deadline = #{deadline},
         </if>
-        update_time  = sysdate(),
+        update_time = sysdate(),
         state = #{state, jdbcType=VARCHAR}
         WHERE uuid = #{uuid};
     </update>

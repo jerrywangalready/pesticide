@@ -1,23 +1,38 @@
-INSERT INTO pesticide.t_code_list (uuid, code_type, code_name, code_key, code_value, order_code, isenable) VALUES ('issueType1', 'issueType', '任务类型', 'T', 'Task', '1', '1');
-INSERT INTO pesticide.t_code_list (uuid, code_type, code_name, code_key, code_value, order_code, isenable) VALUES ('issueType2', 'issueType', '任务类型', 'B', 'Bug', '2', '1');
+create OR REPLACE view v_issue as
+  SELECT
+    `pesticide`.`t_task`.`uuid`         AS `uuid`,
+    `pesticide`.`t_task`.`task_code`    AS `CODE`,
+    `pesticide`.`t_task`.`model_code`   AS `model_code`,
+    `pesticide`.`t_task`.`title`        AS `title`,
+    'T'                                 AS `ISSUE_TYPE`,
+    `pesticide`.`t_task`.`principal`    AS `principal`,
+    `pesticide`.`t_task`.`state`        AS `state`,
+    `pesticide`.`t_task`.`object_code`  AS `object_code`,
+    `pesticide`.`t_task`.`version_code` AS `version_code`,
+    `pesticide`.`t_task`.`priority`     AS `priority`,
+    `pesticide`.`t_task`.`create_time`  AS `create_time`,
+    `pesticide`.`t_task`.`create_user`  AS `create_user`,
+    `pesticide`.`t_task`.`update_time`  AS `update_time`,
+    ''                                  AS `bug_level`,
+    `pesticide`.`t_task`.`is_read`      AS `is_read`,
+    `pesticide`.`t_task`.`is_display`   AS `is_display`
+  FROM `pesticide`.`t_task`
+  UNION ALL SELECT
+              `pesticide`.`t_bug`.`uuid`         AS `uuid`,
+              `pesticide`.`t_bug`.`bug_code`     AS `CODE`,
+              `pesticide`.`t_bug`.`model_code`   AS `model_code`,
+              `pesticide`.`t_bug`.`title`        AS `title`,
+              'B'                                AS `ISSUE_TYPE`,
+              `pesticide`.`t_bug`.`principal`    AS `principal`,
+              `pesticide`.`t_bug`.`state`        AS `state`,
+              `pesticide`.`t_bug`.`object_code`  AS `object_code`,
+              `pesticide`.`t_bug`.`version_code` AS `version_code`,
+              `pesticide`.`t_bug`.`priority`     AS `priority`,
+              `pesticide`.`t_bug`.`create_time`  AS `create_time`,
+              `pesticide`.`t_bug`.`create_user`  AS `create_user`,
+              `pesticide`.`t_bug`.`update_time`  AS `update_time`,
+              `pesticide`.`t_bug`.`bug_level`    AS `bug_level`,
+              `pesticide`.`t_bug`.`is_read`      AS `is_read`,
+              `pesticide`.`t_bug`.`is_display`   AS `is_display`
+            FROM `pesticide`.`t_bug`;
 
-drop table if exists t_file;
-
-/*==============================================================*/
-/* Table: t_file                                                */
-/*==============================================================*/
-create table t_file
-(
-  uuid                 varchar(32) not null comment '主键',
-  business_id          varchar(32) comment '业务主键',
-  issue_type           varchar(32) comment '任务类型',
-  file_name            varchar(200) comment '文件名称',
-  file_type            varchar(300) comment '文件类型',
-  file_size            varchar(13) comment '文件大小',
-  create_user          varchar(32) comment '创建人员',
-  create_time          datetime comment '创建时间',
-  isenable             varchar(2) comment '是否在用',
-  primary key (uuid)
-);
-
-alter table t_file comment '附件表';

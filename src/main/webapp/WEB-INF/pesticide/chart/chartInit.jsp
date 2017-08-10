@@ -55,7 +55,7 @@
         </div>
         <div class="left version-item-progress">
             <div class="progress total">
-                <div class="progress-bar progress-bar-{{if value.percent == '100'}}success{{else}}info{{/if}} progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: {{value.percent}}%">
+                <div class="progress-bar progress-bar-{{if value.percent == '100'}}success{{else}}primary{{/if}} progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: {{value.percent}}%">
                     <%--<span class="sr-only">60% Complete (warning)</span>--%>
                     {{value.percent}}%
                 </div>
@@ -68,12 +68,12 @@
 <script id="detailTemplate" type="text/html">
     <div class="version-item-detail" style="display: none">
         {{each list as value i}}
-        <div class="left">
+        <div class="left item-detail">
             <div class="left nickname">
                 <span>{{value.nickname}}</span>
             </div>
             <div class="left detail-progress-box">
-                <div class="left version-item-progress">
+                <div class="left version-item-progress-detail">
                     <div class="progress">
                         <div class="progress-bar progress-bar-{{if value.percent == '100'}}success{{else}}info{{/if}} progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: {{value.percent}}%">
                             <%--<span class="sr-only">60% Complete (warning)</span>--%>

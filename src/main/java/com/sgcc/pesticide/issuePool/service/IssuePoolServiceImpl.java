@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.FileOutputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -162,6 +163,24 @@ public class IssuePoolServiceImpl implements IssuePoolService {
      */
     public List<Map<String, String>> getAttachment(String businessId) {
         return issuePoolDao.getAttachment(businessId);
+    }
+
+    /**
+     * @param objectCode
+     * @return
+     * @Description 校验是否为测试人员
+     * @author JerryWang
+     * @date 2017/8/1 14:04
+     */
+    public String checkTester(String objectCode, String username) {
+        Map<String, String> param = new HashMap<>();
+        param.put("objectCode", objectCode);
+        param.put("username", username);
+        int i = issuePoolDao.checkTester(param);
+        if(i > 0)
+            return "true";
+        else
+            return "false";
     }
 
 }

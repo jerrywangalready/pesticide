@@ -101,7 +101,7 @@ creation.js.init = function () {
         initialPreviewConfig: [
         ],
         hiddenThumbnailContent: true,
-        showCaption: false,
+        // showCaption: false,
         showPreview: true,
         overwriteInitial: false,
         showUploadedThumbs: true,
@@ -113,15 +113,7 @@ creation.js.init = function () {
         showCancel: false,
         showClose: false,
         initialCaption: "添加附件",
-        layoutTemplates:{
-            actions: '<div class="file-upload-indicator" title="Uploaded" style="margin-left: 0px;"><i class="glyphicon glyphicon-ok-sign text-success"></i></div>\n' +
-            '<div class="file-actions">\n' +
-                '    <div class="file-footer-buttons">\n' +
-            '        {upload} {delete}  {other}' +
-            '    </div>\n' +
-            '    <div class="clearfix"></div>\n' +
-            '</div>'
-        }
+        layoutTemplates:{}
     }).on("filebatchselected", function(event, files) {
         $(this).fileinput("upload");
     }).on("fileuploaded", function (event, data, previewId, index) {
@@ -129,6 +121,13 @@ creation.js.init = function () {
         // console.info(data)
         // console.info(previewId)
         // console.info(index)
+    });
+
+    $.post(path + "/issuePool/checkTester.do",{objectCode:creation.js.objectCode, username:comm.js.username},function(result){
+        if("true" == result){
+
+            $("input[name=issueType][value=B]:eq(0)").parent().click();
+        }
     });
 
 };
@@ -256,7 +255,9 @@ creation.js.chooseBug = function (obj) {
     $("#working_day_div").hide();
     var model = "<p>Bug复现步骤</p><hr /><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>实际结果</p>"
             + "<hr /><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>期望结果</p><hr /><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>";
-    creation.js.description.setData(model);
+    setTimeout(function () {
+        creation.js.description.setData(model);
+    },500)
 };
 
 // 获取关联信息

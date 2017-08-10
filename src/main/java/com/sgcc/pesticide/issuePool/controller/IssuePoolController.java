@@ -185,4 +185,9 @@ public class IssuePoolController {
         }
         return list;
     }
+
+    @RequestMapping("/checkTester")
+    public @ResponseBody String checkTester(String objectCode, String username){
+        return issuePoolService.checkTester(objectCode, username);
+    }
 }

@@ -56,6 +56,11 @@
         {{each list as value i}}
         <div class="grid-item {{if value.ISSUE_TYPE == 'T'}}task{{/if}}{{if value.ISSUE_TYPE == 'B'}}bug{{/if}}"
              onclick="issuePool.js.detail('{{value.UUID}}','{{value.ISSUE_TYPE}}')">
+            <div class="left">
+                <div class="priority">
+                    <span class="glyphicon glyphicon-flag l{{value.PRIORITY}}"></span>
+                </div>
+            </div>
             <div class="left item-left">
                 <div class="left code_title">
                     <div class="left code">
@@ -67,15 +72,15 @@
                 </div>
                 <div class="left brief_info">
                     <span class="gray">{{value.NICKNAME}}</span>
+                    <span class="gray glyphicon glyphicon-arrow-right"></span>
+                    <span class="gray">{{value.PRINCIPAL_NAME}}</span>
                     <span class="gray">{{value.CREATE_TIME}}</span>
                     <span class="gray">{{value.VERSION_CODE}}</span>
                     <span class="gray">{{value.PRINCIPAL}}</span>
                 </div>
             </div>
-            <div class="right">
-                <div class="priority">
-                    <span class="glyphicon glyphicon-flag l{{value.PRIORITY}}"></span>
-                </div>
+            <div class="right item-label">
+                <span class="label label-{{if value.STATE == '9'}}default{{/if}}{{if value.STATE == '4'}}primary{{/if}}{{if value.STATE == '5'}}success{{/if}}{{if value.STATE == '3'}}info{{/if}}{{if value.STATE == '2'}}warning{{/if}}{{if value.STATE == '1'}}danger{{/if}}">{{value.STATE | dict:'state'}}</span>
             </div>
         </div>
         {{/each}}

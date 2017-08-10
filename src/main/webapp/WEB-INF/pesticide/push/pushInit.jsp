@@ -37,9 +37,9 @@
     {{/each}}
 </script>
 <script id="grid_two" type="text/html">
-    <div style="padding-left:30px; ">
+    <div style="padding-left:30px">
         {{each list as value }}
-        <div class="grid-item bg-grey {{if value.ISSUE_TYPE == 'T'}}task{{/if}}{{if value.ISSUE_TYPE == 'B'}}bug{{/if}}">
+        <div style="box-shadow:none" class="grid-item bg-grey {{if value.ISSUE_TYPE == 'T'}}task{{/if}}{{if value.ISSUE_TYPE == 'B'}}bug{{/if}}">
             <%--<input type="checkbox" checked="checked" class="left">--%>
             <div class="left">
                 <div class="left">

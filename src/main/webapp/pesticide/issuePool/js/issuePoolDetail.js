@@ -21,12 +21,16 @@ issuePoolDetail.js.init = function () {
     ]);
     // 初始化详细页面
     $.post(path + "/workbench/getDetail.do", {uuid: uuid, type: type}, function (data) {
-        data.type = type;
-        data.username = comm.js.username;
-        var html = template('detail_template', data);
-        $("#detail_body").html(html);
+        var objectCode = getParameter(location.hash, "obj", "");
+        $.post(path + "/issuePool/checkTester.do",{objectCode:objectCode, username:comm.js.username},function(result){
+            data.type = type;
+            data.username = comm.js.username;
+            data.isTester = result;
+            var html = template('detail_template', data);
+            $("#detail_body").html(html);
 
-        $("#description").html(data.description);
+            $("#description").html(data.description);
+        });
 
     });
     // 初始化附件信息
@@ -89,5 +93,46 @@ issuePoolDetail.js.submitRemark = function () {
         }else {
             alert("操作失败");
         }
+    });
+};
+
+// 指派
+issuePoolDetail.js.changePrincipal = function () {
+    layer.open({
+        type:2,
+        title:"任务指派",
+        area:['300px','250px'],
+        content:[path + '/workbench/changePrincipalInit.do', 'no']
+    });
+};
+
+// 修改状态
+issuePoolDetail.js.changeState = function (state) {
+    var businessId = $("#uuid").val();
+    var issueType = $("#issue_type").val();
+    $.post(path + '/workbench/changeState.do',{businessId:businessId,issueType:issueType,state:state},function (data) {
+        if(data == "true"){
+            parent.layer.msg("操作成功!");
+            issuePoolDetail.js.return();
+        }else {
+            layer.alert("操作失败!");
+        }
+    });
+};
+
+// 修改状态
+issuePoolDetail.js.changeStateWithReason = function (state) {
+    var title = "";
+    switch (state){
+        case "1": title = "退回";break;
+        case "7": title = "拒绝";break;
+        case "9": title = "废弃";break;
+    }
+    $("#state").val(state);
+    layer.open({
+        type:2,
+        title:title+"原因",
+        area:['300px','200px'],
+        content:[path + '/workbench/inputReason.do', 'no']
     });
 };

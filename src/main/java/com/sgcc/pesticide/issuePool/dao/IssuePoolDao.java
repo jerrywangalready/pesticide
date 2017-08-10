@@ -68,4 +68,12 @@ public interface IssuePoolDao {
      * @return
      */
     List<Map<String,String>> getAttachment(String businessId);
+
+    /**
+     * @Description 查询测试人员数量
+     * @author JerryWang
+     * @date 2017/8/1 14:06
+     * @param param
+     */
+    int checkTester(Map<String, String> param);
 }

@@ -111,7 +111,6 @@ settings.js.addUsers = function () {
 settings.js.deleteUser = function (uuid) {
     layer.confirm('确定要删除吗？此操作不可恢复！',{icon:7,title:'删除'},function (index) {
             $.post(path + "/settings/deleteUser.do",{uuid:uuid},function (data) {
-                console.info(data);
             });
         layer.msg('删除成功！', {icon: 1});
         layer.close(index);

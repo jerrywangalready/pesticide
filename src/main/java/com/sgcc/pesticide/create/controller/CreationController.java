@@ -120,9 +120,11 @@ public class CreationController {
                 initialPreviewConfig.put("url","/pesticide/creation/deleteAttachment.do");
                 initialPreviewConfig.put("extra",extra);
                 initialPreviewConfig.put("key",1);
-                initialPreviewConfig.put("dropZoneEnabled","false");
-                initialPreviewConfig.put("dropZoneTitleClass","hide");
+//                initialPreviewConfig.put("dropZoneEnabled","false");
+//                initialPreviewConfig.put("dropZoneTitleClass","hide");
                 initialPreviewConfig.put("state","1");
+                initialPreviewConfig.put("showZoom",false);
+                initialPreviewConfig.put("showDrag",false);
                 list.add(initialPreviewConfig);
 
                 List<String> l = new ArrayList<>();

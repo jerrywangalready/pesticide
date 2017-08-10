@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sgcc.pesticide.index.dao.IndexDao">
+    <update id="updateDisplayStateByUser">
+        update t_bug set is_display = '1' where object_code = #{obj} and
+        principal = #{username};
+    </update>
 
     <select id="getObjectsByUser" resultType="java.util.Map" parameterType="String">
         SELECT SOU.OBJECT_CODE,SO.OBJECT_NAME
@@ -11,5 +15,41 @@
             ON SOU.OBJECT_CODE = SO.OBJECT_CODE
          WHERE SOU.USERNAME = #{USERNAME}
     </select>
+    <select id="countNew" resultType="java.lang.String">
+        SELECT
+          COUNT(1)
+         FROM v_issue vi
+        WHERE 1=1
+          AND vi.object_code = #{obj}
+          AND ((vi.STATE in ('1') AND vi.principal = #{username})
+          OR (vi.STATE = '3' AND (SELECT COUNT(1) FROM p_role_user pru WHERE pru.object_code = #{obj} AND pru.USERNAME = #{username} AND pru.ROLE_ID = 'tester') >= 1))
+          AND vi.update_time > #{dt}
+        ORDER BY vi.update_time DESC
+    </select>
+    <select id="getNew" resultType="java.util.Map">
+        SELECT
+          vi.UUID,
+          vi.CODE,
+          vi.TITLE,
+          vi.ISSUE_TYPE,
+          vi.PRIORITY,
+          vi.VERSION_CODE,
+          date_format(Vi.update_time, '%Y-%m-%d %T') UPDATE_TIME,
+          su.NICKNAME CREATE_USER,
+          vi.STATE,
+          su2.nickname PRINCIPAL
+         FROM v_issue vi
+         LEFT JOIN s_users su
+           ON su.username = vi.create_user
+         LEFT JOIN s_users su2
+           ON su2.username = vi.principal
+        WHERE 1=1
+          AND vi.object_code = #{obj}
+          AND ((vi.STATE in ('1') AND vi.principal = #{username})
+          OR (vi.STATE = '3' AND (SELECT COUNT(1) FROM p_role_user pru WHERE pru.object_code = #{obj} AND pru.USERNAME = #{username} AND pru.ROLE_ID = 'tester') >= 1))
+          AND vi.update_time > #{dt}
+        ORDER BY vi.update_time DESC
+    </select>
+
 
 </mapper>

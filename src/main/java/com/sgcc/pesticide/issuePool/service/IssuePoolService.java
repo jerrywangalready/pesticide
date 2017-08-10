@@ -2,6 +2,7 @@ package com.sgcc.pesticide.issuePool.service;
 
 import com.sgcc.comm.model.Query;
 
+import java.lang.ref.SoftReference;
 import java.util.List;
 import java.util.Map;
 
@@ -75,4 +76,13 @@ public interface IssuePoolService {
      * @return
      */
     List<Map<String,String>> getAttachment(String businessId);
+
+    /**
+     * @Description 校验是否为测试人员
+     * @author JerryWang
+     * @date 2017/8/1 14:04
+     * @param objectCode
+     * @return
+     */
+    String checkTester(String objectCode, String username);
 }

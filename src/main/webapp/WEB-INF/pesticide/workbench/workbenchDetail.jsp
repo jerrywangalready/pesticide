@@ -19,32 +19,25 @@
 <div id="attachment_box">
 
 </div>
+<div id="attachment_update_box" style="display: none;">
+    <label class="control-label">附件</label>
+    <input id="attachment" name="attachment" type="file" multiple class="file-loading">
+    <br>
+</div>
 <div id="operation_details" >
 
 </div>
 <script id="detail_template" type="text/html">
     <div style="height:50px;">
         <h4 class="left" style="margin-top:12px;">{{issue_code}}</h4>
-        <span id="issue_state" class="label label-primary" style="margin: 14px;float: left;">{{state | dict:'state'}}</span>
+        <div class="label-box">
+            <span class="label label-{{if state == '9'}}default{{/if}}{{if state == '4'}}primary{{/if}}{{if state == '5'}}success{{/if}}{{if state == '3'}}info{{/if}}{{if state == '2'}}warning{{/if}}{{if state == '1'}}danger{{/if}}">{{state | dict:'state'}}</span>
+        </div>
         <button type="button" class="btn btn-default btn-sm right" style="margin-top:10px;" onclick="workbenchDetail.js.return()">返回</button>
         <input id="uuid" type="hidden" value="{{uuid}}">
         <input id="model_code" type="hidden" value="{{model_code}}">
         <input id="issue_type" type="hidden" value="{{issue_type}}">
         <input id="state" type="hidden" value="">
-        {{if state == '0'}}
-        <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
-            <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.changeState('1')">提交</button>
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="caret"></span>
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a onclick="workbenchDetail.js.update()" href="javascript:void(0);">修改</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a onclick="workbenchDetail.js.forDelete()" href="javascript:void(0);">删除</a></li>
-            </ul>
-        </div>
-        {{/if}}
         {{if state == '1'}}
         <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
             <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.pushButtonClick('2')">送测</button>
@@ -53,50 +46,31 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
-                <li><a onclick="workbenchDetail.js.uploadAttachment()" href="javascript:void(0);">上传附件</a></li>
+                <li><a onclick="workbenchDetail.js.uploadAttachment('{{uuid}}')" href="javascript:void(0);">上传附件</a></li>
                 <li><a onclick="workbenchDetail.js.changePrincipal()" href="javascript:void(0);">指派</a></li>
+                {{if create_user == username}}
                 <li role="separator" class="divider"></li>
-                <li><a onclick="workbenchDetail.js.changeStateWithReason('7')" href="javascript:void(0);">拒绝</a></li>
-            </ul>
-        </div>
-        {{/if}}
-        {{if state == '4'}}
-        <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
-            <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.changeState('5')">通过</button>
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="caret"></span>
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a onclick="workbenchDetail.js.changeStateWithReason('1')" href="javascript:void(0);">退回</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a onclick="workbenchDetail.js.changeStateWithReason('9')" href="javascript:void(0);">废弃</a></li>
-            </ul>
-        </div>
-        {{/if}}
-        {{if state == '5'}}
-        <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
-            <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.changeState('6')">结束</button>
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="caret"></span>
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a onclick="workbenchDetail.js.changeStateWithReason('9')" href="javascript:void(0);">废弃</a></li>
-            </ul>
-        </div>
-        {{/if}}
-        {{if state == '7'}}
-        <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
-            <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.changeState('1')">提交</button>
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="caret"></span>
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu">
                 <li><a onclick="workbenchDetail.js.update()" href="javascript:void(0);">修改</a></li>
-                <li role="separator" class="divider"></li>
                 <li><a onclick="workbenchDetail.js.changeStateWithReason('9')" href="javascript:void(0);">废弃</a></li>
+                {{/if}}
+            </ul>
+        </div>
+        {{/if}}
+        {{if state == '3'}}
+        <div class="btn-group btn-group-sm right" style="margin-right:10px;margin-top:10px;">
+            <button type="button" class="btn btn-primary" onclick="workbenchDetail.js.changeState('4')">通过</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a onclick="workbenchDetail.js.uploadAttachment()" href="javascript:void(0);">上传附件</a></li>
+                <li><a onclick="workbenchDetail.js.changeStateWithReason('1')" href="javascript:void(0);">退回</a></li>
+                {{if create_user == username}}
+                <li role="separator" class="divider"></li>
+                <li><a onclick="workbenchDetail.js.update()" href="javascript:void(0);">修改</a></li>
+                <li><a onclick="workbenchDetail.js.changeStateWithReason('9')" href="javascript:void(0);">废弃</a></li>
+                {{/if}}
             </ul>
         </div>
         {{/if}}
@@ -146,6 +120,7 @@
         <span class="attachment {{value.typeClass}} left"></span>
         <a class="attachment_a left" href="javascript:void(0);" onclick="workbenchDetail.js.downloadAttachment('{{value.uuid}}')">{{value.file_name}}</a>
         <span class="attachment_size">{{value.create_time}}</span>
+        <span class="attachment_size">{{value.nickname}}</span>
         <span class="attachment_time">{{value.file_size}}</span>
     </div>
     {{/each}}

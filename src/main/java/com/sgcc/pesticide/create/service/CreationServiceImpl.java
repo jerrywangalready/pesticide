@@ -7,6 +7,7 @@ import com.sgcc.pesticide.create.dao.CreationDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -120,6 +121,7 @@ public class CreationServiceImpl extends BaseServiceImpl implements CreationServ
      */
     public void saveAttachment(Map<String, String> param) {
         creationDao.saveAttachment(param);
+        commService.insertIssueRecord(param.get("businessId"),"上传 了附件",param.get("fileName"));
     }
 
     /**
@@ -129,7 +131,9 @@ public class CreationServiceImpl extends BaseServiceImpl implements CreationServ
      * @date 2017/7/10 23:47
      */
     public void deleteAttachment(String uuid) {
+        Map<String, String> resule = creationDao.getAttachmentInfoByUUID(uuid);
         creationDao.deleteAttachment(uuid);
+        commService.insertIssueRecord(resule.get("business_id"),"删除 了附件",resule.get("file_name"));
     }
 
 }

@@ -20,4 +20,19 @@ public class IndexServiceImpl implements IndexService {
     public List<Map<String, String>> getObjectsByUser(String username){
         return indexDao.getObjectsByUser(username);
     }
+
+    /**
+     * @param param
+     * @return
+     * @Description 获取最新数据数量
+     * @author JerryWang
+     * @date 2017/8/3 18:22
+     */
+    public String countNew(Map<String, String> param) {
+        return indexDao.countNew(param);
+    }
+
+    public List<Map<String, String>> getNew(Map<String, String> param) {
+        return indexDao.getNew(param);
+    }
 }

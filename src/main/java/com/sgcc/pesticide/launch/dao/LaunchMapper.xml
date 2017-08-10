@@ -67,7 +67,7 @@
         <if test="issueType=='B'.toString()">
             t_bug
         </if>
-        SET STATE = '10'
+        SET STATE = '5'
         WHERE VERSION_CODE = #{versionCode}
           AND OBJECT_CODE = #{objectCode}
     </update>

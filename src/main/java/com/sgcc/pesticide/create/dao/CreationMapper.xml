@@ -165,6 +165,13 @@
           FROM PESTICIDE.V_ISSUE
          WHERE CODE LIKE concat('%',#{code},'%') AND OBJECT_CODE = #{objectCode}
     </select>
+    <select id="getAttachmentInfoByUUID" resultType="java.util.Map">
+        SELECT
+          t.business_id,
+          t.file_name
+        FROM t_file t
+        WHERE t.uuid = #{uuid}
+    </select>
 
     <insert id="addVersion">
         insert into s_version (uuid, version_code, publish_date, object_code)

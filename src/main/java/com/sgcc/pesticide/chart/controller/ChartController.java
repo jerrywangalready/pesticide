@@ -1,7 +1,6 @@
 package com.sgcc.pesticide.chart.controller;
 
 import com.sgcc.pesticide.chart.service.ChartService;
-import javafx.scene.chart.Chart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

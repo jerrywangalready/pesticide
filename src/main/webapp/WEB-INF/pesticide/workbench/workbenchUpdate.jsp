@@ -11,7 +11,7 @@
     String path = request.getContextPath();
 %>
 <link href="<%=path%>/pesticide/creation/css/creation.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="<%=path%>/pesticide/issuePool/js/issuePoolUpdate.js"></script>
+<script type="text/javascript" src="<%=path%>/pesticide/workbench/js/workbenchUpdate.js"></script>
 <div>
     <br>
     <form role="form" id="main_form">
@@ -39,16 +39,16 @@
             <div id="operate_area" class="col-md-3 alert alert-info">
                 <div style="height: 456px;">
                     <div class="mb_15 btn-group row" data-toggle="buttons" style="margin-left: 0px;width: 100%;">
-                        <label class="btn btn-primary col-md-6 active" onclick="issuePoolUpdate.js.chooseTask(this)">
+                        <label class="btn btn-primary col-md-6 active" onclick="workbenchUpdate.js.chooseTask(this)">
                             <input type="radio" name="issueType" autocomplete="off" value="T" checked>Task
                         </label>
-                        <label class="btn btn-warning col-md-6" onclick="issuePoolUpdate.js.chooseBug(this)">
+                        <label class="btn btn-warning col-md-6" onclick="workbenchUpdate.js.chooseBug(this)">
                             <input type="radio" name="issueType" autocomplete="off" value="B">Bug
                         </label>
                     </div>
                     <div class="mb_15">
                         <button type="button" class="btn btn-default full_button" id="link_button"
-                                data-toggle="modal" data-target="#link_table" onclick="issuePoolUpdate.js.getLinkInfo()">关联前序任务</button>
+                                data-toggle="modal" data-target="#link_table" onclick="workbenchUpdate.js.getLinkInfo()">关联前序任务</button>
                     </div>
                     <div class="mb_15">
                         <select class="form-control select_empty" id="model_select" name="model_code" validate="required">
@@ -99,12 +99,9 @@
                 </div>
                 <br>
                 <div>
-                    <%--<div class="mb_15">--%>
-                        <%--<button type="button" class="btn btn-success full_button" onclick="issuePoolUpdate.js.save('save')" >保存</button>--%>
-                    <%--</div>--%>
                     <div class="mb_15">
-                        <button type="button" class="btn btn-primary full_button" onclick="issuePoolUpdate.js.commit()" >提交</button>
-                        <button type="button" style="margin-top:10px" class="btn btn-default full_button" onclick="issuePoolUpdate.js.return()" >返回</button>
+                        <button type="button" class="btn btn-primary full_button" onclick="workbenchUpdate.js.commit()" >提交</button>
+                        <button type="button" style="margin-top:10px" class="btn btn-default full_button" onclick="workbenchUpdate.js.return()" >返回</button>
                     </div>
                 </div>
             </div>

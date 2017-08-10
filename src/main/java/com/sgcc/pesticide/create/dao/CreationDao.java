@@ -90,4 +90,13 @@ public interface CreationDao {
      * @param uuid
      */
     void deleteAttachment(String uuid);
+
+    /**
+     * @Description 根据uuid获取附件详细信息
+     * @author JerryWang
+     * @date 2017/8/8 23:43
+     * @param uuid
+     * @return
+     */
+    Map<String,String> getAttachmentInfoByUUID(String uuid);
 }

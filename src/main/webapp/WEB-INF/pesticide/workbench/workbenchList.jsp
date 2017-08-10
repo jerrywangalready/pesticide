@@ -22,15 +22,21 @@
 </div>
 
 <script id="grid_template" type="text/html">
-    {{if list.length == 0}}
+    {{if list.length == 0 && source != 'bell'}}
     <div class="nothing"><span></span></div>
     {{/if}}
     {{each list as value i}}
-    <div class="grid-item {{if value.ISSUE_TYPE == 'T'}}task{{/if}}{{if value.ISSUE_TYPE == 'B'}}bug{{/if}}"
-         onclick="workbenchList.js.detail('{{value.UUID}}','{{value.ISSUE_TYPE}}')">
+    <div class="grid-item {{if value.ISSUE_TYPE == 'T'}}task{{/if}}{{if value.ISSUE_TYPE == 'B'}}bug{{/if}}" {{if source == 'bell'}}style="display: none"{{/if}}
+         onclick="workbenchList.js.detail('{{value.UUID}}','{{value.ISSUE_TYPE}}')"
+        ondblclick="workbenchList.js.detailForNew('{{value.UUID}}','{{value.ISSUE_TYPE}}')">
         <%--<div class="bookmark">--%>
             <%--<span class="left glyphicon glyphicon-bookmark {{if value.STATE != '4'}}hide{{/if}}"></span>--%>
         <%--</div>--%>
+        <div class="left">
+            <div class="priority">
+                <span class="glyphicon glyphicon-flag l{{value.PRIORITY}}" title="优先级"></span>
+            </div>
+        </div>
         <div class="left item-left">
             <div class="left code_title">
                 <div class="left code">
@@ -46,11 +52,9 @@
                 <span class="gray">{{value.VERSION_CODE}}</span>
             </div>
         </div>
-        <div class="right">
-            <div class="priority">
-                <span class="glyphicon glyphicon-flag l{{value.PRIORITY}}" title="优先级"></span>
-            </div>
-        </div>
+        <%--<div class="right item-label">--%>
+            <%--<span class="label label-{{if value.STATE == '9'}}default{{/if}}{{if value.STATE == '4'}}primary{{/if}}{{if value.STATE == '5'}}success{{/if}}{{if value.STATE == '3'}}info{{/if}}{{if value.STATE == '2'}}warning{{/if}}{{if value.STATE == '1'}}danger{{/if}}">{{value.STATE | dict:'state'}}</span>--%>
+        <%--</div>--%>
     </div>
     {{/each}}
 </script>
