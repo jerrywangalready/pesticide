@@ -17,7 +17,7 @@ creation.js.init = function () {
     // 获取uuid
     var uuid = comm.js.getUUID();
     $("#uuid").val(uuid);
-
+    //初始化插件
     creation.js.objectCode = getParameter(location.hash,"obj","");
     var h = $(window).height()-377;
     var th = 440 > h ? 440 : h;
@@ -180,7 +180,7 @@ creation.js.commit = function () {
         var x = $("#menu_task_pool").offset();
         var h = $(window).height();
         var w = $(window).width();
-        $("body").append("<div class='greybackground'></div><div id='letter' style='display:none;top:"+(h/2-50)+"px;left:"+(w/2-50)+"px;position: fixed;z-index: 99999;'><span class='glyphicon glyphicon-envelope' style='font-size:100px;'></span></div>")
+        $("body").append("<div class='greybackground'></div><div id='letter' style='display:none;top:"+(h/2-50)+"px;left:"+(w/2-50)+"px;position: fixed;z-index: 99999;'><span class='glyphicon glyphicon-envelope' style='font-size:100px;'></span></div>");
         $(".greybackground").show("fast");
         $(".greybackground").addClass("addw").addClass("add");
         setTimeout(function () {

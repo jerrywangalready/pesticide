@@ -1,7 +1,7 @@
 package com.sgcc.pesticide.settings.service;
 
 
-import com.sgcc.comm.model.Query;
+import com.github.pagehelper.PageInfo;
 import com.sgcc.pesticide.settings.model.Objects;
 import com.sgcc.pesticide.settings.model.Users;
 
@@ -12,7 +12,7 @@ import java.util.Map;
  *
  */
 public interface SettingsService {
-	Query queryUsersList(Map<String, String> param);
+	PageInfo queryUsersList(Map<String, String> param);
 	/**
 	 * * @Description 查询object
 	 * @author 杜成皓
@@ -20,7 +20,7 @@ public interface SettingsService {
 	 * @param param
 	 * @return
 	 */
-	Query queryObjectList(Map<String, String> param);
+	PageInfo queryObjectList(Map<String, String> param);
 
 	/**
 	 * @Description 插入user

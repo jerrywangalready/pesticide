@@ -32,6 +32,9 @@
             </div>
             <input type="hidden" id="dtp_input2" value=""/>
         </div>
+        <div class="mb_15 col-md-4">
+            <button type="button" class="btn btn-primary" style="float: right" onclick="launchInit.js.getJar()" >准备jar包</button>
+        </div>
     </div>
     <hr>
 

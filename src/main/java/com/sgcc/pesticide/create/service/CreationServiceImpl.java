@@ -102,6 +102,7 @@ public class CreationServiceImpl extends BaseServiceImpl implements CreationServ
      * @author JerryWang
      * @date 2017/6/28 14:22
      */
+    @Override
     public String addVersion(Map<String, String> param) {
         try {
             creationDao.addVersion(param);
@@ -119,6 +120,7 @@ public class CreationServiceImpl extends BaseServiceImpl implements CreationServ
      * @date 2017/7/9 18:53
      * @param param
      */
+    @Override
     public void saveAttachment(Map<String, String> param) {
         creationDao.saveAttachment(param);
         commService.insertIssueRecord(param.get("businessId"),"上传 了附件",param.get("fileName"));
@@ -130,6 +132,7 @@ public class CreationServiceImpl extends BaseServiceImpl implements CreationServ
      * @author JerryWang
      * @date 2017/7/10 23:47
      */
+    @Override
     public void deleteAttachment(String uuid) {
         Map<String, String> resule = creationDao.getAttachmentInfoByUUID(uuid);
         creationDao.deleteAttachment(uuid);

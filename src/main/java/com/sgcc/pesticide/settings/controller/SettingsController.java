@@ -1,6 +1,6 @@
 package com.sgcc.pesticide.settings.controller;
 
-import com.sgcc.comm.model.Query;
+import com.github.pagehelper.PageInfo;
 import com.sgcc.pesticide.settings.model.Objects;
 import com.sgcc.pesticide.settings.model.Users;
 import com.sgcc.pesticide.settings.service.SettingsService;
@@ -37,7 +37,7 @@ public class SettingsController {
      */
     @ResponseBody
     @RequestMapping(value = "/queryUsers.do", method = RequestMethod.POST)
-    public Query queryUsers(@RequestBody Map<String, String> param) {
+    public PageInfo queryUsers(@RequestBody Map<String, String> param) {
         return usersService.queryUsersList(param);
     }
 
@@ -50,7 +50,7 @@ public class SettingsController {
      */
     @ResponseBody
     @RequestMapping(value = "/queryObject.do", method = RequestMethod.POST)
-    public Query queryObject(@RequestBody Map<String, String> param) {
+    public PageInfo queryObject(@RequestBody Map<String, String> param) {
         return usersService.queryObjectList(param);
     }
 

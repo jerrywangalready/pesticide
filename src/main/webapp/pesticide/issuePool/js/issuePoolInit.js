@@ -32,11 +32,14 @@ issuePool.js.query = function () {
     if(getParameter(location.hash,"ps","") == ""){
         param.pageSize = "50";
     }
+    document.cookie="uuid=12223"
     $.ajax({
         type:'POST',
         url:path+'/issuePool/getIssueList.do',
         contentType:'application/json',
         data:JSON.stringify(param),
+        xhrFields: {withCredentials: true},
+        crossDomain: true,
         success:function (data) {
             var html = template('issuePool_template',{'list':data.list});
             $("#grid").html(html);

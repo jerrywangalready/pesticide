@@ -1,6 +1,5 @@
 package com.sgcc.pesticide.push.service;
 
-import com.sgcc.comm.model.Query;
 import com.sgcc.comm.util.service.BaseService;
 
 import java.util.List;

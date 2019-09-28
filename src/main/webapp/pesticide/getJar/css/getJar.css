@@ -1,0 +1,32 @@
+.model_box {
+    padding: 10px 20px;
+}
+
+.jar-list-box {
+    width: 460px;
+    height: 260px;
+    border: 1px solid #888;
+    overflow-y: auto;
+}
+
+.jar-list-box table {
+    width: 100%;
+}
+
+.jar-list-box table td {
+    padding: 0 13px;
+}
+.jar-list-box table td div {
+    margin-top: 7px;
+    margin-bottom: 0px;
+    width: 220px;
+}
+
+.jar-list-box table td label {
+    padding: 0px 20px;
+}
+
+.layer_button {
+    margin-top: 10px;
+}
+

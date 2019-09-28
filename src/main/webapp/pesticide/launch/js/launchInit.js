@@ -184,3 +184,13 @@ launchInit.js.resizeMaxHeight = function () {
     });
     $(".lane,.left-box-shadow,.right-box-shadow").height(num*125-90);
 };
+
+launchInit.js.getJar = function () {
+    layer.open({
+        type:2,
+        title:"Model List",
+        area:['500px','450px'],
+        scrollbar:false,
+        content:[path + '/getJar/init.do', 'no']
+    });
+};

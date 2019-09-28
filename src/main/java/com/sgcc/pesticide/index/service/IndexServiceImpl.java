@@ -17,6 +17,7 @@ public class IndexServiceImpl implements IndexService {
     @Autowired
     IndexDao indexDao;
 
+    @Override
     public List<Map<String, String>> getObjectsByUser(String username){
         return indexDao.getObjectsByUser(username);
     }
@@ -28,10 +29,12 @@ public class IndexServiceImpl implements IndexService {
      * @author JerryWang
      * @date 2017/8/3 18:22
      */
+    @Override
     public String countNew(Map<String, String> param) {
         return indexDao.countNew(param);
     }
 
+    @Override
     public List<Map<String, String>> getNew(Map<String, String> param) {
         return indexDao.getNew(param);
     }

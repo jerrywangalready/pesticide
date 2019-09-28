@@ -1,6 +1,6 @@
 package com.sgcc.pesticide.workbench.service;
 
-import com.sgcc.comm.model.Query;
+import com.github.pagehelper.PageInfo;
 import com.sgcc.comm.util.service.BaseService;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public interface WorkbenchService extends BaseService{
      * @param param
      * @return
      */
-    Query getIssueList(Map<String, String> param);
+    PageInfo getIssueList(Map<String, String> param);
 
     /**
      * @Description 获取详细信息

@@ -1,6 +1,6 @@
 package com.sgcc.pesticide.issuePool.controller;
 
-import com.sgcc.comm.model.Query;
+import com.github.pagehelper.PageInfo;
 import com.sgcc.comm.util.CommUtil;
 import com.sgcc.comm.util.service.CommService;
 import com.sgcc.pesticide.create.service.CreationService;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -47,7 +48,12 @@ public class IssuePoolController {
      * @return
      */
     @RequestMapping("/getIssueList")
-    public @ResponseBody Query getIssueList(@RequestBody Map<String, String> param){
+    public @ResponseBody
+    PageInfo getIssueList(HttpServletRequest request, @RequestBody Map<String, String> param){
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            System.out.println("name="+cookie.getName()+",value="+cookie.getValue());
+        }
         return issuePoolService.getIssueList(param);
     }
 
@@ -135,7 +141,8 @@ public class IssuePoolController {
             //设置响应头和客户端保存文件名
             response.setCharacterEncoding("utf-8");
             response.setContentType("multipart/form-data");
-            response.setHeader("Content-Disposition", "attachment;fileName=" + new String("任务清单".getBytes("UTF-8"),"ISO8859-1") + ".xls");
+            response.setHeader("Content-Disposition", "attachment;fileName=" + new String("任务清单".getBytes("UTF-8"),
+                    "ISO8859-1") + ".xls");
             //打开本地文件流
             InputStream inputStream = new FileInputStream( path+uuid+".xls");
             //激活下载操作

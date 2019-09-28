@@ -26,6 +26,7 @@ public class LaunchServiceImpl implements LaunchService {
      * @author JerryWang
      * @date 2017/6/14 17:34
      */
+    @Override
     public List<Map<String, Object>> getIssueList(Map<String, String> param) {
         // 获取问题列表
         List<Map<String, String>> list = launchDao.getIssueList(param);
@@ -76,6 +77,7 @@ public class LaunchServiceImpl implements LaunchService {
      * @author JerryWang
      * @date 2017/6/15 14:03
      */
+    @Override
     public void changeVersionCode(Map<String, String> param) {
         launchDao.changeVersionCode(param);
     }
@@ -87,6 +89,7 @@ public class LaunchServiceImpl implements LaunchService {
      * @author JerryWang
      * @date 2017/6/25 15:05
      */
+    @Override
     public List<Map<String, String>> getIssueListByVersionCode(Map<String, String> param) throws Exception {
         return launchDao.getIssueListByVersionCode(param);
     }
@@ -97,6 +100,7 @@ public class LaunchServiceImpl implements LaunchService {
      * @author JerryWang
      * @date 2017/6/25 15:08
      */
+    @Override
     public void updateVersionCodeState(Map<String, String> param) throws Exception {
         launchDao.updateVersionCodeState(param);
     }
@@ -107,6 +111,7 @@ public class LaunchServiceImpl implements LaunchService {
      * @author JerryWang
      * @date 2017/6/25 15:42
      */
+    @Override
     public void updateIssueState(Map<String, String> param) {
         param.put("issueType", "T");
         launchDao.updateIssueState(param);
@@ -114,10 +119,12 @@ public class LaunchServiceImpl implements LaunchService {
         launchDao.updateIssueState(param);
     }
 
+    @Override
     public List<Map<String, String>> getLaunchDetail(Map<String, String> param) {
         return launchDao.getLaunchDetail(param);
     }
 
+    @Override
     public boolean checkRole(Map<String, String> param) {
         int num = launchDao.checkRole(param);
         if(num == 0){
@@ -134,6 +141,7 @@ public class LaunchServiceImpl implements LaunchService {
      * @author JerryWang
      * @date 2017/7/21 16:51
      */
+    @Override
     public String getLaunchVersion(String obj) {
         List<String> list = launchDao.getLaunchVersion(obj);
         if(list.size() > 0){

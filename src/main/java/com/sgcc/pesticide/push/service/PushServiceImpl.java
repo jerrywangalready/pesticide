@@ -26,6 +26,7 @@ public class PushServiceImpl extends BaseServiceImpl implements PushService {
      * @author 杜成皓
      * @date 2017/5/3 23:21
      */
+    @Override
     public List<Map<String, String>> getPushList(Map<String, String> param) {
         List<Map<String, String>> list = pushDao.getPushList(param);
         return list;
@@ -38,8 +39,9 @@ public class PushServiceImpl extends BaseServiceImpl implements PushService {
      * @author 杜成皓
      * @date 2017/5/11 23:17
      */
-    public List<Map<String,String>> getPushDetail(Map<String, String> param) {
-        return  pushDao.getPushDetail(param);
+    @Override
+    public List<Map<String, String>> getPushDetail(Map<String, String> param) {
+        return pushDao.getPushDetail(param);
     }
 
     /**
@@ -49,6 +51,7 @@ public class PushServiceImpl extends BaseServiceImpl implements PushService {
      * @author JerryWang
      * @date 2017/5/14 15:22
      */
+    @Override
     public boolean publish(Map<String, Object> param) {
 
         try {
@@ -72,6 +75,7 @@ public class PushServiceImpl extends BaseServiceImpl implements PushService {
      * @author JerryWang
      * @date 2017/6/1 17:24
      */
+    @Override
     public List<Map<String, String>> getTaskUuid(Map<String, Object> param) {
         return pushDao.getTaskUuid(param);
     }
@@ -82,6 +86,7 @@ public class PushServiceImpl extends BaseServiceImpl implements PushService {
      * @author JerryWang
      * @date 2017/6/4 11:17
      */
+    @Override
     public String checkRole(String username) {
         return pushDao.checkRole(username);
     }

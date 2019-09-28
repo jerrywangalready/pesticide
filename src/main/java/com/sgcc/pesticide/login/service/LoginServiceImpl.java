@@ -22,6 +22,7 @@ public class LoginServiceImpl implements LoginService {
 	 * @param password
 	 * @return
 	 */
+	@Override
 	public UserToken checkUser(String username, String password){
 		Map<String, String> param = new HashMap<>();
 		param.put("username",username);

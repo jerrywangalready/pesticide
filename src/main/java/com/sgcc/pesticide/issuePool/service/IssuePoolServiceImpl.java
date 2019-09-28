@@ -2,7 +2,7 @@ package com.sgcc.pesticide.issuePool.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.sgcc.comm.model.Query;
+import com.github.pagehelper.PageInfo;
 import com.sgcc.comm.util.CommUtil;
 import com.sgcc.pesticide.issuePool.dao.IssuePoolDao;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -33,16 +33,12 @@ public class IssuePoolServiceImpl implements IssuePoolService {
      * @param param
      * @return
      */
-    public Query getIssueList(Map<String, String> param) {
+    @Override
+    public PageInfo getIssueList(Map<String, String> param) {
         int pageNum = Integer.parseInt(param.get("pageNum"));
         PageHelper.startPage(pageNum,Integer.parseInt(param.get("pageSize")));
         List<Map<String, String>> list = issuePoolDao.getIssueList(param);
-        Query query = new Query();
-        query.setList(list);
-        query.setPageNum(pageNum);
-        query.setPageSize(Integer.parseInt(param.get("pageSize")));
-        query.setTotal(((Page)list).getTotal());
-        return query;
+        return new PageInfo(list);
     }
 
     /**
@@ -54,6 +50,7 @@ public class IssuePoolServiceImpl implements IssuePoolService {
      * @param type
      * @return
      */
+    @Override
     public Map<String, String> getDetail(String uuid, String type){
         if("T".equals(type)){
             return issuePoolDao.getTaskDetail(uuid);
@@ -69,6 +66,7 @@ public class IssuePoolServiceImpl implements IssuePoolService {
      * @param param
      * @return
      */
+    @Override
     public String saveTask(Map<String, String> param){
         issuePoolDao.updateTask(param);
 
@@ -81,6 +79,7 @@ public class IssuePoolServiceImpl implements IssuePoolService {
      * @date 2017/1/27 17:45
      * @param param
      */
+    @Override
     public String saveBug(Map<String, String> param) {
         issuePoolDao.updateBug(param);
         return param.get("uuid");
@@ -93,6 +92,7 @@ public class IssuePoolServiceImpl implements IssuePoolService {
      * @author JerryWang
      * @date 2017/6/4 19:48
      */
+    @Override
     public Map<String, String> getParentIssue(String issueCode) {
         return issuePoolDao.getParentIssue(issueCode);
     }
@@ -103,6 +103,7 @@ public class IssuePoolServiceImpl implements IssuePoolService {
      * @author JerryWang
      * @date 2017/6/7 14:15
      */
+    @Override
     public String exportExcel(Map<String, String> param) {
         HSSFWorkbook wb = new HSSFWorkbook();
         String uuid = CommUtil.getUUID();
@@ -161,6 +162,7 @@ public class IssuePoolServiceImpl implements IssuePoolService {
      * @author JerryWang
      * @date 2017/7/17 13:00
      */
+    @Override
     public List<Map<String, String>> getAttachment(String businessId) {
         return issuePoolDao.getAttachment(businessId);
     }
@@ -172,15 +174,17 @@ public class IssuePoolServiceImpl implements IssuePoolService {
      * @author JerryWang
      * @date 2017/8/1 14:04
      */
+    @Override
     public String checkTester(String objectCode, String username) {
         Map<String, String> param = new HashMap<>();
         param.put("objectCode", objectCode);
         param.put("username", username);
         int i = issuePoolDao.checkTester(param);
-        if(i > 0)
+        if(i > 0) {
             return "true";
-        else
+        } else {
             return "false";
+        }
     }
 
 }

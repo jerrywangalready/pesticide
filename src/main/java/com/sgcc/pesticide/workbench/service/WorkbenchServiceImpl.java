@@ -2,7 +2,7 @@ package com.sgcc.pesticide.workbench.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.sgcc.comm.model.Query;
+import com.github.pagehelper.PageInfo;
 import com.sgcc.comm.util.CommUtil;
 import com.sgcc.comm.util.service.BaseServiceImpl;
 import com.sgcc.comm.util.service.CommService;
@@ -32,16 +32,12 @@ public class WorkbenchServiceImpl extends BaseServiceImpl implements WorkbenchSe
      * @param param
      * @return
      */
-    public Query getIssueList(Map<String, String> param) {
+    @Override
+    public PageInfo getIssueList(Map<String, String> param) {
 
         PageHelper.startPage(Integer.parseInt(param.get("pageNum")),Integer.parseInt(param.get("pageSize")));
         List<Map<String, String>> list = workbenchDao.getIssueList(param);
-        Query query = new Query();
-        query.setList(list);
-        query.setPageNum(Integer.parseInt(param.get("pageNum")));
-        query.setPageSize(Integer.parseInt(param.get("pageSize")));
-        query.setTotal(((Page)list).getTotal());
-        return query;
+        return new PageInfo(list);
     }
 
     /**
@@ -53,6 +49,7 @@ public class WorkbenchServiceImpl extends BaseServiceImpl implements WorkbenchSe
      * @param type
      * @return
      */
+    @Override
     public Map<String, String> getDetail(String uuid, String type){
         if("T".equals(type)){
             return workbenchDao.getTaskDetail(uuid);
@@ -69,6 +66,7 @@ public class WorkbenchServiceImpl extends BaseServiceImpl implements WorkbenchSe
      * @param objectId
      * @return
      */
+    @Override
     public List<String> getModel(String objectId){
         return workbenchDao.getModel(objectId);
     }
@@ -80,6 +78,7 @@ public class WorkbenchServiceImpl extends BaseServiceImpl implements WorkbenchSe
      * @param param
      * @return
      */
+    @Override
     public String push(Map<String, String> param){
 
         try {
@@ -115,6 +114,7 @@ public class WorkbenchServiceImpl extends BaseServiceImpl implements WorkbenchSe
      * @param param
      * @return
      */
+    @Override
     public String changePrincipal(Map<String, String> param){
         try {
             if ("T".equals(param.get("issueType"))) {
@@ -136,6 +136,7 @@ public class WorkbenchServiceImpl extends BaseServiceImpl implements WorkbenchSe
      * @param businessId
      * @return
      */
+    @Override
     public List<Map<String, String>> getRecord(String businessId) {
         return commService.getIssueRecord(businessId);
     }
@@ -147,6 +148,7 @@ public class WorkbenchServiceImpl extends BaseServiceImpl implements WorkbenchSe
      * @param param
      * @return
      */
+    @Override
     public boolean updateState(Map<String, String> param){
         try {
             if("T".equals(param.get("issueType"))){
@@ -167,6 +169,7 @@ public class WorkbenchServiceImpl extends BaseServiceImpl implements WorkbenchSe
      * @author JerryWang
      * @date 2017/7/13 12:57
      */
+    @Override
     public List<Map<String, String>> getAttachment(String businessId) {
         List<Map<String, String>> list =  workbenchDao.getAttachment(businessId);
         DecimalFormat df = new DecimalFormat("#.00");
@@ -197,6 +200,7 @@ public class WorkbenchServiceImpl extends BaseServiceImpl implements WorkbenchSe
      * @author JerryWang
      * @date 2017/7/16 22:54
      */
+    @Override
     public String getAttachmentNameByUuid(String uuid) {
         return workbenchDao.getAttachmentDetailByUuid(uuid);
     }

@@ -1,24 +1,14 @@
 package com.sgcc.pesticide.launch.controller;
 
-import com.sgcc.comm.model.Query;
-import com.sgcc.comm.util.CommUtil;
 import com.sgcc.comm.util.service.CommService;
-import com.sgcc.pesticide.create.service.CreationService;
-import com.sgcc.pesticide.issuePool.service.IssuePoolService;
 import com.sgcc.pesticide.launch.service.LaunchService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

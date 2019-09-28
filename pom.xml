@@ -282,6 +282,12 @@
             <version>${fastjson.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.jcraft/jsch -->
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.55</version>
+        </dependency>
 
         <!-- 日志文件管理包 start -->
         <!--下面这三个是配套使用：http://blog.csdn.net/woshiwxw765/article/details/7624556-->

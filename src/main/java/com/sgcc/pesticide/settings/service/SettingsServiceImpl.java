@@ -2,7 +2,7 @@ package com.sgcc.pesticide.settings.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.sgcc.comm.model.Query;
+import com.github.pagehelper.PageInfo;
 import com.sgcc.comm.util.CommUtil;
 import com.sgcc.pesticide.settings.dao.SettingsDao;
 import com.sgcc.pesticide.settings.model.Objects;
@@ -19,16 +19,12 @@ public class SettingsServiceImpl implements SettingsService {
 
 	@Autowired
 	SettingsDao settingsDao;
-	public Query queryUsersList(Map<String, String> param){
+
+	public PageInfo queryUsersList(Map<String, String> param){
 		int pageSize=Integer.parseInt(param.get("pageSize"));
 		PageHelper.startPage(Integer.parseInt(param.get("pageNum")),pageSize);
 		List<Users> list = settingsDao.queryUsers(param);
-		Query query = new Query();
-		query.setList(list);
-		query.setPageNum(Integer.parseInt(param.get("pageNum")));
-		query.setPageSize(pageSize);
-		query.setTotal(((Page)list).getTotal());
-		return query;
+		return new PageInfo(list);
 	}
 
 	/**
@@ -38,16 +34,12 @@ public class SettingsServiceImpl implements SettingsService {
 	 * @param param
 	 * @return
 	 */
-	public Query queryObjectList(Map<String, String> param){
+	@Override
+	public PageInfo queryObjectList(Map<String, String> param){
 		int pageSize=10;
 		PageHelper.startPage(Integer.parseInt(param.get("pageNum")),pageSize);
 		List<Objects> list = settingsDao.queryObject(param);
-		Query query = new Query();
-		query.setList(list);
-		query.setPageNum(Integer.parseInt(param.get("pageNum")));
-		query.setPageSize(pageSize);
-		query.setTotal(((Page)list).getTotal());
-		return query;
+		return new PageInfo(list);
 	}
 
 

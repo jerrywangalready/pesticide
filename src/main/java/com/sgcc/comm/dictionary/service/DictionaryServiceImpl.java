@@ -1,4 +1,4 @@
-package com.sgcc.comm.dictionary.service.impl;
+package com.sgcc.comm.dictionary.service;
 
 import com.sgcc.comm.dictionary.dao.DictionaryDao;
 import com.sgcc.comm.dictionary.service.DictionaryService;
@@ -26,6 +26,7 @@ public class DictionaryServiceImpl implements DictionaryService {
      * @param param
      * @return
      */
+    @Override
     public List<Map<String, String>> getDict(Map<String, String> param){
         return dictionaryDao.getDict(param);
     }
@@ -36,6 +37,7 @@ public class DictionaryServiceImpl implements DictionaryService {
      * @param paramArray
      * @return
      */
+    @Override
     public Map<String, Map> getDict(Map<String, String>[] paramArray){
         Map<String, Map> resultMap = new HashMap<>();
         for (Map<String, String> map : paramArray) {

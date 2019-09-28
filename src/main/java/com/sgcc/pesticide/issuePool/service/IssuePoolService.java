@@ -1,8 +1,7 @@
 package com.sgcc.pesticide.issuePool.service;
 
-import com.sgcc.comm.model.Query;
+import com.github.pagehelper.PageInfo;
 
-import java.lang.ref.SoftReference;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +17,7 @@ public interface IssuePoolService {
      * @param param
      * @return
      */
-    Query getIssueList(Map<String, String> param);
+    PageInfo getIssueList(Map<String, String> param);
 
     /**
      * @Description 获取详细信息

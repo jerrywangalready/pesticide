@@ -21,7 +21,7 @@ public interface PushDao {
      * @Description 查询二级列表
      * @author 杜成皓
      * @date 2017/5/11 23:23
-     * @param modelCode
+     * @param param modelCode
      * @return
      */
     List<Map<String,String>> getPushDetail(Map<String, String> param);
@@ -41,7 +41,7 @@ public interface PushDao {
      * @Description 获取任务uuid
      * @author JerryWang
      * @date 2017/6/2 10:43
-     * @param modelCodes
+     * @param param modelCodes
      * @return
      */
     List<Map<String,String>> getTaskUuid(Map<String, Object> param);
