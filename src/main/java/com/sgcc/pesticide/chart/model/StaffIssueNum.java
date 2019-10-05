@@ -12,6 +12,16 @@ public class StaffIssueNum {
 
     private String roleId;
 
+    private boolean bbb;
+
+    public boolean isBbb() {
+        return bbb;
+    }
+
+    public void setBbb(boolean bbb) {
+        this.bbb = bbb;
+    }
+
     public String getRoleId() {
         return roleId;
     }

@@ -60,14 +60,6 @@ public interface IssuePoolService {
     Map<String,String> getParentIssue(String issueCode);
 
     /**
-     * @Description 导出Excel
-     * @author JerryWang
-     * @date 2017/6/7 14:17
-     * @return
-     */
-    String exportExcel(Map<String, String> param);
-
-    /**
      * @Description 获取附件信息
      * @author JerryWang
      * @date 2017/7/17 13:00
@@ -84,4 +76,7 @@ public interface IssuePoolService {
      * @return
      */
     String checkTester(String objectCode, String username);
+
+    List<Map<String, String>> getAllIssueList(Map<String, String> param);
+
 }
